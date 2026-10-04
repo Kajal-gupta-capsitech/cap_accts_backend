@@ -1,6 +1,27 @@
 @BackendAcctTask_HostAddress = http://localhost:5054
 
-GET {{BackendAcctTask_HostAddress}}/weatherforecast/
+### GET all chart accounts
+GET {{BackendAcctTask_HostAddress}}/api/ChartAccounts
 Accept: application/json
+
+###
+
+### GET chart accounts by ID (example)
+GET {{BackendAcctTask_HostAddress}}/api/ChartAccounts/660c1a8e1f8d4a001a111111
+Accept: application/json
+
+###
+
+### POST new chart account
+POST {{BackendAcctTask_HostAddress}}/api/ChartAccounts
+Content-Type: application/json
+
+{
+  "accountName": "Test Account",
+  "accountTypeId": "660c1a8e1f8d4a001a111111",
+  "accountGroup": "Current Assets",
+  "forClients": false,
+  "archive": false
+}
 
 ###

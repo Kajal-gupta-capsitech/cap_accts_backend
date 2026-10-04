@@ -53,13 +53,16 @@ public class AccountingPeriodsController : ControllerBase
         await _accountingPeriodService.CreateAsync(
             accountingPeriod);
 
-        return CreatedAtAction(
-            nameof(Get),
-            new { id = accountingPeriod.Id },
-            accountingPeriod);
+        return Ok(new
+        {
+            status = true,
+            message = "Accounting period created successfully.",
+            result = accountingPeriod
+        });
     }
 
-    // PATCH: api/AccountingPeriods/{id}
+    // PUT/PATCH: api/AccountingPeriods/{id}
+    [HttpPut("{id}")]
     [HttpPatch("{id}")]
     public async Task<IActionResult> Update(
         string id,
@@ -70,7 +73,11 @@ public class AccountingPeriodsController : ControllerBase
 
         if (existingAccountingPeriod == null)
         {
-            return NotFound();
+            return NotFound(new
+            {
+                status = false,
+                message = "Accounting period not found."
+            });
         }
 
         var updated =
@@ -80,11 +87,18 @@ public class AccountingPeriodsController : ControllerBase
 
         if (!updated)
         {
-            return BadRequest(
-                "At least one field must be provided.");
+            return BadRequest(new
+            {
+                status = false,
+                message = "At least one field must be provided."
+            });
         }
 
-        return NoContent();
+        return Ok(new
+        {
+            status = true,
+            message = "Accounting period updated successfully."
+        });
     }
 
     // DELETE: api/AccountingPeriods/{id}
@@ -96,11 +110,19 @@ public class AccountingPeriodsController : ControllerBase
 
         if (existingAccountingPeriod == null)
         {
-            return NotFound();
+            return NotFound(new
+            {
+                status = false,
+                message = "Accounting period not found."
+            });
         }
 
         await _accountingPeriodService.DeleteAsync(id);
 
-        return NoContent();
+        return Ok(new
+        {
+            status = true,
+            message = "Accounting period deleted successfully."
+        });
     }
 }

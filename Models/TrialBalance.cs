@@ -1,4 +1,4 @@
-﻿using MongoDB.Bson;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace BackendAcctTask.Models;
@@ -30,7 +30,7 @@ public class TrialBalance
     [BsonElement("TrialBalanceType")]
     public TrialBalanceType Type { get; set; }
 
-    public string Description { get; set; } = string.Empty;
+    public string? Description { get; set; } = string.Empty;
 
     // Manual = 0
     // Csv = 1
@@ -103,8 +103,8 @@ public enum TrialBalanceType
 
 public enum ImportType
 {
-    Manual = 0,
-    Csv = 1
+    Csv = 0,
+    Manual = 1
 }
 
 public enum CsvImportType
@@ -121,5 +121,5 @@ public enum TrialBalanceStatus
 public enum AccountNature
 {
     Debit = 1,
-    Credit = 2
+    Credit = 0
 }

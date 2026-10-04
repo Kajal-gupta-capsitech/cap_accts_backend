@@ -45,7 +45,6 @@ builder.Services.AddSingleton<IMongoDatabase>(database);
 
 builder.Services.AddControllers();
 
-
 // ============================================================
 // OLD SERVICE-BASED ARCHITECTURE
 // Keep these temporarily so existing controllers continue working.

@@ -1,8 +1,9 @@
-﻿using MongoDB.Bson;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace BackendAcctTask.Models;
 
+[BsonIgnoreExtraElements]
 public class AccountType
 {
     [BsonId]

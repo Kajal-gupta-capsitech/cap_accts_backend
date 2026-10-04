@@ -213,55 +213,51 @@ public class TrialBalancesController : ControllerBase
 
         foreach (var item in items)
         {
-            if (string.IsNullOrWhiteSpace(
-                    item.AccountCode))
+            if (string.IsNullOrWhiteSpace(item.AccountCode) && string.IsNullOrWhiteSpace(item.AccountName))
             {
                 return (
                     false,
                     result,
-                    "Account code is required."
+                    "Account code or name is required."
                 );
             }
 
             var account =
                 await _chartAccounts
                     .Find(x =>
-                        x.Code == item.AccountCode
+                        (!string.IsNullOrWhiteSpace(item.AccountCode) && x.Code == item.AccountCode) ||
+                        (!string.IsNullOrWhiteSpace(item.AccountName) && x.AccountName == item.AccountName)
                     )
                     .FirstOrDefaultAsync();
 
-            if (account == null)
+            if (account != null)
             {
-                return (
-                    false,
-                    result,
-                    $"Chart of account '{item.AccountCode}' was not found."
+                result.Add(
+                    new TrialBalanceItem
+                    {
+                        AccountCode = account.Code,
+                        AccountName = account.AccountName,
+                        Nature = item.Nature,
+                        Debit = item.Debit,
+                        Credit = item.Credit,
+                        Note = item.Note
+                    }
                 );
             }
-
-            // ChartAccount is authoritative.
-            result.Add(
-                new TrialBalanceItem
-                {
-                    AccountCode =
-                        account.Code,
-
-                    AccountName =
-                        account.AccountName,
-
-                    Nature =
-                        item.Nature,
-
-                    Debit =
-                        item.Debit,
-
-                    Credit =
-                        item.Credit,
-
-                    Note =
-                        item.Note
-                }
-            );
+            else
+            {
+                result.Add(
+                    new TrialBalanceItem
+                    {
+                        AccountCode = item.AccountCode ?? string.Empty,
+                        AccountName = item.AccountName ?? string.Empty,
+                        Nature = item.Nature,
+                        Debit = item.Debit,
+                        Credit = item.Credit,
+                        Note = item.Note
+                    }
+                );
+            }
         }
 
         return (
@@ -317,16 +313,27 @@ public class TrialBalancesController : ControllerBase
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> Create(
         [FromForm] string? periodId,
+        [FromForm] string? accountingPeriodId,
         [FromForm] DateTime? periodStart,
         [FromForm] DateTime? periodEnd,
-        [FromForm] TrialBalanceType type,
-        [FromForm] ImportType importType,
-        [FromForm] CsvImportType csvImportType,
+        [FromForm] TrialBalanceType? type,
+        [FromForm] TrialBalanceType? trialBalanceType,
+        [FromForm] ImportType? importType,
+        [FromForm] ImportType? importMode,
+        [FromForm] CsvImportType? csvImportType,
+        [FromForm] string? importFormat,
         [FromForm] string? description,
         [FromForm] decimal turnover,
         IFormFile? csvFile,
+        IFormFile? file,
         IFormFile? attachment)
     {
+        IFormFile? effectiveCsvFile = csvFile ?? file;
+        string? effectivePeriodId = !string.IsNullOrWhiteSpace(periodId) ? periodId : accountingPeriodId;
+        TrialBalanceType effectiveType = type ?? trialBalanceType ?? TrialBalanceType.Statutory;
+        ImportType effectiveImportType = importType ?? importMode ?? (effectiveCsvFile != null ? ImportType.Csv : ImportType.Manual);
+        CsvImportType effectiveCsvImportType = csvImportType ?? CsvImportType.Default;
+
         DateTime finalPeriodStart;
         DateTime finalPeriodEnd;
 
@@ -335,9 +342,9 @@ public class TrialBalancesController : ControllerBase
         // STATUTORY
         // ========================================================
 
-        if (type == TrialBalanceType.Statutory)
+        if (effectiveType == TrialBalanceType.Statutory)
         {
-            if (string.IsNullOrWhiteSpace(periodId))
+            if (string.IsNullOrWhiteSpace(effectivePeriodId))
             {
                 return BadRequest(new
                 {
@@ -350,7 +357,7 @@ public class TrialBalancesController : ControllerBase
             var period =
                 await _accountingPeriods
                     .Find(x =>
-                        x.Id == periodId
+                        x.Id == effectivePeriodId
                     )
                     .FirstOrDefaultAsync();
 
@@ -416,8 +423,8 @@ public class TrialBalancesController : ControllerBase
         // CSV VALIDATION
         // ========================================================
 
-        if (importType == ImportType.Csv &&
-            csvFile == null)
+        if (effectiveImportType == ImportType.Csv &&
+            effectiveCsvFile == null)
         {
             return BadRequest(new
             {
@@ -451,9 +458,9 @@ public class TrialBalancesController : ControllerBase
                     refNo,
 
                 PeriodId =
-                    type ==
+                    effectiveType ==
                     TrialBalanceType.Statutory
-                        ? periodId
+                        ? effectivePeriodId
                         : null,
 
                 PeriodStart =
@@ -463,16 +470,16 @@ public class TrialBalancesController : ControllerBase
                     finalPeriodEnd,
 
                 Type =
-                    type,
+                    effectiveType,
 
                 Description =
                     description ?? string.Empty,
 
                 ImportType =
-                    importType,
+                    effectiveImportType,
 
                 CsvImportType =
-                    csvImportType,
+                    effectiveCsvImportType,
 
                 Status =
                     TrialBalanceStatus.Unbalanced,
@@ -506,11 +513,11 @@ public class TrialBalancesController : ControllerBase
         // SAVE CSV
         // ========================================================
 
-        if (csvFile != null)
+        if (effectiveCsvFile != null)
         {
             trialBalance.CsvFilePath =
                 await SaveFile(
-                    csvFile,
+                    effectiveCsvFile,
                     "csv"
                 );
         }
@@ -884,6 +891,7 @@ public class TrialBalancesController : ControllerBase
     // ============================================================
 
     [HttpPut("{id}")]
+    [HttpPatch("{id}")]
     public async Task<IActionResult> Update(
         string id,
         [FromBody] TrialBalance request)
@@ -1201,6 +1209,40 @@ public class TrialBalancesController : ControllerBase
 
 
     // ============================================================
+    // DELETE
+    //
+    // DELETE
+    // /api/TrialBalances/{id}
+    // ============================================================
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(string id)
+    {
+        var existing =
+            await _trialBalances
+                .Find(x => x.Id == id)
+                .FirstOrDefaultAsync();
+
+        if (existing == null)
+        {
+            return NotFound(new
+            {
+                status = false,
+                message = "Trial balance not found."
+            });
+        }
+
+        await _trialBalances.DeleteOneAsync(x => x.Id == id);
+
+        return Ok(new
+        {
+            status = true,
+            message = "Trial balance deleted successfully."
+        });
+    }
+
+
+    // ============================================================
     // IMPORT CSV
     //
     // POST
@@ -1279,26 +1321,22 @@ public class TrialBalancesController : ControllerBase
             var account =
                 await _chartAccounts
                     .Find(x =>
-                        x.Code == row.Code
+                        (!string.IsNullOrWhiteSpace(row.Code) && x.Code == row.Code) ||
+                        (!string.IsNullOrWhiteSpace(row.Name) && x.AccountName == row.Name)
                     )
                     .FirstOrDefaultAsync();
 
-
-            if (account == null)
+            if (account != null)
             {
-                return BadRequest(new
+                if (string.IsNullOrWhiteSpace(row.Name))
                 {
-                    status = false,
-
-                    message =
-                        $"Chart of account with code '{row.Code}' was not found."
-                });
+                    row.Name = account.AccountName;
+                }
+                if (string.IsNullOrWhiteSpace(row.Code))
+                {
+                    row.Code = account.Code;
+                }
             }
-
-
-            // Master account name is authoritative.
-            row.Name =
-                account.AccountName;
         }
 
 
@@ -1876,25 +1914,22 @@ public class TrialBalancesController : ControllerBase
             var account =
                 await _chartAccounts
                     .Find(x =>
-                        x.Code == row.Code
+                        (!string.IsNullOrWhiteSpace(row.Code) && x.Code == row.Code) ||
+                        (!string.IsNullOrWhiteSpace(row.Name) && x.AccountName == row.Name)
                     )
                     .FirstOrDefaultAsync();
 
-
-            if (account == null)
+            if (account != null)
             {
-                return BadRequest(new
+                if (string.IsNullOrWhiteSpace(row.Name))
                 {
-                    status = false,
-                    message =
-                        $"Chart account '{row.Code}' does not exist."
-                });
+                    row.Name = account.AccountName;
+                }
+                if (string.IsNullOrWhiteSpace(row.Code))
+                {
+                    row.Code = account.Code;
+                }
             }
-
-
-            // Use master account name.
-            row.Name =
-                account.AccountName;
         }
 
 

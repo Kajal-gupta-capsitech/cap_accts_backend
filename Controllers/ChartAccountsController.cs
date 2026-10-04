@@ -1,7 +1,6 @@
 using BackendAcctTask.Models;
 using BackendAcctTask.Services;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver;
 using MongoDB.Bson;
 
 namespace BackendAcctTask.Controllers;
@@ -35,20 +34,17 @@ public class ChartAccountsController : ControllerBase
             return BadRequest("Invalid AccountTypeId.");
         }
 
-        chartAccount.Id =
-            ObjectId.GenerateNewId().ToString();
-
-        try
-        {
-            await _chartAccountService.CreateAsync(
-                chartAccount);
-        }
-        catch (MongoException ex)
-            when (ex.Message != null && ex.Message.Contains("duplicate key"))
+        if (await _chartAccountService.AccountNameExistsAsync(
+                chartAccount.AccountName))
         {
             return Conflict(
                 $"AccountName '{chartAccount.AccountName}' already exists.");
         }
+
+        chartAccount.Id =
+            ObjectId.GenerateNewId().ToString();
+
+        await _chartAccountService.CreateAsync(chartAccount);
 
         return CreatedAtAction(
             nameof(Get),
@@ -84,6 +80,7 @@ public class ChartAccountsController : ControllerBase
 
     // PATCH: api/ChartAccounts/{id}
     [HttpPatch("{id}")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> Update(
         string id,
         UpdateChartAccountRequest request)

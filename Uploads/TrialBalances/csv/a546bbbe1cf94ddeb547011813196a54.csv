@@ -1,0 +1,101 @@
+Account Code,Account Name,Debit,Credit
+1001,Cash,193602.03,0.0
+1002,Bank Account,0.0,110000.17
+1003,Accounts Receivable,214720.18,0.0
+1004,Inventory,0.0,174493.32
+1005,Office Equipment,23997.25,0.0
+1006,Computer Equipment,0.0,243917.78
+1007,Furniture,190404.36,0.0
+1008,Prepaid Expenses,0.0,196623.04
+1009,Accounts Payable,32464.35,0.0
+1010,Accrued Expenses,0.0,112871.29
+1011,Loan Payable,93014.11,0.0
+1012,Capital Account,0.0,231727.86
+1013,Sales Revenue,161144.35,0.0
+1014,Service Revenue,0.0,205779.02
+1015,Purchase Account,111131.84,0.0
+1016,Rent Expense,0.0,57196.06
+1017,Salary Expense,138868.9,0.0
+1018,Electricity Expense,0.0,16422.41
+1019,Insurance Expense,206993.98,0.0
+1020,Travel Expense,0.0,158100.27
+1021,Advertising Expense,189642.89,0.0
+1022,Telephone Expense,0.0,88954.23
+1023,Repairs & Maintenance,242689.16,0.0
+1024,Depreciation Expense,0.0,223333.72
+1025,Interest Expense,194706.68,0.0
+1026,Cash 2,0.0,49062.36
+1027,Bank Account 2,116946.89,0.0
+1028,Accounts Receivable 2,0.0,11429.04
+1029,Inventory 2,38995.23,0.0
+1030,Office Equipment 2,0.0,170920.71
+1031,Computer Equipment 2,186318.16,0.0
+1032,Furniture 2,0.0,241893.68
+1033,Prepaid Expenses 2,81793.43,0.0
+1034,Accounts Payable 2,0.0,92929.7
+1035,Accrued Expenses 2,117654.17,0.0
+1036,Loan Payable 2,0.0,47773.1
+1037,Capital Account 2,32915.42,0.0
+1038,Sales Revenue 2,0.0,119188.38
+1039,Service Revenue 2,57113.88,0.0
+1040,Purchase Account 2,0.0,167618.59
+1041,Rent Expense 2,109569.4,0.0
+1042,Salary Expense 2,0.0,208253.21
+1043,Electricity Expense 2,175216.14,0.0
+1044,Insurance Expense 2,0.0,78435.48
+1045,Travel Expense 2,208148.82,0.0
+1046,Advertising Expense 2,0.0,201288.71
+1047,Telephone Expense 2,97175.86,0.0
+1048,Repairs & Maintenance 2,0.0,72437.86
+1049,Depreciation Expense 2,170782.63,0.0
+1050,Interest Expense 2,0.0,35368.24
+1051,Cash 3,50377.1,0.0
+1052,Bank Account 3,0.0,2336.89
+1053,Accounts Receivable 3,196837.63,0.0
+1054,Inventory 3,0.0,166380.29
+1055,Office Equipment 3,176438.76,0.0
+1056,Computer Equipment 3,0.0,195291.89
+1057,Furniture 3,114999.49,0.0
+1058,Prepaid Expenses 3,0.0,142400.93
+1059,Accounts Payable 3,35379.35,0.0
+1060,Accrued Expenses 3,0.0,29075.25
+1061,Loan Payable 3,167266.54,0.0
+1062,Capital Account 3,0.0,118038.5
+1063,Sales Revenue 3,141526.41,0.0
+1064,Service Revenue 3,0.0,191367.21
+1065,Purchase Account 3,158862.22,0.0
+1066,Rent Expense 3,0.0,138618.06
+1067,Salary Expense 3,140022.19,0.0
+1068,Electricity Expense 3,0.0,76335.55
+1069,Insurance Expense 3,8189.05,0.0
+1070,Travel Expense 3,0.0,109460.99
+1071,Advertising Expense 3,54038.88,0.0
+1072,Telephone Expense 3,0.0,102427.9
+1073,Repairs & Maintenance 3,213424.07,0.0
+1074,Depreciation Expense 3,0.0,58867.9
+1075,Interest Expense 3,15046.53,0.0
+1076,Cash 4,0.0,70705.28
+1077,Bank Account 4,73751.64,0.0
+1078,Accounts Receivable 4,0.0,165648.17
+1079,Inventory 4,139479.52,0.0
+1080,Office Equipment 4,0.0,196082.6
+1081,Computer Equipment 4,166246.23,0.0
+1082,Furniture 4,0.0,101893.52
+1083,Prepaid Expenses 4,203598.09,0.0
+1084,Accounts Payable 4,0.0,42159.74
+1085,Accrued Expenses 4,6166.66,0.0
+1086,Loan Payable 4,0.0,22966.94
+1087,Capital Account 4,180728.66,0.0
+1088,Sales Revenue 4,0.0,115738.37
+1089,Service Revenue 4,40737.31,0.0
+1090,Purchase Account 4,0.0,125510.67
+1091,Rent Expense 4,38501.87,0.0
+1092,Salary Expense 4,0.0,174231.93
+1093,Electricity Expense 4,111815.99,0.0
+1094,Insurance Expense 4,0.0,95564.8
+1095,Travel Expense 4,75727.27,0.0
+1096,Advertising Expense 4,0.0,157755.51
+1097,Telephone Expense 4,90772.25,0.0
+1098,Repairs & Maintenance 4,0.0,22368.65
+1099,Depreciation Expense 4,29942.47,0.0
+1100,Interest Expense 4,0.0,240493.47

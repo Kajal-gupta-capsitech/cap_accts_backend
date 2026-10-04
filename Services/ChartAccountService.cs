@@ -26,28 +26,14 @@ public class ChartAccountService
         _accountTypes =
             mongoDatabase.GetCollection<AccountType>(
                 mongoDbSettings.Value.AccountTypesCollectionName);
-
-        CreateUniqueIndex();
     }
-    // CREATE UNIQUE INDEX FOR ACCOUNT NAME
-    private void CreateUniqueIndex()
+
+    public async Task<bool> AccountNameExistsAsync(string accountName)
     {
-        var indexKeys =
-            Builders<ChartAccount>.IndexKeys
-                .Ascending(x => x.AccountName);
-
-        var indexOptions =
-            new CreateIndexOptions
-            {
-                Unique = true
-            };
-
-        var indexModel =
-            new CreateIndexModel<ChartAccount>(
-                indexKeys,
-                indexOptions);
-
-        _chartAccounts.Indexes.CreateOne(indexModel);
+        return await _chartAccounts
+            .Find(x => x.AccountName == accountName)
+            .Limit(1)
+            .FirstOrDefaultAsync() is not null;
     }
 
     // GET ALL

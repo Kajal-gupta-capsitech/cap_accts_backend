@@ -1,0 +1,7 @@
+Code,AccountName,Debit,Credit
+1/1,Cash on Hand,25000.00,0.00
+2/1,Petty Cash,5000.00,0.00
+1/2,Bank Account - Operations,75000.00,0.00
+1/3,Accounts Receivable,45000.00,0.00
+1/10,Office Equipment,15000.00,0.00
+2/10,Accumulated Depreciation,0.00,165000.00
