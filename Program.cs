@@ -45,18 +45,11 @@ builder.Services.AddSingleton<IMongoDatabase>(database);
 
 builder.Services.AddControllers();
 
-// ============================================================
-// OLD SERVICE-BASED ARCHITECTURE
-// Keep these temporarily so existing controllers continue working.
-// ============================================================
 
 builder.Services.AddSingleton<AccountTypeService>();
 builder.Services.AddSingleton<ChartAccountService>();
 builder.Services.AddSingleton<AccountingPeriodService>();
 
-// Do NOT register TrialBalanceService if TrialBalanceController
-// has already been converted to direct MongoDB access.
-// builder.Services.AddSingleton<TrialBalanceService>();
 
 
 // ============================================================

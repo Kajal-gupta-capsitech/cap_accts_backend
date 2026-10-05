@@ -1,0 +1,2001 @@
+Account Code,Account Name,Debit,Credit
+1001,Cash,227190.88,0.0
+1002,Bank Account,0.0,175076.93
+1003,Accounts Receivable,66834.56,0.0
+1004,Inventory,0.0,242309.51
+1005,Office Equipment,194798.35,0.0
+1006,Computer Equipment,0.0,179364.1
+1007,Furniture,112615.69,0.0
+1008,Prepaid Expenses,0.0,68424.27
+1009,Accounts Payable,24549.55,0.0
+1010,Accrued Expenses,0.0,225699.3
+1011,Loan Payable,114216.18,0.0
+1012,Capital Account,0.0,50989.66
+1013,Sales Revenue,76836.18,0.0
+1014,Service Revenue,0.0,145015.28
+1015,Purchase Account,44604.81,0.0
+1016,Rent Expense,0.0,214225.26
+1017,Salary Expense,189750.62,0.0
+1018,Electricity Expense,0.0,180006.01
+1019,Insurance Expense,108307.21,0.0
+1020,Travel Expense,0.0,157013.56
+1021,Advertising Expense,146232.44,0.0
+1022,Telephone Expense,0.0,162636.73
+1023,Repairs & Maintenance,21568.86,0.0
+1024,Depreciation Expense,0.0,104243.95
+1025,Interest Expense,10882.74,0.0
+1026,Cash 2,0.0,123750.71
+1027,Bank Account 2,82800.37,0.0
+1028,Accounts Receivable 2,0.0,36558.79
+1029,Inventory 2,26299.04,0.0
+1030,Office Equipment 2,0.0,147117.32
+1031,Computer Equipment 2,43062.95,0.0
+1032,Furniture 2,0.0,231317.47
+1033,Prepaid Expenses 2,145474.75,0.0
+1034,Accounts Payable 2,0.0,87044.02
+1035,Accrued Expenses 2,147933.42,0.0
+1036,Loan Payable 2,0.0,6189.57
+1037,Capital Account 2,239660.52,0.0
+1038,Sales Revenue 2,0.0,120834.71
+1039,Service Revenue 2,195792.44,0.0
+1040,Purchase Account 2,0.0,21141.13
+1041,Rent Expense 2,121921.25,0.0
+1042,Salary Expense 2,0.0,122931.4
+1043,Electricity Expense 2,234487.7,0.0
+1044,Insurance Expense 2,0.0,143146.15
+1045,Travel Expense 2,118635.61,0.0
+1046,Advertising Expense 2,0.0,67110.43
+1047,Telephone Expense 2,83226.46,0.0
+1048,Repairs & Maintenance 2,0.0,130407.76
+1049,Depreciation Expense 2,110008.41,0.0
+1050,Interest Expense 2,0.0,5892.21
+1051,Cash 3,206659.84,0.0
+1052,Bank Account 3,0.0,224092.11
+1053,Accounts Receivable 3,35492.15,0.0
+1054,Inventory 3,0.0,138732.02
+1055,Office Equipment 3,27589.65,0.0
+1056,Computer Equipment 3,0.0,168223.9
+1057,Furniture 3,70667.83,0.0
+1058,Prepaid Expenses 3,0.0,165025.95
+1059,Accounts Payable 3,181885.16,0.0
+1060,Accrued Expenses 3,0.0,192277.55
+1061,Loan Payable 3,27381.37,0.0
+1062,Capital Account 3,0.0,229044.96
+1063,Sales Revenue 3,57938.39,0.0
+1064,Service Revenue 3,0.0,9834.43
+1065,Purchase Account 3,138935.69,0.0
+1066,Rent Expense 3,0.0,93045.11
+1067,Salary Expense 3,207532.54,0.0
+1068,Electricity Expense 3,0.0,202158.74
+1069,Insurance Expense 3,79626.15,0.0
+1070,Travel Expense 3,0.0,238248.4
+1071,Advertising Expense 3,73084.0,0.0
+1072,Telephone Expense 3,0.0,129006.75
+1073,Repairs & Maintenance 3,64363.29,0.0
+1074,Depreciation Expense 3,0.0,234042.87
+1075,Interest Expense 3,41569.65,0.0
+1076,Cash 4,0.0,11705.2
+1077,Bank Account 4,109056.72,0.0
+1078,Accounts Receivable 4,0.0,248097.7
+1079,Inventory 4,222973.48,0.0
+1080,Office Equipment 4,0.0,187277.7
+1081,Computer Equipment 4,222752.73,0.0
+1082,Furniture 4,0.0,223414.94
+1083,Prepaid Expenses 4,129955.16,0.0
+1084,Accounts Payable 4,0.0,79324.3
+1085,Accrued Expenses 4,193117.1,0.0
+1086,Loan Payable 4,0.0,165584.49
+1087,Capital Account 4,93727.6,0.0
+1088,Sales Revenue 4,0.0,24069.43
+1089,Service Revenue 4,186824.01,0.0
+1090,Purchase Account 4,0.0,65983.9
+1091,Rent Expense 4,234234.88,0.0
+1092,Salary Expense 4,0.0,60622.16
+1093,Electricity Expense 4,31128.1,0.0
+1094,Insurance Expense 4,0.0,207862.61
+1095,Travel Expense 4,38744.44,0.0
+1096,Advertising Expense 4,0.0,45227.44
+1097,Telephone Expense 4,150046.01,0.0
+1098,Repairs & Maintenance 4,0.0,218703.23
+1099,Depreciation Expense 4,49510.45,0.0
+1100,Interest Expense 4,0.0,77925.76
+1101,Cash 5,194462.51,0.0
+1102,Bank Account 5,0.0,242970.69
+1103,Accounts Receivable 5,125434.93,0.0
+1104,Inventory 5,0.0,36402.43
+1105,Office Equipment 5,3977.1,0.0
+1106,Computer Equipment 5,0.0,57799.18
+1107,Furniture 5,33389.64,0.0
+1108,Prepaid Expenses 5,0.0,169575.84
+1109,Accounts Payable 5,30897.21,0.0
+1110,Accrued Expenses 5,0.0,126829.32
+1111,Loan Payable 5,173718.48,0.0
+1112,Capital Account 5,0.0,145488.59
+1113,Sales Revenue 5,50344.03,0.0
+1114,Service Revenue 5,0.0,201129.07
+1115,Purchase Account 5,178994.08,0.0
+1116,Rent Expense 5,0.0,184876.51
+1117,Salary Expense 5,33198.91,0.0
+1118,Electricity Expense 5,0.0,31376.57
+1119,Insurance Expense 5,231926.86,0.0
+1120,Travel Expense 5,0.0,99695.76
+1121,Advertising Expense 5,75586.7,0.0
+1122,Telephone Expense 5,0.0,122401.72
+1123,Repairs & Maintenance 5,165884.62,0.0
+1124,Depreciation Expense 5,0.0,238928.0
+1125,Interest Expense 5,71968.33,0.0
+1126,Cash 6,0.0,231239.7
+1127,Bank Account 6,6702.44,0.0
+1128,Accounts Receivable 6,0.0,139021.91
+1129,Inventory 6,158676.79,0.0
+1130,Office Equipment 6,0.0,26921.4
+1131,Computer Equipment 6,35514.73,0.0
+1132,Furniture 6,0.0,105069.02
+1133,Prepaid Expenses 6,241574.86,0.0
+1134,Accounts Payable 6,0.0,149212.62
+1135,Accrued Expenses 6,233289.29,0.0
+1136,Loan Payable 6,0.0,201188.05
+1137,Capital Account 6,117111.71,0.0
+1138,Sales Revenue 6,0.0,196298.48
+1139,Service Revenue 6,4950.28,0.0
+1140,Purchase Account 6,0.0,27731.43
+1141,Rent Expense 6,207442.44,0.0
+1142,Salary Expense 6,0.0,199305.86
+1143,Electricity Expense 6,58543.87,0.0
+1144,Insurance Expense 6,0.0,132927.01
+1145,Travel Expense 6,151700.95,0.0
+1146,Advertising Expense 6,0.0,217000.87
+1147,Telephone Expense 6,150975.24,0.0
+1148,Repairs & Maintenance 6,0.0,103436.61
+1149,Depreciation Expense 6,93858.92,0.0
+1150,Interest Expense 6,0.0,106757.58
+1151,Cash 7,163156.79,0.0
+1152,Bank Account 7,0.0,216938.91
+1153,Accounts Receivable 7,113747.27,0.0
+1154,Inventory 7,0.0,62335.97
+1155,Office Equipment 7,59547.26,0.0
+1156,Computer Equipment 7,0.0,186630.56
+1157,Furniture 7,204233.91,0.0
+1158,Prepaid Expenses 7,0.0,26766.88
+1159,Accounts Payable 7,17106.43,0.0
+1160,Accrued Expenses 7,0.0,148811.2
+1161,Loan Payable 7,36970.22,0.0
+1162,Capital Account 7,0.0,206253.72
+1163,Sales Revenue 7,77928.5,0.0
+1164,Service Revenue 7,0.0,36396.05
+1165,Purchase Account 7,230282.13,0.0
+1166,Rent Expense 7,0.0,41800.16
+1167,Salary Expense 7,71537.66,0.0
+1168,Electricity Expense 7,0.0,38826.54
+1169,Insurance Expense 7,29314.77,0.0
+1170,Travel Expense 7,0.0,5776.43
+1171,Advertising Expense 7,14321.15,0.0
+1172,Telephone Expense 7,0.0,44073.05
+1173,Repairs & Maintenance 7,13818.79,0.0
+1174,Depreciation Expense 7,0.0,147990.38
+1175,Interest Expense 7,170338.27,0.0
+1176,Cash 8,0.0,98710.8
+1177,Bank Account 8,79838.78,0.0
+1178,Accounts Receivable 8,0.0,126379.3
+1179,Inventory 8,218813.73,0.0
+1180,Office Equipment 8,0.0,212857.34
+1181,Computer Equipment 8,11347.03,0.0
+1182,Furniture 8,0.0,45783.85
+1183,Prepaid Expenses 8,59567.85,0.0
+1184,Accounts Payable 8,0.0,62722.2
+1185,Accrued Expenses 8,143022.55,0.0
+1186,Loan Payable 8,0.0,104357.48
+1187,Capital Account 8,12788.9,0.0
+1188,Sales Revenue 8,0.0,93716.73
+1189,Service Revenue 8,131176.36,0.0
+1190,Purchase Account 8,0.0,25867.14
+1191,Rent Expense 8,208447.91,0.0
+1192,Salary Expense 8,0.0,13464.49
+1193,Electricity Expense 8,231248.05,0.0
+1194,Insurance Expense 8,0.0,25228.73
+1195,Travel Expense 8,210971.95,0.0
+1196,Advertising Expense 8,0.0,225711.96
+1197,Telephone Expense 8,244902.88,0.0
+1198,Repairs & Maintenance 8,0.0,200605.46
+1199,Depreciation Expense 8,194979.65,0.0
+1200,Interest Expense 8,0.0,160799.58
+1201,Cash 9,194859.59,0.0
+1202,Bank Account 9,0.0,34070.78
+1203,Accounts Receivable 9,134248.97,0.0
+1204,Inventory 9,0.0,128798.61
+1205,Office Equipment 9,214464.25,0.0
+1206,Computer Equipment 9,0.0,115968.44
+1207,Furniture 9,96579.83,0.0
+1208,Prepaid Expenses 9,0.0,160071.04
+1209,Accounts Payable 9,66982.6,0.0
+1210,Accrued Expenses 9,0.0,35372.22
+1211,Loan Payable 9,119730.38,0.0
+1212,Capital Account 9,0.0,104513.9
+1213,Sales Revenue 9,58526.2,0.0
+1214,Service Revenue 9,0.0,92194.2
+1215,Purchase Account 9,91914.92,0.0
+1216,Rent Expense 9,0.0,82210.14
+1217,Salary Expense 9,95176.29,0.0
+1218,Electricity Expense 9,0.0,171592.96
+1219,Insurance Expense 9,74570.68,0.0
+1220,Travel Expense 9,0.0,237240.05
+1221,Advertising Expense 9,229128.83,0.0
+1222,Telephone Expense 9,0.0,120487.15
+1223,Repairs & Maintenance 9,82426.12,0.0
+1224,Depreciation Expense 9,0.0,134090.98
+1225,Interest Expense 9,212215.84,0.0
+1226,Cash 10,0.0,163320.54
+1227,Bank Account 10,201195.76,0.0
+1228,Accounts Receivable 10,0.0,133414.21
+1229,Inventory 10,158412.95,0.0
+1230,Office Equipment 10,0.0,72394.83
+1231,Computer Equipment 10,183855.84,0.0
+1232,Furniture 10,0.0,50999.95
+1233,Prepaid Expenses 10,173852.13,0.0
+1234,Accounts Payable 10,0.0,215249.41
+1235,Accrued Expenses 10,33459.66,0.0
+1236,Loan Payable 10,0.0,153787.75
+1237,Capital Account 10,24226.39,0.0
+1238,Sales Revenue 10,0.0,181566.05
+1239,Service Revenue 10,21581.06,0.0
+1240,Purchase Account 10,0.0,234016.99
+1241,Rent Expense 10,34783.28,0.0
+1242,Salary Expense 10,0.0,239740.62
+1243,Electricity Expense 10,200320.6,0.0
+1244,Insurance Expense 10,0.0,148623.66
+1245,Travel Expense 10,195764.71,0.0
+1246,Advertising Expense 10,0.0,198881.15
+1247,Telephone Expense 10,236533.75,0.0
+1248,Repairs & Maintenance 10,0.0,63719.15
+1249,Depreciation Expense 10,147723.94,0.0
+1250,Interest Expense 10,0.0,24214.77
+1251,Cash 11,154233.34,0.0
+1252,Bank Account 11,0.0,43237.18
+1253,Accounts Receivable 11,141455.18,0.0
+1254,Inventory 11,0.0,143321.41
+1255,Office Equipment 11,116763.3,0.0
+1256,Computer Equipment 11,0.0,130896.63
+1257,Furniture 11,191098.89,0.0
+1258,Prepaid Expenses 11,0.0,199911.56
+1259,Accounts Payable 11,123292.23,0.0
+1260,Accrued Expenses 11,0.0,150098.56
+1261,Loan Payable 11,232843.44,0.0
+1262,Capital Account 11,0.0,30373.53
+1263,Sales Revenue 11,29717.34,0.0
+1264,Service Revenue 11,0.0,22383.4
+1265,Purchase Account 11,164636.89,0.0
+1266,Rent Expense 11,0.0,104942.77
+1267,Salary Expense 11,193693.19,0.0
+1268,Electricity Expense 11,0.0,167972.24
+1269,Insurance Expense 11,83742.62,0.0
+1270,Travel Expense 11,0.0,224642.45
+1271,Advertising Expense 11,190751.77,0.0
+1272,Telephone Expense 11,0.0,67998.47
+1273,Repairs & Maintenance 11,91365.91,0.0
+1274,Depreciation Expense 11,0.0,78952.78
+1275,Interest Expense 11,39824.11,0.0
+1276,Cash 12,0.0,37371.95
+1277,Bank Account 12,234063.8,0.0
+1278,Accounts Receivable 12,0.0,109757.06
+1279,Inventory 12,96138.3,0.0
+1280,Office Equipment 12,0.0,182556.58
+1281,Computer Equipment 12,138471.77,0.0
+1282,Furniture 12,0.0,234066.93
+1283,Prepaid Expenses 12,195185.22,0.0
+1284,Accounts Payable 12,0.0,120102.71
+1285,Accrued Expenses 12,94401.69,0.0
+1286,Loan Payable 12,0.0,246664.57
+1287,Capital Account 12,179581.18,0.0
+1288,Sales Revenue 12,0.0,237823.07
+1289,Service Revenue 12,30060.41,0.0
+1290,Purchase Account 12,0.0,212708.15
+1291,Rent Expense 12,159449.93,0.0
+1292,Salary Expense 12,0.0,30919.46
+1293,Electricity Expense 12,147270.37,0.0
+1294,Insurance Expense 12,0.0,171681.04
+1295,Travel Expense 12,3569.52,0.0
+1296,Advertising Expense 12,0.0,113852.33
+1297,Telephone Expense 12,206437.18,0.0
+1298,Repairs & Maintenance 12,0.0,74192.08
+1299,Depreciation Expense 12,114907.75,0.0
+1300,Interest Expense 12,0.0,110857.37
+1301,Cash 13,75830.88,0.0
+1302,Bank Account 13,0.0,229651.25
+1303,Accounts Receivable 13,195432.86,0.0
+1304,Inventory 13,0.0,28091.81
+1305,Office Equipment 13,249260.15,0.0
+1306,Computer Equipment 13,0.0,219860.41
+1307,Furniture 13,71335.16,0.0
+1308,Prepaid Expenses 13,0.0,209305.7
+1309,Accounts Payable 13,27051.67,0.0
+1310,Accrued Expenses 13,0.0,249776.63
+1311,Loan Payable 13,166588.34,0.0
+1312,Capital Account 13,0.0,162706.19
+1313,Sales Revenue 13,23064.96,0.0
+1314,Service Revenue 13,0.0,224309.83
+1315,Purchase Account 13,7735.38,0.0
+1316,Rent Expense 13,0.0,60586.6
+1317,Salary Expense 13,36183.96,0.0
+1318,Electricity Expense 13,0.0,194303.6
+1319,Insurance Expense 13,49951.95,0.0
+1320,Travel Expense 13,0.0,227704.24
+1321,Advertising Expense 13,164239.13,0.0
+1322,Telephone Expense 13,0.0,9522.6
+1323,Repairs & Maintenance 13,1854.74,0.0
+1324,Depreciation Expense 13,0.0,13388.65
+1325,Interest Expense 13,151678.33,0.0
+1326,Cash 14,0.0,200469.71
+1327,Bank Account 14,60018.93,0.0
+1328,Accounts Receivable 14,0.0,212427.51
+1329,Inventory 14,14779.37,0.0
+1330,Office Equipment 14,0.0,200340.48
+1331,Computer Equipment 14,231984.96,0.0
+1332,Furniture 14,0.0,193141.05
+1333,Prepaid Expenses 14,174681.14,0.0
+1334,Accounts Payable 14,0.0,209576.06
+1335,Accrued Expenses 14,10517.75,0.0
+1336,Loan Payable 14,0.0,50844.64
+1337,Capital Account 14,31668.46,0.0
+1338,Sales Revenue 14,0.0,126380.48
+1339,Service Revenue 14,186424.44,0.0
+1340,Purchase Account 14,0.0,157687.96
+1341,Rent Expense 14,212857.21,0.0
+1342,Salary Expense 14,0.0,39225.64
+1343,Electricity Expense 14,183787.96,0.0
+1344,Insurance Expense 14,0.0,48663.85
+1345,Travel Expense 14,68054.31,0.0
+1346,Advertising Expense 14,0.0,177621.22
+1347,Telephone Expense 14,245061.09,0.0
+1348,Repairs & Maintenance 14,0.0,153080.13
+1349,Depreciation Expense 14,14097.83,0.0
+1350,Interest Expense 14,0.0,154269.09
+1351,Cash 15,11066.46,0.0
+1352,Bank Account 15,0.0,221094.35
+1353,Accounts Receivable 15,177539.78,0.0
+1354,Inventory 15,0.0,43695.4
+1355,Office Equipment 15,23384.39,0.0
+1356,Computer Equipment 15,0.0,46291.54
+1357,Furniture 15,245016.78,0.0
+1358,Prepaid Expenses 15,0.0,114910.88
+1359,Accounts Payable 15,196128.2,0.0
+1360,Accrued Expenses 15,0.0,159283.88
+1361,Loan Payable 15,143317.08,0.0
+1362,Capital Account 15,0.0,36710.0
+1363,Sales Revenue 15,236533.1,0.0
+1364,Service Revenue 15,0.0,75684.99
+1365,Purchase Account 15,144715.3,0.0
+1366,Rent Expense 15,0.0,175094.1
+1367,Salary Expense 15,162483.67,0.0
+1368,Electricity Expense 15,0.0,235178.31
+1369,Insurance Expense 15,37535.53,0.0
+1370,Travel Expense 15,0.0,127334.01
+1371,Advertising Expense 15,101306.58,0.0
+1372,Telephone Expense 15,0.0,118805.1
+1373,Repairs & Maintenance 15,30244.77,0.0
+1374,Depreciation Expense 15,0.0,33956.61
+1375,Interest Expense 15,69879.85,0.0
+1376,Cash 16,0.0,76523.8
+1377,Bank Account 16,107261.85,0.0
+1378,Accounts Receivable 16,0.0,152941.39
+1379,Inventory 16,158839.96,0.0
+1380,Office Equipment 16,0.0,103246.82
+1381,Computer Equipment 16,102491.39,0.0
+1382,Furniture 16,0.0,54798.32
+1383,Prepaid Expenses 16,147282.41,0.0
+1384,Accounts Payable 16,0.0,79601.71
+1385,Accrued Expenses 16,9496.93,0.0
+1386,Loan Payable 16,0.0,104890.81
+1387,Capital Account 16,118796.1,0.0
+1388,Sales Revenue 16,0.0,56785.42
+1389,Service Revenue 16,143328.25,0.0
+1390,Purchase Account 16,0.0,141660.09
+1391,Rent Expense 16,175649.54,0.0
+1392,Salary Expense 16,0.0,162163.15
+1393,Electricity Expense 16,163282.05,0.0
+1394,Insurance Expense 16,0.0,79395.43
+1395,Travel Expense 16,196964.34,0.0
+1396,Advertising Expense 16,0.0,137511.52
+1397,Telephone Expense 16,108138.84,0.0
+1398,Repairs & Maintenance 16,0.0,156690.11
+1399,Depreciation Expense 16,90484.0,0.0
+1400,Interest Expense 16,0.0,128428.44
+1401,Cash 17,184308.07,0.0
+1402,Bank Account 17,0.0,221657.52
+1403,Accounts Receivable 17,230303.77,0.0
+1404,Inventory 17,0.0,126156.41
+1405,Office Equipment 17,130308.64,0.0
+1406,Computer Equipment 17,0.0,200067.67
+1407,Furniture 17,78955.45,0.0
+1408,Prepaid Expenses 17,0.0,209426.9
+1409,Accounts Payable 17,123788.34,0.0
+1410,Accrued Expenses 17,0.0,29406.25
+1411,Loan Payable 17,18478.76,0.0
+1412,Capital Account 17,0.0,210577.31
+1413,Sales Revenue 17,14364.2,0.0
+1414,Service Revenue 17,0.0,70512.55
+1415,Purchase Account 17,83865.45,0.0
+1416,Rent Expense 17,0.0,43662.11
+1417,Salary Expense 17,78816.4,0.0
+1418,Electricity Expense 17,0.0,185801.8
+1419,Insurance Expense 17,4163.37,0.0
+1420,Travel Expense 17,0.0,206879.77
+1421,Advertising Expense 17,214208.73,0.0
+1422,Telephone Expense 17,0.0,93379.26
+1423,Repairs & Maintenance 17,38826.42,0.0
+1424,Depreciation Expense 17,0.0,150409.68
+1425,Interest Expense 17,30358.3,0.0
+1426,Cash 18,0.0,91547.38
+1427,Bank Account 18,239628.08,0.0
+1428,Accounts Receivable 18,0.0,248868.39
+1429,Inventory 18,193140.17,0.0
+1430,Office Equipment 18,0.0,78084.9
+1431,Computer Equipment 18,172072.43,0.0
+1432,Furniture 18,0.0,176498.89
+1433,Prepaid Expenses 18,97266.5,0.0
+1434,Accounts Payable 18,0.0,160401.71
+1435,Accrued Expenses 18,3176.55,0.0
+1436,Loan Payable 18,0.0,52659.89
+1437,Capital Account 18,131509.53,0.0
+1438,Sales Revenue 18,0.0,41355.95
+1439,Service Revenue 18,41893.76,0.0
+1440,Purchase Account 18,0.0,209157.92
+1441,Rent Expense 18,247288.68,0.0
+1442,Salary Expense 18,0.0,139214.37
+1443,Electricity Expense 18,209847.9,0.0
+1444,Insurance Expense 18,0.0,247585.26
+1445,Travel Expense 18,35828.17,0.0
+1446,Advertising Expense 18,0.0,112337.28
+1447,Telephone Expense 18,98446.89,0.0
+1448,Repairs & Maintenance 18,0.0,20472.3
+1449,Depreciation Expense 18,188954.88,0.0
+1450,Interest Expense 18,0.0,108727.87
+1451,Cash 19,117597.07,0.0
+1452,Bank Account 19,0.0,38092.91
+1453,Accounts Receivable 19,45641.2,0.0
+1454,Inventory 19,0.0,226822.35
+1455,Office Equipment 19,11639.95,0.0
+1456,Computer Equipment 19,0.0,58596.65
+1457,Furniture 19,73368.8,0.0
+1458,Prepaid Expenses 19,0.0,122804.29
+1459,Accounts Payable 19,146818.07,0.0
+1460,Accrued Expenses 19,0.0,123575.85
+1461,Loan Payable 19,21486.78,0.0
+1462,Capital Account 19,0.0,61295.03
+1463,Sales Revenue 19,210975.3,0.0
+1464,Service Revenue 19,0.0,159578.38
+1465,Purchase Account 19,162462.69,0.0
+1466,Rent Expense 19,0.0,167715.71
+1467,Salary Expense 19,190844.3,0.0
+1468,Electricity Expense 19,0.0,14998.07
+1469,Insurance Expense 19,91968.79,0.0
+1470,Travel Expense 19,0.0,135112.1
+1471,Advertising Expense 19,84944.89,0.0
+1472,Telephone Expense 19,0.0,211197.48
+1473,Repairs & Maintenance 19,120901.84,0.0
+1474,Depreciation Expense 19,0.0,192272.58
+1475,Interest Expense 19,213077.87,0.0
+1476,Cash 20,0.0,126445.47
+1477,Bank Account 20,227433.28,0.0
+1478,Accounts Receivable 20,0.0,146987.42
+1479,Inventory 20,212643.44,0.0
+1480,Office Equipment 20,0.0,85477.4
+1481,Computer Equipment 20,124954.83,0.0
+1482,Furniture 20,0.0,133087.05
+1483,Prepaid Expenses 20,26692.44,0.0
+1484,Accounts Payable 20,0.0,99938.85
+1485,Accrued Expenses 20,229375.75,0.0
+1486,Loan Payable 20,0.0,157892.64
+1487,Capital Account 20,44787.89,0.0
+1488,Sales Revenue 20,0.0,85044.48
+1489,Service Revenue 20,48304.95,0.0
+1490,Purchase Account 20,0.0,6693.37
+1491,Rent Expense 20,231901.38,0.0
+1492,Salary Expense 20,0.0,112327.73
+1493,Electricity Expense 20,77230.0,0.0
+1494,Insurance Expense 20,0.0,149820.06
+1495,Travel Expense 20,2324.96,0.0
+1496,Advertising Expense 20,0.0,69866.52
+1497,Telephone Expense 20,175906.85,0.0
+1498,Repairs & Maintenance 20,0.0,158625.56
+1499,Depreciation Expense 20,245460.58,0.0
+1500,Interest Expense 20,0.0,155279.25
+1501,Cash 21,119637.72,0.0
+1502,Bank Account 21,0.0,190477.42
+1503,Accounts Receivable 21,225880.3,0.0
+1504,Inventory 21,0.0,180313.64
+1505,Office Equipment 21,240821.2,0.0
+1506,Computer Equipment 21,0.0,195610.29
+1507,Furniture 21,216766.96,0.0
+1508,Prepaid Expenses 21,0.0,28968.97
+1509,Accounts Payable 21,183237.17,0.0
+1510,Accrued Expenses 21,0.0,110302.13
+1511,Loan Payable 21,138499.4,0.0
+1512,Capital Account 21,0.0,163698.55
+1513,Sales Revenue 21,242468.87,0.0
+1514,Service Revenue 21,0.0,246152.23
+1515,Purchase Account 21,72412.95,0.0
+1516,Rent Expense 21,0.0,183571.5
+1517,Salary Expense 21,187620.89,0.0
+1518,Electricity Expense 21,0.0,86949.97
+1519,Insurance Expense 21,31405.51,0.0
+1520,Travel Expense 21,0.0,10716.27
+1521,Advertising Expense 21,194447.11,0.0
+1522,Telephone Expense 21,0.0,122680.09
+1523,Repairs & Maintenance 21,246392.27,0.0
+1524,Depreciation Expense 21,0.0,116510.88
+1525,Interest Expense 21,244490.29,0.0
+1526,Cash 22,0.0,103188.21
+1527,Bank Account 22,198523.7,0.0
+1528,Accounts Receivable 22,0.0,21662.41
+1529,Inventory 22,139087.7,0.0
+1530,Office Equipment 22,0.0,200613.92
+1531,Computer Equipment 22,231213.07,0.0
+1532,Furniture 22,0.0,205734.48
+1533,Prepaid Expenses 22,9724.2,0.0
+1534,Accounts Payable 22,0.0,93489.23
+1535,Accrued Expenses 22,12650.27,0.0
+1536,Loan Payable 22,0.0,27765.93
+1537,Capital Account 22,168988.75,0.0
+1538,Sales Revenue 22,0.0,178457.92
+1539,Service Revenue 22,193543.31,0.0
+1540,Purchase Account 22,0.0,216431.41
+1541,Rent Expense 22,184988.15,0.0
+1542,Salary Expense 22,0.0,200317.46
+1543,Electricity Expense 22,12716.45,0.0
+1544,Insurance Expense 22,0.0,59016.52
+1545,Travel Expense 22,155663.49,0.0
+1546,Advertising Expense 22,0.0,214602.26
+1547,Telephone Expense 22,1622.78,0.0
+1548,Repairs & Maintenance 22,0.0,128900.02
+1549,Depreciation Expense 22,169483.21,0.0
+1550,Interest Expense 22,0.0,7887.02
+1551,Cash 23,100638.21,0.0
+1552,Bank Account 23,0.0,223960.9
+1553,Accounts Receivable 23,168067.4,0.0
+1554,Inventory 23,0.0,59795.76
+1555,Office Equipment 23,213268.89,0.0
+1556,Computer Equipment 23,0.0,87333.84
+1557,Furniture 23,213409.5,0.0
+1558,Prepaid Expenses 23,0.0,75086.44
+1559,Accounts Payable 23,147784.9,0.0
+1560,Accrued Expenses 23,0.0,99536.55
+1561,Loan Payable 23,69068.85,0.0
+1562,Capital Account 23,0.0,221696.11
+1563,Sales Revenue 23,47304.62,0.0
+1564,Service Revenue 23,0.0,21660.49
+1565,Purchase Account 23,85810.77,0.0
+1566,Rent Expense 23,0.0,179550.97
+1567,Salary Expense 23,201954.19,0.0
+1568,Electricity Expense 23,0.0,249686.47
+1569,Insurance Expense 23,74442.33,0.0
+1570,Travel Expense 23,0.0,102281.52
+1571,Advertising Expense 23,34636.91,0.0
+1572,Telephone Expense 23,0.0,143930.55
+1573,Repairs & Maintenance 23,249396.22,0.0
+1574,Depreciation Expense 23,0.0,175369.81
+1575,Interest Expense 23,149005.6,0.0
+1576,Cash 24,0.0,98396.09
+1577,Bank Account 24,228867.04,0.0
+1578,Accounts Receivable 24,0.0,124480.69
+1579,Inventory 24,34024.54,0.0
+1580,Office Equipment 24,0.0,91661.93
+1581,Computer Equipment 24,17258.08,0.0
+1582,Furniture 24,0.0,50893.77
+1583,Prepaid Expenses 24,4908.36,0.0
+1584,Accounts Payable 24,0.0,113593.34
+1585,Accrued Expenses 24,158817.8,0.0
+1586,Loan Payable 24,0.0,86151.47
+1587,Capital Account 24,105385.25,0.0
+1588,Sales Revenue 24,0.0,239822.71
+1589,Service Revenue 24,188114.8,0.0
+1590,Purchase Account 24,0.0,135443.73
+1591,Rent Expense 24,71492.95,0.0
+1592,Salary Expense 24,0.0,224300.7
+1593,Electricity Expense 24,59156.73,0.0
+1594,Insurance Expense 24,0.0,81673.01
+1595,Travel Expense 24,227311.67,0.0
+1596,Advertising Expense 24,0.0,132620.74
+1597,Telephone Expense 24,185708.33,0.0
+1598,Repairs & Maintenance 24,0.0,147890.83
+1599,Depreciation Expense 24,163533.08,0.0
+1600,Interest Expense 24,0.0,75196.13
+1601,Cash 25,60722.33,0.0
+1602,Bank Account 25,0.0,80961.84
+1603,Accounts Receivable 25,39282.67,0.0
+1604,Inventory 25,0.0,218641.43
+1605,Office Equipment 25,71170.11,0.0
+1606,Computer Equipment 25,0.0,140591.6
+1607,Furniture 25,198097.62,0.0
+1608,Prepaid Expenses 25,0.0,196064.12
+1609,Accounts Payable 25,109877.37,0.0
+1610,Accrued Expenses 25,0.0,119326.2
+1611,Loan Payable 25,248678.09,0.0
+1612,Capital Account 25,0.0,168812.07
+1613,Sales Revenue 25,203752.29,0.0
+1614,Service Revenue 25,0.0,225687.22
+1615,Purchase Account 25,197003.66,0.0
+1616,Rent Expense 25,0.0,46702.25
+1617,Salary Expense 25,140761.6,0.0
+1618,Electricity Expense 25,0.0,25922.59
+1619,Insurance Expense 25,163404.07,0.0
+1620,Travel Expense 25,0.0,238859.68
+1621,Advertising Expense 25,128426.65,0.0
+1622,Telephone Expense 25,0.0,108526.64
+1623,Repairs & Maintenance 25,9442.77,0.0
+1624,Depreciation Expense 25,0.0,239963.74
+1625,Interest Expense 25,26199.17,0.0
+1626,Cash 26,0.0,10749.23
+1627,Bank Account 26,61893.62,0.0
+1628,Accounts Receivable 26,0.0,16849.84
+1629,Inventory 26,114051.9,0.0
+1630,Office Equipment 26,0.0,129263.91
+1631,Computer Equipment 26,78486.2,0.0
+1632,Furniture 26,0.0,13214.64
+1633,Prepaid Expenses 26,28344.29,0.0
+1634,Accounts Payable 26,0.0,96433.84
+1635,Accrued Expenses 26,15601.85,0.0
+1636,Loan Payable 26,0.0,174698.34
+1637,Capital Account 26,52151.63,0.0
+1638,Sales Revenue 26,0.0,75866.86
+1639,Service Revenue 26,98834.38,0.0
+1640,Purchase Account 26,0.0,104444.1
+1641,Rent Expense 26,914.35,0.0
+1642,Salary Expense 26,0.0,28461.56
+1643,Electricity Expense 26,215759.76,0.0
+1644,Insurance Expense 26,0.0,807.65
+1645,Travel Expense 26,127287.76,0.0
+1646,Advertising Expense 26,0.0,122630.75
+1647,Telephone Expense 26,83606.99,0.0
+1648,Repairs & Maintenance 26,0.0,108116.09
+1649,Depreciation Expense 26,195254.99,0.0
+1650,Interest Expense 26,0.0,210380.32
+1651,Cash 27,65456.96,0.0
+1652,Bank Account 27,0.0,80961.37
+1653,Accounts Receivable 27,60999.47,0.0
+1654,Inventory 27,0.0,120225.92
+1655,Office Equipment 27,170972.96,0.0
+1656,Computer Equipment 27,0.0,57449.09
+1657,Furniture 27,83018.57,0.0
+1658,Prepaid Expenses 27,0.0,232630.96
+1659,Accounts Payable 27,12618.04,0.0
+1660,Accrued Expenses 27,0.0,115462.02
+1661,Loan Payable 27,178033.73,0.0
+1662,Capital Account 27,0.0,38038.28
+1663,Sales Revenue 27,12319.82,0.0
+1664,Service Revenue 27,0.0,34982.24
+1665,Purchase Account 27,229746.39,0.0
+1666,Rent Expense 27,0.0,2810.32
+1667,Salary Expense 27,47486.33,0.0
+1668,Electricity Expense 27,0.0,8305.24
+1669,Insurance Expense 27,28102.05,0.0
+1670,Travel Expense 27,0.0,155227.25
+1671,Advertising Expense 27,60788.91,0.0
+1672,Telephone Expense 27,0.0,142518.41
+1673,Repairs & Maintenance 27,147753.75,0.0
+1674,Depreciation Expense 27,0.0,212434.12
+1675,Interest Expense 27,1682.98,0.0
+1676,Cash 28,0.0,213415.68
+1677,Bank Account 28,154970.21,0.0
+1678,Accounts Receivable 28,0.0,41104.5
+1679,Inventory 28,193347.88,0.0
+1680,Office Equipment 28,0.0,213945.14
+1681,Computer Equipment 28,63938.74,0.0
+1682,Furniture 28,0.0,229739.02
+1683,Prepaid Expenses 28,113887.13,0.0
+1684,Accounts Payable 28,0.0,151054.4
+1685,Accrued Expenses 28,246170.06,0.0
+1686,Loan Payable 28,0.0,90703.25
+1687,Capital Account 28,203383.26,0.0
+1688,Sales Revenue 28,0.0,79940.58
+1689,Service Revenue 28,199903.77,0.0
+1690,Purchase Account 28,0.0,150383.11
+1691,Rent Expense 28,54480.75,0.0
+1692,Salary Expense 28,0.0,103799.51
+1693,Electricity Expense 28,79750.09,0.0
+1694,Insurance Expense 28,0.0,19988.04
+1695,Travel Expense 28,7943.78,0.0
+1696,Advertising Expense 28,0.0,86946.42
+1697,Telephone Expense 28,5249.02,0.0
+1698,Repairs & Maintenance 28,0.0,41789.2
+1699,Depreciation Expense 28,181433.24,0.0
+1700,Interest Expense 28,0.0,177168.76
+1701,Cash 29,184775.81,0.0
+1702,Bank Account 29,0.0,79629.72
+1703,Accounts Receivable 29,222559.85,0.0
+1704,Inventory 29,0.0,148660.72
+1705,Office Equipment 29,31943.57,0.0
+1706,Computer Equipment 29,0.0,36357.81
+1707,Furniture 29,173427.31,0.0
+1708,Prepaid Expenses 29,0.0,43649.51
+1709,Accounts Payable 29,127069.53,0.0
+1710,Accrued Expenses 29,0.0,247947.73
+1711,Loan Payable 29,1499.9,0.0
+1712,Capital Account 29,0.0,4636.66
+1713,Sales Revenue 29,248274.6,0.0
+1714,Service Revenue 29,0.0,146367.39
+1715,Purchase Account 29,32164.04,0.0
+1716,Rent Expense 29,0.0,224376.9
+1717,Salary Expense 29,220154.88,0.0
+1718,Electricity Expense 29,0.0,134282.0
+1719,Insurance Expense 29,155637.11,0.0
+1720,Travel Expense 29,0.0,68660.2
+1721,Advertising Expense 29,13104.66,0.0
+1722,Telephone Expense 29,0.0,148844.62
+1723,Repairs & Maintenance 29,74041.42,0.0
+1724,Depreciation Expense 29,0.0,166073.45
+1725,Interest Expense 29,209143.17,0.0
+1726,Cash 30,0.0,5031.06
+1727,Bank Account 30,149130.59,0.0
+1728,Accounts Receivable 30,0.0,58204.49
+1729,Inventory 30,218535.18,0.0
+1730,Office Equipment 30,0.0,63789.29
+1731,Computer Equipment 30,152887.15,0.0
+1732,Furniture 30,0.0,138608.44
+1733,Prepaid Expenses 30,99343.54,0.0
+1734,Accounts Payable 30,0.0,169566.38
+1735,Accrued Expenses 30,181579.52,0.0
+1736,Loan Payable 30,0.0,141950.98
+1737,Capital Account 30,189726.35,0.0
+1738,Sales Revenue 30,0.0,245862.56
+1739,Service Revenue 30,105108.46,0.0
+1740,Purchase Account 30,0.0,128888.47
+1741,Rent Expense 30,3611.23,0.0
+1742,Salary Expense 30,0.0,199109.12
+1743,Electricity Expense 30,130297.4,0.0
+1744,Insurance Expense 30,0.0,102286.38
+1745,Travel Expense 30,23970.95,0.0
+1746,Advertising Expense 30,0.0,222469.28
+1747,Telephone Expense 30,99054.31,0.0
+1748,Repairs & Maintenance 30,0.0,170804.11
+1749,Depreciation Expense 30,37768.85,0.0
+1750,Interest Expense 30,0.0,240406.63
+1751,Cash 31,45021.22,0.0
+1752,Bank Account 31,0.0,50285.73
+1753,Accounts Receivable 31,214816.22,0.0
+1754,Inventory 31,0.0,228189.39
+1755,Office Equipment 31,53430.78,0.0
+1756,Computer Equipment 31,0.0,117715.32
+1757,Furniture 31,183506.98,0.0
+1758,Prepaid Expenses 31,0.0,219652.25
+1759,Accounts Payable 31,95073.65,0.0
+1760,Accrued Expenses 31,0.0,129496.36
+1761,Loan Payable 31,185558.24,0.0
+1762,Capital Account 31,0.0,182918.43
+1763,Sales Revenue 31,195848.55,0.0
+1764,Service Revenue 31,0.0,142698.49
+1765,Purchase Account 31,26601.47,0.0
+1766,Rent Expense 31,0.0,226041.34
+1767,Salary Expense 31,216460.35,0.0
+1768,Electricity Expense 31,0.0,199625.31
+1769,Insurance Expense 31,25415.69,0.0
+1770,Travel Expense 31,0.0,51497.14
+1771,Advertising Expense 31,186028.29,0.0
+1772,Telephone Expense 31,0.0,6273.45
+1773,Repairs & Maintenance 31,244816.55,0.0
+1774,Depreciation Expense 31,0.0,94597.6
+1775,Interest Expense 31,179968.48,0.0
+1776,Cash 32,0.0,221948.99
+1777,Bank Account 32,98960.16,0.0
+1778,Accounts Receivable 32,0.0,80123.56
+1779,Inventory 32,152380.91,0.0
+1780,Office Equipment 32,0.0,145456.85
+1781,Computer Equipment 32,102580.42,0.0
+1782,Furniture 32,0.0,150642.8
+1783,Prepaid Expenses 32,233877.65,0.0
+1784,Accounts Payable 32,0.0,117176.24
+1785,Accrued Expenses 32,49587.17,0.0
+1786,Loan Payable 32,0.0,94612.89
+1787,Capital Account 32,98829.69,0.0
+1788,Sales Revenue 32,0.0,33211.62
+1789,Service Revenue 32,41136.44,0.0
+1790,Purchase Account 32,0.0,171298.24
+1791,Rent Expense 32,85199.7,0.0
+1792,Salary Expense 32,0.0,238747.15
+1793,Electricity Expense 32,61277.39,0.0
+1794,Insurance Expense 32,0.0,25181.66
+1795,Travel Expense 32,188499.39,0.0
+1796,Advertising Expense 32,0.0,220318.49
+1797,Telephone Expense 32,69889.28,0.0
+1798,Repairs & Maintenance 32,0.0,50920.98
+1799,Depreciation Expense 32,46848.65,0.0
+1800,Interest Expense 32,0.0,130742.07
+1801,Cash 33,117369.95,0.0
+1802,Bank Account 33,0.0,65230.24
+1803,Accounts Receivable 33,11770.69,0.0
+1804,Inventory 33,0.0,120632.09
+1805,Office Equipment 33,239853.42,0.0
+1806,Computer Equipment 33,0.0,163303.54
+1807,Furniture 33,124128.89,0.0
+1808,Prepaid Expenses 33,0.0,28117.67
+1809,Accounts Payable 33,63482.85,0.0
+1810,Accrued Expenses 33,0.0,74046.1
+1811,Loan Payable 33,191318.49,0.0
+1812,Capital Account 33,0.0,219239.34
+1813,Sales Revenue 33,225459.64,0.0
+1814,Service Revenue 33,0.0,246149.87
+1815,Purchase Account 33,245600.49,0.0
+1816,Rent Expense 33,0.0,238273.28
+1817,Salary Expense 33,18419.62,0.0
+1818,Electricity Expense 33,0.0,34879.49
+1819,Insurance Expense 33,76464.4,0.0
+1820,Travel Expense 33,0.0,138448.11
+1821,Advertising Expense 33,24695.98,0.0
+1822,Telephone Expense 33,0.0,211526.34
+1823,Repairs & Maintenance 33,154380.67,0.0
+1824,Depreciation Expense 33,0.0,135819.92
+1825,Interest Expense 33,41745.18,0.0
+1826,Cash 34,0.0,63687.24
+1827,Bank Account 34,40497.85,0.0
+1828,Accounts Receivable 34,0.0,213057.32
+1829,Inventory 34,146264.85,0.0
+1830,Office Equipment 34,0.0,183914.79
+1831,Computer Equipment 34,74360.2,0.0
+1832,Furniture 34,0.0,93127.53
+1833,Prepaid Expenses 34,101511.31,0.0
+1834,Accounts Payable 34,0.0,190123.74
+1835,Accrued Expenses 34,193202.07,0.0
+1836,Loan Payable 34,0.0,52099.98
+1837,Capital Account 34,235413.94,0.0
+1838,Sales Revenue 34,0.0,30603.51
+1839,Service Revenue 34,224082.46,0.0
+1840,Purchase Account 34,0.0,25548.71
+1841,Rent Expense 34,66502.68,0.0
+1842,Salary Expense 34,0.0,211696.39
+1843,Electricity Expense 34,45283.27,0.0
+1844,Insurance Expense 34,0.0,103685.2
+1845,Travel Expense 34,112739.9,0.0
+1846,Advertising Expense 34,0.0,61692.11
+1847,Telephone Expense 34,177706.18,0.0
+1848,Repairs & Maintenance 34,0.0,212908.0
+1849,Depreciation Expense 34,218706.5,0.0
+1850,Interest Expense 34,0.0,85160.88
+1851,Cash 35,132947.17,0.0
+1852,Bank Account 35,0.0,62477.4
+1853,Accounts Receivable 35,61576.73,0.0
+1854,Inventory 35,0.0,40732.89
+1855,Office Equipment 35,235034.74,0.0
+1856,Computer Equipment 35,0.0,222053.21
+1857,Furniture 35,194451.0,0.0
+1858,Prepaid Expenses 35,0.0,129656.55
+1859,Accounts Payable 35,122906.67,0.0
+1860,Accrued Expenses 35,0.0,132671.54
+1861,Loan Payable 35,134373.72,0.0
+1862,Capital Account 35,0.0,108923.49
+1863,Sales Revenue 35,33372.83,0.0
+1864,Service Revenue 35,0.0,31853.13
+1865,Purchase Account 35,238086.3,0.0
+1866,Rent Expense 35,0.0,120766.67
+1867,Salary Expense 35,238324.78,0.0
+1868,Electricity Expense 35,0.0,41312.43
+1869,Insurance Expense 35,138826.93,0.0
+1870,Travel Expense 35,0.0,52325.45
+1871,Advertising Expense 35,63669.56,0.0
+1872,Telephone Expense 35,0.0,7998.62
+1873,Repairs & Maintenance 35,30178.85,0.0
+1874,Depreciation Expense 35,0.0,229253.68
+1875,Interest Expense 35,80722.48,0.0
+1876,Cash 36,0.0,152228.24
+1877,Bank Account 36,116521.03,0.0
+1878,Accounts Receivable 36,0.0,100412.59
+1879,Inventory 36,133205.58,0.0
+1880,Office Equipment 36,0.0,47216.12
+1881,Computer Equipment 36,247156.67,0.0
+1882,Furniture 36,0.0,204667.81
+1883,Prepaid Expenses 36,185532.85,0.0
+1884,Accounts Payable 36,0.0,117455.44
+1885,Accrued Expenses 36,38642.84,0.0
+1886,Loan Payable 36,0.0,230206.13
+1887,Capital Account 36,85676.07,0.0
+1888,Sales Revenue 36,0.0,13001.62
+1889,Service Revenue 36,85929.72,0.0
+1890,Purchase Account 36,0.0,198717.03
+1891,Rent Expense 36,155865.83,0.0
+1892,Salary Expense 36,0.0,187834.23
+1893,Electricity Expense 36,198512.03,0.0
+1894,Insurance Expense 36,0.0,53382.68
+1895,Travel Expense 36,230983.94,0.0
+1896,Advertising Expense 36,0.0,109778.41
+1897,Telephone Expense 36,159933.91,0.0
+1898,Repairs & Maintenance 36,0.0,1076.04
+1899,Depreciation Expense 36,248345.44,0.0
+1900,Interest Expense 36,0.0,70583.65
+1901,Cash 37,15984.75,0.0
+1902,Bank Account 37,0.0,114836.38
+1903,Accounts Receivable 37,32693.0,0.0
+1904,Inventory 37,0.0,38505.51
+1905,Office Equipment 37,158254.56,0.0
+1906,Computer Equipment 37,0.0,98535.38
+1907,Furniture 37,230502.19,0.0
+1908,Prepaid Expenses 37,0.0,80129.55
+1909,Accounts Payable 37,181681.94,0.0
+1910,Accrued Expenses 37,0.0,115544.31
+1911,Loan Payable 37,165157.85,0.0
+1912,Capital Account 37,0.0,150123.99
+1913,Sales Revenue 37,118459.6,0.0
+1914,Service Revenue 37,0.0,237540.24
+1915,Purchase Account 37,86007.05,0.0
+1916,Rent Expense 37,0.0,44720.26
+1917,Salary Expense 37,169684.47,0.0
+1918,Electricity Expense 37,0.0,211578.89
+1919,Insurance Expense 37,10543.31,0.0
+1920,Travel Expense 37,0.0,112683.36
+1921,Advertising Expense 37,223175.68,0.0
+1922,Telephone Expense 37,0.0,187529.85
+1923,Repairs & Maintenance 37,247956.03,0.0
+1924,Depreciation Expense 37,0.0,133087.75
+1925,Interest Expense 37,165168.93,0.0
+1926,Cash 38,0.0,75968.83
+1927,Bank Account 38,236910.13,0.0
+1928,Accounts Receivable 38,0.0,91900.7
+1929,Inventory 38,184758.42,0.0
+1930,Office Equipment 38,0.0,101083.48
+1931,Computer Equipment 38,140673.82,0.0
+1932,Furniture 38,0.0,180085.74
+1933,Prepaid Expenses 38,127479.07,0.0
+1934,Accounts Payable 38,0.0,226818.04
+1935,Accrued Expenses 38,105115.6,0.0
+1936,Loan Payable 38,0.0,161944.41
+1937,Capital Account 38,85919.43,0.0
+1938,Sales Revenue 38,0.0,102335.09
+1939,Service Revenue 38,110292.5,0.0
+1940,Purchase Account 38,0.0,31888.85
+1941,Rent Expense 38,23385.06,0.0
+1942,Salary Expense 38,0.0,167038.74
+1943,Electricity Expense 38,164051.68,0.0
+1944,Insurance Expense 38,0.0,165895.97
+1945,Travel Expense 38,5431.73,0.0
+1946,Advertising Expense 38,0.0,81973.44
+1947,Telephone Expense 38,49853.56,0.0
+1948,Repairs & Maintenance 38,0.0,194648.78
+1949,Depreciation Expense 38,215227.29,0.0
+1950,Interest Expense 38,0.0,62046.75
+1951,Cash 39,167128.37,0.0
+1952,Bank Account 39,0.0,32776.02
+1953,Accounts Receivable 39,69150.56,0.0
+1954,Inventory 39,0.0,35094.3
+1955,Office Equipment 39,71238.43,0.0
+1956,Computer Equipment 39,0.0,168846.77
+1957,Furniture 39,227626.56,0.0
+1958,Prepaid Expenses 39,0.0,51029.34
+1959,Accounts Payable 39,135748.72,0.0
+1960,Accrued Expenses 39,0.0,175497.08
+1961,Loan Payable 39,238254.16,0.0
+1962,Capital Account 39,0.0,152710.09
+1963,Sales Revenue 39,64149.18,0.0
+1964,Service Revenue 39,0.0,156556.8
+1965,Purchase Account 39,80462.54,0.0
+1966,Rent Expense 39,0.0,244044.03
+1967,Salary Expense 39,100219.2,0.0
+1968,Electricity Expense 39,0.0,171514.22
+1969,Insurance Expense 39,6295.28,0.0
+1970,Travel Expense 39,0.0,100315.33
+1971,Advertising Expense 39,218839.35,0.0
+1972,Telephone Expense 39,0.0,152751.75
+1973,Repairs & Maintenance 39,111263.75,0.0
+1974,Depreciation Expense 39,0.0,234016.41
+1975,Interest Expense 39,213569.1,0.0
+1976,Cash 40,0.0,80892.81
+1977,Bank Account 40,136364.83,0.0
+1978,Accounts Receivable 40,0.0,122711.15
+1979,Inventory 40,158234.52,0.0
+1980,Office Equipment 40,0.0,83860.76
+1981,Computer Equipment 40,61429.15,0.0
+1982,Furniture 40,0.0,228211.62
+1983,Prepaid Expenses 40,231006.69,0.0
+1984,Accounts Payable 40,0.0,210909.06
+1985,Accrued Expenses 40,244562.01,0.0
+1986,Loan Payable 40,0.0,186375.39
+1987,Capital Account 40,191284.47,0.0
+1988,Sales Revenue 40,0.0,190766.23
+1989,Service Revenue 40,120411.6,0.0
+1990,Purchase Account 40,0.0,114384.82
+1991,Rent Expense 40,60436.46,0.0
+1992,Salary Expense 40,0.0,161382.39
+1993,Electricity Expense 40,72685.37,0.0
+1994,Insurance Expense 40,0.0,64823.2
+1995,Travel Expense 40,146697.36,0.0
+1996,Advertising Expense 40,0.0,102790.61
+1997,Telephone Expense 40,55104.72,0.0
+1998,Repairs & Maintenance 40,0.0,204105.98
+1999,Depreciation Expense 40,215212.19,0.0
+2000,Interest Expense 40,0.0,42341.03
+2001,Cash 41,2373.0,0.0
+2002,Bank Account 41,0.0,84364.43
+2003,Accounts Receivable 41,199478.95,0.0
+2004,Inventory 41,0.0,209873.88
+2005,Office Equipment 41,35013.1,0.0
+2006,Computer Equipment 41,0.0,193696.81
+2007,Furniture 41,29368.19,0.0
+2008,Prepaid Expenses 41,0.0,97820.62
+2009,Accounts Payable 41,249653.07,0.0
+2010,Accrued Expenses 41,0.0,48551.41
+2011,Loan Payable 41,38913.91,0.0
+2012,Capital Account 41,0.0,105988.68
+2013,Sales Revenue 41,155107.3,0.0
+2014,Service Revenue 41,0.0,233258.75
+2015,Purchase Account 41,245214.88,0.0
+2016,Rent Expense 41,0.0,17875.34
+2017,Salary Expense 41,34930.38,0.0
+2018,Electricity Expense 41,0.0,197789.12
+2019,Insurance Expense 41,68022.72,0.0
+2020,Travel Expense 41,0.0,221269.84
+2021,Advertising Expense 41,166031.59,0.0
+2022,Telephone Expense 41,0.0,28405.28
+2023,Repairs & Maintenance 41,208216.06,0.0
+2024,Depreciation Expense 41,0.0,44500.92
+2025,Interest Expense 41,106162.1,0.0
+2026,Cash 42,0.0,138270.14
+2027,Bank Account 42,125441.15,0.0
+2028,Accounts Receivable 42,0.0,171697.65
+2029,Inventory 42,163345.34,0.0
+2030,Office Equipment 42,0.0,248014.48
+2031,Computer Equipment 42,249855.77,0.0
+2032,Furniture 42,0.0,129356.62
+2033,Prepaid Expenses 42,24252.17,0.0
+2034,Accounts Payable 42,0.0,182096.9
+2035,Accrued Expenses 42,244177.69,0.0
+2036,Loan Payable 42,0.0,79922.43
+2037,Capital Account 42,115571.62,0.0
+2038,Sales Revenue 42,0.0,106481.84
+2039,Service Revenue 42,13329.08,0.0
+2040,Purchase Account 42,0.0,168229.98
+2041,Rent Expense 42,88657.75,0.0
+2042,Salary Expense 42,0.0,196972.24
+2043,Electricity Expense 42,208113.96,0.0
+2044,Insurance Expense 42,0.0,205397.08
+2045,Travel Expense 42,104458.17,0.0
+2046,Advertising Expense 42,0.0,80725.65
+2047,Telephone Expense 42,187330.78,0.0
+2048,Repairs & Maintenance 42,0.0,200446.66
+2049,Depreciation Expense 42,123068.73,0.0
+2050,Interest Expense 42,0.0,223311.24
+2051,Cash 43,36405.22,0.0
+2052,Bank Account 43,0.0,219827.66
+2053,Accounts Receivable 43,24475.76,0.0
+2054,Inventory 43,0.0,38804.62
+2055,Office Equipment 43,133693.08,0.0
+2056,Computer Equipment 43,0.0,17345.86
+2057,Furniture 43,13675.37,0.0
+2058,Prepaid Expenses 43,0.0,629.43
+2059,Accounts Payable 43,109361.01,0.0
+2060,Accrued Expenses 43,0.0,193768.66
+2061,Loan Payable 43,9192.17,0.0
+2062,Capital Account 43,0.0,163238.27
+2063,Sales Revenue 43,205870.27,0.0
+2064,Service Revenue 43,0.0,42416.21
+2065,Purchase Account 43,37142.5,0.0
+2066,Rent Expense 43,0.0,215269.84
+2067,Salary Expense 43,205869.59,0.0
+2068,Electricity Expense 43,0.0,134965.97
+2069,Insurance Expense 43,204890.37,0.0
+2070,Travel Expense 43,0.0,23642.64
+2071,Advertising Expense 43,98923.14,0.0
+2072,Telephone Expense 43,0.0,184580.49
+2073,Repairs & Maintenance 43,64734.26,0.0
+2074,Depreciation Expense 43,0.0,188206.06
+2075,Interest Expense 43,126292.56,0.0
+2076,Cash 44,0.0,187691.36
+2077,Bank Account 44,116437.57,0.0
+2078,Accounts Receivable 44,0.0,92292.13
+2079,Inventory 44,55187.71,0.0
+2080,Office Equipment 44,0.0,52490.65
+2081,Computer Equipment 44,187996.96,0.0
+2082,Furniture 44,0.0,30168.13
+2083,Prepaid Expenses 44,21952.6,0.0
+2084,Accounts Payable 44,0.0,44484.7
+2085,Accrued Expenses 44,44248.95,0.0
+2086,Loan Payable 44,0.0,205865.35
+2087,Capital Account 44,99927.4,0.0
+2088,Sales Revenue 44,0.0,247601.92
+2089,Service Revenue 44,34734.21,0.0
+2090,Purchase Account 44,0.0,163558.19
+2091,Rent Expense 44,112458.01,0.0
+2092,Salary Expense 44,0.0,98533.09
+2093,Electricity Expense 44,218833.51,0.0
+2094,Insurance Expense 44,0.0,243911.11
+2095,Travel Expense 44,218278.31,0.0
+2096,Advertising Expense 44,0.0,48479.02
+2097,Telephone Expense 44,55589.08,0.0
+2098,Repairs & Maintenance 44,0.0,164190.43
+2099,Depreciation Expense 44,72626.35,0.0
+2100,Interest Expense 44,0.0,183813.92
+2101,Cash 45,141821.95,0.0
+2102,Bank Account 45,0.0,137951.74
+2103,Accounts Receivable 45,207222.46,0.0
+2104,Inventory 45,0.0,177777.93
+2105,Office Equipment 45,7131.15,0.0
+2106,Computer Equipment 45,0.0,12840.05
+2107,Furniture 45,150588.83,0.0
+2108,Prepaid Expenses 45,0.0,121804.92
+2109,Accounts Payable 45,65416.07,0.0
+2110,Accrued Expenses 45,0.0,104954.69
+2111,Loan Payable 45,189598.62,0.0
+2112,Capital Account 45,0.0,206739.57
+2113,Sales Revenue 45,140525.16,0.0
+2114,Service Revenue 45,0.0,96649.69
+2115,Purchase Account 45,68038.84,0.0
+2116,Rent Expense 45,0.0,130718.66
+2117,Salary Expense 45,79030.03,0.0
+2118,Electricity Expense 45,0.0,141241.74
+2119,Insurance Expense 45,169324.77,0.0
+2120,Travel Expense 45,0.0,16986.76
+2121,Advertising Expense 45,766.33,0.0
+2122,Telephone Expense 45,0.0,53463.15
+2123,Repairs & Maintenance 45,223680.62,0.0
+2124,Depreciation Expense 45,0.0,161749.55
+2125,Interest Expense 45,43404.11,0.0
+2126,Cash 46,0.0,222620.86
+2127,Bank Account 46,117754.01,0.0
+2128,Accounts Receivable 46,0.0,119284.89
+2129,Inventory 46,233917.71,0.0
+2130,Office Equipment 46,0.0,15341.93
+2131,Computer Equipment 46,54186.98,0.0
+2132,Furniture 46,0.0,146649.95
+2133,Prepaid Expenses 46,49273.88,0.0
+2134,Accounts Payable 46,0.0,170041.99
+2135,Accrued Expenses 46,53916.03,0.0
+2136,Loan Payable 46,0.0,25239.66
+2137,Capital Account 46,52142.8,0.0
+2138,Sales Revenue 46,0.0,105972.14
+2139,Service Revenue 46,44446.51,0.0
+2140,Purchase Account 46,0.0,34105.66
+2141,Rent Expense 46,215140.33,0.0
+2142,Salary Expense 46,0.0,80439.1
+2143,Electricity Expense 46,90509.29,0.0
+2144,Insurance Expense 46,0.0,14289.97
+2145,Travel Expense 46,89663.72,0.0
+2146,Advertising Expense 46,0.0,66569.39
+2147,Telephone Expense 46,152816.02,0.0
+2148,Repairs & Maintenance 46,0.0,51744.88
+2149,Depreciation Expense 46,222147.18,0.0
+2150,Interest Expense 46,0.0,232451.82
+2151,Cash 47,25407.85,0.0
+2152,Bank Account 47,0.0,27297.04
+2153,Accounts Receivable 47,29273.95,0.0
+2154,Inventory 47,0.0,155082.53
+2155,Office Equipment 47,30931.26,0.0
+2156,Computer Equipment 47,0.0,213169.39
+2157,Furniture 47,188690.74,0.0
+2158,Prepaid Expenses 47,0.0,205042.31
+2159,Accounts Payable 47,131752.1,0.0
+2160,Accrued Expenses 47,0.0,249170.96
+2161,Loan Payable 47,11521.69,0.0
+2162,Capital Account 47,0.0,100615.61
+2163,Sales Revenue 47,81322.2,0.0
+2164,Service Revenue 47,0.0,237187.05
+2165,Purchase Account 47,144426.81,0.0
+2166,Rent Expense 47,0.0,201644.65
+2167,Salary Expense 47,43000.13,0.0
+2168,Electricity Expense 47,0.0,244669.22
+2169,Insurance Expense 47,124910.57,0.0
+2170,Travel Expense 47,0.0,123671.18
+2171,Advertising Expense 47,242735.74,0.0
+2172,Telephone Expense 47,0.0,95492.72
+2173,Repairs & Maintenance 47,99682.49,0.0
+2174,Depreciation Expense 47,0.0,146395.8
+2175,Interest Expense 47,32449.13,0.0
+2176,Cash 48,0.0,80610.86
+2177,Bank Account 48,48705.48,0.0
+2178,Accounts Receivable 48,0.0,26269.23
+2179,Inventory 48,216603.08,0.0
+2180,Office Equipment 48,0.0,147538.13
+2181,Computer Equipment 48,89988.86,0.0
+2182,Furniture 48,0.0,102463.01
+2183,Prepaid Expenses 48,108163.99,0.0
+2184,Accounts Payable 48,0.0,158470.72
+2185,Accrued Expenses 48,231728.96,0.0
+2186,Loan Payable 48,0.0,233228.52
+2187,Capital Account 48,98177.25,0.0
+2188,Sales Revenue 48,0.0,82650.98
+2189,Service Revenue 48,113036.1,0.0
+2190,Purchase Account 48,0.0,142199.59
+2191,Rent Expense 48,115723.57,0.0
+2192,Salary Expense 48,0.0,164858.98
+2193,Electricity Expense 48,138822.56,0.0
+2194,Insurance Expense 48,0.0,80518.53
+2195,Travel Expense 48,86759.84,0.0
+2196,Advertising Expense 48,0.0,94958.9
+2197,Telephone Expense 48,24112.62,0.0
+2198,Repairs & Maintenance 48,0.0,41932.63
+2199,Depreciation Expense 48,180916.89,0.0
+2200,Interest Expense 48,0.0,97579.63
+2201,Cash 49,54027.47,0.0
+2202,Bank Account 49,0.0,140886.77
+2203,Accounts Receivable 49,189007.12,0.0
+2204,Inventory 49,0.0,64726.88
+2205,Office Equipment 49,206784.08,0.0
+2206,Computer Equipment 49,0.0,231912.46
+2207,Furniture 49,149549.94,0.0
+2208,Prepaid Expenses 49,0.0,167402.44
+2209,Accounts Payable 49,13617.71,0.0
+2210,Accrued Expenses 49,0.0,236407.21
+2211,Loan Payable 49,98424.94,0.0
+2212,Capital Account 49,0.0,231013.15
+2213,Sales Revenue 49,144954.89,0.0
+2214,Service Revenue 49,0.0,1652.39
+2215,Purchase Account 49,10116.23,0.0
+2216,Rent Expense 49,0.0,170264.49
+2217,Salary Expense 49,140885.67,0.0
+2218,Electricity Expense 49,0.0,7119.84
+2219,Insurance Expense 49,185993.26,0.0
+2220,Travel Expense 49,0.0,213110.26
+2221,Advertising Expense 49,124356.16,0.0
+2222,Telephone Expense 49,0.0,116706.48
+2223,Repairs & Maintenance 49,1865.54,0.0
+2224,Depreciation Expense 49,0.0,196769.1
+2225,Interest Expense 49,83013.66,0.0
+2226,Cash 50,0.0,219751.52
+2227,Bank Account 50,93578.62,0.0
+2228,Accounts Receivable 50,0.0,141486.94
+2229,Inventory 50,67950.28,0.0
+2230,Office Equipment 50,0.0,40566.78
+2231,Computer Equipment 50,193839.52,0.0
+2232,Furniture 50,0.0,124399.32
+2233,Prepaid Expenses 50,134353.74,0.0
+2234,Accounts Payable 50,0.0,241371.28
+2235,Accrued Expenses 50,240913.19,0.0
+2236,Loan Payable 50,0.0,213982.71
+2237,Capital Account 50,47308.52,0.0
+2238,Sales Revenue 50,0.0,148771.04
+2239,Service Revenue 50,219597.78,0.0
+2240,Purchase Account 50,0.0,93928.75
+2241,Rent Expense 50,25725.99,0.0
+2242,Salary Expense 50,0.0,202835.24
+2243,Electricity Expense 50,120700.01,0.0
+2244,Insurance Expense 50,0.0,141315.97
+2245,Travel Expense 50,245545.0,0.0
+2246,Advertising Expense 50,0.0,151999.25
+2247,Telephone Expense 50,106532.36,0.0
+2248,Repairs & Maintenance 50,0.0,92811.1
+2249,Depreciation Expense 50,104696.01,0.0
+2250,Interest Expense 50,0.0,30040.57
+2251,Cash 51,198790.26,0.0
+2252,Bank Account 51,0.0,209510.36
+2253,Accounts Receivable 51,71457.09,0.0
+2254,Inventory 51,0.0,76297.26
+2255,Office Equipment 51,218646.4,0.0
+2256,Computer Equipment 51,0.0,6480.6
+2257,Furniture 51,130354.13,0.0
+2258,Prepaid Expenses 51,0.0,116187.09
+2259,Accounts Payable 51,172686.63,0.0
+2260,Accrued Expenses 51,0.0,41266.23
+2261,Loan Payable 51,167248.52,0.0
+2262,Capital Account 51,0.0,94495.13
+2263,Sales Revenue 51,154869.34,0.0
+2264,Service Revenue 51,0.0,10503.7
+2265,Purchase Account 51,115700.94,0.0
+2266,Rent Expense 51,0.0,130801.6
+2267,Salary Expense 51,53974.44,0.0
+2268,Electricity Expense 51,0.0,35336.1
+2269,Insurance Expense 51,47524.34,0.0
+2270,Travel Expense 51,0.0,86363.2
+2271,Advertising Expense 51,24654.13,0.0
+2272,Telephone Expense 51,0.0,236856.29
+2273,Repairs & Maintenance 51,101546.02,0.0
+2274,Depreciation Expense 51,0.0,202337.92
+2275,Interest Expense 51,243617.07,0.0
+2276,Cash 52,0.0,20643.45
+2277,Bank Account 52,163091.53,0.0
+2278,Accounts Receivable 52,0.0,217916.57
+2279,Inventory 52,158741.49,0.0
+2280,Office Equipment 52,0.0,107542.02
+2281,Computer Equipment 52,108053.55,0.0
+2282,Furniture 52,0.0,9456.77
+2283,Prepaid Expenses 52,133882.89,0.0
+2284,Accounts Payable 52,0.0,248388.98
+2285,Accrued Expenses 52,239697.53,0.0
+2286,Loan Payable 52,0.0,10579.61
+2287,Capital Account 52,176596.35,0.0
+2288,Sales Revenue 52,0.0,75790.33
+2289,Service Revenue 52,225795.79,0.0
+2290,Purchase Account 52,0.0,11756.13
+2291,Rent Expense 52,234000.59,0.0
+2292,Salary Expense 52,0.0,209450.2
+2293,Electricity Expense 52,29817.34,0.0
+2294,Insurance Expense 52,0.0,15426.17
+2295,Travel Expense 52,208759.56,0.0
+2296,Advertising Expense 52,0.0,39361.54
+2297,Telephone Expense 52,133957.09,0.0
+2298,Repairs & Maintenance 52,0.0,228978.34
+2299,Depreciation Expense 52,142078.3,0.0
+2300,Interest Expense 52,0.0,99609.71
+2301,Cash 53,111531.51,0.0
+2302,Bank Account 53,0.0,16247.73
+2303,Accounts Receivable 53,242203.7,0.0
+2304,Inventory 53,0.0,78008.22
+2305,Office Equipment 53,47746.19,0.0
+2306,Computer Equipment 53,0.0,71868.8
+2307,Furniture 53,241111.11,0.0
+2308,Prepaid Expenses 53,0.0,24024.37
+2309,Accounts Payable 53,216892.11,0.0
+2310,Accrued Expenses 53,0.0,177107.05
+2311,Loan Payable 53,207589.79,0.0
+2312,Capital Account 53,0.0,243986.44
+2313,Sales Revenue 53,210617.59,0.0
+2314,Service Revenue 53,0.0,235873.9
+2315,Purchase Account 53,32170.35,0.0
+2316,Rent Expense 53,0.0,199049.25
+2317,Salary Expense 53,136646.09,0.0
+2318,Electricity Expense 53,0.0,136102.15
+2319,Insurance Expense 53,224780.93,0.0
+2320,Travel Expense 53,0.0,242965.05
+2321,Advertising Expense 53,176357.16,0.0
+2322,Telephone Expense 53,0.0,120993.13
+2323,Repairs & Maintenance 53,114372.76,0.0
+2324,Depreciation Expense 53,0.0,96892.19
+2325,Interest Expense 53,90718.96,0.0
+2326,Cash 54,0.0,98180.96
+2327,Bank Account 54,22893.43,0.0
+2328,Accounts Receivable 54,0.0,19820.3
+2329,Inventory 54,195077.53,0.0
+2330,Office Equipment 54,0.0,111795.19
+2331,Computer Equipment 54,232705.78,0.0
+2332,Furniture 54,0.0,153249.14
+2333,Prepaid Expenses 54,9276.41,0.0
+2334,Accounts Payable 54,0.0,39802.07
+2335,Accrued Expenses 54,51852.04,0.0
+2336,Loan Payable 54,0.0,243946.14
+2337,Capital Account 54,55066.7,0.0
+2338,Sales Revenue 54,0.0,129181.04
+2339,Service Revenue 54,234076.14,0.0
+2340,Purchase Account 54,0.0,244309.59
+2341,Rent Expense 54,59471.93,0.0
+2342,Salary Expense 54,0.0,12754.85
+2343,Electricity Expense 54,38823.66,0.0
+2344,Insurance Expense 54,0.0,16300.46
+2345,Travel Expense 54,49183.5,0.0
+2346,Advertising Expense 54,0.0,142358.14
+2347,Telephone Expense 54,228155.97,0.0
+2348,Repairs & Maintenance 54,0.0,134536.11
+2349,Depreciation Expense 54,156684.39,0.0
+2350,Interest Expense 54,0.0,50865.88
+2351,Cash 55,200245.61,0.0
+2352,Bank Account 55,0.0,154638.33
+2353,Accounts Receivable 55,216102.14,0.0
+2354,Inventory 55,0.0,237236.36
+2355,Office Equipment 55,87301.24,0.0
+2356,Computer Equipment 55,0.0,23099.48
+2357,Furniture 55,56869.28,0.0
+2358,Prepaid Expenses 55,0.0,109741.47
+2359,Accounts Payable 55,236450.57,0.0
+2360,Accrued Expenses 55,0.0,94888.3
+2361,Loan Payable 55,192807.92,0.0
+2362,Capital Account 55,0.0,135348.93
+2363,Sales Revenue 55,46110.79,0.0
+2364,Service Revenue 55,0.0,80523.16
+2365,Purchase Account 55,163471.38,0.0
+2366,Rent Expense 55,0.0,168376.92
+2367,Salary Expense 55,108972.56,0.0
+2368,Electricity Expense 55,0.0,57547.08
+2369,Insurance Expense 55,180615.74,0.0
+2370,Travel Expense 55,0.0,42633.82
+2371,Advertising Expense 55,234199.09,0.0
+2372,Telephone Expense 55,0.0,47381.94
+2373,Repairs & Maintenance 55,27274.43,0.0
+2374,Depreciation Expense 55,0.0,124663.1
+2375,Interest Expense 55,130127.62,0.0
+2376,Cash 56,0.0,127294.13
+2377,Bank Account 56,109448.54,0.0
+2378,Accounts Receivable 56,0.0,248706.32
+2379,Inventory 56,121827.01,0.0
+2380,Office Equipment 56,0.0,119747.67
+2381,Computer Equipment 56,105730.63,0.0
+2382,Furniture 56,0.0,17173.03
+2383,Prepaid Expenses 56,148442.68,0.0
+2384,Accounts Payable 56,0.0,57377.96
+2385,Accrued Expenses 56,159583.44,0.0
+2386,Loan Payable 56,0.0,13182.95
+2387,Capital Account 56,245356.08,0.0
+2388,Sales Revenue 56,0.0,117516.77
+2389,Service Revenue 56,224240.47,0.0
+2390,Purchase Account 56,0.0,119152.51
+2391,Rent Expense 56,15552.54,0.0
+2392,Salary Expense 56,0.0,205642.28
+2393,Electricity Expense 56,162221.84,0.0
+2394,Insurance Expense 56,0.0,195548.38
+2395,Travel Expense 56,107328.38,0.0
+2396,Advertising Expense 56,0.0,159665.22
+2397,Telephone Expense 56,214129.14,0.0
+2398,Repairs & Maintenance 56,0.0,157950.83
+2399,Depreciation Expense 56,87244.57,0.0
+2400,Interest Expense 56,0.0,165801.13
+2401,Cash 57,168127.62,0.0
+2402,Bank Account 57,0.0,240166.45
+2403,Accounts Receivable 57,93042.62,0.0
+2404,Inventory 57,0.0,106557.9
+2405,Office Equipment 57,203124.68,0.0
+2406,Computer Equipment 57,0.0,126687.7
+2407,Furniture 57,184274.99,0.0
+2408,Prepaid Expenses 57,0.0,115197.51
+2409,Accounts Payable 57,54266.04,0.0
+2410,Accrued Expenses 57,0.0,186428.36
+2411,Loan Payable 57,33223.21,0.0
+2412,Capital Account 57,0.0,50046.62
+2413,Sales Revenue 57,156892.83,0.0
+2414,Service Revenue 57,0.0,186943.82
+2415,Purchase Account 57,223724.63,0.0
+2416,Rent Expense 57,0.0,68510.33
+2417,Salary Expense 57,28125.7,0.0
+2418,Electricity Expense 57,0.0,239033.64
+2419,Insurance Expense 57,39028.56,0.0
+2420,Travel Expense 57,0.0,49817.91
+2421,Advertising Expense 57,73186.7,0.0
+2422,Telephone Expense 57,0.0,132583.14
+2423,Repairs & Maintenance 57,220764.98,0.0
+2424,Depreciation Expense 57,0.0,190256.23
+2425,Interest Expense 57,177185.31,0.0
+2426,Cash 58,0.0,44207.55
+2427,Bank Account 58,89741.82,0.0
+2428,Accounts Receivable 58,0.0,119862.03
+2429,Inventory 58,37282.78,0.0
+2430,Office Equipment 58,0.0,68720.71
+2431,Computer Equipment 58,77429.13,0.0
+2432,Furniture 58,0.0,32255.41
+2433,Prepaid Expenses 58,137784.8,0.0
+2434,Accounts Payable 58,0.0,176404.54
+2435,Accrued Expenses 58,17947.94,0.0
+2436,Loan Payable 58,0.0,120540.21
+2437,Capital Account 58,195661.69,0.0
+2438,Sales Revenue 58,0.0,187123.54
+2439,Service Revenue 58,203860.74,0.0
+2440,Purchase Account 58,0.0,112336.04
+2441,Rent Expense 58,205228.99,0.0
+2442,Salary Expense 58,0.0,60567.89
+2443,Electricity Expense 58,90522.24,0.0
+2444,Insurance Expense 58,0.0,44500.72
+2445,Travel Expense 58,117137.39,0.0
+2446,Advertising Expense 58,0.0,98318.98
+2447,Telephone Expense 58,60611.32,0.0
+2448,Repairs & Maintenance 58,0.0,188069.29
+2449,Depreciation Expense 58,78804.77,0.0
+2450,Interest Expense 58,0.0,68564.68
+2451,Cash 59,33157.14,0.0
+2452,Bank Account 59,0.0,109986.01
+2453,Accounts Receivable 59,76089.67,0.0
+2454,Inventory 59,0.0,92633.57
+2455,Office Equipment 59,59381.32,0.0
+2456,Computer Equipment 59,0.0,190907.29
+2457,Furniture 59,232535.84,0.0
+2458,Prepaid Expenses 59,0.0,124734.0
+2459,Accounts Payable 59,160928.11,0.0
+2460,Accrued Expenses 59,0.0,216859.48
+2461,Loan Payable 59,249707.99,0.0
+2462,Capital Account 59,0.0,153572.36
+2463,Sales Revenue 59,222499.98,0.0
+2464,Service Revenue 59,0.0,227197.76
+2465,Purchase Account 59,197967.15,0.0
+2466,Rent Expense 59,0.0,115502.38
+2467,Salary Expense 59,20747.92,0.0
+2468,Electricity Expense 59,0.0,4443.49
+2469,Insurance Expense 59,119561.56,0.0
+2470,Travel Expense 59,0.0,123831.48
+2471,Advertising Expense 59,102136.92,0.0
+2472,Telephone Expense 59,0.0,142257.75
+2473,Repairs & Maintenance 59,138264.59,0.0
+2474,Depreciation Expense 59,0.0,209234.95
+2475,Interest Expense 59,27609.95,0.0
+2476,Cash 60,0.0,56681.83
+2477,Bank Account 60,198354.74,0.0
+2478,Accounts Receivable 60,0.0,212035.3
+2479,Inventory 60,248708.64,0.0
+2480,Office Equipment 60,0.0,218291.55
+2481,Computer Equipment 60,222529.8,0.0
+2482,Furniture 60,0.0,78929.81
+2483,Prepaid Expenses 60,100714.58,0.0
+2484,Accounts Payable 60,0.0,67387.23
+2485,Accrued Expenses 60,151771.7,0.0
+2486,Loan Payable 60,0.0,234731.94
+2487,Capital Account 60,86487.9,0.0
+2488,Sales Revenue 60,0.0,139471.94
+2489,Service Revenue 60,74426.76,0.0
+2490,Purchase Account 60,0.0,42865.09
+2491,Rent Expense 60,49198.79,0.0
+2492,Salary Expense 60,0.0,14957.36
+2493,Electricity Expense 60,237348.73,0.0
+2494,Insurance Expense 60,0.0,101018.46
+2495,Travel Expense 60,208613.16,0.0
+2496,Advertising Expense 60,0.0,170491.7
+2497,Telephone Expense 60,48384.33,0.0
+2498,Repairs & Maintenance 60,0.0,44277.83
+2499,Depreciation Expense 60,203091.06,0.0
+2500,Interest Expense 60,0.0,66545.57
+2501,Cash 61,228364.65,0.0
+2502,Bank Account 61,0.0,35443.82
+2503,Accounts Receivable 61,169588.3,0.0
+2504,Inventory 61,0.0,203711.23
+2505,Office Equipment 61,59196.47,0.0
+2506,Computer Equipment 61,0.0,69413.74
+2507,Furniture 61,241147.46,0.0
+2508,Prepaid Expenses 61,0.0,66517.1
+2509,Accounts Payable 61,107774.28,0.0
+2510,Accrued Expenses 61,0.0,108412.64
+2511,Loan Payable 61,63632.17,0.0
+2512,Capital Account 61,0.0,194059.88
+2513,Sales Revenue 61,193076.41,0.0
+2514,Service Revenue 61,0.0,94890.34
+2515,Purchase Account 61,208863.88,0.0
+2516,Rent Expense 61,0.0,53662.2
+2517,Salary Expense 61,1574.29,0.0
+2518,Electricity Expense 61,0.0,143006.26
+2519,Insurance Expense 61,248522.4,0.0
+2520,Travel Expense 61,0.0,10141.76
+2521,Advertising Expense 61,52395.52,0.0
+2522,Telephone Expense 61,0.0,129969.2
+2523,Repairs & Maintenance 61,202580.21,0.0
+2524,Depreciation Expense 61,0.0,22715.98
+2525,Interest Expense 61,99111.05,0.0
+2526,Cash 62,0.0,186895.41
+2527,Bank Account 62,93200.03,0.0
+2528,Accounts Receivable 62,0.0,47614.69
+2529,Inventory 62,49276.21,0.0
+2530,Office Equipment 62,0.0,102807.17
+2531,Computer Equipment 62,120114.56,0.0
+2532,Furniture 62,0.0,215522.7
+2533,Prepaid Expenses 62,160741.98,0.0
+2534,Accounts Payable 62,0.0,172755.29
+2535,Accrued Expenses 62,245755.3,0.0
+2536,Loan Payable 62,0.0,103254.94
+2537,Capital Account 62,101136.92,0.0
+2538,Sales Revenue 62,0.0,230875.07
+2539,Service Revenue 62,61845.96,0.0
+2540,Purchase Account 62,0.0,182588.9
+2541,Rent Expense 62,188766.0,0.0
+2542,Salary Expense 62,0.0,24898.11
+2543,Electricity Expense 62,117323.74,0.0
+2544,Insurance Expense 62,0.0,50540.34
+2545,Travel Expense 62,46751.13,0.0
+2546,Advertising Expense 62,0.0,116225.11
+2547,Telephone Expense 62,72712.71,0.0
+2548,Repairs & Maintenance 62,0.0,199117.08
+2549,Depreciation Expense 62,226947.42,0.0
+2550,Interest Expense 62,0.0,200778.79
+2551,Cash 63,66874.7,0.0
+2552,Bank Account 63,0.0,68896.53
+2553,Accounts Receivable 63,64054.72,0.0
+2554,Inventory 63,0.0,34192.0
+2555,Office Equipment 63,235977.69,0.0
+2556,Computer Equipment 63,0.0,100810.93
+2557,Furniture 63,56560.02,0.0
+2558,Prepaid Expenses 63,0.0,211744.43
+2559,Accounts Payable 63,100099.23,0.0
+2560,Accrued Expenses 63,0.0,9261.64
+2561,Loan Payable 63,40904.42,0.0
+2562,Capital Account 63,0.0,159992.96
+2563,Sales Revenue 63,195834.87,0.0
+2564,Service Revenue 63,0.0,53128.13
+2565,Purchase Account 63,229390.2,0.0
+2566,Rent Expense 63,0.0,212823.78
+2567,Salary Expense 63,212171.0,0.0
+2568,Electricity Expense 63,0.0,57301.46
+2569,Insurance Expense 63,13108.73,0.0
+2570,Travel Expense 63,0.0,216922.17
+2571,Advertising Expense 63,76797.16,0.0
+2572,Telephone Expense 63,0.0,154919.64
+2573,Repairs & Maintenance 63,190111.74,0.0
+2574,Depreciation Expense 63,0.0,32509.17
+2575,Interest Expense 63,195319.17,0.0
+2576,Cash 64,0.0,234658.61
+2577,Bank Account 64,182229.55,0.0
+2578,Accounts Receivable 64,0.0,110585.08
+2579,Inventory 64,219231.2,0.0
+2580,Office Equipment 64,0.0,132100.68
+2581,Computer Equipment 64,186320.35,0.0
+2582,Furniture 64,0.0,205216.23
+2583,Prepaid Expenses 64,187463.54,0.0
+2584,Accounts Payable 64,0.0,72319.79
+2585,Accrued Expenses 64,29902.05,0.0
+2586,Loan Payable 64,0.0,59965.46
+2587,Capital Account 64,125967.3,0.0
+2588,Sales Revenue 64,0.0,126566.59
+2589,Service Revenue 64,145869.77,0.0
+2590,Purchase Account 64,0.0,99077.91
+2591,Rent Expense 64,196829.4,0.0
+2592,Salary Expense 64,0.0,228331.86
+2593,Electricity Expense 64,62057.9,0.0
+2594,Insurance Expense 64,0.0,184262.54
+2595,Travel Expense 64,169653.98,0.0
+2596,Advertising Expense 64,0.0,131011.08
+2597,Telephone Expense 64,47538.29,0.0
+2598,Repairs & Maintenance 64,0.0,198910.45
+2599,Depreciation Expense 64,240176.26,0.0
+2600,Interest Expense 64,0.0,180598.16
+2601,Cash 65,229506.07,0.0
+2602,Bank Account 65,0.0,246054.22
+2603,Accounts Receivable 65,88336.64,0.0
+2604,Inventory 65,0.0,159736.78
+2605,Office Equipment 65,118746.22,0.0
+2606,Computer Equipment 65,0.0,246663.87
+2607,Furniture 65,23905.05,0.0
+2608,Prepaid Expenses 65,0.0,103387.54
+2609,Accounts Payable 65,218946.99,0.0
+2610,Accrued Expenses 65,0.0,71370.8
+2611,Loan Payable 65,197054.32,0.0
+2612,Capital Account 65,0.0,96004.4
+2613,Sales Revenue 65,245004.65,0.0
+2614,Service Revenue 65,0.0,220940.69
+2615,Purchase Account 65,75679.43,0.0
+2616,Rent Expense 65,0.0,192663.18
+2617,Salary Expense 65,84545.71,0.0
+2618,Electricity Expense 65,0.0,151787.53
+2619,Insurance Expense 65,164790.95,0.0
+2620,Travel Expense 65,0.0,207484.05
+2621,Advertising Expense 65,6600.48,0.0
+2622,Telephone Expense 65,0.0,55429.39
+2623,Repairs & Maintenance 65,178123.49,0.0
+2624,Depreciation Expense 65,0.0,141099.05
+2625,Interest Expense 65,124153.47,0.0
+2626,Cash 66,0.0,14274.88
+2627,Bank Account 66,87394.83,0.0
+2628,Accounts Receivable 66,0.0,216342.51
+2629,Inventory 66,8207.76,0.0
+2630,Office Equipment 66,0.0,99410.84
+2631,Computer Equipment 66,236314.5,0.0
+2632,Furniture 66,0.0,13194.74
+2633,Prepaid Expenses 66,187551.58,0.0
+2634,Accounts Payable 66,0.0,64774.35
+2635,Accrued Expenses 66,216718.9,0.0
+2636,Loan Payable 66,0.0,186643.96
+2637,Capital Account 66,221483.44,0.0
+2638,Sales Revenue 66,0.0,54373.24
+2639,Service Revenue 66,133057.54,0.0
+2640,Purchase Account 66,0.0,194927.85
+2641,Rent Expense 66,61802.09,0.0
+2642,Salary Expense 66,0.0,58071.2
+2643,Electricity Expense 66,7281.94,0.0
+2644,Insurance Expense 66,0.0,239649.57
+2645,Travel Expense 66,177649.21,0.0
+2646,Advertising Expense 66,0.0,159072.31
+2647,Telephone Expense 66,186126.68,0.0
+2648,Repairs & Maintenance 66,0.0,133137.42
+2649,Depreciation Expense 66,119295.39,0.0
+2650,Interest Expense 66,0.0,112658.29
+2651,Cash 67,160289.58,0.0
+2652,Bank Account 67,0.0,50782.98
+2653,Accounts Receivable 67,222070.64,0.0
+2654,Inventory 67,0.0,203032.22
+2655,Office Equipment 67,87716.12,0.0
+2656,Computer Equipment 67,0.0,144863.02
+2657,Furniture 67,35686.31,0.0
+2658,Prepaid Expenses 67,0.0,243100.39
+2659,Accounts Payable 67,225771.73,0.0
+2660,Accrued Expenses 67,0.0,230513.43
+2661,Loan Payable 67,83374.68,0.0
+2662,Capital Account 67,0.0,42699.11
+2663,Sales Revenue 67,53337.15,0.0
+2664,Service Revenue 67,0.0,22955.35
+2665,Purchase Account 67,30467.6,0.0
+2666,Rent Expense 67,0.0,18290.48
+2667,Salary Expense 67,247460.86,0.0
+2668,Electricity Expense 67,0.0,18977.39
+2669,Insurance Expense 67,33569.25,0.0
+2670,Travel Expense 67,0.0,206900.02
+2671,Advertising Expense 67,145269.93,0.0
+2672,Telephone Expense 67,0.0,193717.09
+2673,Repairs & Maintenance 67,157912.55,0.0
+2674,Depreciation Expense 67,0.0,220602.68
+2675,Interest Expense 67,159797.65,0.0
+2676,Cash 68,0.0,130770.21
+2677,Bank Account 68,178331.05,0.0
+2678,Accounts Receivable 68,0.0,112124.49
+2679,Inventory 68,86842.92,0.0
+2680,Office Equipment 68,0.0,117179.29
+2681,Computer Equipment 68,42843.67,0.0
+2682,Furniture 68,0.0,199244.65
+2683,Prepaid Expenses 68,65545.59,0.0
+2684,Accounts Payable 68,0.0,38806.12
+2685,Accrued Expenses 68,61964.88,0.0
+2686,Loan Payable 68,0.0,210596.5
+2687,Capital Account 68,82885.22,0.0
+2688,Sales Revenue 68,0.0,171669.44
+2689,Service Revenue 68,214174.2,0.0
+2690,Purchase Account 68,0.0,19897.29
+2691,Rent Expense 68,191373.59,0.0
+2692,Salary Expense 68,0.0,77262.53
+2693,Electricity Expense 68,54547.28,0.0
+2694,Insurance Expense 68,0.0,172380.91
+2695,Travel Expense 68,227494.26,0.0
+2696,Advertising Expense 68,0.0,74107.29
+2697,Telephone Expense 68,142424.03,0.0
+2698,Repairs & Maintenance 68,0.0,72813.61
+2699,Depreciation Expense 68,138794.25,0.0
+2700,Interest Expense 68,0.0,155654.58
+2701,Cash 69,152778.68,0.0
+2702,Bank Account 69,0.0,156074.82
+2703,Accounts Receivable 69,34202.41,0.0
+2704,Inventory 69,0.0,173538.35
+2705,Office Equipment 69,168850.21,0.0
+2706,Computer Equipment 69,0.0,170805.74
+2707,Furniture 69,18980.6,0.0
+2708,Prepaid Expenses 69,0.0,111986.29
+2709,Accounts Payable 69,102554.27,0.0
+2710,Accrued Expenses 69,0.0,22134.52
+2711,Loan Payable 69,55980.8,0.0
+2712,Capital Account 69,0.0,110520.18
+2713,Sales Revenue 69,185855.12,0.0
+2714,Service Revenue 69,0.0,59646.99
+2715,Purchase Account 69,207522.6,0.0
+2716,Rent Expense 69,0.0,136676.67
+2717,Salary Expense 69,190225.21,0.0
+2718,Electricity Expense 69,0.0,118402.72
+2719,Insurance Expense 69,125048.96,0.0
+2720,Travel Expense 69,0.0,155119.99
+2721,Advertising Expense 69,232028.67,0.0
+2722,Telephone Expense 69,0.0,123207.24
+2723,Repairs & Maintenance 69,132400.06,0.0
+2724,Depreciation Expense 69,0.0,150698.24
+2725,Interest Expense 69,184510.03,0.0
+2726,Cash 70,0.0,18426.66
+2727,Bank Account 70,129164.02,0.0
+2728,Accounts Receivable 70,0.0,120657.1
+2729,Inventory 70,230460.4,0.0
+2730,Office Equipment 70,0.0,123629.89
+2731,Computer Equipment 70,117345.97,0.0
+2732,Furniture 70,0.0,240568.9
+2733,Prepaid Expenses 70,112918.83,0.0
+2734,Accounts Payable 70,0.0,45630.67
+2735,Accrued Expenses 70,54620.57,0.0
+2736,Loan Payable 70,0.0,24249.29
+2737,Capital Account 70,641.75,0.0
+2738,Sales Revenue 70,0.0,108270.44
+2739,Service Revenue 70,192426.02,0.0
+2740,Purchase Account 70,0.0,183499.88
+2741,Rent Expense 70,8521.2,0.0
+2742,Salary Expense 70,0.0,142710.73
+2743,Electricity Expense 70,38993.64,0.0
+2744,Insurance Expense 70,0.0,235298.53
+2745,Travel Expense 70,42257.57,0.0
+2746,Advertising Expense 70,0.0,156846.48
+2747,Telephone Expense 70,81896.47,0.0
+2748,Repairs & Maintenance 70,0.0,160569.55
+2749,Depreciation Expense 70,103358.52,0.0
+2750,Interest Expense 70,0.0,190030.94
+2751,Cash 71,58054.44,0.0
+2752,Bank Account 71,0.0,226495.07
+2753,Accounts Receivable 71,125302.31,0.0
+2754,Inventory 71,0.0,189145.24
+2755,Office Equipment 71,212507.68,0.0
+2756,Computer Equipment 71,0.0,249707.74
+2757,Furniture 71,56374.44,0.0
+2758,Prepaid Expenses 71,0.0,72079.66
+2759,Accounts Payable 71,62983.06,0.0
+2760,Accrued Expenses 71,0.0,66086.4
+2761,Loan Payable 71,145819.96,0.0
+2762,Capital Account 71,0.0,248383.87
+2763,Sales Revenue 71,247574.38,0.0
+2764,Service Revenue 71,0.0,131929.92
+2765,Purchase Account 71,159937.29,0.0
+2766,Rent Expense 71,0.0,215062.65
+2767,Salary Expense 71,233266.9,0.0
+2768,Electricity Expense 71,0.0,51363.23
+2769,Insurance Expense 71,132371.16,0.0
+2770,Travel Expense 71,0.0,208292.85
+2771,Advertising Expense 71,76148.92,0.0
+2772,Telephone Expense 71,0.0,110232.36
+2773,Repairs & Maintenance 71,246412.46,0.0
+2774,Depreciation Expense 71,0.0,246269.15
+2775,Interest Expense 71,226573.65,0.0
+2776,Cash 72,0.0,199712.86
+2777,Bank Account 72,67648.06,0.0
+2778,Accounts Receivable 72,0.0,80552.09
+2779,Inventory 72,137047.07,0.0
+2780,Office Equipment 72,0.0,140413.95
+2781,Computer Equipment 72,126622.95,0.0
+2782,Furniture 72,0.0,159349.23
+2783,Prepaid Expenses 72,102376.59,0.0
+2784,Accounts Payable 72,0.0,187418.95
+2785,Accrued Expenses 72,83720.71,0.0
+2786,Loan Payable 72,0.0,83003.91
+2787,Capital Account 72,32242.88,0.0
+2788,Sales Revenue 72,0.0,47583.7
+2789,Service Revenue 72,212704.96,0.0
+2790,Purchase Account 72,0.0,111847.44
+2791,Rent Expense 72,57353.01,0.0
+2792,Salary Expense 72,0.0,189955.6
+2793,Electricity Expense 72,138718.29,0.0
+2794,Insurance Expense 72,0.0,5778.42
+2795,Travel Expense 72,79432.18,0.0
+2796,Advertising Expense 72,0.0,44661.85
+2797,Telephone Expense 72,164140.28,0.0
+2798,Repairs & Maintenance 72,0.0,69120.24
+2799,Depreciation Expense 72,16704.22,0.0
+2800,Interest Expense 72,0.0,14206.28
+2801,Cash 73,145640.96,0.0
+2802,Bank Account 73,0.0,5920.0
+2803,Accounts Receivable 73,212273.63,0.0
+2804,Inventory 73,0.0,39271.58
+2805,Office Equipment 73,151838.3,0.0
+2806,Computer Equipment 73,0.0,111449.66
+2807,Furniture 73,110991.45,0.0
+2808,Prepaid Expenses 73,0.0,18413.39
+2809,Accounts Payable 73,200786.69,0.0
+2810,Accrued Expenses 73,0.0,223316.59
+2811,Loan Payable 73,3248.66,0.0
+2812,Capital Account 73,0.0,45061.74
+2813,Sales Revenue 73,226024.1,0.0
+2814,Service Revenue 73,0.0,137598.66
+2815,Purchase Account 73,37934.87,0.0
+2816,Rent Expense 73,0.0,51096.22
+2817,Salary Expense 73,165166.57,0.0
+2818,Electricity Expense 73,0.0,181341.8
+2819,Insurance Expense 73,150056.99,0.0
+2820,Travel Expense 73,0.0,238310.52
+2821,Advertising Expense 73,123768.87,0.0
+2822,Telephone Expense 73,0.0,75417.84
+2823,Repairs & Maintenance 73,119569.61,0.0
+2824,Depreciation Expense 73,0.0,90236.74
+2825,Interest Expense 73,56491.77,0.0
+2826,Cash 74,0.0,11967.83
+2827,Bank Account 74,88377.02,0.0
+2828,Accounts Receivable 74,0.0,177996.63
+2829,Inventory 74,5100.23,0.0
+2830,Office Equipment 74,0.0,110075.04
+2831,Computer Equipment 74,161180.35,0.0
+2832,Furniture 74,0.0,152795.83
+2833,Prepaid Expenses 74,194273.78,0.0
+2834,Accounts Payable 74,0.0,202724.67
+2835,Accrued Expenses 74,178070.6,0.0
+2836,Loan Payable 74,0.0,26148.03
+2837,Capital Account 74,119018.1,0.0
+2838,Sales Revenue 74,0.0,151049.79
+2839,Service Revenue 74,61768.73,0.0
+2840,Purchase Account 74,0.0,11116.68
+2841,Rent Expense 74,56285.79,0.0
+2842,Salary Expense 74,0.0,113996.15
+2843,Electricity Expense 74,103775.61,0.0
+2844,Insurance Expense 74,0.0,44578.41
+2845,Travel Expense 74,206191.68,0.0
+2846,Advertising Expense 74,0.0,231458.82
+2847,Telephone Expense 74,50736.41,0.0
+2848,Repairs & Maintenance 74,0.0,232428.44
+2849,Depreciation Expense 74,4956.31,0.0
+2850,Interest Expense 74,0.0,231278.14
+2851,Cash 75,238006.23,0.0
+2852,Bank Account 75,0.0,3506.94
+2853,Accounts Receivable 75,190873.31,0.0
+2854,Inventory 75,0.0,242565.29
+2855,Office Equipment 75,226522.6,0.0
+2856,Computer Equipment 75,0.0,242692.19
+2857,Furniture 75,137805.71,0.0
+2858,Prepaid Expenses 75,0.0,19999.96
+2859,Accounts Payable 75,212522.4,0.0
+2860,Accrued Expenses 75,0.0,153650.15
+2861,Loan Payable 75,153876.82,0.0
+2862,Capital Account 75,0.0,104604.78
+2863,Sales Revenue 75,143174.57,0.0
+2864,Service Revenue 75,0.0,38818.15
+2865,Purchase Account 75,185072.62,0.0
+2866,Rent Expense 75,0.0,19216.82
+2867,Salary Expense 75,182580.3,0.0
+2868,Electricity Expense 75,0.0,212320.12
+2869,Insurance Expense 75,118380.94,0.0
+2870,Travel Expense 75,0.0,127702.68
+2871,Advertising Expense 75,78397.46,0.0
+2872,Telephone Expense 75,0.0,242379.92
+2873,Repairs & Maintenance 75,183414.56,0.0
+2874,Depreciation Expense 75,0.0,92562.64
+2875,Interest Expense 75,44114.44,0.0
+2876,Cash 76,0.0,55285.11
+2877,Bank Account 76,116248.61,0.0
+2878,Accounts Receivable 76,0.0,235670.82
+2879,Inventory 76,183669.51,0.0
+2880,Office Equipment 76,0.0,54203.32
+2881,Computer Equipment 76,214960.5,0.0
+2882,Furniture 76,0.0,94861.03
+2883,Prepaid Expenses 76,213004.68,0.0
+2884,Accounts Payable 76,0.0,60804.05
+2885,Accrued Expenses 76,154855.82,0.0
+2886,Loan Payable 76,0.0,231704.29
+2887,Capital Account 76,64844.56,0.0
+2888,Sales Revenue 76,0.0,173385.18
+2889,Service Revenue 76,246834.5,0.0
+2890,Purchase Account 76,0.0,38074.27
+2891,Rent Expense 76,22556.37,0.0
+2892,Salary Expense 76,0.0,168711.7
+2893,Electricity Expense 76,85264.12,0.0
+2894,Insurance Expense 76,0.0,18275.5
+2895,Travel Expense 76,119088.75,0.0
+2896,Advertising Expense 76,0.0,188565.78
+2897,Telephone Expense 76,71638.04,0.0
+2898,Repairs & Maintenance 76,0.0,84094.2
+2899,Depreciation Expense 76,211502.0,0.0
+2900,Interest Expense 76,0.0,130257.94
+2901,Cash 77,210761.63,0.0
+2902,Bank Account 77,0.0,111874.18
+2903,Accounts Receivable 77,238267.3,0.0
+2904,Inventory 77,0.0,162873.25
+2905,Office Equipment 77,29416.77,0.0
+2906,Computer Equipment 77,0.0,221330.7
+2907,Furniture 77,122571.67,0.0
+2908,Prepaid Expenses 77,0.0,35838.92
+2909,Accounts Payable 77,38596.19,0.0
+2910,Accrued Expenses 77,0.0,172039.72
+2911,Loan Payable 77,12319.44,0.0
+2912,Capital Account 77,0.0,72005.14
+2913,Sales Revenue 77,35377.0,0.0
+2914,Service Revenue 77,0.0,110548.82
+2915,Purchase Account 77,103881.27,0.0
+2916,Rent Expense 77,0.0,130708.17
+2917,Salary Expense 77,70269.26,0.0
+2918,Electricity Expense 77,0.0,8494.88
+2919,Insurance Expense 77,153789.33,0.0
+2920,Travel Expense 77,0.0,93742.64
+2921,Advertising Expense 77,163008.08,0.0
+2922,Telephone Expense 77,0.0,27612.41
+2923,Repairs & Maintenance 77,3937.45,0.0
+2924,Depreciation Expense 77,0.0,62449.41
+2925,Interest Expense 77,114408.56,0.0
+2926,Cash 78,0.0,98820.96
+2927,Bank Account 78,202670.49,0.0
+2928,Accounts Receivable 78,0.0,94770.49
+2929,Inventory 78,132845.07,0.0
+2930,Office Equipment 78,0.0,148582.14
+2931,Computer Equipment 78,5946.93,0.0
+2932,Furniture 78,0.0,129025.78
+2933,Prepaid Expenses 78,86535.4,0.0
+2934,Accounts Payable 78,0.0,105609.39
+2935,Accrued Expenses 78,25521.71,0.0
+2936,Loan Payable 78,0.0,195813.73
+2937,Capital Account 78,235629.86,0.0
+2938,Sales Revenue 78,0.0,6056.07
+2939,Service Revenue 78,150542.5,0.0
+2940,Purchase Account 78,0.0,191079.09
+2941,Rent Expense 78,71559.49,0.0
+2942,Salary Expense 78,0.0,196995.12
+2943,Electricity Expense 78,158272.59,0.0
+2944,Insurance Expense 78,0.0,232326.08
+2945,Travel Expense 78,245260.7,0.0
+2946,Advertising Expense 78,0.0,11065.36
+2947,Telephone Expense 78,111511.97,0.0
+2948,Repairs & Maintenance 78,0.0,136973.45
+2949,Depreciation Expense 78,37112.44,0.0
+2950,Interest Expense 78,0.0,84403.31
+2951,Cash 79,246918.04,0.0
+2952,Bank Account 79,0.0,4549.5
+2953,Accounts Receivable 79,113400.73,0.0
+2954,Inventory 79,0.0,210742.33
+2955,Office Equipment 79,81313.37,0.0
+2956,Computer Equipment 79,0.0,120209.73
+2957,Furniture 79,244522.41,0.0
+2958,Prepaid Expenses 79,0.0,118981.77
+2959,Accounts Payable 79,33164.87,0.0
+2960,Accrued Expenses 79,0.0,13404.51
+2961,Loan Payable 79,236381.43,0.0
+2962,Capital Account 79,0.0,66819.45
+2963,Sales Revenue 79,126263.94,0.0
+2964,Service Revenue 79,0.0,23130.09
+2965,Purchase Account 79,106201.95,0.0
+2966,Rent Expense 79,0.0,232561.33
+2967,Salary Expense 79,125852.04,0.0
+2968,Electricity Expense 79,0.0,242798.22
+2969,Insurance Expense 79,65079.49,0.0
+2970,Travel Expense 79,0.0,126384.04
+2971,Advertising Expense 79,214952.93,0.0
+2972,Telephone Expense 79,0.0,112338.96
+2973,Repairs & Maintenance 79,70232.1,0.0
+2974,Depreciation Expense 79,0.0,213941.1
+2975,Interest Expense 79,97777.42,0.0
+2976,Cash 80,0.0,132915.46
+2977,Bank Account 80,244143.5,0.0
+2978,Accounts Receivable 80,0.0,47027.58
+2979,Inventory 80,75699.46,0.0
+2980,Office Equipment 80,0.0,8251.87
+2981,Computer Equipment 80,98263.51,0.0
+2982,Furniture 80,0.0,50445.77
+2983,Prepaid Expenses 80,170168.72,0.0
+2984,Accounts Payable 80,0.0,45739.7
+2985,Accrued Expenses 80,168865.78,0.0
+2986,Loan Payable 80,0.0,66237.12
+2987,Capital Account 80,89126.85,0.0
+2988,Sales Revenue 80,0.0,87540.73
+2989,Service Revenue 80,179329.56,0.0
+2990,Purchase Account 80,0.0,116894.06
+2991,Rent Expense 80,90644.08,0.0
+2992,Salary Expense 80,0.0,213229.37
+2993,Electricity Expense 80,143201.68,0.0
+2994,Insurance Expense 80,0.0,53850.79
+2995,Travel Expense 80,225072.77,0.0
+2996,Advertising Expense 80,0.0,85991.25
+2997,Telephone Expense 80,10225.35,0.0
+2998,Repairs & Maintenance 80,0.0,123902.76
+2999,Depreciation Expense 80,31422.54,0.0
+3000,Interest Expense 80,0.0,59997.38

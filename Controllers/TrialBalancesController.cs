@@ -580,12 +580,14 @@ public class TrialBalancesController : ControllerBase
 
         var result =
             new List<object>();
-
-
+       
         foreach (var tb in trialBalances)
         {
             object? period = null;
-
+Console.WriteLine("========================================");
+Console.WriteLine("GET BY ID CALLED");
+Console.WriteLine($"Trial Balance Data PeriodStart: {tb.PeriodStart}");
+Console.WriteLine("========================================");
 
             // ----------------------------------------------------
             // Get Accounting Period
@@ -600,6 +602,18 @@ public class TrialBalancesController : ControllerBase
                             x.Id == tb.PeriodId
                         )
                         .FirstOrDefaultAsync();
+            }
+
+            if (period == null && (tb.PeriodStart != default || tb.PeriodEnd != default))
+            {
+                period = new
+                {
+                    id = string.Empty,
+                    periodStart = tb.PeriodStart,
+                    periodEnd = tb.PeriodEnd,
+                    isActive = true,
+                    isClosed = false
+                };
             }
 
 
@@ -692,6 +706,12 @@ public class TrialBalancesController : ControllerBase
                 )
                 .FirstOrDefaultAsync();
 
+ Console.WriteLine("========================================");
+Console.WriteLine("GET BY ID CALLED");
+Console.WriteLine($"Trial Balance ID: {id}");
+Console.WriteLine($"Trial Balance Data: {tb}");
+Console.WriteLine($"Trial Balance Data PeriodStart: {tb.PeriodStart}");
+Console.WriteLine("========================================");
 
         if (tb == null)
         {
@@ -719,6 +739,21 @@ public class TrialBalancesController : ControllerBase
                         x.Id == tb.PeriodId
                     )
                     .FirstOrDefaultAsync();
+        }
+
+
+        if (period == null && (tb.PeriodStart != default || tb.PeriodEnd != default))
+        {
+            period = new
+            {
+                id = string.Empty,
+                periodFrom = tb.PeriodStart,
+                periodTo = tb.PeriodEnd,
+                periodStart = tb.PeriodStart,
+                periodEnd = tb.PeriodEnd,
+                isActive = true,
+                isClosed = false
+            };
         }
 
 
@@ -804,6 +839,12 @@ public class TrialBalancesController : ControllerBase
                         },
 
                     period,
+
+                    periodStart =
+                        tb.PeriodStart,
+
+                    periodEnd =
+                        tb.PeriodEnd,
 
                     description =
                         tb.Description,
@@ -956,7 +997,7 @@ public class TrialBalancesController : ControllerBase
             // Statutory dates should come
             // from AccountingPeriod.
             request.PeriodStart =
-                period.PeriodFrom;
+                period.PeriodFrom ;
 
             request.PeriodEnd =
                 period.PeriodTo;
