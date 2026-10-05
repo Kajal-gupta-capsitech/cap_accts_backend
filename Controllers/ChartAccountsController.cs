@@ -2,7 +2,6 @@ using BackendAcctTask.Models;
 using BackendAcctTask.Services;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
-
 namespace BackendAcctTask.Controllers;
 
 [ApiController]
@@ -77,6 +76,8 @@ public class ChartAccountsController : ControllerBase
 
         return Ok(chartAccount);
     }
+
+
 
     // PATCH: api/ChartAccounts/{id}
     [HttpPatch("{id}")]

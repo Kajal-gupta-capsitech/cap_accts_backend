@@ -61,6 +61,13 @@ public class TrialBalance
 
     // Local attachment path.
     public string? AttachmentFilePath { get; set; }
+    
+    public string? JournalId { get; set; }
+    
+    [BsonRepresentation(BsonType.ObjectId)]
+        public List<string> JournalIds { get; set; } = new();
+
+    
 
     // Actual Trial Balance accounts.
     public List<TrialBalanceItem> Items { get; set; } = new();
