@@ -13,9 +13,8 @@ public class Journal
     // TB-21-J01
     public string Number { get; set; } = string.Empty;
 
-    // Parent Trial Balance
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string TrialBalanceId { get; set; } = string.Empty;
+
+    public TrialBalanceReference TrialBalance { get; set; } = new();
 
     // CSV import reference, if this journal came from an import.
     // Not required for normal/manual journals.
@@ -27,6 +26,10 @@ public class Journal
     public TrialBalanceStatus Status { get; set; }
 
     public ImportType ImportType { get; set; }
+
+    public DateTime PeriodStart { get; set; }
+
+    public DateTime PeriodEnd { get; set; }
 
     public CsvImportType CsvImportType { get; set; }
 

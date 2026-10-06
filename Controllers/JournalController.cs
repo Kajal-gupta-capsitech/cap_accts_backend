@@ -10,67 +10,30 @@ namespace BackendAcctTask.Controllers;
 public class JournalsController : ControllerBase
 {
     private readonly IMongoCollection<Journal> _journals;
+    private readonly IMongoCollection<TrialBalance> _trialBalances;
+    private readonly IMongoCollection<ChartAccount> _chartAccounts;
+    private readonly IMongoCollection<AccountType> _accountTypes;
 
-    private readonly IMongoCollection<TrialBalance>
-        _trialBalances;
-
-    private readonly IMongoCollection<ChartAccount>
-        _chartAccounts;
-
-    private readonly IMongoCollection<AccountType>
-        _accountTypes;
-
-            private List<TrialBalanceItem> BuildTrialBalanceItems(
-            List<JournalItem> journalItems)
-        {
-            return journalItems
-                .GroupBy(x => x.AccountCode)
-                .Select(group =>
-                {
-                    var first = group.First();
-
-                    return new TrialBalanceItem
-                    {
-                        AccountCode = first.AccountCode,
-                        AccountName = first.AccountName,
-                        Nature = first.Nature,
-                        Debit = group.Sum(x => x.Debit),
-                        Credit = group.Sum(x => x.Credit),
-                        Note = first.Note
-                    };
-                })
-                .ToList();
-        }
-
-
-    public JournalsController(
-        IMongoDatabase database)
+    public JournalsController(IMongoDatabase database)
     {
         _journals =
-            database.GetCollection<Journal>(
-                "Journals"
-            );
+            database.GetCollection<Journal>("Journals");
 
         _trialBalances =
-            database.GetCollection<TrialBalance>(
-                "TrialBalances"
-            );
+            database.GetCollection<TrialBalance>("TrialBalances");
 
         _chartAccounts =
-            database.GetCollection<ChartAccount>(
-                "ChartAccounts"
-            );
+            database.GetCollection<ChartAccount>("ChartAccounts");
 
         _accountTypes =
-            database.GetCollection<AccountType>(
-                "AccountTypes"
-            );
+            database.GetCollection<AccountType>("AccountTypes");
     }
 
 
     // ============================================================
     // GENERATE JOURNAL NUMBER
     //
+    // Example:
     // TB-21-J01
     // TB-21-J02
     // TB-21-J03
@@ -83,7 +46,7 @@ public class JournalsController : ControllerBase
         var latest =
             await _journals
                 .Find(x =>
-                    x.TrialBalanceId ==
+                    x.TrialBalance.Id ==
                     trialBalanceId
                 )
                 .SortByDescending(x => x.CreatedAt)
@@ -93,9 +56,7 @@ public class JournalsController : ControllerBase
 
         if (
             latest != null &&
-            !string.IsNullOrWhiteSpace(
-                latest.Number
-            )
+            !string.IsNullOrWhiteSpace(latest.Number)
         )
         {
             var existingNumber =
@@ -119,119 +80,6 @@ public class JournalsController : ControllerBase
 
 
     // ============================================================
-    // BUILD TRIAL BALANCE ITEMS
-    //
-    // Combines ALL journal items belonging
-    // to the Trial Balance.
-    // ============================================================
-
-    private List<TrialBalanceItem>
-        BuildTrialBalanceItems(
-            List<Journal> journals)
-    {
-        var journalItems =
-            journals
-                .SelectMany(x => x.Items)
-                .ToList();
-
-        return journalItems
-            .GroupBy(x => x.AccountCode)
-            .Select(group =>
-            {
-                var first =
-                    group.First();
-
-                return new TrialBalanceItem
-                {
-                    AccountCode =
-                        first.AccountCode,
-
-                    AccountName =
-                        first.AccountName,
-
-                    Nature =
-                        first.Nature,
-
-                    Debit =
-                        group.Sum(
-                            x => x.Debit
-                        ),
-
-                    Credit =
-                        group.Sum(
-                            x => x.Credit
-                        ),
-
-                    Note =
-                        first.Note
-                };
-            })
-            .ToList();
-    }
-
-
-    // ============================================================
-    // REFRESH TRIAL BALANCE FROM ALL JOURNALS
-    // ============================================================
-
-    private async Task
-        RefreshTrialBalanceFromJournals(
-            TrialBalance trialBalance)
-    {
-        var journalIds =
-            trialBalance.JournalIds ??
-            new List<string>();
-
-        if (journalIds.Count == 0)
-        {
-            trialBalance.Items =
-                new List<TrialBalanceItem>();
-
-            trialBalance.TotalDebit = 0;
-            trialBalance.TotalCredit = 0;
-
-            trialBalance.Status =
-                TrialBalanceStatus.Unbalanced;
-
-            return;
-        }
-
-
-        var journals =
-            await _journals
-                .Find(x =>
-                    journalIds.Contains(x.Id)
-                )
-                .ToListAsync();
-
-
-        trialBalance.Items =
-            BuildTrialBalanceItems(
-                journals
-            );
-
-
-        trialBalance.TotalDebit =
-            trialBalance.Items.Sum(
-                x => x.Debit
-            );
-
-
-        trialBalance.TotalCredit =
-            trialBalance.Items.Sum(
-                x => x.Credit
-            );
-
-
-        trialBalance.Status =
-            trialBalance.TotalDebit ==
-            trialBalance.TotalCredit
-                ? TrialBalanceStatus.Balanced
-                : TrialBalanceStatus.Unbalanced;
-    }
-
-
-    // ============================================================
     // CREATE JOURNAL
     //
     // POST
@@ -243,12 +91,27 @@ public class JournalsController : ControllerBase
         [FromBody] Journal request)
     {
         // ========================================================
-        // VALIDATE TRIAL BALANCE ID
+        // VALIDATE REQUEST
+        // ========================================================
+
+        if (request == null)
+        {
+            return BadRequest(new
+            {
+                status = false,
+                message = "Journal request is required."
+            });
+        }
+
+
+        // ========================================================
+        // VALIDATE TRIAL BALANCE REFERENCE
         // ========================================================
 
         if (
+            request.TrialBalance == null ||
             string.IsNullOrWhiteSpace(
-                request.TrialBalanceId
+                request.TrialBalance.Id
             )
         )
         {
@@ -256,7 +119,7 @@ public class JournalsController : ControllerBase
             {
                 status = false,
                 message =
-                    "TrialBalanceId is required."
+                    "TrialBalance.Id is required."
             });
         }
 
@@ -269,7 +132,7 @@ public class JournalsController : ControllerBase
             await _trialBalances
                 .Find(x =>
                     x.Id ==
-                    request.TrialBalanceId
+                    request.TrialBalance.Id
                 )
                 .FirstOrDefaultAsync();
 
@@ -279,8 +142,7 @@ public class JournalsController : ControllerBase
             return NotFound(new
             {
                 status = false,
-                message =
-                    "Trial balance not found."
+                message = "Trial balance not found."
             });
         }
 
@@ -304,7 +166,7 @@ public class JournalsController : ControllerBase
 
 
         // ========================================================
-        // VALIDATE CHART ACCOUNTS
+        // VALIDATE AND RESOLVE CHART ACCOUNTS
         // ========================================================
 
         foreach (var item in request.Items)
@@ -318,11 +180,14 @@ public class JournalsController : ControllerBase
                 return BadRequest(new
                 {
                     status = false,
-                    message =
-                        "Account code is required."
+                    message = "Account code is required."
                 });
             }
 
+
+            // ----------------------------------------------------
+            // FIND CHART ACCOUNT
+            // ----------------------------------------------------
 
             var account =
                 await _chartAccounts
@@ -344,9 +209,9 @@ public class JournalsController : ControllerBase
             }
 
 
-            // ====================================================
-            // RESOLVE ACCOUNT TYPE
-            // ====================================================
+            // ----------------------------------------------------
+            // FIND ACCOUNT TYPE
+            // ----------------------------------------------------
 
             var accountType =
                 await _accountTypes
@@ -368,9 +233,9 @@ public class JournalsController : ControllerBase
             }
 
 
-            // ====================================================
-            // FILL ACCOUNT INFORMATION
-            // ====================================================
+            // ----------------------------------------------------
+            // RESOLVE ACCOUNT INFORMATION
+            // ----------------------------------------------------
 
             item.AccountName =
                 account.AccountName;
@@ -389,12 +254,10 @@ public class JournalsController : ControllerBase
                 x => x.Debit
             );
 
-
         request.TotalCredit =
             request.Items.Sum(
                 x => x.Credit
             );
-
 
         request.ItemsCount =
             request.Items.Count;
@@ -407,7 +270,9 @@ public class JournalsController : ControllerBase
         request.Status =
             request.TotalDebit ==
             request.TotalCredit
+
                 ? TrialBalanceStatus.Balanced
+
                 : TrialBalanceStatus.Unbalanced;
 
 
@@ -423,7 +288,7 @@ public class JournalsController : ControllerBase
 
 
         // ========================================================
-        // GENERATE ID
+        // GENERATE JOURNAL ID
         // ========================================================
 
         request.Id =
@@ -432,11 +297,38 @@ public class JournalsController : ControllerBase
 
 
         // ========================================================
-        // COPY TRIAL BALANCE TYPE
+        // COPY TRIAL BALANCE REFERENCE
+        // ========================================================
+        //
+        // Journal stores:
+        //
+        // TrialBalance = {
+        //     Id   = TrialBalance.Id,
+        //     Name = TrialBalance.RefNo
+        // }
+        //
+        // ========================================================
+
+        request.TrialBalance =
+            new TrialBalanceReference
+            {
+                Id = trialBalance.Id,
+                Name = trialBalance.RefNo
+            };
+
+
+        // ========================================================
+        // COPY TRIAL BALANCE METADATA
         // ========================================================
 
         request.Type =
             trialBalance.Type;
+
+        request.ImportType =
+            trialBalance.ImportType;
+
+        request.CsvImportType =
+            trialBalance.CsvImportType;
 
 
         // ========================================================
@@ -458,33 +350,67 @@ public class JournalsController : ControllerBase
         // ========================================================
         // ADD JOURNAL ID TO TRIAL BALANCE
         //
-        // IMPORTANT:
-        // One Trial Balance can have MANY journals.
+        // One Trial Balance can contain MANY journals.
         // ========================================================
 
-        if (
-            trialBalance.JournalIds == null
-        )
+        if (trialBalance.JournalIds == null)
         {
             trialBalance.JournalIds =
                 new List<string>();
         }
 
 
-        trialBalance.JournalIds
-            .Add(request.Id);
-
-
-        // ========================================================
-        // RECALCULATE TRIAL BALANCE
-        //
-        // Uses ALL journals, not only the
-        // newly-created journal.
-        // ========================================================
-
-        await RefreshTrialBalanceFromJournals(
-            trialBalance
+        trialBalance.JournalIds.Add(
+            request.Id
         );
+
+
+        // ========================================================
+        // RECALCULATE TRIAL BALANCE TOTALS
+        //
+        // IMPORTANT:
+        //
+        // TrialBalance does NOT contain Items anymore.
+        //
+        // Totals come from Journal records.
+        // ========================================================
+
+        var allJournalIds =
+            trialBalance.JournalIds;
+
+
+        var journals =
+            await _journals
+                .Find(x =>
+                    allJournalIds.Contains(x.Id)
+                )
+                .Project(x => new
+                {
+                    x.TotalDebit,
+                    x.TotalCredit
+                })
+                .ToListAsync();
+
+
+        trialBalance.TotalDebit =
+            journals.Sum(
+                x => x.TotalDebit
+            );
+
+
+        trialBalance.TotalCredit =
+            journals.Sum(
+                x => x.TotalCredit
+            );
+
+
+        trialBalance.Status =
+            trialBalance.TotalDebit ==
+            trialBalance.TotalCredit
+
+                ? TrialBalanceStatus.Balanced
+
+                : TrialBalanceStatus.Unbalanced;
 
 
         // ========================================================

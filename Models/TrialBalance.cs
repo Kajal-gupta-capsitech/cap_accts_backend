@@ -13,6 +13,8 @@ public class TrialBalance
     // TB-01, TB-02, TB-03...
     public string RefNo { get; set; } = string.Empty;
 
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
     // AccountingPeriod reference.
     // Used for Statutory Trial Balance.
    
@@ -67,10 +69,12 @@ public class TrialBalance
     [BsonRepresentation(BsonType.ObjectId)]
         public List<string> JournalIds { get; set; } = new();
 
-    
+     [BsonRepresentation(BsonType.ObjectId)]
+        public List<string> ImportIds { get; set; } = new();
+
 
     // Actual Trial Balance accounts.
-    public List<TrialBalanceItem> Items { get; set; } = new();
+    // public List<TrialBalanceItem> Items { get; set; } = new();
 }
 
 
@@ -78,24 +82,24 @@ public class TrialBalance
 // TRIAL BALANCE ITEM
 // ============================================================
 
-public class TrialBalanceItem
-{
-    // ChartAccount is resolved using this code.
-    // We do NOT store ChartAccountId.
-    public string AccountCode { get; set; } = string.Empty;
+// public class TrialBalanceItem
+// {
+//     // ChartAccount is resolved using this code.
+//     // We do NOT store ChartAccountId.
+//     public string AccountCode { get; set; } = string.Empty;
 
-    // Stored from ChartAccount.Name.
-    public string AccountName { get; set; } = string.Empty;
+//     // Stored from ChartAccount.Name.
+//     public string AccountName { get; set; } = string.Empty;
 
-    public AccountNature Nature { get; set; }
+//     public AccountNature Nature { get; set; }
 
-    public decimal Debit { get; set; }
+//     public decimal Debit { get; set; }
 
-    public decimal Credit { get; set; }
+//     public decimal Credit { get; set; }
 
-    // Optional note from CSV/manual editing.
-    public string Note { get; set; } = string.Empty;
-}
+//     // Optional note from CSV/manual editing.
+//     public string Note { get; set; } = string.Empty;
+// }
 
 
 // ============================================================
