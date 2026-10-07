@@ -4,6 +4,9 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Globalization;
 using System.Text;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
 
 namespace BackendAcctTask.Controllers;
 
@@ -18,6 +21,9 @@ public class TrialBalancesController : ControllerBase
     private readonly IMongoCollection<AccountingPeriod> _accountingPeriods;
     private readonly IMongoCollection<ChartAccount> _chartAccounts;
     private readonly IMongoCollection<Journal> _journals;
+
+    private readonly IMongoCollection<AccountType> _accountTypes;
+
     public TrialBalancesController(
         IMongoDatabase database,
         IWebHostEnvironment environment)
@@ -43,6 +49,8 @@ public class TrialBalancesController : ControllerBase
             database.GetCollection<ChartAccount>(
                 "ChartAccounts"
             );
+        _accountTypes =
+           database.GetCollection<AccountType>("AccountTypes");
     }
 
     // ============================================================
@@ -996,9 +1004,9 @@ public class TrialBalancesController : ControllerBase
                     attachmentFilePath =
                         tb.AttachmentFilePath,
 
-                        itemsCount,
+                    itemsCount,
 
-                     journalIds,
+                    journalIds,
 
                     id =
                         tb.Id
@@ -1350,6 +1358,7 @@ public class TrialBalancesController : ControllerBase
             status = true
         });
     }
+
     private async Task<string> GenerateJournalNumber(
         string trialBalanceId,
         string trialBalanceNumber)
@@ -1849,6 +1858,8 @@ public class TrialBalancesController : ControllerBase
             }
         });
     }
+
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(string id)
     {
@@ -1876,295 +1887,296 @@ public class TrialBalancesController : ControllerBase
     }
 
 
-
-
-[HttpPost("{RefNo}/imports")]
-public async Task<IActionResult> Import(
-    string RefNo,
-    [FromBody] Import request)
-{
-    // ============================================================
-    // FIND TRIAL BALANCE USING REF NO
-    // ============================================================
-
-    var trialBalance =
-        await _trialBalances
-            .Find(x => x.RefNo == RefNo)
-            .FirstOrDefaultAsync();
-
-    if (trialBalance == null)
+    [HttpPost("{RefNo}/imports")]
+    public async Task<IActionResult> Import(
+        string RefNo,
+        [FromBody] Import request)
     {
-        return NotFound(new
+        // ============================================================
+        // FIND TRIAL BALANCE USING REF NO
+        // ============================================================
+
+        var trialBalance =
+            await _trialBalances
+                .Find(x => x.RefNo == RefNo)
+                .FirstOrDefaultAsync();
+
+        if (trialBalance == null)
         {
-            status = false,
-            message = "Trial balance not found."
-        });
-    }
-
-
-    // ============================================================
-    // VALIDATE IMPORT ROWS
-    // ============================================================
-
-    if (
-        request.Rows == null ||
-        request.Rows.Count == 0
-    )
-    {
-        return BadRequest(new
-        {
-            status = false,
-            message = "Import must contain at least one row."
-        });
-    }
-
-
-    // ============================================================
-    // GENERATE IMPORT NUMBER
-    //
-    // Example:
-    // TB-34-I01
-    // TB-34-I02
-    // ============================================================
-
-    var importNumber =
-        await GenerateImportNumber(
-            trialBalance.Id,
-            trialBalance.RefNo
-        );
-
-
-    // ============================================================
-    // CREATE IMPORT
-    //
-    // IMPORTANT:
-    //
-    // Store the CSV data AS-IS.
-    //
-    // DO NOT:
-    // - validate Chart Accounts
-    // - resolve AccountCode
-    // - change AccountName
-    // - change Nature
-    // - create JournalItems
-    // ============================================================
-
-    var import =
-        new Import
-        {
-            Id =
-                ObjectId.GenerateNewId()
-                    .ToString(),
-
-            Number =
-                importNumber,
-
-            TrialBalance =
-                new TrialBalanceReference
-                {
-                    Id = trialBalance.Id,
-                    Name = trialBalance.RefNo
-                },
-
-            Columns =
-                request.Columns ??
-                new List<ImportColumn>(),
-
-            Headers =
-                request.Headers ??
-                new List<string>(),
-
-            Rows =
-                request.Rows,
-
-            ImportType =
-                ImportType.Csv,
-
-            PeriodStart =
-                trialBalance.PeriodStart,
-
-            PeriodEnd =
-                trialBalance.PeriodEnd,
-
-            CsvImportType =
-                request.CsvImportType,
-
-            CreatedAt =
-                DateTime.UtcNow
-        };
-
-
-    // ============================================================
-    // SAVE IMPORT
-    // ============================================================
-
-    await _imports
-        .InsertOneAsync(import);
-
-
-    // ============================================================
-    // GENERATE JOURNAL NUMBER
-    // ============================================================
-
-    var journalNumber =
-        await GenerateJournalNumber(
-            trialBalance.Id,
-            trialBalance.RefNo
-        );
-
-
-    // ============================================================
-    // CREATE EMPTY JOURNAL
-    //
-    // IMPORTANT:
-    //
-    // Import creates the Journal DOCUMENT only.
-    //
-    // NO JournalItem records are created.
-    //
-    // The imported CSV may contain invalid / unknown
-    // Chart Account codes. That is allowed at this stage.
-    // ============================================================
-
-    var journal =
-        new Journal
-        {
-            Id =
-                ObjectId.GenerateNewId()
-                    .ToString(),
-
-            Number =
-                journalNumber,
-
-            TrialBalance =
-                new TrialBalanceReference
-                {
-                    Id = trialBalance.Id,
-                    Name = trialBalance.RefNo
-                },
-
-            ImportId =
-                import.Id,
-
-            Type =
-                trialBalance.Type,
-
-            Status =
-                TrialBalanceStatus.Unbalanced,
-
-            ImportType =
-                ImportType.Csv,
-
-            CsvImportType =
-                request.CsvImportType,
-
-            // IMPORTANT:
-            // No JournalItem records during import.
-            Items =
-                new List<JournalItem>(),
-
-            ItemsCount = 0,
-
-            TotalDebit = 0,
-
-            TotalCredit = 0,
-
-            CreatedAt =
-                DateTime.UtcNow
-        };
-
-
-    // ============================================================
-    // SAVE EMPTY JOURNAL
-    // ============================================================
-
-    await _journals
-        .InsertOneAsync(journal);
-
-
-    // ============================================================
-    // DO NOT ADD JOURNAL ID TO TRIAL BALANCE
-    //
-    // Import-created Journal is currently a staging/empty
-    // Journal. It should not become part of the Trial Balance
-    // journal aggregation until actual JournalItems are created.
-    // ============================================================
-
-
-    // ============================================================
-    // RESPONSE
-    // ============================================================
-
-    return Ok(new
-    {
-        executionTime = 0,
-
-        result = new
-        {
-            import = new
+            return NotFound(new
             {
-                name =
+                status = false,
+                message = "Trial balance not found."
+            });
+        }
+
+
+        // ============================================================
+        // VALIDATE IMPORT ROWS
+        // ============================================================
+
+        if (
+            request.Rows == null ||
+            request.Rows.Count == 0
+        )
+        {
+            return BadRequest(new
+            {
+                status = false,
+                message = "Import must contain at least one row."
+            });
+        }
+
+
+        // ============================================================
+        // GENERATE IMPORT NUMBER
+        //
+        // Example:
+        // TB-34-I01
+        // TB-34-I02
+        // ============================================================
+
+        var importNumber =
+            await GenerateImportNumber(
+                trialBalance.Id,
+                trialBalance.RefNo
+            );
+
+
+        // ============================================================
+        // CREATE IMPORT
+        //
+        // IMPORTANT:
+        //
+        // Store the CSV data AS-IS.
+        //
+        // DO NOT:
+        // - validate Chart Accounts
+        // - resolve AccountCode
+        // - change AccountName
+        // - change Nature
+        // - create JournalItems
+        // ============================================================
+
+        var import =
+            new Import
+            {
+                Id =
+                    ObjectId.GenerateNewId()
+                        .ToString(),
+
+                Number =
+                    importNumber,
+
+                TrialBalance =
+                    new TrialBalanceReference
+                    {
+                        Id = trialBalance.Id,
+                        Name = trialBalance.RefNo
+                    },
+
+                Columns =
+                    request.Columns ??
+                    new List<ImportColumn>(),
+
+                Headers =
+                    request.Headers ??
+                    new List<string>(),
+
+                Rows =
+                    request.Rows,
+
+                ImportType =
+                    ImportType.Csv,
+
+                PeriodStart =
+                    trialBalance.PeriodStart,
+
+                PeriodEnd =
+                    trialBalance.PeriodEnd,
+
+                CsvImportType =
+                    request.CsvImportType,
+
+                CreatedAt =
+                    DateTime.UtcNow
+            };
+
+
+        // ============================================================
+        // SAVE IMPORT
+        // ============================================================
+
+        await _imports
+            .InsertOneAsync(import);
+
+
+        // ============================================================
+        // GENERATE JOURNAL NUMBER
+        // ============================================================
+
+        var journalNumber =
+            await GenerateJournalNumber(
+                trialBalance.Id,
+                trialBalance.RefNo
+            );
+
+
+        // ============================================================
+        // CREATE EMPTY JOURNAL
+        //
+        // IMPORTANT:
+        //
+        // Import creates the Journal DOCUMENT only.
+        //
+        // NO JournalItem records are created.
+        //
+        // The imported CSV may contain invalid / unknown
+        // Chart Account codes. That is allowed at this stage.
+        // ============================================================
+
+        var journal =
+            new Journal
+            {
+                Id =
+                    ObjectId.GenerateNewId()
+                        .ToString(),
+
+                Number =
+                    journalNumber,
+
+                TrialBalance =
+                    new TrialBalanceReference
+                    {
+                        Id = trialBalance.Id,
+                        Name = trialBalance.RefNo
+                    },
+
+                Imports = new ImportsReference
+                {
+                    Id = import.Id,
+                    Name = import.Number
+                },
+
+                Type =
+                    trialBalance.Type,
+
+                Status =
+                    TrialBalanceStatus.Unbalanced,
+
+                ImportType =
+                    ImportType.Csv,
+
+                CsvImportType =
+                    request.CsvImportType,
+
+                // IMPORTANT:
+                // No JournalItem records during import.
+                Items =
+                    new List<JournalItem>(),
+
+                ItemsCount = 0,
+
+                TotalDebit = 0,
+
+                TotalCredit = 0,
+
+                CreatedAt =
+                    DateTime.UtcNow
+            };
+
+
+        // ============================================================
+        // SAVE EMPTY JOURNAL
+        // ============================================================
+
+        await _journals
+            .InsertOneAsync(journal);
+
+
+        // ============================================================
+        // DO NOT ADD JOURNAL ID TO TRIAL BALANCE
+        //
+        // Import-created Journal is currently a staging/empty
+        // Journal. It should not become part of the Trial Balance
+        // journal aggregation until actual JournalItems are created.
+        // ============================================================
+
+
+        // ============================================================
+        // RESPONSE
+        // ============================================================
+
+        return Ok(new
+        {
+            executionTime = 0,
+
+            result = new
+            {
+                import = new
+                {
+                    name =
+                        import.Number,
+
+                    id =
+                        import.Id,
+
+                    rowsCount =
+                        import.Rows.Count
+                },
+
+                journal = new
+                {
+                    number =
+                        journal.Number,
+
+                    id =
+                        journal.Id,
+
+                    imports =
+                        journal.Imports,
+
+                    itemsCount =
+                        journal.ItemsCount,
+
+                    totalDebit =
+                        journal.TotalDebit,
+
+                    totalCredit =
+                        journal.TotalCredit,
+
+                    status =
+                        journal.Status
+                },
+
+                trialBalance = new
+                {
+                    name =
+                        trialBalance.RefNo,
+
+                    id =
+                        trialBalance.Id
+                },
+
+                number =
                     import.Number,
 
-                id =
-                    import.Id,
+                type =
+                    trialBalance.Type,
 
-                rowsCount =
-                    import.Rows.Count
-            },
+                importType =
+                    import.ImportType,
 
-            journal = new
-            {
-                number =
-                    journal.Number,
+                csvImportType =
+                    import.CsvImportType,
 
                 id =
-                    journal.Id,
-
-                importId =
-                    journal.ImportId,
-
-                itemsCount =
-                    journal.ItemsCount,
-
-                totalDebit =
-                    journal.TotalDebit,
-
-                totalCredit =
-                    journal.TotalCredit,
-
-                status =
-                    journal.Status
+                    import.Id
             },
 
-            trialBalance = new
-            {
-                name =
-                    trialBalance.RefNo,
-
-                id =
-                    trialBalance.Id
-            },
-
-            number =
-                import.Number,
-
-            type =
-                trialBalance.Type,
-
-            importType =
-                import.ImportType,
-
-            csvImportType =
-                import.CsvImportType,
-
-            id =
-                import.Id
-        },
-
-        status = true
-    });
-}
+            status = true
+        });
+    }
     // ============================================================
     // GET IMPORTS BY TRIAL BALANCE
     //
@@ -2355,33 +2367,36 @@ public async Task<IActionResult> Import(
     public async Task<IActionResult> GetImport(
         string importId)
     {
+        // ============================================================
+        // FIND IMPORT
+        // ============================================================
+
         var import =
             await _imports
                 .Find(x =>
-                    x.Id == importId
-                )
+                    x.Id == importId)
                 .FirstOrDefaultAsync();
-
 
         if (import == null)
         {
             return NotFound(new
             {
                 status = false,
-                message =
-                    "Import not found."
+                message = "Import not found."
             });
         }
 
+
+        // ============================================================
+        // FIND ASSOCIATED TRIAL BALANCE
+        // ============================================================
 
         var trialBalance =
             await _trialBalances
                 .Find(x =>
                     x.Id ==
-                    import.TrialBalance.Id
-                )
+                    import.TrialBalance.Id)
                 .FirstOrDefaultAsync();
-
 
         if (trialBalance == null)
         {
@@ -2394,122 +2409,118 @@ public async Task<IActionResult> Import(
         }
 
 
-        var items =
-            new List<object>();
+        // ============================================================
+        // BUILD ROWS
+        //
+        // Preserve the original imported CSV values.
+        // ============================================================
 
-
-        foreach (var row in import.Rows)
-        {
-            var account =
-                await _chartAccounts
-                    .Find(x =>
-                        x.Code == row.Code
-                    )
-                    .FirstOrDefaultAsync();
-
-
-            items.Add(
-                new
+        var rows =
+            import.Rows
+                .Select(row => new[]
                 {
-                    account =
-                        new
-                        {
-                            id =
-                                account?.Id ??
-                                string.Empty,
+                row.Code,
+                row.Name,
 
-                            name =
-                                account?.AccountName ??
-                                row.Name,
+                row.Debit
+                    .ToString(
+                        System.Globalization.CultureInfo.InvariantCulture
+                    ),
 
-                            code =
-                                row.Code
-                        },
+                row.Credit
+                    .ToString(
+                        System.Globalization.CultureInfo.InvariantCulture
+                    )
+                })
+                .ToList();
 
-                    note =
-                        row.Note,
 
-                    amount =
-                        row.Credit > 0
-                            ? -row.Credit
-                            : row.Debit,
-
-                    debit =
-                        row.Debit,
-
-                    credit =
-                        row.Credit
-                }
-            );
-        }
-
+        // ============================================================
+        // RESPONSE
+        // ============================================================
 
         return Ok(new
         {
-            result =
-                new
-                {
-                    import =
-                        new
-                        {
-                            name =
-                                import.Number,
+            executionTime = 0,
 
-                            id =
-                                import.Id
-                        },
+            result = new
+            {
+                // ====================================================
+                // IMPORT
+                // ====================================================
 
-                    trialBalance =
-                        new
-                        {
-                            name =
-                                trialBalance.RefNo,
+                id =
+                    import.Id,
 
-                            id =
-                                trialBalance.Id
-                        },
+                number =
+                    import.Number,
 
-                    number =
-                        import.Number,
+                description =
+                    import.Description ??
+                    string.Empty,
 
-                    items,
+                periodStart =
+                    import.PeriodStart,
 
-                    type =
-                        trialBalance.Type,
+                periodEnd =
+                    import.PeriodEnd,
 
-                    status =
-                        trialBalance.Status,
 
-                    itemsCount =
-                        import.Rows.Count,
+                // ====================================================
+                // TRIAL BALANCE
+                // ====================================================
 
-                    totalDebit =
-                        import.Rows.Sum(
-                            x => x.Debit
-                        ),
+                trialBalance =
+                    new
+                    {
+                        name =
+                            trialBalance.RefNo,
 
-                    totalCredit =
-                        import.Rows.Sum(
-                            x => x.Credit
-                        ),
+                        id =
+                            trialBalance.Id
+                    },
 
-                    validation =
-                        new { },
 
-                    importType =
-                        import.ImportType,
+                // ====================================================
+                // CSV HEADER
+                // ====================================================
 
-                    csvImportType =
-                        import.CsvImportType,
+                header =
+                    import.Headers ??
+                    new List<string>(),
 
-                    id =
-                        import.Id
-                },
+                hasHeader =
+                    import.Headers != null &&
+                    import.Headers.Count > 0,
+
+
+                // ====================================================
+                // CSV IMPORT TYPE
+                // ====================================================
+
+                csvImportType =
+                    import.CsvImportType,
+
+
+                // ====================================================
+                // IMPORT STATUS
+                // ====================================================
+
+                status =
+                   import.Status.ToString().ToLowerInvariant(),
+
+
+                // ====================================================
+                // CSV ROWS
+                // ====================================================
+
+                rows =
+                    rows
+            },
 
             status = true
         });
     }
-
 
     // ============================================================
     // UPDATE IMPORT
@@ -2520,6 +2531,7 @@ public async Task<IActionResult> Import(
     // This is used when the user edits the imported CSV
     // rows before the final TrialBalance PUT.
     // ============================================================
+
 
     [HttpPut("imports/{importId}")]
     public async Task<IActionResult> UpdateImport(
@@ -2638,4 +2650,2396 @@ public async Task<IActionResult> Import(
                 existing
         });
     }
+
+
+
+    // ============================================================
+    // GET TRIAL BALANCE DETAILS
+    //
+    // GET:
+    // /api/TrialBalances/{id}/details
+    //
+    // Used ONLY by the Trial Balance Details page.
+    // Does NOT modify the existing GetById API.
+    // ============================================================
+
+    [HttpGet("{RefNo}/details")]
+    public async Task<IActionResult> GetTrialBalanceDetails(string RefNo)
+    {
+        // ============================================================
+        // 1. GET TRIAL BALANCE
+        // ============================================================
+
+        var trialBalance =
+            await _trialBalances
+                .Find(x => x.RefNo == RefNo)
+                .FirstOrDefaultAsync();
+
+        if (trialBalance == null)
+        {
+            return NotFound(new
+            {
+                status = false,
+                message = "Trial balance not found."
+            });
+        }
+
+
+        // ============================================================
+        // 2. GET ACCOUNTING PERIOD
+        // ============================================================
+
+        object? period = null;
+
+        if (!string.IsNullOrWhiteSpace(trialBalance.PeriodId))
+        {
+            period =
+                await _accountingPeriods
+                    .Find(x => x.Id == trialBalance.PeriodId)
+                    .FirstOrDefaultAsync();
+        }
+
+        // Management TB may not have PeriodId
+        if (period == null)
+        {
+            period = new
+            {
+                id = trialBalance.PeriodId ?? string.Empty,
+
+                periodStart =
+                    trialBalance.PeriodStart,
+
+                periodEnd =
+                    trialBalance.PeriodEnd,
+
+                isActive = true,
+
+                isClosed = false
+            };
+        }
+
+
+        // ============================================================
+        // 3. GET IMPORTS
+        //
+        // TrialBalance.ImportIds contains the Import IDs
+        // ============================================================
+
+        var importIds =
+            trialBalance.ImportIds ??
+            new List<string>();
+
+        var imports =
+            importIds.Count == 0
+                ? new List<Import>()
+                : await _imports
+                    .Find(x =>
+                        importIds.Contains(x.Id))
+                    .SortBy(x => x.CreatedAt)
+                    .ToListAsync();
+
+
+        // ============================================================
+        // 4. BUILD IMPORT RESPONSE
+        // ============================================================
+
+        var importResponse =
+            imports
+                .Select(import => new
+                {
+                    id =
+                        import.Id,
+
+                    refNo =
+                        import.Number,
+
+                    description =
+                        import.Description ??
+                        trialBalance.Description ??
+                        string.Empty,
+
+                    fileName =
+                        import.FileName ??
+                        string.Empty,
+
+                    status =
+                        import.Status.ToString(),
+
+                    importedOn =
+                        import.CreatedAt,
+
+                    action =
+                        new
+                        {
+                            id = import.Id,
+
+                            edit = true,
+
+                            delete = true
+                        }
+                })
+                .ToList();
+
+
+        // ============================================================
+        // 5. GET JOURNALS
+        //
+        // TrialBalance.JournalIds contains Journal IDs
+        // ============================================================
+
+        var journalIds =
+            trialBalance.JournalIds ??
+            new List<string>();
+
+        var journals =
+            journalIds.Count == 0
+                ? new List<Journal>()
+                : await _journals
+                    .Find(x =>
+                        journalIds.Contains(x.Id))
+                    .SortBy(x => x.CreatedAt)
+                    .ToListAsync();
+
+
+        // ============================================================
+        // 6. BUILD JOURNAL RESPONSE
+        // ============================================================
+
+        var journalResponse =
+            journals
+                .Select(journal => new
+                {
+                    id =
+                        journal.Id,
+
+                    number =
+                        journal.Number,
+
+                    imports = journal.Imports,
+
+                    //  new ImportsReference {
+                    // Id = journal.Id,
+                    // Name = journal.name,
+                    // },
+
+
+                    TrialBalance = new TrialBalanceReference
+                    {
+                        Id = trialBalance.Id,
+                        Name = trialBalance.RefNo,
+                    },
+
+                    description =
+                        journal.Description ??
+                        string.Empty,
+
+                    itemsCount =
+                        journal.ItemsCount > 0
+                            ? journal.ItemsCount
+                            : journal.Items?.Count ?? 0,
+
+                    journalType =
+                        journal.JournalType.ToString(),
+
+                    journalStatus =
+                        journal.JournalStatus.ToString(),
+
+                    importType =
+                        journal.ImportType == ImportType.Csv
+                            ? "Default"
+                            : "Manual",
+
+                    status =
+                        journal.IsActive,
+
+                    createdOn =
+                        journal.CreatedAt,
+
+                    totalDebit =
+                        journal.TotalDebit,
+
+                    totalCredit =
+                        journal.TotalCredit,
+
+                    action =
+                        new
+                        {
+                            id =
+                                journal.Id,
+
+                            edit =
+                                journal.JournalStatus !=
+                                JournalStatus.Posted,
+
+                            delete =
+                                journal.JournalStatus !=
+                                JournalStatus.Posted,
+
+                            unpost =
+                                journal.JournalStatus ==
+                                JournalStatus.Posted,
+
+                            download = true,
+
+                            addAttachment = true
+                        }
+                })
+                .ToList();
+
+
+        // ============================================================
+        // 7. CALCULATE TOTALS
+        //
+        // Journals are the source of truth.
+        // ============================================================
+
+        var totalDebit =
+            journals.Sum(x => x.TotalDebit);
+
+        var totalCredit =
+            journals.Sum(x => x.TotalCredit);
+
+
+        // ============================================================
+        // 8. BALANCE STATUS
+        // ============================================================
+
+        // var balanceStatus =
+        //     totalDebit == totalCredit
+        //         ? "Balance"
+        //         : "Unbalanced";
+
+
+        string balanceStatus;
+
+        if (totalDebit == totalCredit)
+        {
+            balanceStatus = "Balance";
+        }
+        else if (totalDebit > totalCredit)
+        {
+            var debitDifference = totalDebit - totalCredit;
+
+            balanceStatus = $"Debit €{debitDifference:N2}";
+        }
+        else
+        {
+            var creditDifference = totalCredit - totalDebit;
+
+            balanceStatus = $"Credit €{creditDifference:N2}";
+        }
+        // ============================================================
+        // 9. PROFIT / LOSS
+        // ============================================================
+
+        var profitLoss =
+            trialBalance.TotalProfitLoss;
+
+
+        // ============================================================
+        // 10. FINAL RESPONSE
+        // ============================================================
+
+        return Ok(new
+        {
+            status = true,
+
+            result = new
+            {
+                // ====================================================
+                // TRIAL BALANCE
+                // ====================================================
+
+                trialBalance = new
+                {
+                    id =
+                        trialBalance.Id,
+
+                    refNo =
+                        trialBalance.RefNo,
+
+
+                    period,
+
+                    description =
+                        trialBalance.Description,
+
+                    periodStart =
+                        trialBalance.PeriodStart,
+
+                    periodEnd =
+                        trialBalance.PeriodEnd,
+
+                    type =
+                        trialBalance.Type.ToString()
+                },
+
+
+                // ====================================================
+                // IMPORTS
+                // ====================================================
+
+                imports =
+                    importResponse,
+
+
+                // ====================================================
+                // JOURNALS
+                // ====================================================
+
+                journals =
+                    journalResponse,
+
+
+                // ====================================================
+                // SUMMARY
+                // ====================================================
+
+                summary = new
+                {
+                    totalDebit =
+                        totalDebit,
+
+                    totalCredit =
+                        totalCredit,
+
+                    // difference =
+                    //     totalDebit -
+                    //     totalCredit,
+
+                    difference =
+        Math.Abs(totalDebit - totalCredit),
+
+                    status =
+                        balanceStatus,
+
+                    profitLoss =
+                        profitLoss
+                }
+            }
+        });
+    }
+
+
+    // ============================================================
+    // GET POSTED TRIAL BALANCE DATA
+    //
+    // GET
+    // /api/TrialBalances/{tbId}/posted-data
+    //
+    // Only POSTED journals are included.
+    // Multiple journals belonging to the same TB are combined.
+    // Entries are aggregated by Chart Account Code.
+    // ============================================================
+
+    [HttpGet("{tbId}/posted-data")]
+    public async Task<IActionResult> GetPostedTrialBalanceData(
+        string tbId)
+    {
+        // ============================================================
+        // 1. FIND TRIAL BALANCE
+        // ============================================================
+
+        var trialBalance =
+            await _trialBalances
+                .Find(x => x.Id == tbId)
+                .FirstOrDefaultAsync();
+
+        if (trialBalance == null)
+        {
+            return NotFound(new
+            {
+                status = false,
+                message = "Trial balance not found."
+            });
+        }
+
+
+        // ============================================================
+        // 2. GET ONLY POSTED JOURNALS
+        //
+        // Important:
+        // Drafted   -> excluded
+        // Unposted  -> excluded
+        // Posted    -> included
+        // ============================================================
+
+        var journals =
+            await _journals
+                .Find(x =>
+                    x.TrialBalance.Id == tbId &&
+                    x.JournalStatus == JournalStatus.Posted
+                )
+                .SortBy(x => x.CreatedAt)
+                .ToListAsync();
+
+
+        // ============================================================
+        // 3. NO POSTED JOURNALS
+        // ============================================================
+
+        if (journals.Count == 0)
+        {
+            return Ok(new
+            {
+                executionTime = 0,
+
+                result = new
+                {
+                    trialBalances = new[]
+                    {
+                    new
+                    {
+                        periodStart =
+                            trialBalance.PeriodStart,
+
+                        periodEnd =
+                            trialBalance.PeriodEnd,
+
+                        totalDebit = 0m,
+
+                        totalCredit = 0m,
+
+                        name =
+                            trialBalance.RefNo,
+
+                        id =
+                            trialBalance.Id
+                    }
+                },
+
+                    items = new List<object>()
+                },
+
+                status = true
+            });
+        }
+
+
+        // ============================================================
+        // 4. GET ALL JOURNAL ITEMS
+        //
+        // Multiple posted journals can belong to one TB.
+        // Combine all their entries.
+        // ============================================================
+
+        var journalItems =
+            journals
+                .Where(x => x.Items != null)
+                .SelectMany(x => x.Items)
+                .ToList();
+
+
+        // ============================================================
+        // 5. GET UNIQUE ACCOUNT CODES
+        // ============================================================
+
+        var accountCodes =
+            journalItems
+                .Select(x => x.AccountCode)
+                .Where(x =>
+                    !string.IsNullOrWhiteSpace(x))
+                .Distinct()
+                .ToList();
+
+
+        // ============================================================
+        // 6. GET CHART ACCOUNTS
+        // ============================================================
+
+        var chartAccounts =
+            accountCodes.Count == 0
+                ? new List<ChartAccount>()
+                : await _chartAccounts
+                    .Find(x =>
+                        accountCodes.Contains(x.Code))
+                    .ToListAsync();
+
+
+        // ============================================================
+        // 7. BUILD ITEMS
+        //
+        // One row per Chart Account.
+        // ============================================================
+
+        var items =
+            new List<object>();
+
+
+        foreach (var code in accountCodes)
+        {
+            var account =
+                chartAccounts
+                    .FirstOrDefault(x =>
+                        x.Code == code);
+
+
+            // --------------------------------------------------------
+            // All journal entries for this account
+            // --------------------------------------------------------
+
+            var accountEntries =
+                journalItems
+                    .Where(x =>
+                        x.AccountCode == code)
+                    .ToList();
+
+
+            // --------------------------------------------------------
+            // Debit / Credit totals for this account
+            // --------------------------------------------------------
+
+            var debit =
+                accountEntries.Sum(x => x.Debit);
+
+            var credit =
+                accountEntries.Sum(x => x.Credit);
+
+
+            // --------------------------------------------------------
+            // Signed amount
+            //
+            // Debit  = positive
+            // Credit = negative
+            // --------------------------------------------------------
+
+            var amount =
+                debit - credit;
+
+
+            // --------------------------------------------------------
+            // Account Type / Group
+            // --------------------------------------------------------
+
+            object? accountType = null;
+
+            Console.WriteLine("account", account);
+
+            if (account != null &&
+                !string.IsNullOrWhiteSpace(
+                    account.AccountTypeId))
+            {
+                accountType =
+                    await _accountTypes
+                        .Find(x =>
+                            x.Id ==
+                            account.AccountTypeId)
+                        .FirstOrDefaultAsync();
+            }
+            Console.WriteLine("accountType", accountType);
+
+
+
+
+            items.Add(
+                new
+                {
+                    groupName =
+                        account?.AccountGroup ??
+                        string.Empty,
+
+                    group =
+                        account?.AccountGroup ??
+                        string.Empty,
+
+                    // typeName =
+                    //     accountType?.Name ??
+                    //     string.Empty,
+
+                    type =
+                        account?.AccountTypeId ??
+                        string.Empty,
+
+                    code =
+                        code,
+
+                    // Signed amount
+                    // Debit positive / Credit negative
+                    amounts =
+                        new[]
+                        {
+                        amount
+                        },
+
+                    accountNature =
+                        amount >= 0
+                            ? AccountNature.Debit
+                            : AccountNature.Credit,
+
+                    name =
+                        account?.AccountName ??
+                        accountEntries
+                            .FirstOrDefault()
+                            ?.AccountName ??
+                        string.Empty,
+
+                    id =
+                        account?.Id ??
+                        string.Empty,
+
+                    debit =
+                        debit,
+
+                    credit =
+                        credit,
+
+                    totalDebit =
+                        debit,
+
+                    totalCredit =
+                        credit
+                }
+            );
+        }
+
+
+        // ============================================================
+        // 8. TRIAL BALANCE TOTALS
+        // ============================================================
+
+        var totalDebit =
+            journalItems.Sum(x => x.Debit);
+
+        var totalCredit =
+            journalItems.Sum(x => x.Credit);
+
+
+        // ============================================================
+        // 9. RESPONSE
+        // ============================================================
+
+        return Ok(new
+        {
+            executionTime = 0,
+
+            result = new
+            {
+                trialBalances =
+                    new[]
+                    {
+                    new
+                    {
+                        periodStart =
+                            trialBalance.PeriodStart,
+
+                        periodEnd =
+                            trialBalance.PeriodEnd,
+
+                        totalDebit =
+                            totalDebit,
+
+                        totalCredit =
+                            totalCredit,
+
+                        name =
+                            trialBalance.RefNo,
+
+                        id =
+                            trialBalance.Id
+                    }
+                    },
+
+                items =
+                    items
+            },
+
+            status = true
+        });
+    }
+
+    // ============================================================
+    // CREATE / UPDATE JOURNAL
+    // ============================================================
+
+    [HttpPost("{RefNo}/journals/{journalId}")]
+    public async Task<IActionResult> CreateOrUpdateJournal(
+        string RefNo,
+        string journalId,
+        [FromForm] string journal,
+        IFormFile? attachment)
+    {
+        // ============================================================
+        // FIND TRIAL BALANCE
+        // ============================================================
+
+        var trialBalance =
+            await _trialBalances
+                .Find(x => x.RefNo == RefNo)
+                .FirstOrDefaultAsync();
+
+        if (trialBalance == null)
+        {
+            return NotFound(new
+            {
+                status = false,
+                message = "Trial balance not found."
+            });
+        }
+
+
+        // ============================================================
+        // DESERIALIZE JOURNAL
+        // ============================================================
+
+        Journal request;
+
+        try
+        {
+            request =
+                System.Text.Json.JsonSerializer.Deserialize<Journal>(
+                    journal,
+                    new System.Text.Json.JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    }) ?? new Journal();
+        }
+        catch
+        {
+            return BadRequest(new
+            {
+                status = false,
+                message = "Invalid journal data."
+            });
+        }
+
+
+        // ============================================================
+        // VALIDATE JOURNAL ITEMS
+        // ============================================================
+
+        if (request.Items == null ||
+            request.Items.Count == 0)
+        {
+            return BadRequest(new
+            {
+                status = false,
+                message = "At least one journal item is required."
+            });
+        }
+
+
+        // ============================================================
+        // CALCULATE TOTALS
+        // ============================================================
+
+        decimal totalDebit =
+            request.Items.Sum(x => x.Debit);
+
+        decimal totalCredit =
+            request.Items.Sum(x => x.Credit);
+
+
+        // ============================================================
+        // CREATE NEW JOURNAL
+        // journalId = 0
+        // ============================================================
+
+        if (journalId == "0")
+        {
+            // --------------------------------------------------------
+            // Generate Journal Number
+            // --------------------------------------------------------
+
+            var journalNumber =
+                await GenerateJournalNumber(
+                        trialBalance.Id,
+                    trialBalance.RefNo);
+
+
+            // --------------------------------------------------------
+            // Generate MongoDB ID
+            // --------------------------------------------------------
+
+            var newJournalId =
+                ObjectId.GenerateNewId().ToString();
+
+
+            // --------------------------------------------------------
+            // Set Journal properties
+            // --------------------------------------------------------
+
+            request.Id =
+                newJournalId;
+
+            request.Number =
+                journalNumber;
+
+
+            request.TrialBalance =
+                new TrialBalanceReference
+                {
+                    Id = trialBalance.Id,
+                    Name = trialBalance.RefNo
+                };
+
+            request.PeriodStart =
+                      trialBalance.PeriodStart;
+            request.PeriodStart =
+                trialBalance.PeriodStart;
+
+            request.PeriodEnd =
+                trialBalance.PeriodEnd;
+
+
+            request.ItemsCount =
+                request.Items.Count;
+
+            request.TotalDebit =
+                totalDebit;
+
+            request.TotalCredit =
+                totalCredit;
+
+            request.CreatedAt =
+                DateTime.UtcNow;
+
+            request.Description = request.Description;
+            // --------------------------------------------------------
+            // Attachment
+            // --------------------------------------------------------
+
+            if (attachment != null &&
+                attachment.Length > 0)
+            {
+                var uploadFolder =
+                    Path.Combine(
+                        _environment.WebRootPath ?? "wwwroot",
+                        "uploads",
+                        "journals");
+
+                if (!Directory.Exists(uploadFolder))
+                {
+                    Directory.CreateDirectory(uploadFolder);
+                }
+
+
+                // Keep original extension
+                var extension =
+                    Path.GetExtension(
+                        attachment.FileName);
+
+
+                // Safe backend file name
+                var fileName =
+                    $"{request.Number}_{Guid.NewGuid():N}{extension}";
+
+
+                var filePath =
+                    Path.Combine(
+                        uploadFolder,
+                        fileName);
+
+
+                using (var stream =
+                       new FileStream(
+                           filePath,
+                           FileMode.Create))
+                {
+                    await attachment.CopyToAsync(stream);
+                }
+
+
+                request.Attachment.Name =
+                    attachment.FileName;
+
+                request.Attachment.Path =
+                    Path.Combine(
+                        "uploads",
+                        "journals",
+                        fileName)
+                    .Replace("\\", "/");
+            }
+
+
+            // --------------------------------------------------------
+            // Insert Journal
+            // --------------------------------------------------------
+
+            await _journals.InsertOneAsync(request);
+
+
+            // ========================================================
+            // ADD JOURNAL ID TO TRIAL BALANCE
+            // ========================================================
+
+            trialBalance.JournalIds ??=
+                new List<string>();
+
+
+            if (!trialBalance.JournalIds.Contains(
+                    request.Id))
+            {
+                trialBalance.JournalIds.Add(
+                    request.Id);
+            }
+
+            // ========================================================
+            // RECALCULATE TRIAL BALANCE TOTALS
+            // ========================================================
+
+            var allJournals =
+                await _journals
+                    .Find(x =>
+                        x.TrialBalance.Id ==
+                        trialBalance.Id)
+                    .ToListAsync();
+
+
+            trialBalance.TotalDebit =
+                allJournals.Sum(
+                    x => x.TotalDebit);
+
+            trialBalance.TotalCredit =
+                allJournals.Sum(
+                    x => x.TotalCredit);
+
+
+            trialBalance.Status =
+                trialBalance.TotalDebit ==
+                trialBalance.TotalCredit
+                    ? TrialBalanceStatus.Balanced
+                    : TrialBalanceStatus.Unbalanced;
+
+
+            // ========================================================
+            // SAVE TRIAL BALANCE
+            // ========================================================
+
+            await _trialBalances.UpdateOneAsync(
+                x => x.Id == trialBalance.Id,
+                Builders<TrialBalance>.Update
+                    .Set(
+                        x => x.JournalIds,
+                        trialBalance.JournalIds)
+                    .Set(
+                        x => x.TotalDebit,
+                        trialBalance.TotalDebit)
+                    .Set(
+                        x => x.TotalCredit,
+                        trialBalance.TotalCredit)
+                    .Set(
+                        x => x.Status,
+                        trialBalance.Status));
+
+
+            // ========================================================
+            // RESPONSE
+            // ========================================================
+
+            return Ok(new
+            {
+                status = true,
+                message = "Journal created successfully.",
+                result = request
+            });
+        }
+
+
+        // ============================================================
+        // UPDATE EXISTING JOURNAL
+        // journalId = MongoDB ObjectId
+        // ============================================================
+
+        if (!ObjectId.TryParse(
+                journalId,
+                out _))
+        {
+            return BadRequest(new
+            {
+                status = false,
+                message =
+                    "Invalid journal ID. Use 0 to create a new journal or a valid MongoDB ObjectId to update."
+            });
+        }
+
+
+        // ============================================================
+        // FIND EXISTING JOURNAL
+        // ============================================================
+
+        var existingJournal =
+            await _journals
+                .Find(x =>
+                    x.Id == journalId &&
+                    x.TrialBalance.Id ==
+                    trialBalance.Id)
+                .FirstOrDefaultAsync();
+
+
+        if (existingJournal == null)
+        {
+            return NotFound(new
+            {
+                status = false,
+                message =
+                    "Journal not found for this trial balance."
+            });
+        }
+
+
+        // ============================================================
+        // UPDATE ONLY THE JOURNAL FIELDS
+        // ============================================================
+
+        var update =
+            Builders<Journal>.Update
+
+                // ----------------------------------------------------
+                // Journal data
+                // ----------------------------------------------------
+
+                .Set(
+                    x => x.Description,
+                    request.Description)
+
+                .Set(
+                    x => x.JournalType,
+                    request.JournalType)
+
+                .Set(
+                    x => x.Type,
+                    request.Type)
+
+                .Set(
+                    x => x.JournalStatus,
+                    request.JournalStatus)
+
+                .Set(
+                    x => x.ImportType,
+                    request.ImportType)
+
+                .Set(
+                    x => x.CsvImportType,
+                    request.CsvImportType)
+
+                .Set(
+                    x => x.IsActive,
+                    request.IsActive)
+
+                // ----------------------------------------------------
+                // Journal Items
+                // ----------------------------------------------------
+
+                .Set(
+                    x => x.Items,
+                    request.Items)
+
+                .Set(
+                    x => x.ItemsCount,
+                    request.Items.Count)
+
+                .Set(
+                    x => x.TotalDebit,
+                    totalDebit)
+
+                .Set(
+                    x => x.TotalCredit,
+                    totalCredit);
+
+
+        // ============================================================
+        // ATTACHMENT
+        // ============================================================
+
+        // IMPORTANT:
+        // If no new attachment is supplied,
+        // existing attachment remains untouched.
+
+        if (attachment != null &&
+            attachment.Length > 0)
+        {
+            var uploadFolder =
+                Path.Combine(
+                    _environment.WebRootPath ?? "wwwroot",
+                    "uploads",
+                    "journals");
+
+            if (!Directory.Exists(uploadFolder))
+            {
+                Directory.CreateDirectory(uploadFolder);
+            }
+
+
+            // --------------------------------------------------------
+            // File extension
+            // --------------------------------------------------------
+
+            var extension =
+                Path.GetExtension(
+                    attachment.FileName);
+
+
+            // --------------------------------------------------------
+            // New backend file name
+            // --------------------------------------------------------
+
+            var fileName =
+                $"{existingJournal.Number}_{Guid.NewGuid():N}{extension}";
+
+
+            var filePath =
+                Path.Combine(
+                    uploadFolder,
+                    fileName);
+
+
+            // --------------------------------------------------------
+            // Save file
+            // --------------------------------------------------------
+
+            using (var stream =
+                   new FileStream(
+                       filePath,
+                       FileMode.Create))
+            {
+                await attachment.CopyToAsync(stream);
+            }
+
+
+            // --------------------------------------------------------
+            // Update attachment information
+            // --------------------------------------------------------
+
+            var relativePath =
+                Path.Combine(
+                    "uploads",
+                    "journals",
+                    fileName)
+                .Replace("\\", "/");
+
+            var newAttachment = new Attachment
+            {
+                Name = attachment.FileName,
+                Path = relativePath
+            };
+
+            update = update.Set(
+                x => x.Attachment,
+                newAttachment
+            );
+            // update =
+            //     update
+            //         .Set(
+            //             x => x.Attachment.Name,
+            //             attachment.FileName)
+            //         .Set(
+            //             x => x.Attachment.Path,
+            //             relativePath);
+        }
+
+
+        // ============================================================
+        // UPDATE JOURNAL DOCUMENT
+        // ============================================================
+
+        await _journals.UpdateOneAsync(
+            x => x.Id == existingJournal.Id,
+            update);
+
+
+        // ============================================================
+        // RECALCULATE TRIAL BALANCE TOTALS
+        // ============================================================
+
+        var allUpdatedJournals =
+            await _journals
+                .Find(x =>
+                    x.TrialBalance.Id ==
+                    trialBalance.Id)
+                .ToListAsync();
+
+
+        trialBalance.TotalDebit =
+            allUpdatedJournals.Sum(
+                x => x.TotalDebit);
+
+        trialBalance.TotalCredit =
+            allUpdatedJournals.Sum(
+                x => x.TotalCredit);
+
+
+        trialBalance.Status =
+            trialBalance.TotalDebit ==
+            trialBalance.TotalCredit
+                ? TrialBalanceStatus.Balanced
+                : TrialBalanceStatus.Unbalanced;
+
+
+        // ============================================================
+        // SAVE TRIAL BALANCE TOTALS
+        // ============================================================
+
+        await _trialBalances.UpdateOneAsync(
+            x => x.Id == trialBalance.Id,
+            Builders<TrialBalance>.Update
+                .Set(
+                    x => x.TotalDebit,
+                    trialBalance.TotalDebit)
+                .Set(
+                    x => x.TotalCredit,
+                    trialBalance.TotalCredit)
+                .Set(
+                    x => x.Status,
+                    trialBalance.Status));
+
+
+        // ============================================================
+        // GET UPDATED JOURNAL
+        // ============================================================
+
+        var updatedJournal =
+            await _journals
+                .Find(x =>
+                    x.Id == existingJournal.Id)
+                .FirstOrDefaultAsync();
+
+
+        // ============================================================
+        // RESPONSE
+        // ============================================================
+
+        return Ok(new
+        {
+            status = true,
+            message = "Journal updated successfully.",
+            result = updatedJournal
+        });
+    }
+
+
+    // ============================================================
+    // DOWNLOAD POSTED TRIAL BALANCE AS PDF
+    //
+    // POST
+    // /api/TrialBalances/{tbId}/posted-data/pdf
+    //
+    // PDF is generated in memory.
+    // Nothing is saved on the server.
+    // ============================================================
+
+    [HttpPost("{tbId}/posted-data/pdf")]
+    public async Task<IActionResult> DownloadPostedTrialBalancePdf(
+        string tbId)
+    {
+        // ============================================================
+        // 1. FIND TRIAL BALANCE
+        // ============================================================
+
+        var trialBalance =
+            await _trialBalances
+                .Find(x => x.Id == tbId)
+                .FirstOrDefaultAsync();
+
+        if (trialBalance == null)
+        {
+            return NotFound(new
+            {
+                status = false,
+                message = "Trial balance not found."
+            });
+        }
+
+
+        // ============================================================
+        // 2. GET ONLY POSTED JOURNALS
+        // ============================================================
+
+        var journals =
+            await _journals
+                .Find(x =>
+                    x.TrialBalance.Id == tbId &&
+                    x.JournalStatus == JournalStatus.Posted)
+                .SortBy(x => x.CreatedAt)
+                .ToListAsync();
+
+
+        // ============================================================
+        // 3. COMBINE ALL JOURNAL ITEMS
+        // ============================================================
+
+        var journalItems =
+            journals
+                .Where(x => x.Items != null)
+                .SelectMany(x => x.Items)
+                .ToList();
+
+
+        // ============================================================
+        // 4. GET UNIQUE ACCOUNT CODES
+        // ============================================================
+
+        var accountCodes =
+            journalItems
+                .Select(x => x.AccountCode)
+                .Where(x =>
+                    !string.IsNullOrWhiteSpace(x))
+                .Distinct()
+                .ToList();
+
+
+        // ============================================================
+        // 5. GET CHART ACCOUNTS
+        // ============================================================
+
+        var chartAccounts =
+            accountCodes.Count == 0
+                ? new List<ChartAccount>()
+                : await _chartAccounts
+                    .Find(x =>
+                        accountCodes.Contains(x.Code))
+                    .ToListAsync();
+
+
+        // ============================================================
+        // 6. GENERATE PDF DIRECTLY
+        // ============================================================
+
+        byte[] pdfBytes =
+            Document.Create(document =>
+            {
+                document.Page(page =>
+                {
+                    // ====================================================
+                    // PAGE SETTINGS
+                    // ====================================================
+
+                    page.Size(PageSizes.A4);
+
+                    page.MarginLeft(40);
+                    page.MarginRight(40);
+                    page.MarginTop(35);
+                    page.MarginBottom(35);
+                    // page.Margin(
+                    //     left: 40,
+                    //     right: 40,
+                    //     top: 35,
+                    //     bottom: 35
+                    // );
+
+                    page.DefaultTextStyle(
+                        x => x.FontSize(9)
+                    );
+
+
+                    // ====================================================
+                    // HEADER
+                    // ====================================================
+
+                    page.Header()
+                        .Column(column =>
+                        {
+                            // ------------------------------------------------
+                            // CLIENT NAME
+                            // ------------------------------------------------
+
+                            column.Item()
+                                .Text("client_name")
+                                .FontSize(18)
+                                .Bold();
+
+
+                            // ------------------------------------------------
+                            // REPORT NAME
+                            // ------------------------------------------------
+
+                            column.Item()
+                                .PaddingTop(4)
+                                .Text("Trial Balance Report")
+                                .FontSize(13)
+                                .Bold();
+
+
+                            // ------------------------------------------------
+                            // SPACE
+                            // ------------------------------------------------
+
+                            column.Item()
+                                .PaddingTop(8);
+
+
+                            // ------------------------------------------------
+                            // HEADER LINE
+                            // ------------------------------------------------
+
+                            column.Item()
+                                .LineHorizontal(1);
+                        });
+
+
+                    // ====================================================
+                    // CONTENT
+                    // ====================================================
+
+                    page.Content()
+                        .PaddingTop(5)
+                        .Table(table =>
+                        {
+                            // =================================================
+                            // COLUMNS
+                            // =================================================
+
+                            table.ColumnsDefinition(columns =>
+                            {
+                                // Code
+                                columns.ConstantColumn(55);
+
+                                // Account Name
+                                columns.RelativeColumn(4);
+
+                                // Debit
+                                columns.RelativeColumn(2);
+
+                                // Credit
+                                columns.RelativeColumn(2);
+                            });
+
+
+                            // =================================================
+                            // TABLE HEADER
+                            // =================================================
+
+                            table.Header(header =>
+                            {
+                                // ------------------------------------------------
+                                // CODE
+                                // ------------------------------------------------
+
+                                header.Cell()
+                                    .RowSpan(2)
+                                    .Element(HeaderCell)
+                                    .Text("Code");
+
+
+                                // ------------------------------------------------
+                                // ACCOUNT NAME
+                                // ------------------------------------------------
+
+                                header.Cell()
+                                    .RowSpan(2)
+                                    .Element(HeaderCell)
+                                    .Text("Account Name");
+
+
+                                // ------------------------------------------------
+                                // PERIOD
+                                // ------------------------------------------------
+
+                                header.Cell()
+                                    .ColumnSpan(2)
+                                    .Element(HeaderCell)
+                                    .AlignCenter()
+                                    .Text(
+                                        $"{trialBalance.PeriodStart:dd/MM/yyyy} - " +
+                                        $"{trialBalance.PeriodEnd:dd/MM/yyyy}"
+                                    );
+
+
+                                // ------------------------------------------------
+                                // DEBIT
+                                // ------------------------------------------------
+
+                                header.Cell()
+                                    .Element(HeaderCell)
+                                    .AlignRight()
+                                    .Text("Debit");
+
+
+                                // ------------------------------------------------
+                                // CREDIT
+                                // ------------------------------------------------
+
+                                header.Cell()
+                                    .Element(HeaderCell)
+                                    .AlignRight()
+                                    .Text("Credit");
+                            });
+
+
+                            // =================================================
+                            // TOTALS
+                            // =================================================
+
+                            decimal totalDebit = 0;
+
+                            decimal totalCredit = 0;
+
+
+                            // =================================================
+                            // DATA ROWS
+                            // =================================================
+
+                            foreach (var code in accountCodes)
+                            {
+                                var account =
+                                    chartAccounts
+                                        .FirstOrDefault(
+                                            x => x.Code == code
+                                        );
+
+
+                                // ------------------------------------------------
+                                // All entries for this account
+                                // ------------------------------------------------
+
+                                var entries =
+                                    journalItems
+                                        .Where(x =>
+                                            x.AccountCode == code)
+                                        .ToList();
+
+
+                                // ------------------------------------------------
+                                // Debit
+                                // ------------------------------------------------
+
+                                var debit =
+                                    entries.Sum(
+                                        x => x.Debit
+                                    );
+
+
+                                // ------------------------------------------------
+                                // Credit
+                                // ------------------------------------------------
+
+                                var credit =
+                                    entries.Sum(
+                                        x => x.Credit
+                                    );
+
+
+                                totalDebit += debit;
+
+                                totalCredit += credit;
+
+
+                                // =================================================
+                                // CODE
+                                // =================================================
+
+                                table.Cell()
+                                    .Element(DataCell)
+                                    .Text(code);
+
+
+                                // =================================================
+                                // ACCOUNT NAME
+                                // =================================================
+
+                                table.Cell()
+                                    .Element(DataCell)
+                                    .Text(
+                                        account?.AccountName ??
+                                        entries
+                                            .FirstOrDefault()
+                                            ?.AccountName ??
+                                        string.Empty
+                                    );
+
+
+                                // =================================================
+                                // DEBIT
+                                // =================================================
+
+                                table.Cell()
+                                    .Element(DataCell)
+                                    .AlignRight()
+                                    .Text(
+                                        debit == 0
+                                            ? "-"
+                                            : $"£{debit:N2}"
+                                    );
+
+
+                                // =================================================
+                                // CREDIT
+                                // =================================================
+
+                                table.Cell()
+                                    .Element(DataCell)
+                                    .AlignRight()
+                                    .Text(
+                                        credit == 0
+                                            ? "-"
+                                            : $"£{credit:N2}"
+                                    );
+                            }
+
+
+                            // =================================================
+                            // TOTAL ROW
+                            // =================================================
+
+                            table.Cell()
+                                .ColumnSpan(2)
+                                .Element(TotalCell)
+                                .Text("Total");
+
+
+                            table.Cell()
+                                .Element(TotalCell)
+                                .AlignRight()
+                                .Text(
+                                    totalDebit == 0
+                                        ? "-"
+                                        : $"£{totalDebit:N2}"
+                                );
+
+
+                            table.Cell()
+                                .Element(TotalCell)
+                                .AlignRight()
+                                .Text(
+                                    totalCredit == 0
+                                        ? "-"
+                                        : $"£{totalCredit:N2}"
+                                );
+                        });
+
+
+                    // ====================================================
+                    // FOOTER
+                    // ====================================================
+
+                    page.Footer()
+                        .AlignCenter()
+                        .Text(
+                            $"Generated on " +
+                            $"{DateTime.Now:dd/MM/yyyy HH:mm}"
+                        );
+                });
+            })
+            .GeneratePdf();
+
+
+        // ============================================================
+        // FILE NAME
+        // ============================================================
+
+        var year =
+            trialBalance.PeriodEnd.Year;
+
+
+        var fileName =
+            $"client_name_trialbalance_{year}.pdf";
+
+
+        // ============================================================
+        // RETURN PDF TO FRONTEND
+        // ============================================================
+
+        return File(
+            pdfBytes,
+            "application/pdf",
+            fileName
+        );
+
+
+        // ============================================================
+        // LOCAL PDF CELL STYLES
+        // ============================================================
+
+        static IContainer HeaderCell(
+            IContainer container)
+        {
+            return container
+                .Background("#EEEEEE")
+                .Padding(5)
+                .BorderBottom(1);
+        }
+
+
+        static IContainer DataCell(
+            IContainer container)
+        {
+            return container
+                .PaddingVertical(4)
+                .PaddingHorizontal(5)
+                .BorderBottom(0.5f);
+        }
+
+
+        static IContainer TotalCell(
+            IContainer container)
+        {
+            return container
+                .PaddingVertical(5)
+                .PaddingHorizontal(5)
+                .BorderTop(1);
+        }
+    }
+
+
+
+    [HttpGet("{RefNo}/journals/{journalId}")]
+    public async Task<IActionResult> GetById(
+        string RefNo,
+        string journalId)
+    {
+        // ============================================================
+        // FIND TRIAL BALANCE
+        // ============================================================
+
+        var tb =
+            await _trialBalances
+                .Find(x => x.RefNo == RefNo)
+                .FirstOrDefaultAsync();
+
+        if (tb == null)
+        {
+            return NotFound(new
+            {
+                status = false,
+                message = "Trial balance not found."
+            });
+        }
+
+
+        // ============================================================
+        // ACCOUNTING PERIOD
+        // ============================================================
+
+        object? period = null;
+
+        if (!string.IsNullOrWhiteSpace(tb.PeriodId))
+        {
+            period =
+                await _accountingPeriods
+                    .Find(x => x.Id == tb.PeriodId)
+                    .FirstOrDefaultAsync();
+        }
+
+        // If AccountingPeriod document is not found,
+        // use the dates stored in TrialBalance.
+        if (period == null &&
+            (tb.PeriodStart != default ||
+             tb.PeriodEnd != default))
+        {
+            period = new
+            {
+                id = string.Empty,
+
+                periodFrom =
+                    tb.PeriodStart,
+
+                periodTo =
+                    tb.PeriodEnd,
+
+                periodStart =
+                    tb.PeriodStart,
+
+                periodEnd =
+                    tb.PeriodEnd,
+
+                isActive = true,
+
+                isClosed = false
+            };
+        }
+
+
+        Journal? journal = null;
+
+
+        if (journalId != "0")
+        {
+            // --------------------------------------------------------
+            // VALIDATE JOURNAL ID
+            // --------------------------------------------------------
+
+            if (!ObjectId.TryParse(journalId, out _))
+            {
+                return BadRequest(new
+                {
+                    status = false,
+                    message = "Invalid journal ID."
+                });
+            }
+
+
+            // --------------------------------------------------------
+            // FIND JOURNAL
+            //
+            // Also verify that this Journal belongs to the
+            // Trial Balance requested in the URL.
+            // --------------------------------------------------------
+
+            journal =
+                await _journals
+                    .Find(x =>
+                        x.Id == journalId &&
+                        x.TrialBalance != null &&
+                        x.TrialBalance.Id == tb.Id)
+                    .FirstOrDefaultAsync();
+
+
+            // --------------------------------------------------------
+            // JOURNAL NOT FOUND
+            // --------------------------------------------------------
+
+            if (journal == null)
+            {
+                return NotFound(new
+                {
+                    status = false,
+                    message =
+                        "Journal not found for this trial balance."
+                });
+            }
+        }
+
+
+        // ============================================================
+        // CHECK WHETHER JOURNAL EXISTS
+        // ============================================================
+
+        var hasJournal =
+            journal != null;
+
+
+        // ============================================================
+        // JOURNAL IDS
+        //
+        // Since journalId comes from the path, we do not read
+        // TrialBalance.JournalIds.
+        // ============================================================
+
+        var journalIds =
+            hasJournal
+                ? new List<string>
+                {
+                journal!.Id
+                }
+                : new List<string>();
+
+
+        // ============================================================
+        // ITEMS
+        //
+        // TrialBalance does not contain Items.
+        // Items come from Journal.Items.
+        // ============================================================
+
+        var items =
+            new List<object>();
+
+
+        if (hasJournal &&
+            journal!.Items != null &&
+            journal.Items.Count > 0)
+        {
+            foreach (var journalItem in journal.Items)
+            {
+                // ====================================================
+                // FIND CHART ACCOUNT
+                // ====================================================
+
+                var account =
+                    await _chartAccounts
+                        .Find(x =>
+                            x.Code ==
+                            journalItem.AccountCode)
+                        .FirstOrDefaultAsync();
+
+
+                // ====================================================
+                // ACCOUNT INFORMATION
+                // ====================================================
+
+                var accountData =
+                    account == null
+                        ? new
+                        {
+                            id = string.Empty,
+
+                            name =
+                                journalItem.AccountName,
+
+                            code =
+                                journalItem.AccountCode
+                        }
+                        : new
+                        {
+                            id =
+                                account.Id,
+
+                            name =
+                                account.AccountName,
+
+                            code =
+                                account.Code
+                        };
+
+
+                // ====================================================
+                // ADD JOURNAL ITEM
+                // ====================================================
+
+                items.Add(
+                    new
+                    {
+                        journalId =
+                            journal.Id,
+
+                        journalNumber =
+                            journal.Number,
+
+                        account =
+                            accountData,
+
+                        note =
+                            journalItem.Note,
+
+                        amount =
+                            journalItem.Credit > 0
+                                ? -journalItem.Credit
+                                : journalItem.Debit,
+
+                        debit =
+                            journalItem.Debit,
+
+                        credit =
+                            journalItem.Credit,
+
+                        type =
+                            journalItem.Nature
+                    });
+            }
+        }
+
+
+        // ============================================================
+        // TOTALS
+        //
+        // If Journal exists:
+        //     take totals from Journal.
+        //
+        // If journalId == "0":
+        //     totals are 0.
+        // ============================================================
+
+        decimal totalDebit =
+            hasJournal
+                ? journal!.TotalDebit
+                : 0;
+
+        decimal totalCredit =
+            hasJournal
+                ? journal!.TotalCredit
+                : 0;
+
+
+        // ============================================================
+        // STATUS
+        //
+        // If Journal exists:
+        //     calculate status from Journal totals.
+        //
+        // If journalId == "0":
+        //     preserve TrialBalance status.
+        // ============================================================
+
+        var status =
+            hasJournal
+                ? (
+                    totalDebit == totalCredit
+                        ? TrialBalanceStatus.Balanced
+                        : TrialBalanceStatus.Unbalanced
+                  )
+                : tb.Status;
+
+
+        // ============================================================
+        // JOURNAL RESPONSE
+        // ============================================================
+
+        var journalResponse =
+            hasJournal
+                ? new List<object>
+                {
+                new
+                {
+                    id =
+                        journal!.Id,
+
+                    number =
+                        journal.Number,
+
+                    // --------------------------------------------
+                    // TRIAL BALANCE REFERENCE
+                    // --------------------------------------------
+
+                    trialBalance =
+                        new
+                        {
+                            id =
+                                journal.TrialBalance.Id,
+
+                            name =
+                                journal.TrialBalance.Name
+                        },
+
+                    // --------------------------------------------
+                    // JOURNAL INFORMATION
+                    // --------------------------------------------
+
+                    type =
+                        journal.Type,
+
+                    status =
+                        journal.Status,
+description =
+                        journal.Description,
+                    journalStatus =
+                        journal.JournalStatus,
+
+                    itemsCount =
+                        journal.Items?.Count ?? 0,
+
+                    totalDebit =
+                        journal.TotalDebit,
+
+                    totalCredit =
+                        journal.TotalCredit,
+
+                    importType =
+                        journal.ImportType,
+
+                    csvImportType =
+                        journal.CsvImportType,
+
+
+
+                    isActive =
+                        journal.IsActive,
+
+                    periodStart =
+                        journal.PeriodStart,
+
+                    periodEnd =
+                        journal.PeriodEnd,
+
+                    createdAt =
+                        journal.CreatedAt,
+
+                    createdBy =
+                        journal.CreatedBy,
+
+
+                }
+                }
+                : new List<object>();
+
+
+        // ============================================================
+        // RESPONSE
+        // ============================================================
+
+        return Ok(
+            new
+            {
+                result =
+                    new
+                    {
+                        // ============================================
+                        // TRIAL BALANCE
+                        // ============================================
+
+                        trialBalance =
+                            new
+                            {
+                                name =
+                                    tb.RefNo,
+
+                                id =
+                                    tb.Id
+                            },
+
+
+                        // ============================================
+                        // ACCOUNTING PERIOD
+                        // ============================================
+
+                        period,
+
+                        periodStart =
+                            tb.PeriodStart,
+
+                        periodEnd =
+                            tb.PeriodEnd,
+
+
+                        // ============================================
+                        // TRIAL BALANCE DETAILS
+                        // ============================================
+
+                        description =
+                            tb.Description,
+
+                        type =
+                            tb.Type,
+
+                        status,
+
+                        importType =
+                            tb.ImportType,
+
+                        csvImportType =
+                            tb.CsvImportType,
+
+
+                        // ============================================
+                        // JOURNAL ITEMS
+                        // ============================================
+
+                        items,
+
+                        itemsCount =
+                            items.Count,
+
+
+                        // ============================================
+                        // TOTALS
+                        // ============================================
+
+                        totalDebit,
+
+                        totalCredit,
+
+                        totalProfitLoss =
+                            tb.TotalProfitLoss,
+
+                        turnover =
+                            tb.Turnover,
+
+
+                        // ============================================
+                        // VALIDATION
+                        // ============================================
+
+                        validation =
+                            new { },
+
+                        // ============================================
+                        // JOURNAL
+                        // ============================================
+
+                        journalId =
+                            hasJournal
+                                ? journal!.Id
+                                : "0",
+
+                        journalIds,
+
+                        journals =
+                            journalResponse,
+
+
+                        // ============================================
+                        // IMPORTS
+                        // ============================================
+
+                        importIds =
+                            tb.ImportIds ??
+                            new List<string>(),
+
+
+                        // ============================================
+                        // TRIAL BALANCE ATTACHMENT
+                        // ============================================
+                        attachments = new
+                        {
+                            name = journal.Attachment.Name,
+                            path = journal.Attachment.Path
+                        },
+
+
+                        // attachments =
+                        //     string.IsNullOrWhiteSpace(
+                        //         tb.AttachmentFilePath)
+                        //             ? new List<object>()
+                        //             : new List<object>
+                        //             {
+                        //             new
+                        //             {
+                        //                 name =
+                        //                     Path.GetFileName(
+                        //                         tb.AttachmentFilePath),
+
+                        //                 path =
+                        //                     tb.AttachmentFilePath
+                        //             }
+                        //             },
+
+
+                        // ============================================
+                        // CSV
+                        // ============================================
+
+                        csvFilePath =
+                            tb.CsvFilePath,
+
+
+                        // ============================================
+                        // TRIAL BALANCE ID
+                        // ============================================
+
+                        id =
+                            tb.Id
+                    },
+
+                status = true
+            });
+    }
+
+
+
+    [HttpPut("{RefNo}/accounting-period")]
+    public async Task<IActionResult> ChangeAccountingPeriod(
+        string RefNo,
+        [FromBody] TrialBalance request)
+    {
+        // ============================================================
+        // FIND TRIAL BALANCE
+        // ============================================================
+
+        var trialBalance =
+            await _trialBalances
+                .Find(x => x.RefNo == RefNo)
+                .FirstOrDefaultAsync();
+
+        if (trialBalance == null)
+        {
+            return NotFound(new
+            {
+                status = false,
+                message = "Trial balance not found."
+            });
+        }
+
+
+        // ============================================================
+        // VALIDATE PERIOD DATES
+        // ============================================================
+
+        if (request.PeriodStart == default ||
+            request.PeriodEnd == default)
+        {
+            return BadRequest(new
+            {
+                status = false,
+                message = "Period start and period end are required."
+            });
+        }
+
+
+        if (request.PeriodStart > request.PeriodEnd)
+        {
+            return BadRequest(new
+            {
+                status = false,
+                message = "Period start date cannot be greater than period end date."
+            });
+        }
+
+
+        // ============================================================
+        // ACCOUNTING PERIOD
+        //
+        // If PeriodId is provided:
+        //     Find the AccountingPeriod.
+        //
+        // If PeriodId is not provided:
+        //     Update only PeriodStart / PeriodEnd.
+        // ============================================================
+
+        AccountingPeriod? accountingPeriod = null;
+
+        if (!string.IsNullOrWhiteSpace(request.PeriodId))
+        {
+            accountingPeriod =
+                await _accountingPeriods
+                    .Find(x => x.Id == request.PeriodId)
+                    .FirstOrDefaultAsync();
+
+            if (accountingPeriod == null)
+            {
+                return NotFound(new
+                {
+                    status = false,
+                    message = "Accounting period not found."
+                });
+            }
+        }
+
+
+        // ============================================================
+        // UPDATE TRIAL BALANCE
+        // ============================================================
+
+        var update =
+            Builders<TrialBalance>.Update
+                .Set(
+                    x => x.PeriodStart,
+                    request.PeriodStart)
+                .Set(
+                    x => x.PeriodEnd,
+                    request.PeriodEnd);
+
+
+        // ============================================================
+        // UPDATE PERIOD ID ONLY IF PROVIDED
+        // ============================================================
+
+        if (!string.IsNullOrWhiteSpace(request.PeriodId))
+        {
+            update =
+                update.Set(
+                    x => x.PeriodId,
+                    request.PeriodId);
+        }
+
+
+        // ============================================================
+        // SAVE
+        // ============================================================
+
+        await _trialBalances.UpdateOneAsync(
+            x => x.Id == trialBalance.Id,
+            update);
+
+
+        // ============================================================
+        // RETURN UPDATED DATA
+        // ============================================================
+
+        return Ok(new
+        {
+            status = true,
+
+            message = "Accounting period updated successfully.",
+
+            result = new
+            {
+                trialBalanceId =
+                    trialBalance.Id,
+
+                refNo =
+                    trialBalance.RefNo,
+
+                periodId =
+                    string.IsNullOrWhiteSpace(request.PeriodId)
+                        ? trialBalance.PeriodId
+                        : request.PeriodId,
+
+                periodStart =
+                    request.PeriodStart,
+
+                periodEnd =
+                    request.PeriodEnd
+            }
+        });
+    }
+
 }
+

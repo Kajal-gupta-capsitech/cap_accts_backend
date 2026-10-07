@@ -2,26 +2,29 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace BackendAcctTask.Models;
+[BsonIgnoreExtraElements]
 public class Import
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string Id { get; set; } = string.Empty;
 
-    // Example: IMP-01, IMP-02
+    // TB-38-I01
     public string Number { get; set; } = string.Empty;
 
-    // Reference to the Trial Balance
-    // Example: TB-38
     public TrialBalanceReference TrialBalance { get; set; } = new();
 
-    // CSV column configuration
+    public string? Description { get; set; } = string.Empty;
+
+    // Original uploaded file name
+    public string? FileName { get; set; } = string.Empty;
+
+    public ImportStatus Status { get; set; } = ImportStatus.Pending;
+
     public List<ImportColumn> Columns { get; set; } = new();
 
-    // Original CSV headers
     public List<string> Headers { get; set; } = new();
 
-    // Imported CSV rows
     public List<ImportRow> Rows { get; set; } = new();
 
     public ImportType ImportType { get; set; } = ImportType.Csv;
@@ -30,11 +33,18 @@ public class Import
 
     public DateTime PeriodEnd { get; set; }
 
-    public CsvImportType CsvImportType { get; set; } = CsvImportType.Default;
+    public CsvImportType CsvImportType { get; set; }
+        = CsvImportType.Default;
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
 
+
+public enum ImportStatus
+{
+    Pending = 0,
+    Imported = 1
+}
 
 public class ImportColumn
 {
@@ -68,3 +78,4 @@ public class TrialBalanceReference
 
     public string Name { get; set; } = string.Empty;
 }
+

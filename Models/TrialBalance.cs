@@ -72,34 +72,9 @@ public class TrialBalance
      [BsonRepresentation(BsonType.ObjectId)]
         public List<string> ImportIds { get; set; } = new();
 
-
-    // Actual Trial Balance accounts.
-    // public List<TrialBalanceItem> Items { get; set; } = new();
 }
 
 
-// ============================================================
-// TRIAL BALANCE ITEM
-// ============================================================
-
-// public class TrialBalanceItem
-// {
-//     // ChartAccount is resolved using this code.
-//     // We do NOT store ChartAccountId.
-//     public string AccountCode { get; set; } = string.Empty;
-
-//     // Stored from ChartAccount.Name.
-//     public string AccountName { get; set; } = string.Empty;
-
-//     public AccountNature Nature { get; set; }
-
-//     public decimal Debit { get; set; }
-
-//     public decimal Credit { get; set; }
-
-//     // Optional note from CSV/manual editing.
-//     public string Note { get; set; } = string.Empty;
-// }
 
 
 // ============================================================

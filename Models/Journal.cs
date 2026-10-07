@@ -13,18 +13,19 @@ public class Journal
     // TB-21-J01
     public string Number { get; set; } = string.Empty;
 
-
     public TrialBalanceReference TrialBalance { get; set; } = new();
+    public ImportsReference Imports { get; set; } = new();
 
-    // CSV import reference, if this journal came from an import.
-    // Not required for normal/manual journals.
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string? ImportId { get; set; }
+    // [BsonRepresentation(BsonType.ObjectId)]
 
+    // Normal / Adjusting
+    public JournalType JournalType { get; set; }
     public TrialBalanceType Type { get; set; }
 
-    public TrialBalanceStatus Status { get; set; }
+    // Drafted / Posted / Unposted
+    public JournalStatus JournalStatus { get; set; }
 
+    // Default / Manual
     public ImportType ImportType { get; set; }
 
     public DateTime PeriodStart { get; set; }
@@ -32,6 +33,10 @@ public class Journal
     public DateTime PeriodEnd { get; set; }
 
     public CsvImportType CsvImportType { get; set; }
+
+    public string? Description { get; set; } = string.Empty;
+
+    public bool IsActive { get; set; } = true;
 
     public List<JournalItem> Items { get; set; } = new();
 
@@ -41,12 +46,41 @@ public class Journal
 
     public decimal TotalCredit { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public TrialBalanceStatus Status { get; set; }
+
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public string? CreatedBy { get; set; }
+
+    public Attachment? Attachment { get; set; } 
 }
 
+
+public class Attachment
+{
+
+    public string Name { get; set; } = string.Empty;
+
+    public string Path { get; set; } = string.Empty;
+}
+
+
+
+public enum JournalType
+{
+    Normal = 0,
+    Adjusting = 1
+}
+
+
+public enum JournalStatus
+{
+    Drafted = 0,
+    Posted = 1,
+    Unposted = 2
+}
 public class JournalItem
+
 {
     // We use ChartAccount.Code as the reference.
     // We do NOT store ChartAccountId.
@@ -65,3 +99,12 @@ public class JournalItem
 
     public decimal Credit { get; set; }
 }
+
+public class ImportsReference
+{
+
+    public string Id { get; set; } = string.Empty;
+
+    public string Name { get; set; } = string.Empty;
+}
+
