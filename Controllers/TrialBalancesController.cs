@@ -4370,7 +4370,6 @@ public class TrialBalancesController : ControllerBase
     }
 
 
-
     [HttpGet("{RefNo}/journals/{journalId}")]
     public async Task<IActionResult> GetById(
         string RefNo,
@@ -4847,12 +4846,14 @@ description =
                         // ============================================
                         // TRIAL BALANCE ATTACHMENT
                         // ============================================
-                        attachments = new
-                        {
-                            name = journal.Attachment.Name,
-                            path = journal.Attachment.Path
-                        },
-
+                        attachments =
+    journal?.Attachment == null
+        ? null
+        : new
+        {
+            name = journal.Attachment.Name,
+            path = journal.Attachment.Path
+        },
 
                         // attachments =
                         //     string.IsNullOrWhiteSpace(
