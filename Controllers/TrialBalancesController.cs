@@ -3498,6 +3498,59 @@ public class TrialBalancesController : ControllerBase
             // Attachment
             // --------------------------------------------------------
 
+            // if (attachment != null &&
+            //     attachment.Length > 0)
+            // {
+            //     var uploadFolder =
+            //         Path.Combine(
+            //             _environment.WebRootPath ?? "wwwroot",
+            //             "uploads",
+            //             "journals");
+
+            //     if (!Directory.Exists(uploadFolder))
+            //     {
+            //         Directory.CreateDirectory(uploadFolder);
+            //     }
+
+
+            //     // Keep original extension
+            //     var extension =
+            //         Path.GetExtension(
+            //             attachment.FileName);
+
+
+            //     // Safe backend file name
+            //     var fileName =
+            //         $"{request.Number}_{Guid.NewGuid():N}{extension}";
+
+
+            //     var filePath =
+            //         Path.Combine(
+            //             uploadFolder,
+            //             fileName);
+
+
+            //     using (var stream =
+            //            new FileStream(
+            //                filePath,
+            //                FileMode.Create))
+            //     {
+            //         await attachment.CopyToAsync(stream);
+            //     }
+
+
+            //     request.Attachment.Name =
+            //         attachment.FileName;
+
+            //     request.Attachment.Path =
+            //         Path.Combine(
+            //             "uploads",
+            //             "journals",
+            //             fileName)
+            //         .Replace("\\", "/");
+            // }
+
+
             if (attachment != null &&
                 attachment.Length > 0)
             {
@@ -3512,24 +3565,20 @@ public class TrialBalancesController : ControllerBase
                     Directory.CreateDirectory(uploadFolder);
                 }
 
-
                 // Keep original extension
                 var extension =
-                    Path.GetExtension(
-                        attachment.FileName);
-
+                    Path.GetExtension(attachment.FileName);
 
                 // Safe backend file name
                 var fileName =
                     $"{request.Number}_{Guid.NewGuid():N}{extension}";
-
 
                 var filePath =
                     Path.Combine(
                         uploadFolder,
                         fileName);
 
-
+                // Save physical file
                 using (var stream =
                        new FileStream(
                            filePath,
@@ -3538,19 +3587,21 @@ public class TrialBalancesController : ControllerBase
                     await attachment.CopyToAsync(stream);
                 }
 
-
-                request.Attachment.Name =
-                    attachment.FileName;
-
-                request.Attachment.Path =
+                // Create Attachment object
+                // because request.Attachment is null
+                var relativePath =
                     Path.Combine(
                         "uploads",
                         "journals",
                         fileName)
                     .Replace("\\", "/");
+
+                request.Attachment = new Attachment
+                {
+                    Name = attachment.FileName,
+                    Path = relativePath
+                };
             }
-
-
             // --------------------------------------------------------
             // Insert Journal
             // --------------------------------------------------------

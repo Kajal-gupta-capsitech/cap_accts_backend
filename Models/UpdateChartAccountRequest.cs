@@ -12,3 +12,4 @@ public class UpdateChartAccountRequest
 
     public bool? Archive { get; set; }
 }
+

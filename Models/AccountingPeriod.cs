@@ -17,3 +17,8 @@ public class AccountingPeriod
 
     public bool IsClosed { get; set; } = false;
 }
+
+public class AccountingPeriodDB
+{
+    
+}
