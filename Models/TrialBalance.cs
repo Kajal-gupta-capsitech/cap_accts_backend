@@ -15,14 +15,9 @@ public class TrialBalance
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-    // AccountingPeriod reference.
-    // Used for Statutory Trial Balance.
-   
     [BsonRepresentation(BsonType.ObjectId)]
     public string? PeriodId { get; set; }
 
-    // Period dates used for both
-    // Statutory and Management.
     public DateTime PeriodStart { get; set; }
 
     public DateTime PeriodEnd { get; set; }

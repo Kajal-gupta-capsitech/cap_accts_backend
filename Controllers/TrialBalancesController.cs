@@ -2363,9 +2363,9 @@ public class TrialBalancesController : ControllerBase
     // /api/trial-balances/imports/{importId}
     // ============================================================
 
-    [HttpGet("imports/{importId}")]
+    [HttpGet("{RefNo}/imports/{importId}")]
     public async Task<IActionResult> GetImport(
-        string importId)
+        string RefNo, string importId)
     {
         // ============================================================
         // FIND IMPORT
