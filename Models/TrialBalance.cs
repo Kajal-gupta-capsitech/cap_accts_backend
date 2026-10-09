@@ -104,3 +104,21 @@ public enum AccountNature
     Debit = 1,
     Credit = 0
 }
+
+
+public class ImportJournalRequest
+{
+    public string? Description { get; set; }
+
+    public DateTime? PeriodStart { get; set; }
+
+    public DateTime? PeriodEnd { get; set; }
+
+    public List<string> Columns { get; set; } = new();
+
+    public List<List<string>> Rows { get; set; } = new();
+
+    public int CsvImportType { get; set; }
+
+    public int JournalType { get; set; }
+}

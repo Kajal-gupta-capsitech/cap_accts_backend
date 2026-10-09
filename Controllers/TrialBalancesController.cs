@@ -2177,6 +2177,800 @@ public class TrialBalancesController : ControllerBase
             status = true
         });
     }
+
+
+    // private static bool IsValidJournalItem(JournalItem item)
+    // {
+    //     if (string.IsNullOrWhiteSpace(item.AccountName))
+    //         return false;
+
+    //     bool hasAmount = item.Amount.HasValue;
+
+    //     bool hasDebitCredit =
+    //         item.Debit.HasValue &&
+    //         item.Credit.HasValue;
+
+    //     // Exactly one format must be provided:
+    //     // Amount OR Debit + Credit
+    //     if (hasAmount == hasDebitCredit)
+    //         return false;
+
+    //     return true;
+    // }
+
+    // [HttpPost("{RefNo}/imports/{importsId}")]
+    // public async Task<IActionResult> ImportDataToJournal(
+    //   string RefNo, string importsId,
+    //   [FromBody] ImportJournalRequest request)
+    // {
+    //     // ============================================================
+    //     // FIND TRIAL BALANCE USING REF NO
+    //     // ============================================================
+
+    //     var trialBalance =
+    //         await _trialBalances
+    //             .Find(x => x.RefNo == RefNo)
+    //             .FirstOrDefaultAsync();
+
+    //     if (trialBalance == null)
+    //     {
+    //         return NotFound(new
+    //         {
+    //             status = false,
+    //             message = "Trial balance not found."
+    //         });
+    //     }
+
+
+    //     var importsData =
+    //         await _imports
+    //             .Find(x => x.Id == importsId)
+    //             .FirstOrDefaultAsync();
+
+
+
+    //     if (importsData == null)
+    //     {
+    //         return NotFound(new
+    //         {
+    //             status = false,
+    //             message = "Imports Data not found."
+    //         });
+    //     }
+
+    //     // ============================================================
+    //     // VALIDATE IMPORT ROWS
+    //     // ============================================================
+    //     Console.WriteLine("imports data", importsData);
+    //     // if (
+    //     //     request.Rows == null ||
+    //     //     request.Rows.Count == 0
+    //     // )
+    //     // {
+    //     //     return BadRequest(new
+    //     //     {
+    //     //         status = false,
+    //     //         message = "Import must contain at least one row."
+    //     //     });
+    //     // }
+
+
+    //     // ============================================================
+    //     // GENERATE IMPORT NUMBER
+    //     //
+    //     // Example:
+    //     // TB-34-I01
+    //     // TB-34-I02
+    //     // ============================================================
+
+    //     // var importNumber =
+    //     //     await GenerateImportNumber(
+    //     //         trialBalance.Id,
+    //     //         trialBalance.RefNo
+    //     //     );
+
+
+    //     // ============================================================
+    //     // CREATE IMPORT
+    //     //
+    //     // IMPORTANT:
+    //     //
+    //     // Store the CSV data AS-IS.
+    //     //
+    //     // DO NOT:
+    //     // - validate Chart Accounts
+    //     // - resolve AccountCode
+    //     // - change AccountName
+    //     // - change Nature
+    //     // - create JournalItems
+    //     // ============================================================
+
+    //     // var import =
+    //     //     new Import
+    //     //     {
+    //     //         Id =
+    //     //             ObjectId.GenerateNewId()
+    //     //                 .ToString(),
+
+    //     //         Number =
+    //     //             importNumber,
+
+    //     //         TrialBalance =
+    //     //             new TrialBalanceReference
+    //     //             {
+    //     //                 Id = trialBalance.Id,
+    //     //                 Name = trialBalance.RefNo
+    //     //             },
+
+    //     //         Columns =
+    //     //             request.Columns ??
+    //     //             new List<ImportColumn>(),
+
+    //     //         Headers =
+    //     //             request.Headers ??
+    //     //             new List<string>(),
+
+    //     //         Rows =
+    //     //             request.Rows,
+
+    //     //         ImportType =
+    //     //             ImportType.Csv,
+
+    //     //         PeriodStart =
+    //     //             trialBalance.PeriodStart,
+
+    //     //         PeriodEnd =
+    //     //             trialBalance.PeriodEnd,
+
+    //     //         CsvImportType =
+    //     //             request.CsvImportType,
+
+    //     //         CreatedAt =
+    //     //             DateTime.UtcNow
+    //     //     };
+
+
+    //     // // ============================================================
+    //     // // SAVE IMPORT
+    //     // // ============================================================
+
+    //     // await _imports
+    //     //     .InsertOneAsync(import);
+
+    //     if (request.Rows == null || request.Rows.Count == 0)
+    //     {
+    //         return BadRequest(new
+    //         {
+    //             status = false,
+    //             message = "Import must contain at least one row."
+    //         });
+    //     }
+
+    //     var invalidRows = request.Rows
+    //         .Select((item, index) => new
+    //         {
+    //             Row = index + 1,
+    //             IsValid = IsValidJournalItem(item)
+    //         })
+    //         .Where(x => !x.IsValid)
+    //         .Select(x => x.Row)
+    //         .ToList();
+
+    //     if (invalidRows.Count > 0)
+    //     {
+    //         return BadRequest(new
+    //         {
+    //             status = false,
+    //             message = "Each row must have an account name and either Amount or both Debit and Credit.",
+    //             invalidRows
+    //         });
+    //     }
+
+    //     if (request.Description != null)
+    //     {
+    //         var update = Builders<TrialBalance>.Update
+    //             .Set(x => x.Description, request.Description);
+
+    //         await _trialBalances.UpdateOneAsync(
+    //             x => x.Id == trialBalance.Id,
+    //             update
+    //         );
+
+    //         trialBalance.Description = request.Description;
+    //     }
+    //     // ============================================================
+    //     // GENERATE JOURNAL NUMBER
+    //     // ============================================================
+
+    //     var journalNumber =
+    //         await GenerateJournalNumber(
+    //             trialBalance.Id,
+    //             trialBalance.RefNo
+    //         );
+
+
+    //     // ============================================================
+    //     // CREATE EMPTY JOURNAL
+    //     //
+    //     // IMPORTANT:
+    //     //
+    //     // Import creates the Journal DOCUMENT only.
+    //     //
+    //     // NO JournalItem records are created.
+    //     //
+    //     // The imported CSV may contain invalid / unknown
+    //     // Chart Account codes. That is allowed at this stage.
+    //     // ============================================================
+
+    //     var journal =
+    //         new Journal
+    //         {
+    //             Id =
+    //                 ObjectId.GenerateNewId()
+    //                     .ToString(),
+
+    //             Number =
+    //                 journalNumber,
+
+    //             TrialBalance =
+    //                 new TrialBalanceReference
+    //                 {
+    //                     Id = trialBalance.Id,
+    //                     Name = trialBalance.RefNo
+    //                 },
+
+    //             Imports = new ImportsReference
+    //             {
+    //                 Id = importsData.Id,
+    //                 Name = importsData.Number
+    //             },
+
+    //             Type =
+    //                 trialBalance.Type,
+
+    //             Status =
+    //                 TrialBalanceStatus.Unbalanced,
+
+    //             ImportType =
+    //                 ImportType.Csv,
+
+    //             CsvImportType =
+    //                 request.CsvImportType,
+
+    //             // IMPORTANT:
+    //             // No JournalItem records during import.
+    //             Items =
+    //                 new List<JournalItem>(),
+
+    //             ItemsCount = 0,
+
+    //             TotalDebit = 0,
+
+    //             TotalCredit = 0,
+
+    //             CreatedAt =
+    //                 DateTime.UtcNow
+    //         };
+
+
+    //     // ============================================================
+    //     // SAVE EMPTY JOURNAL
+    //     // ============================================================
+
+    //     await _journals
+    //         .InsertOneAsync(journal);
+
+
+    //     // ============================================================
+    //     // DO NOT ADD JOURNAL ID TO TRIAL BALANCE
+    //     //
+    //     // Import-created Journal is currently a staging/empty
+    //     // Journal. It should not become part of the Trial Balance
+    //     // journal aggregation until actual JournalItems are created.
+    //     // ============================================================
+
+    //     // ============================================================
+    //     // RESPONSE
+    //     // ============================================================
+
+    //     return Ok(new
+    //     {
+    //         executionTime = 0,
+
+    //         result = new
+    //         {
+    //             import = new
+    //             {
+    //                 name =
+    //                     importsData.Number,
+
+    //                 id =
+    //                     importsData.Id,
+
+    //                 rowsCount =
+    //                     importsData.Rows.Count
+    //             },
+
+    //             journal = new
+    //             {
+    //                 number =
+    //                     journal.Number,
+
+    //                 id =
+    //                     journal.Id,
+
+    //                 imports =
+    //                     journal.Imports,
+
+    //                 itemsCount =
+    //                     journal.ItemsCount,
+
+    //                 totalDebit =
+    //                     journal.TotalDebit,
+
+    //                 totalCredit =
+    //                     journal.TotalCredit,
+
+    //                 status =
+    //                     journal.Status
+    //             },
+
+    //             trialBalance = new
+    //             {
+    //                 name =
+    //                     trialBalance.RefNo,
+
+    //                 id =
+    //                     trialBalance.Id
+    //             },
+
+    //             number =
+    //                 importsData.Number,
+
+    //             type =
+    //                 trialBalance.Type,
+
+    //             importType =
+    //                 importsData.ImportType,
+
+    //             csvImportType =
+    //                 importsData.CsvImportType,
+
+    //             id =
+    //                 importsData.Id
+    //         },
+
+    //         status = true
+    //     });
+    // }
+
+
+[HttpPost("{RefNo}/imports/{importsId}")]
+public async Task<IActionResult> ImportDataToJournal(
+    string RefNo,
+    string importsId)
+{
+    var trialBalance = await _trialBalances
+        .Find(x => x.RefNo == RefNo)
+        .FirstOrDefaultAsync();
+
+    if (trialBalance == null)
+    {
+        return NotFound(new
+        {
+            status = false,
+            message = "Trial balance not found."
+        });
+    }
+
+    // Existing Import document read hoga; naya Import create nahi hoga.
+    var importsData = await _imports
+        .Find(x => x.Id == importsId)
+        .FirstOrDefaultAsync();
+
+    if (importsData == null)
+    {
+        return NotFound(new
+        {
+            status = false,
+            message = "Imports data not found."
+        });
+    }
+
+    if (importsData.Rows == null || importsData.Rows.Count == 0)
+    {
+        return BadRequest(new
+        {
+            status = false,
+            message = "Import does not contain any rows."
+        });
+    }
+
+    // ImportRow already contains parsed values.
+    // GetCell() aur column-index mapping ki zaroorat nahi.
+    var journalItems = importsData.Rows
+        .Where(row =>
+            row != null &&
+            (!string.IsNullOrWhiteSpace(row.Code) ||
+             !string.IsNullOrWhiteSpace(row.Name)))
+        .Select(row => new JournalItem
+        {
+            AccountCode = row.Code,
+            AccountName = row.Name,
+            Nature = row.Nature,
+            Note = row.Note,
+            Debit = row.Debit,
+            Credit = row.Credit,
+            Amount = row.Debit + row.Credit
+        })
+        .ToList();
+
+    var journalNumber = await GenerateJournalNumber(
+        trialBalance.Id,
+        trialBalance.RefNo);
+
+    var journal = new Journal
+    {
+        Id = ObjectId.GenerateNewId().ToString(),
+        Number = journalNumber,
+
+        TrialBalance = new TrialBalanceReference
+        {
+            Id = trialBalance.Id,
+            Name = trialBalance.RefNo
+        },
+
+        // Journal existing Import ID se linked rahega.
+        Imports = new ImportsReference
+        {
+            Id = importsData.Id,
+            Name = importsData.Number
+        },
+
+        JournalType = JournalType.Normal,
+        Type = trialBalance.Type,
+        JournalStatus = JournalStatus.Drafted,
+        Status = TrialBalanceStatus.Unbalanced,
+
+        ImportType = importsData.ImportType,
+        CsvImportType = importsData.CsvImportType,
+
+        PeriodStart = importsData.PeriodStart,
+        PeriodEnd = importsData.PeriodEnd,
+        Description = importsData.Description,
+
+        Items = journalItems,
+        ItemsCount = journalItems.Count,
+        TotalDebit = journalItems.Sum(item => item.Debit),
+        TotalCredit = journalItems.Sum(item => item.Credit),
+        CreatedAt = DateTime.UtcNow
+    };
+
+    // Import description Trial Balance mein bhi save karo.
+    trialBalance.Description = importsData.Description;
+    trialBalance.JournalId = journal.Id;
+
+    // Existing Journal IDs ko preserve karke naya ID append karo.
+    trialBalance.JournalIds ??= new List<string>();
+
+    if (!trialBalance.JournalIds.Contains(journal.Id))
+    {
+        trialBalance.JournalIds.Add(journal.Id);
+    }
+
+    await _trialBalances.ReplaceOneAsync(
+        x => x.Id == trialBalance.Id,
+        trialBalance);
+
+
+    // Sirf Journal insert hota hai.
+    await _journals.InsertOneAsync(journal);
+
+       // Journal successfully save hone ke baad existing Import ka status update karein.
+    var importStatusUpdate = await _imports.UpdateOneAsync(
+        x => x.Id == importsData.Id,
+        Builders<Import>.Update.Set(
+            x => x.Status,
+            ImportStatus.Imported));
+
+    if (importStatusUpdate.MatchedCount == 0)
+    {
+        return NotFound(new
+        {
+            status = false,
+            message = "Journal was created, but the import status could not be updated."
+        });
+    }
+
+
+    return Ok(new
+    {
+        status = true,
+        executionTime = 0,
+        result = new
+        {
+            journal = new
+            {
+                id = journal.Id,
+                number = journal.Number,
+                importsId = journal.Imports.Id,
+                description = journal.Description,
+                periodStart = journal.PeriodStart,
+                periodEnd = journal.PeriodEnd,
+                itemsCount = journal.ItemsCount,
+                totalDebit = journal.TotalDebit,
+                totalCredit = journal.TotalCredit,
+                status = journal.Status,
+                items = journal.Items
+            },
+            trialBalance = new
+            {
+                id = trialBalance.Id,
+                name = trialBalance.RefNo,
+                description = trialBalance.Description
+            }
+        }
+    });
+}
+
+
+
+// [HttpPost("{RefNo}/imports/{importsId}")]
+// public async Task<IActionResult> ImportDataToJournal(
+//     string RefNo,
+//     string importsId,
+//     [FromBody] Import request)
+// {
+//     if (request == null || request.Columns == null || request.Rows == null)
+//     {
+//         return BadRequest(new
+//         {
+//             status = false,
+//             message = "Columns and rows are required."
+//         });
+//     }
+
+//     var trialBalance = await _trialBalances
+//         .Find(x => x.RefNo == RefNo)
+//         .FirstOrDefaultAsync();
+
+//     if (trialBalance == null)
+//     {
+//         return NotFound(new
+//         {
+//             status = false,
+//             message = "Trial balance not found."
+//         });
+//     }
+
+//     // importsId se existing Import document read/link hoga.
+//     // Yahan Import collection mein koi naya document insert nahi hota.
+//     var importsData = await _imports
+//         .Find(x => x.Id == importsId)
+//         .FirstOrDefaultAsync();
+
+//     if (importsData == null)
+//     {
+//         return NotFound(new
+//         {
+//             status = false,
+//             message = "Imports data not found."
+//         });
+//     }
+
+//     int FindColumn(params string[] possibleNames)
+//     {
+//         for (var i = 0; i < request.Columns.Count; i++)
+//         {
+//             var columnName = request.Columns[i]?.Name?.Trim();
+
+//             if (possibleNames.Any(name =>
+//                     string.Equals(
+//                         name,
+//                         columnName,
+//                         StringComparison.OrdinalIgnoreCase)))
+//             {
+//                 return i;
+//             }
+//         }
+
+//         return -1;
+//     }
+
+//     string GetCell(IReadOnlyList<string> row, int columnIndex)
+//     {
+//         if (columnIndex < 0 || columnIndex >= row.Count)
+//             return string.Empty;
+
+//         return row[columnIndex]?.Trim() ?? string.Empty;
+//     }
+
+//     decimal ParseAmount(string value, int rowNumber, string columnName)
+//     {
+//         if (string.IsNullOrWhiteSpace(value))
+//             return 0m;
+
+//         if (decimal.TryParse(
+//                 value,
+//                 NumberStyles.Number | NumberStyles.AllowCurrencySymbol,
+//                 CultureInfo.InvariantCulture,
+//                 out var amount))
+//         {
+//             return amount;
+//         }
+
+//         throw new FormatException(
+//             $"Invalid {columnName} value '{value}' in row {rowNumber}.");
+//     }
+
+//     var accountCodeColumn = FindColumn("Account Code", "AccountCode", "Code");
+//     var accountNameColumn = FindColumn("Account Name", "AccountName", "Name");
+//     var debitColumn = FindColumn("Debit");
+//     var creditColumn = FindColumn("Credit");
+//     var noteColumn = FindColumn("Note", "Description");
+
+//     if (accountCodeColumn < 0 || accountNameColumn < 0)
+//     {
+//         return BadRequest(new
+//         {
+//             status = false,
+//             message = "Columns must include Account Code and Account Name."
+//         });
+//     }
+
+//     if (debitColumn < 0 && creditColumn < 0)
+//     {
+//         return BadRequest(new
+//         {
+//             status = false,
+//             message = "Columns must include Debit, Credit, or both."
+//         });
+//     }
+
+//     var journalItems = new List<JournalItem>();
+
+//     try
+//     {
+//         for (var i = 0; i < request.Rows.Count; i++)
+//         {
+//             var row = request.Rows[i];
+
+//             if (row == null)
+//                 continue;
+
+//             var accountCode = GetCell(row, accountCodeColumn);
+//             var accountName = GetCell(row, accountNameColumn);
+
+//             // Completely blank rows ko skip karo.
+//             if (string.IsNullOrWhiteSpace(accountCode) &&
+//                 string.IsNullOrWhiteSpace(accountName))
+//             {
+//                 continue;
+//             }
+
+//             var debit = ParseAmount(
+//                 GetCell(row, debitColumn),
+//                 i + 1,
+//                 "Debit");
+
+//             var credit = ParseAmount(
+//                 GetCell(row, creditColumn),
+//                 i + 1,
+//                 "Credit");
+
+//             journalItems.Add(new JournalItem
+//             {
+//                 AccountCode = accountCode,
+//                 AccountName = accountName,
+//                 Note = GetCell(row, noteColumn),
+
+//                 // Dono values apne debit/credit fields mein rakhe jaate hain.
+//                 Debit = debit,
+//                 Credit = credit,
+
+//                 // Amount ko row ke total debit/credit amount ke roop mein rakha hai.
+//                 Amount = debit + credit,
+
+//                 // Agar Chart Account se Nature resolve karna hai,
+//                 // yahan accountCode ke basis par lookup karke set karein.
+//                 Nature = default
+//             });
+//         }
+//     }
+//     catch (FormatException ex)
+//     {
+//         return BadRequest(new
+//         {
+//             status = false,
+//             message = ex.Message
+//         });
+//     }
+
+//     var journalNumber = await GenerateJournalNumber(
+//         trialBalance.Id,
+//         trialBalance.RefNo);
+
+//     var totalDebit = journalItems.Sum(x => x.Debit);
+//     var totalCredit = journalItems.Sum(x => x.Credit);
+
+//     var journal = new Journal
+//     {
+//         Id = ObjectId.GenerateNewId().ToString(),
+//         Number = journalNumber,
+
+//         TrialBalance = new TrialBalanceReference
+//         {
+//             Id = trialBalance.Id,
+//             Name = trialBalance.RefNo
+//         },
+
+//         Imports = new ImportsReference
+//         {
+//             Id = importsData.Id,
+//             Name = importsData.Number
+//         },
+
+//         JournalType = JournalType.Normal,
+//         Type = trialBalance.Type,
+//         JournalStatus = JournalStatus.Drafted,
+//         Status = TrialBalanceStatus.Unbalanced,
+
+//         ImportType = importsData.ImportType,
+//         CsvImportType = request.CsvImportType,
+
+//         PeriodStart = request.PeriodStart,
+//         PeriodEnd = request.PeriodEnd,
+//         Description = request.Description,
+
+//         Items = journalItems,
+//         ItemsCount = journalItems.Count,
+//         TotalDebit = totalDebit,
+//         TotalCredit = totalCredit,
+//         CreatedAt = DateTime.UtcNow
+//     };
+
+//     // Description Trial Balance mein bhi save/update karo.
+//     // Is line ke liye TrialBalance model mein Description property honi chahiye.
+//     trialBalance.Description = request.Description;
+
+//     await _trialBalances.ReplaceOneAsync(
+//         x => x.Id == trialBalance.Id,
+//         trialBalance);
+
+//     // Sirf Journal insert hota hai; Import insert nahi hota.
+//     await _journals.InsertOneAsync(journal);
+
+//     return Ok(new
+//     {
+//         status = true,
+//         executionTime = 0,
+//         result = new
+//         {
+//             journal = new
+//             {
+//                 id = journal.Id,
+//                 number = journal.Number,
+//                 importsId = journal.Imports.Id,
+//                 description = journal.Description,
+//                 periodStart = journal.PeriodStart,
+//                 periodEnd = journal.PeriodEnd,
+//                 itemsCount = journal.ItemsCount,
+//                 totalDebit = journal.TotalDebit,
+//                 totalCredit = journal.TotalCredit,
+//                 status = journal.Status,
+//                 items = journal.Items
+//             },
+//             trialBalance = new
+//             {
+//                 id = trialBalance.Id,
+//                 name = trialBalance.RefNo,
+//                 description = trialBalance.Description
+//             }
+//         }
+//     });
+// }
+ 
+ 
     // ============================================================
     // GET IMPORTS BY TRIAL BALANCE
     //
@@ -2533,12 +3327,14 @@ public class TrialBalancesController : ControllerBase
     // ============================================================
 
 
+
     [HttpPut("imports/{importId}")]
     public async Task<IActionResult> UpdateImport(
         string importId,
         [FromBody] Import request)
     {
         var existing =
+
             await _imports
                 .Find(x =>
                     x.Id == importId

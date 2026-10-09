@@ -43,30 +43,45 @@ public class ChartAccountService
             .Find(_ => true)
             .ToListAsync();
 
-        var result = new List<ChartAccountResponse>();
-
-        foreach (var chartAccount in chartAccounts)
+        if (chartAccounts.Count == 0)
         {
-            var accountType = await _accountTypes
-                .Find(x => x.Id == chartAccount.AccountTypeId)
-                .FirstOrDefaultAsync();
+            return new List<ChartAccountResponse>();
+        }
 
-            result.Add(new ChartAccountResponse
+        // Fetch all referenced AccountTypes in one MongoDB query instead of
+        // making one sequential query per ChartAccount.
+        var accountTypeIds = chartAccounts
+            .Select(x => x.AccountTypeId)
+            .Where(id => !string.IsNullOrWhiteSpace(id))
+            .Distinct()
+            .ToList();
+
+        var accountTypes = accountTypeIds.Count == 0
+            ? new List<AccountType>()
+            : await _accountTypes
+                .Find(Builders<AccountType>.Filter.In(x => x.Id, accountTypeIds))
+                .ToListAsync();
+
+        var accountTypesById = accountTypes
+            .ToDictionary(x => x.Id, StringComparer.Ordinal);
+
+        return chartAccounts
+            .Select(chartAccount => new ChartAccountResponse
             {
                 Id = chartAccount.Id,
                 Code = chartAccount.Code,
                 AccountName = chartAccount.AccountName,
-
                 AccountTypeId = chartAccount.AccountTypeId,
-                AccountType = accountType,
-
+                AccountType = accountTypesById.TryGetValue(
+                    chartAccount.AccountTypeId,
+                    out var accountType)
+                        ? accountType
+                        : null,
                 AccountGroup = chartAccount.AccountGroup,
                 ForClients = chartAccount.ForClients,
                 Archive = chartAccount.Archive
-            });
-        }
-
-        return result;
+            })
+            .ToList();
     }
 
     // GET BY ID
