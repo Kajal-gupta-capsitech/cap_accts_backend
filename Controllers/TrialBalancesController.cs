@@ -4999,52 +4999,19 @@ public async Task<IActionResult> ImportDataToJournal(
             journal!.Items != null &&
             journal.Items.Count > 0)
         {
-            var allAccounts = await _chartAccounts.Find(_ => true).ToListAsync();
-            var accountMapByCode = allAccounts
-                .Where(x => !string.IsNullOrWhiteSpace(x.Code))
-                .GroupBy(x => x.Code.Trim(), StringComparer.OrdinalIgnoreCase)
-                .ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase);
-
-            var accountMapByName = allAccounts
-                .Where(x => !string.IsNullOrWhiteSpace(x.AccountName))
-                .GroupBy(x => x.AccountName.Trim(), StringComparer.OrdinalIgnoreCase)
-                .ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase);
-
             foreach (var journalItem in journal.Items)
             {
-                ChartAccount? account = null;
-                if (!string.IsNullOrWhiteSpace(journalItem.AccountCode) &&
-                    accountMapByCode.TryGetValue(journalItem.AccountCode.Trim(), out var accByCode))
-                {
-                    account = accByCode;
-                }
-                else if (!string.IsNullOrWhiteSpace(journalItem.AccountName) &&
-                    accountMapByName.TryGetValue(journalItem.AccountName.Trim(), out var accByName))
-                {
-                    account = accByName;
-                }
-
-                var accountData =
-                    account == null
-                        ? new
-                        {
-                            id = string.Empty,
-                            name = journalItem.AccountName,
-                            code = journalItem.AccountCode
-                        }
-                        : new
-                        {
-                            id = account.Id,
-                            name = account.AccountName,
-                            code = account.Code
-                        };
-
                 items.Add(
                     new
                     {
                         journalId = journal.Id,
                         journalNumber = journal.Number,
-                        account = accountData,
+                        account = new
+                        {
+                            id = string.Empty,
+                            name = journalItem.AccountName,
+                            code = journalItem.AccountCode
+                        },
                         note = journalItem.Note,
                         amount =
                             journalItem.Credit > 0
