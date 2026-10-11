@@ -1030,10 +1030,10 @@ public class TrialBalancesController : ControllerBase
         // FIND TRIAL BALANCE
         // ============================================================
 
-        var tb =
-            await _trialBalances
-                .Find(x => x.RefNo == RefNo)
-                .FirstOrDefaultAsync();
+        var isObjectId = ObjectId.TryParse(RefNo, out _);
+        var tb = isObjectId
+            ? await _trialBalances.Find(x => x.Id == RefNo || x.RefNo == RefNo).FirstOrDefaultAsync()
+            : await _trialBalances.Find(x => x.RefNo == RefNo).FirstOrDefaultAsync();
 
         if (tb == null)
         {
@@ -1120,70 +1120,68 @@ public class TrialBalancesController : ControllerBase
         var items =
             new List<object>();
 
-
-        foreach (var journal in journals)
+        if (journals.Count > 0)
         {
-            if (journal.Items == null ||
-                journal.Items.Count == 0)
+            var allAccounts = await _chartAccounts.Find(_ => true).ToListAsync();
+            var accountMapByCode = allAccounts
+                .Where(x => !string.IsNullOrWhiteSpace(x.Code))
+                .GroupBy(x => x.Code.Trim(), StringComparer.OrdinalIgnoreCase)
+                .ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase);
+
+            var accountMapByName = allAccounts
+                .Where(x => !string.IsNullOrWhiteSpace(x.AccountName))
+                .GroupBy(x => x.AccountName.Trim(), StringComparer.OrdinalIgnoreCase)
+                .ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase);
+
+            foreach (var journal in journals)
             {
-                continue;
-            }
+                if (journal.Items == null ||
+                    journal.Items.Count == 0)
+                {
+                    continue;
+                }
 
-
-            foreach (var journalItem in journal.Items)
-            {
-                var account =
-                    await _chartAccounts
-                        .Find(x =>
-                            x.Code ==
-                            journalItem.AccountCode)
-                        .FirstOrDefaultAsync();
-
-
-                items.Add(
-                    new
+                foreach (var journalItem in journal.Items)
+                {
+                    ChartAccount? account = null;
+                    if (!string.IsNullOrWhiteSpace(journalItem.AccountCode) &&
+                        accountMapByCode.TryGetValue(journalItem.AccountCode.Trim(), out var accByCode))
                     {
-                        account =
-                            account == null
-                                ? new
-                                {
-                                    id = string.Empty,
+                        account = accByCode;
+                    }
+                    else if (!string.IsNullOrWhiteSpace(journalItem.AccountName) &&
+                        accountMapByName.TryGetValue(journalItem.AccountName.Trim(), out var accByName))
+                    {
+                        account = accByName;
+                    }
 
-                                    name =
-                                        journalItem.AccountName,
-
-                                    code =
-                                        journalItem.AccountCode
-                                }
-                                : new
-                                {
-                                    id =
-                                        account.Id,
-
-                                    name =
-                                        account.AccountName,
-
-                                    code =
-                                        account.Code
-                                },
-
-                        note =
-                            journalItem.Note,
-
-                        amount =
-                            journalItem.Credit > 0
-                                ? -journalItem.Credit
-                                : journalItem.Debit,
-
-                        debit =
-                            journalItem.Debit,
-
-                        credit =
-                            journalItem.Credit,
-
-                        type =
-                            journalItem.Nature
-                    });
+                    items.Add(
+                        new
+                        {
+                            account =
+                                account == null
+                                    ? new
+                                    {
+                                        id = string.Empty,
+                                        name = journalItem.AccountName,
+                                        code = journalItem.AccountCode
+                                    }
+                                    : new
+                                    {
+                                        id = account.Id,
+                                        name = account.AccountName,
+                                        code = account.Code
+                                    },
+                            note = journalItem.Note,
+                            amount =
+                                journalItem.Credit > 0
+                                    ? -journalItem.Credit
+                                    : journalItem.Debit,
+                            debit = journalItem.Debit,
+                            credit = journalItem.Credit,
+                            type = journalItem.Nature
+                        });
+                }
             }
         }
 
@@ -2094,15 +2092,7 @@ public class TrialBalancesController : ControllerBase
             .InsertOneAsync(journal);
 
 
-        // ============================================================
-        // DO NOT ADD JOURNAL ID TO TRIAL BALANCE
-        //
-        // Import-created Journal is currently a staging/empty
-        // Journal. It should not become part of the Trial Balance
-        // journal aggregation until actual JournalItems are created.
-        // ============================================================
-
-
+       
         // ============================================================
         // RESPONSE
         // ============================================================
@@ -2177,372 +2167,6 @@ public class TrialBalancesController : ControllerBase
             status = true
         });
     }
-
-
-    // private static bool IsValidJournalItem(JournalItem item)
-    // {
-    //     if (string.IsNullOrWhiteSpace(item.AccountName))
-    //         return false;
-
-    //     bool hasAmount = item.Amount.HasValue;
-
-    //     bool hasDebitCredit =
-    //         item.Debit.HasValue &&
-    //         item.Credit.HasValue;
-
-    //     // Exactly one format must be provided:
-    //     // Amount OR Debit + Credit
-    //     if (hasAmount == hasDebitCredit)
-    //         return false;
-
-    //     return true;
-    // }
-
-    // [HttpPost("{RefNo}/imports/{importsId}")]
-    // public async Task<IActionResult> ImportDataToJournal(
-    //   string RefNo, string importsId,
-    //   [FromBody] ImportJournalRequest request)
-    // {
-    //     // ============================================================
-    //     // FIND TRIAL BALANCE USING REF NO
-    //     // ============================================================
-
-    //     var trialBalance =
-    //         await _trialBalances
-    //             .Find(x => x.RefNo == RefNo)
-    //             .FirstOrDefaultAsync();
-
-    //     if (trialBalance == null)
-    //     {
-    //         return NotFound(new
-    //         {
-    //             status = false,
-    //             message = "Trial balance not found."
-    //         });
-    //     }
-
-
-    //     var importsData =
-    //         await _imports
-    //             .Find(x => x.Id == importsId)
-    //             .FirstOrDefaultAsync();
-
-
-
-    //     if (importsData == null)
-    //     {
-    //         return NotFound(new
-    //         {
-    //             status = false,
-    //             message = "Imports Data not found."
-    //         });
-    //     }
-
-    //     // ============================================================
-    //     // VALIDATE IMPORT ROWS
-    //     // ============================================================
-    //     Console.WriteLine("imports data", importsData);
-    //     // if (
-    //     //     request.Rows == null ||
-    //     //     request.Rows.Count == 0
-    //     // )
-    //     // {
-    //     //     return BadRequest(new
-    //     //     {
-    //     //         status = false,
-    //     //         message = "Import must contain at least one row."
-    //     //     });
-    //     // }
-
-
-    //     // ============================================================
-    //     // GENERATE IMPORT NUMBER
-    //     //
-    //     // Example:
-    //     // TB-34-I01
-    //     // TB-34-I02
-    //     // ============================================================
-
-    //     // var importNumber =
-    //     //     await GenerateImportNumber(
-    //     //         trialBalance.Id,
-    //     //         trialBalance.RefNo
-    //     //     );
-
-
-    //     // ============================================================
-    //     // CREATE IMPORT
-    //     //
-    //     // IMPORTANT:
-    //     //
-    //     // Store the CSV data AS-IS.
-    //     //
-    //     // DO NOT:
-    //     // - validate Chart Accounts
-    //     // - resolve AccountCode
-    //     // - change AccountName
-    //     // - change Nature
-    //     // - create JournalItems
-    //     // ============================================================
-
-    //     // var import =
-    //     //     new Import
-    //     //     {
-    //     //         Id =
-    //     //             ObjectId.GenerateNewId()
-    //     //                 .ToString(),
-
-    //     //         Number =
-    //     //             importNumber,
-
-    //     //         TrialBalance =
-    //     //             new TrialBalanceReference
-    //     //             {
-    //     //                 Id = trialBalance.Id,
-    //     //                 Name = trialBalance.RefNo
-    //     //             },
-
-    //     //         Columns =
-    //     //             request.Columns ??
-    //     //             new List<ImportColumn>(),
-
-    //     //         Headers =
-    //     //             request.Headers ??
-    //     //             new List<string>(),
-
-    //     //         Rows =
-    //     //             request.Rows,
-
-    //     //         ImportType =
-    //     //             ImportType.Csv,
-
-    //     //         PeriodStart =
-    //     //             trialBalance.PeriodStart,
-
-    //     //         PeriodEnd =
-    //     //             trialBalance.PeriodEnd,
-
-    //     //         CsvImportType =
-    //     //             request.CsvImportType,
-
-    //     //         CreatedAt =
-    //     //             DateTime.UtcNow
-    //     //     };
-
-
-    //     // // ============================================================
-    //     // // SAVE IMPORT
-    //     // // ============================================================
-
-    //     // await _imports
-    //     //     .InsertOneAsync(import);
-
-    //     if (request.Rows == null || request.Rows.Count == 0)
-    //     {
-    //         return BadRequest(new
-    //         {
-    //             status = false,
-    //             message = "Import must contain at least one row."
-    //         });
-    //     }
-
-    //     var invalidRows = request.Rows
-    //         .Select((item, index) => new
-    //         {
-    //             Row = index + 1,
-    //             IsValid = IsValidJournalItem(item)
-    //         })
-    //         .Where(x => !x.IsValid)
-    //         .Select(x => x.Row)
-    //         .ToList();
-
-    //     if (invalidRows.Count > 0)
-    //     {
-    //         return BadRequest(new
-    //         {
-    //             status = false,
-    //             message = "Each row must have an account name and either Amount or both Debit and Credit.",
-    //             invalidRows
-    //         });
-    //     }
-
-    //     if (request.Description != null)
-    //     {
-    //         var update = Builders<TrialBalance>.Update
-    //             .Set(x => x.Description, request.Description);
-
-    //         await _trialBalances.UpdateOneAsync(
-    //             x => x.Id == trialBalance.Id,
-    //             update
-    //         );
-
-    //         trialBalance.Description = request.Description;
-    //     }
-    //     // ============================================================
-    //     // GENERATE JOURNAL NUMBER
-    //     // ============================================================
-
-    //     var journalNumber =
-    //         await GenerateJournalNumber(
-    //             trialBalance.Id,
-    //             trialBalance.RefNo
-    //         );
-
-
-    //     // ============================================================
-    //     // CREATE EMPTY JOURNAL
-    //     //
-    //     // IMPORTANT:
-    //     //
-    //     // Import creates the Journal DOCUMENT only.
-    //     //
-    //     // NO JournalItem records are created.
-    //     //
-    //     // The imported CSV may contain invalid / unknown
-    //     // Chart Account codes. That is allowed at this stage.
-    //     // ============================================================
-
-    //     var journal =
-    //         new Journal
-    //         {
-    //             Id =
-    //                 ObjectId.GenerateNewId()
-    //                     .ToString(),
-
-    //             Number =
-    //                 journalNumber,
-
-    //             TrialBalance =
-    //                 new TrialBalanceReference
-    //                 {
-    //                     Id = trialBalance.Id,
-    //                     Name = trialBalance.RefNo
-    //                 },
-
-    //             Imports = new ImportsReference
-    //             {
-    //                 Id = importsData.Id,
-    //                 Name = importsData.Number
-    //             },
-
-    //             Type =
-    //                 trialBalance.Type,
-
-    //             Status =
-    //                 TrialBalanceStatus.Unbalanced,
-
-    //             ImportType =
-    //                 ImportType.Csv,
-
-    //             CsvImportType =
-    //                 request.CsvImportType,
-
-    //             // IMPORTANT:
-    //             // No JournalItem records during import.
-    //             Items =
-    //                 new List<JournalItem>(),
-
-    //             ItemsCount = 0,
-
-    //             TotalDebit = 0,
-
-    //             TotalCredit = 0,
-
-    //             CreatedAt =
-    //                 DateTime.UtcNow
-    //         };
-
-
-    //     // ============================================================
-    //     // SAVE EMPTY JOURNAL
-    //     // ============================================================
-
-    //     await _journals
-    //         .InsertOneAsync(journal);
-
-
-    //     // ============================================================
-    //     // DO NOT ADD JOURNAL ID TO TRIAL BALANCE
-    //     //
-    //     // Import-created Journal is currently a staging/empty
-    //     // Journal. It should not become part of the Trial Balance
-    //     // journal aggregation until actual JournalItems are created.
-    //     // ============================================================
-
-    //     // ============================================================
-    //     // RESPONSE
-    //     // ============================================================
-
-    //     return Ok(new
-    //     {
-    //         executionTime = 0,
-
-    //         result = new
-    //         {
-    //             import = new
-    //             {
-    //                 name =
-    //                     importsData.Number,
-
-    //                 id =
-    //                     importsData.Id,
-
-    //                 rowsCount =
-    //                     importsData.Rows.Count
-    //             },
-
-    //             journal = new
-    //             {
-    //                 number =
-    //                     journal.Number,
-
-    //                 id =
-    //                     journal.Id,
-
-    //                 imports =
-    //                     journal.Imports,
-
-    //                 itemsCount =
-    //                     journal.ItemsCount,
-
-    //                 totalDebit =
-    //                     journal.TotalDebit,
-
-    //                 totalCredit =
-    //                     journal.TotalCredit,
-
-    //                 status =
-    //                     journal.Status
-    //             },
-
-    //             trialBalance = new
-    //             {
-    //                 name =
-    //                     trialBalance.RefNo,
-
-    //                 id =
-    //                     trialBalance.Id
-    //             },
-
-    //             number =
-    //                 importsData.Number,
-
-    //             type =
-    //                 trialBalance.Type,
-
-    //             importType =
-    //                 importsData.ImportType,
-
-    //             csvImportType =
-    //                 importsData.CsvImportType,
-
-    //             id =
-    //                 importsData.Id
-    //         },
-
-    //         status = true
-    //     });
-    // }
 
 
 [HttpPost("{RefNo}/imports/{importsId}")]
@@ -3530,7 +3154,9 @@ public async Task<IActionResult> ImportDataToJournal(
                 ? new List<Import>()
                 : await _imports
                     .Find(x =>
-                        importIds.Contains(x.Id))
+                        importIds.Contains(x.Id) &&
+                         x.Status == ImportStatus.Pending
+                        )
                     .SortBy(x => x.CreatedAt)
                     .ToListAsync();
 
@@ -5226,10 +4852,10 @@ public async Task<IActionResult> ImportDataToJournal(
         // FIND TRIAL BALANCE
         // ============================================================
 
-        var tb =
-            await _trialBalances
-                .Find(x => x.RefNo == RefNo)
-                .FirstOrDefaultAsync();
+        var isObjectId = ObjectId.TryParse(RefNo, out _);
+        var tb = isObjectId
+            ? await _trialBalances.Find(x => x.Id == RefNo || x.RefNo == RefNo).FirstOrDefaultAsync()
+            : await _trialBalances.Find(x => x.RefNo == RefNo).FirstOrDefaultAsync();
 
         if (tb == null)
         {
@@ -5315,7 +4941,7 @@ public async Task<IActionResult> ImportDataToJournal(
                     .Find(x =>
                         x.Id == journalId &&
                         x.TrialBalance != null &&
-                        x.TrialBalance.Id == tb.Id)
+                        (x.TrialBalance.Id == tb.Id || x.TrialBalance.Name == tb.RefNo))
                     .FirstOrDefaultAsync();
 
 
@@ -5374,81 +5000,60 @@ public async Task<IActionResult> ImportDataToJournal(
             journal!.Items != null &&
             journal.Items.Count > 0)
         {
+            var allAccounts = await _chartAccounts.Find(_ => true).ToListAsync();
+            var accountMapByCode = allAccounts
+                .Where(x => !string.IsNullOrWhiteSpace(x.Code))
+                .GroupBy(x => x.Code.Trim(), StringComparer.OrdinalIgnoreCase)
+                .ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase);
+
+            var accountMapByName = allAccounts
+                .Where(x => !string.IsNullOrWhiteSpace(x.AccountName))
+                .GroupBy(x => x.AccountName.Trim(), StringComparer.OrdinalIgnoreCase)
+                .ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase);
+
             foreach (var journalItem in journal.Items)
             {
-                // ====================================================
-                // FIND CHART ACCOUNT
-                // ====================================================
-
-                var account =
-                    await _chartAccounts
-                        .Find(x =>
-                            x.Code ==
-                            journalItem.AccountCode)
-                        .FirstOrDefaultAsync();
-
-
-                // ====================================================
-                // ACCOUNT INFORMATION
-                // ====================================================
+                ChartAccount? account = null;
+                if (!string.IsNullOrWhiteSpace(journalItem.AccountCode) &&
+                    accountMapByCode.TryGetValue(journalItem.AccountCode.Trim(), out var accByCode))
+                {
+                    account = accByCode;
+                }
+                else if (!string.IsNullOrWhiteSpace(journalItem.AccountName) &&
+                    accountMapByName.TryGetValue(journalItem.AccountName.Trim(), out var accByName))
+                {
+                    account = accByName;
+                }
 
                 var accountData =
                     account == null
                         ? new
                         {
                             id = string.Empty,
-
-                            name =
-                                journalItem.AccountName,
-
-                            code =
-                                journalItem.AccountCode
+                            name = journalItem.AccountName,
+                            code = journalItem.AccountCode
                         }
                         : new
                         {
-                            id =
-                                account.Id,
-
-                            name =
-                                account.AccountName,
-
-                            code =
-                                account.Code
+                            id = account.Id,
+                            name = account.AccountName,
+                            code = account.Code
                         };
-
-
-                // ====================================================
-                // ADD JOURNAL ITEM
-                // ====================================================
 
                 items.Add(
                     new
                     {
-                        journalId =
-                            journal.Id,
-
-                        journalNumber =
-                            journal.Number,
-
-                        account =
-                            accountData,
-
-                        note =
-                            journalItem.Note,
-
+                        journalId = journal.Id,
+                        journalNumber = journal.Number,
+                        account = accountData,
+                        note = journalItem.Note,
                         amount =
                             journalItem.Credit > 0
                                 ? -journalItem.Credit
                                 : journalItem.Debit,
-
-                        debit =
-                            journalItem.Debit,
-
-                        credit =
-                            journalItem.Credit,
-
-                        type =
-                            journalItem.Nature
+                        debit = journalItem.Debit,
+                        credit = journalItem.Credit,
+                        type = journalItem.Nature
                     });
             }
         }

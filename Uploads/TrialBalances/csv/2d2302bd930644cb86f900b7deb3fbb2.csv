@@ -1,0 +1,114 @@
+code,accountName,accountTypeId,accountGroup,forClients,archive
+1/1,Sales,6ac74b0c8a535441189cb628,Turnover,False,False
+1/2,Contracts,6ac74b0c8a535441189cb628,Turnover,False,False
+1/3,Contracts with customers,6ac74b0c8a535441189cb628,Turnover,True,False
+1/4,Domestic sales,6ac74b0c8a535441189cb628,Turnover,False,False
+1/5,Export sales,6ac74b0c8a535441189cb628,Turnover,False,False
+1/6,EU sales,6ac74b0c8a535441189cb628,Turnover,False,False
+1/7,EU services,6ac74b0c8a535441189cb628,Turnover,False,False
+1/8,Rental income,6ac74b0c8a535441189cb628,Turnover,False,False
+1/9,VAT flat rate adjustment,6ac74b0c8a535441189cb628,Turnover,False,False
+1/11,new cash transaction,6ac74b0c8a535441189cb628,Turnover,False,False
+1/12,rtyrtyrty,6ac74b0c8a535441189cb628,Turnover,False,False
+1/14,Sales extra,6ac74b0c8a535441189cb628,Turnover,False,True
+1/15,asda,6ac74b0c8a535441189cb628,Turnover,False,False
+2/1,Opening stock,6ac74b0c8a535441189cb629,Cost of sales,False,False
+2/2,Opening stock - raw materials,6ac74b0c8a535441189cb629,Cost of sales,False,False
+2/3,Opening stock - work in progress,6ac74b0c8a535441189cb629,Cost of sales,False,False
+2/4,Opening stock - finished goods,6ac74b0c8a535441189cb629,Cost of sales,False,False
+2/5,Opening stock - merchandise,6ac74b0c8a535441189cb629,Cost of sales,False,False
+2/6,Opening stock - production supplies,6ac74b0c8a535441189cb629,Cost of sales,False,False
+2/7,Opening stock - other inventories,6ac74b0c8a535441189cb629,Cost of sales,False,False
+2/8,mohit,6ac74b0c8a535441189cb629,Cost of sales,False,False
+2/11,Test - ACC -Code present or not,6ac74b0c8a535441189cb629,Cost of sales,False,False
+3/1,Purchases,6ac74b0c8a535441189cb629,Cost of sales,False,False
+3/2,Own work capitalised,6ac74b0c8a535441189cb629,Cost of sales,False,False
+3/3,EU purchases,6ac74b0c8a535441189cb629,Cost of sales,False,False
+3/4,EU services,6ac74b0c8a535441189cb629,Cost of sales,False,False
+3/5,cash,6ac74b0c8a535441189cb629,Cost of sales,False,False
+3/6,Purchases - Archieve,6ac74b0c8a535441189cb629,Cost of sales,False,True
+4/1,Closing stock,6ac74b0c8a535441189cb62a,Cost of sales,False,False
+4/2,Closing stock - raw materials,6ac74b0c8a535441189cb62a,Cost of sales,False,False
+4/3,Closing stock - work in progress,6ac74b0c8a535441189cb62a,Cost of sales,False,False
+4/4,Closing stock - finished goods,6ac74b0c8a535441189cb62a,Cost of sales,False,False
+4/5,Closing stock - merchandise,6ac74b0c8a535441189cb62a,Cost of sales,False,False
+4/6,Closing stock - production supplies,6ac74b0c8a535441189cb62a,Cost of sales,False,False
+4/7,Closing stock - other inventories,6ac74b0c8a535441189cb62a,Cost of sales,False,False
+5/1,Directors' remuneration,6ac74b0c8a535441189cb629,Cost of sales,False,False
+5/2,Directors' salaries,6ac74b0c8a535441189cb629,Cost of sales,False,False
+5/3,Directors' fees,6ac74b0c8a535441189cb629,Cost of sales,False,False
+5/4,Directors' bonuses,6ac74b0c8a535441189cb629,Cost of sales,False,False
+5/5,Directors' commission,6ac74b0c8a535441189cb629,Cost of sales,False,False
+5/6,Directors' PAYE and NI contributions,6ac74b0c8a535441189cb629,Cost of sales,False,False
+5/7,Directors' pension contributions - defined benefit scheme,6ac74b0c8a535441189cb629,Cost of sales,False,False
+5/8,Directors' pension contributions - defined contribution plan,6ac74b0c8a535441189cb629,Cost of sales,False,False
+5/9,Directors' pensions contributions,6ac74b0c8a535441189cb629,Cost of sales,False,False
+5/10,Directors' compensation for loss of office,6ac74b0c8a535441189cb629,Cost of sales,False,False
+5/11,Directors' share-based payments,6ac74b0c8a535441189cb629,Cost of sales,False,False
+5/12,Directors' remuneration trust expenses,6ac74b0c8a535441189cb629,Cost of sales,False,False
+5/13,Payment to third parties for director's services,6ac74b0c8a535441189cb629,Cost of sales,False,False
+5/14,Other directors related costs,6ac74b0c8a535441189cb629,Cost of sales,False,False
+5/15,asd,6ac74b0c8a535441189cb629,Cost of sales,False,False
+6/1,Wages and salaries,6ac74b0c8a535441189cb629,Cost of sales,False,False
+6/2,PAYE and NI contributions,6ac74b0c8a535441189cb629,Cost of sales,False,False
+6/3,Staff pension contribution- defined benefit scheme,6ac74b0c8a535441189cb629,Cost of sales,False,False
+6/4,Bonuses,6ac74b0c8a535441189cb629,Cost of sales,False,False
+6/5,Redundancy costs,6ac74b0c8a535441189cb629,Cost of sales,False,False
+6/6,Share-based payments,6ac74b0c8a535441189cb629,Cost of sales,False,False
+6/7,Remuneration trust expenses,6ac74b0c8a535441189cb629,Cost of sales,False,False
+6/8,Other staff costs,6ac74b0c8a535441189cb629,Cost of sales,False,False
+6/9,staff costs test,6ac74b0c8a535441189cb629,Cost of sales,False,False
+7/1,Staff training,6ac74b0c8a535441189cb629,Cost of sales,False,False
+7/2,Staff welfare,6ac74b0c8a535441189cb629,Cost of sales,False,False
+7/3,Temporary staff and recruitment,6ac74b0c8a535441189cb629,Cost of sales,False,False
+7/4,Other staff-related expenses,6ac74b0c8a535441189cb629,Cost of sales,False,False
+7/5,Staff entertainment,6ac74b0c8a535441189cb629,Cost of sales,False,False
+7/6,Travel and subsistence,6ac74b0c8a535441189cb629,Cost of sales,False,False
+7/7,Staff related consultancy,6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/1,Amortisation of intangible fixed assets,6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/2,Amortisation of goodwill (disallowable),6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/3,"Amortisation of patents, trademarks and licenses (disallowable)",6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/4,Amortisation of development costs (disallowable),6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/5,Amortisation of computer software (disallowable),6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/6,Amortisation of goodwill,6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/7,"Amortisation of patents, trademarks and licenses",6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/8,Amortisation of development costs,6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/9,Amortisation of computer software,6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/10,Depreciation of tangible fixed assets,6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/11,Depreciation of freehold property,6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/12,Depreciation of short leasehold,6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/13,Depreciation of long leasehold,6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/14,Depreciation of improvements to property,6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/15,Depreciation of plant and machinery,6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/16,Depreciation of fixtures and fittings,6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/17,Depreciation of motor vehicles,6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/18,Depreciation of computer equipment,6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/19,Amortisation of other intangible fixed assets,6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/20,Depreciation of office equipment,6ac74b0c8a535441189cb629,Cost of sales,False,False
+8/21,Depreciation of other tangible assets,6ac74b0c8a535441189cb629,Cost of sales,False,False
+9/1,Profit/loss on sale of intangible fixed assets,6ac74b0c8a535441189cb62c,Cost of sales,False,False
+9/2,Profit/loss on sale of goodwill (disallowable),6ac74b0c8a535441189cb62c,Cost of sales,False,False
+9/3,"Profit/loss on sale of patents, trademarks and licenses (disallowable)",6ac74b0c8a535441189cb62c,Cost of sales,False,False
+9/4,Profit/loss on sale of development costs (disallowable),6ac74b0c8a535441189cb62c,Cost of sales,False,False
+9/5,Profit/loss on sale of computer software (disallowable),6ac74b0c8a535441189cb62c,Cost of sales,False,False
+9/6,Profit/loss on sale of goodwill,6ac74b0c8a535441189cb62c,Cost of sales,False,False
+9/7,"Profit/loss on sale of patents, trademarks and licenses",6ac74b0c8a535441189cb62c,Cost of sales,False,False
+9/8,Profit/loss on sale of development costs,6ac74b0c8a535441189cb62c,Cost of sales,False,False
+9/9,Profit/loss on sale of computer software,6ac74b0c8a535441189cb62c,Cost of sales,False,False
+9/10,Profit/loss on sale of tangible fixed assets,6ac74b0c8a535441189cb62c,Cost of sales,False,False
+9/11,Profit/loss on sale of investments,6ac74b0c8a535441189cb62c,Cost of sales,False,False
+10/1,Impairment loss on intangible fixed assets,6ac74b0c8a535441189cb629,Cost of sales,False,False
+10/2,Impairment loss on goodwill (disallowable),6ac74b0c8a535441189cb629,Cost of sales,False,False
+10/3,"Impairment loss on patents, trademarks and licenses (disallowable)",6ac74b0c8a535441189cb629,Cost of sales,False,False
+10/4,Impairment loss on development costs (disallowable),6ac74b0c8a535441189cb629,Cost of sales,False,False
+10/5,Impairment loss on computer software (disallowable),6ac74b0c8a535441189cb629,Cost of sales,False,False
+10/6,Impairment loss on goodwill,6ac74b0c8a535441189cb629,Cost of sales,False,False
+10/7,"Impairment loss on patents, trademarks and licenses",6ac74b0c8a535441189cb629,Cost of sales,False,False
+10/8,Impairment loss on development costs,6ac74b0c8a535441189cb629,Cost of sales,False,False
+10/9,Impairment loss on computer software,6ac74b0c8a535441189cb629,Cost of sales,False,False
+'10/10,Impairment loss on tangible fixed assets,6ac74b0c8a535441189cb629,Cost of sales,False,False
+11/1,Plant hire,6ac74b0c8a535441189cb629,Cost of sales,False,False
+11/2,Building rent,6ac74b0c8a535441189cb629,Cost of sales,False,False
+11/3,Utilities costs,6ac74b0c8a535441189cb629,Cost of sales,False,False
+11/4,Lease payments for property and plant,6ac74b0c8a535441189cb629,Cost of sales,False,False
+11/5,Property repairs and maintenance,6ac74b0c8a535441189cb629,Cost of sales,False,False
