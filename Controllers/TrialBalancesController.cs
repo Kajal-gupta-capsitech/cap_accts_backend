@@ -587,13 +587,13 @@ public class TrialBalancesController : ControllerBase
 
                 PeriodEnd =
                     finalPeriodEnd,
-
+           
                 Type =
                     effectiveType,
 
-                Description =
-                    description ?? string.Empty,
-
+               Description = description
+    ?? $"Trial Balance From {finalPeriodStart:dd MMM yyyy} - {finalPeriodEnd:dd MMM yyyy}",
+   
                 ImportType =
                     effectiveImportType,
 
@@ -2949,7 +2949,6 @@ public async Task<IActionResult> ImportDataToJournal(
     // This is used when the user edits the imported CSV
     // rows before the final TrialBalance PUT.
     // ============================================================
-
 
 
     [HttpPut("imports/{importId}")]
