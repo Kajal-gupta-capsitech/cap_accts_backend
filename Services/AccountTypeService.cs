@@ -25,14 +25,14 @@ public class AccountTypeService
     public async Task<List<AccountType>> GetAsync()
     {
         return await _accountTypes
-            .Find(_ => true)
+            .Find(x => !x.IsDeleted)
             .ToListAsync();
     }
 
     public async Task<AccountType?> GetAsync(string id)
     {
         return await _accountTypes
-            .Find(x => x.Id == id)
+            .Find(x => x.Id == id && !x.IsDeleted)
             .FirstOrDefaultAsync();
     }
 
@@ -41,18 +41,34 @@ public class AccountTypeService
         await _accountTypes.InsertOneAsync(accountType);
     }
 
-    public async Task UpdateAsync(
-        string id,
-        AccountType accountType)
-    {
-        await _accountTypes.ReplaceOneAsync(
-            x => x.Id == id,
-            accountType);
-    }
+  public async Task<bool> UpdateAsync(
+    string id,
+    AccountType accountType)
+{
+    // Ensure we only update if the record exists and is not already soft-deleted
+    var filter = Builders<AccountType>.Filter.And(
+        Builders<AccountType>.Filter.Eq(x => x.Id, id),
+        Builders<AccountType>.Filter.Where(x => !x.IsDeleted)
+    );
 
-    public async Task DeleteAsync(string id)
+    var result = await _accountTypes.ReplaceOneAsync(filter, accountType);
+
+    return result.MatchedCount > 0;
+}
+
+    public async Task<bool> DeleteAsync(string id)
     {
-        await _accountTypes.DeleteOneAsync(
-            x => x.Id == id);
+
+        var filter = Builders<AccountType>.Filter.And(
+           Builders<AccountType>.Filter.Eq(x => x.Id, id),
+           Builders<AccountType>.Filter.Where(x => !x.IsDeleted)
+       );
+        var update = Builders<AccountType>.Update
+    .Set(x => x.IsDeleted, true)
+    .Set(x => x.DeletedAt, DateTime.UtcNow);
+
+        var result = await _accountTypes.UpdateOneAsync(filter, update);
+
+        return result.ModifiedCount > 0;    
     }
 }

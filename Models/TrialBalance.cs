@@ -58,19 +58,25 @@ public class TrialBalance
 
     // Local attachment path.
     public string? AttachmentFilePath { get; set; }
-    
+
+
     public string? JournalId { get; set; }
-    
+
     [BsonRepresentation(BsonType.ObjectId)]
-        public List<string> JournalIds { get; set; } = new();
+    public List<string> JournalIds { get; set; } = new();
 
-     [BsonRepresentation(BsonType.ObjectId)]
-        public List<string> ImportIds { get; set; } = new();
+    [BsonRepresentation(BsonType.ObjectId)]
+    public List<string> ImportIds { get; set; } = new();
 
+
+    [BsonIgnoreIfDefault]
+    public bool IsDeleted { get; set; } = false;
+
+    // Agar null hai, toh database mein store nahi hoga
+    [BsonIgnoreIfNull]
+    public DateTime? DeletedAt { get; set; }
+    public DateTime? UpdatedAt { get; set; } = DateTime.UtcNow;
 }
-
-
-
 
 // ============================================================
 // ENUMS

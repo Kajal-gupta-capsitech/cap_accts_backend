@@ -22,19 +22,19 @@ public class AccountingPeriodService
             "AccountingPeriods");
     }
 
-    // GET ALL
+    // GET ALL (Excluding soft-deleted records)
     public async Task<List<AccountingPeriod>> GetAsync()
     {
         return await _accountingPeriods
-            .Find(_ => true)
+            .Find(x => !x.IsDeleted)
             .ToListAsync();
     }
 
-    // GET BY ID
+    // GET BY ID (Excluding soft-deleted records)
     public async Task<AccountingPeriod?> GetAsync(string id)
     {
         return await _accountingPeriods
-            .Find(x => x.Id == id)
+            .Find(x => x.Id == id && !x.IsDeleted)
             .FirstOrDefaultAsync();
     }
 
@@ -92,17 +92,27 @@ public class AccountingPeriodService
             Builders<AccountingPeriod>.Update.Combine(updates);
 
         var result = await _accountingPeriods.UpdateOneAsync(
-            x => x.Id == id,
+            x => x.Id == id && !x.IsDeleted,
             combinedUpdate);
 
         return result.MatchedCount > 0;
     }
 
 
-    // DELETE
-    public async Task DeleteAsync(string id)
+    // SOFT DELETE
+    public async Task<bool> DeleteAsync(string id)
     {
-        await _accountingPeriods.DeleteOneAsync(
-            x => x.Id == id);
+        var filter = Builders<AccountingPeriod>.Filter.And(
+            Builders<AccountingPeriod>.Filter.Eq(x => x.Id, id),
+            Builders<AccountingPeriod>.Filter.Where(x => !x.IsDeleted)
+        );
+
+        var update = Builders<AccountingPeriod>.Update
+            .Set(x => x.IsDeleted, true)
+            .Set(x => x.DeletedAt, DateTime.UtcNow);
+
+        var result = await _accountingPeriods.UpdateOneAsync(filter, update);
+
+        return result.ModifiedCount > 0;
     }
 }

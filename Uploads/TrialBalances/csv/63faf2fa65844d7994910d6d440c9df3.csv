@@ -1,0 +1,2001 @@
+Account Code,Account Name,Debit,Credit
+1/1,Sales,0,1000
+1/2,Contracts,0,1137
+1/3,Contracts with customers,0,1274
+1/4,Domestic sales,0,1411
+1/5,Export sales,0,1548
+1/6,EU sales,0,1685
+1/7,EU services,0,1822
+1/8,Rental income,0,1959
+1/9,VAT flat rate adjustment,0,2096
+1/11,new cash transaction,0,2233
+1/12,rtyrtyrty,0,2370
+1/14,Sales extra,0,2507
+1/15,asda,0,2644
+2/1,Opening stock,2781,0
+2/2,Opening stock - raw materials,2918,0
+2/3,Opening stock - work in progress,3055,0
+2/4,Opening stock - finished goods,3192,0
+2/5,Opening stock - merchandise,3329,0
+2/6,Opening stock - production supplies,3466,0
+2/7,Opening stock - other inventories,3603,0
+2/8,mohit,3740,0
+2/11,Test - ACC -Code present or not,3877,0
+3/1,Purchases,4014,0
+3/2,Own work capitalised,4151,0
+3/3,EU purchases,4288,0
+3/4,EU services,4425,0
+3/5,cash,4562,0
+3/6,Purchases - Archieve,4699,0
+4/1,Closing stock,0,4836
+4/2,Closing stock - raw materials,0,4973
+4/3,Closing stock - work in progress,0,5110
+4/4,Closing stock - finished goods,0,5247
+4/5,Closing stock - merchandise,0,5384
+4/6,Closing stock - production supplies,0,5521
+4/7,Closing stock - other inventories,0,5658
+5/1,Directors' remuneration,5795,0
+5/2,Directors' salaries,5932,0
+5/3,Directors' fees,6069,0
+5/4,Directors' bonuses,6206,0
+5/5,Directors' commission,6343,0
+5/6,Directors' PAYE and NI contributions,6480,0
+5/7,Directors' pension contributions - defined benefit scheme,6617,0
+5/8,Directors' pension contributions - defined contribution plan,6754,0
+5/9,Directors' pensions contributions,6891,0
+5/10,Directors' compensation for loss of office,7028,0
+5/11,Directors' share-based payments,7165,0
+5/12,Directors' remuneration trust expenses,7302,0
+5/13,Payment to third parties for director's services,7439,0
+5/14,Other directors related costs,7576,0
+5/15,asd,7713,0
+6/1,Wages and salaries,7850,0
+6/2,PAYE and NI contributions,7987,0
+6/3,Staff pension contribution- defined benefit scheme,8124,0
+6/4,Bonuses,8261,0
+6/5,Redundancy costs,8398,0
+6/6,Share-based payments,8535,0
+6/7,Remuneration trust expenses,8672,0
+6/8,Other staff costs,8809,0
+6/9,staff costs test,8946,0
+7/1,Staff training,9083,0
+7/2,Staff welfare,9220,0
+7/3,Temporary staff and recruitment,9357,0
+7/4,Other staff-related expenses,9494,0
+7/5,Staff entertainment,9631,0
+7/6,Travel and subsistence,9768,0
+7/7,Staff related consultancy,9905,0
+8/1,Amortisation of intangible fixed assets,10042,0
+8/2,Amortisation of goodwill (disallowable),10179,0
+8/3,"Amortisation of patents, trademarks and licenses (disallowable)",10316,0
+8/4,Amortisation of development costs (disallowable),10453,0
+8/5,Amortisation of computer software (disallowable),10590,0
+8/6,Amortisation of goodwill,10727,0
+8/7,"Amortisation of patents, trademarks and licenses",10864,0
+8/8,Amortisation of development costs,11001,0
+8/9,Amortisation of computer software,11138,0
+8/10,Depreciation of tangible fixed assets,11275,0
+8/11,Depreciation of freehold property,11412,0
+8/12,Depreciation of short leasehold,11549,0
+8/13,Depreciation of long leasehold,11686,0
+8/14,Depreciation of improvements to property,11823,0
+8/15,Depreciation of plant and machinery,11960,0
+8/16,Depreciation of fixtures and fittings,12097,0
+8/17,Depreciation of motor vehicles,12234,0
+8/18,Depreciation of computer equipment,12371,0
+8/19,Amortisation of other intangible fixed assets,12508,0
+8/20,Depreciation of office equipment,12645,0
+8/21,Depreciation of other tangible assets,12782,0
+9/1,Profit/loss on sale of intangible fixed assets,0,12919
+9/2,Profit/loss on sale of goodwill (disallowable),0,13056
+9/3,"Profit/loss on sale of patents, trademarks and licenses (disallowable)",0,13193
+9/4,Profit/loss on sale of development costs (disallowable),0,13330
+9/5,Profit/loss on sale of computer software (disallowable),0,13467
+9/6,Profit/loss on sale of goodwill,0,13604
+9/7,"Profit/loss on sale of patents, trademarks and licenses",0,13741
+9/8,Profit/loss on sale of development costs,0,13878
+9/9,Profit/loss on sale of computer software,0,14015
+9/10,Profit/loss on sale of tangible fixed assets,0,14152
+9/11,Profit/loss on sale of investments,0,14289
+10/1,Impairment loss on intangible fixed assets,14426,0
+10/2,Impairment loss on goodwill (disallowable),14563,0
+10/3,"Impairment loss on patents, trademarks and licenses (disallowable)",14700,0
+10/4,Impairment loss on development costs (disallowable),14837,0
+10/5,Impairment loss on computer software (disallowable),14974,0
+10/6,Impairment loss on goodwill,15111,0
+10/7,"Impairment loss on patents, trademarks and licenses",15248,0
+10/8,Impairment loss on development costs,15385,0
+10/9,Impairment loss on computer software,15522,0
+'10/10,Impairment loss on tangible fixed assets,15659,0
+11/1,Plant hire,15796,0
+11/2,Building rent,15933,0
+11/3,Utilities costs,16070,0
+11/4,Lease payments for property and plant,16207,0
+11/5,Property repairs and maintenance,16344,0
+11/6,Other repairs and maintenance,16481,0
+11/7,Cleaning of premises,16618,0
+12/1,Vehicles costs,16755,0
+12/2,Freight and haulage,16892,0
+12/3,Warehouse and storage,17029,0
+13/1,Sub contractors,17166,0
+13/2,Advertising and marketing,17303,0
+13/3,Outsourcing costs,17440,0
+13/4,Other direct costs,17577,0
+13/5,Commission paid,17714,0
+14/1,Short-term lease,17851,0
+14/2,Low-value assets,17988,0
+14/3,Variable payments,18125,0
+15/1,Hire of plant and machinery,18262,0
+15/2,Other operating leases,18399,0
+15/3,Hire of land and building,18536,0
+16/1,Research and development costs,18673,0
+17/1,Gain/loss on revaluation of assets,18810,0
+17/2,Gain/loss on revaluation of intangible assets,18947,0
+17/3,Gain/loss on revaluation of tangible assets,19084,0
+17/4,Gain/loss on revaluation of investments,19221,0
+17/5,Gain/loss on revaluation of investment properties,19358,0
+18/1,Cost of sales - exceptional item,19495,0
+19/1,CJRS grant,0,19632
+19/2,Grant for eat out to help out,0,19769
+19/3,Other coronavirus related grants,0,19906
+19/4,Government grants,0,20043
+20/1,Exchange rate gains,0,20180
+21/2,Other operating income - exceptional item,0,20317
+22/1,Rents received (Property income),0,20454
+22/2,Discounts received,0,20591
+22/3,Commissions received,0,20728
+22/4,Other operating income (taxable),0,20865
+22/5,Other operating income (not-taxable),0,21002
+22/6,Sundry receipts,0,21139
+22/7,VAT flat rate adjustment,0,21276
+23/1,Profit on sale of intangible fixed assets,0,21413
+23/2,Profit on sale of goodwill (disallowable),0,21550
+23/3,"Profit on sale of patents, trademarks and licenses (disallowable)",0,21687
+23/4,Profit on sale of development costs (disallowable),0,21824
+23/5,Profit on sale of computer software (disallowable),0,21961
+23/6,Profit on sale of goodwill,0,22098
+23/7,"Profit on sale of patents, trademarks and licenses",0,22235
+23/8,Profit on sale of development costs,0,22372
+23/9,Profit on sale of computer software,0,22509
+'23/10,Profit on sale of tangible fixed assets,0,22646
+'23/11,Profit on sale of investments,0,22783
+24/1,Reversal of impairment losses on intangible fixed assets,0,22920
+24/2,Reversal of impairment losses on goodwill (disallowable),0,23057
+24/3,"Reversal of impairment losses on patents, trademarks and licenses (disallowable)",0,23194
+24/4,Reversal of impairment losses on development costs (disallowable),0,23331
+24/5,Reversal of impairment losses on computer software (disallowable),0,23468
+24/6,Reversal of impairment losses on goodwill,0,23605
+24/7,"Reversal of impairment losses on patents, trademarks and licenses",0,23742
+24/8,Reversal of impairment losses on development costs,0,23879
+24/9,Reversal of impairment losses on computer software,0,24016
+'24/10,Reversal of impairment losses on tangible fixed assets,0,24153
+25/1,Gain/loss on revaluation of assets,0,24290
+25/2,Gain/loss on revaluation of intangible assets,0,24427
+25/3,Gain/loss on revaluation of tangible assets,0,24564
+25/4,Gain/loss on revaluation of investments,0,24701
+25/5,Gain/loss on revaluation of investment properties,0,24838
+26/1,fd,0,24975
+26/2,as,0,25112
+27/1,Income from share in group undertakings,0,25249
+28/1,Income from participating interest in associated undertakings,0,25386
+28/2,Income from participating interest in joint venture,0,25523
+28/3,Income from other participating interests,0,25660
+29/1,Income from fixed asset investments (Franked),0,25797
+30/1,Income from fixed asset investments (Unfranked),0,25934
+31/1,Investment income - exceptional item,0,26071
+32/1,Deposit account interest,0,26208
+32/2,Loan interest,0,26345
+32/3,Net finance income - defined benefit pension scheme,0,26482
+33/1,Current asset investment income,0,26619
+34/1,Interest receivable - exceptional item,0,26756
+35/1,Joint ventures/associates interest receivable,0,26893
+35/2,Joint ventures interest receivable,0,27030
+35/3,Associates interest receivable,0,27167
+36/1,Directors' remuneration,27304,0
+36/2,Directors' salaries,27441,0
+36/3,Directors' fees,27578,0
+36/4,Directors' bonuses,27715,0
+36/5,Directors' commission,27852,0
+36/6,Directors' PAYE and NI contributions,27989,0
+36/7,Directors' pension contributions - defined benefit scheme,28126,0
+36/8,Directors' pension contributions - defined contribution plan,28263,0
+36/9,Directors' pensions contributions,28400,0
+'36/10,Directors' compensation for loss of office,28537,0
+'36/11,Directors' share-based payments,28674,0
+'36/12,Directors' remuneration trust expenses,28811,0
+'36/13,Payment to third parties for director's services,28948,0
+'36/14,Other directors related costs,29085,0
+37/1,Wages and salaries,29222,0
+37/2,PAYE and NI contributions,29359,0
+37/3,Staff pension contribution- defined benefit scheme,29496,0
+37/4,Bonuses,29633,0
+37/5,Redundancy costs,29770,0
+37/6,Share-based payments,29907,0
+37/7,Remuneration trust expenses,30044,0
+37/8,Other staff costs,30181,0
+38/1,Staff training,30318,0
+38/2,Staff welfare,30455,0
+38/3,Temporary staff and recruitment,30592,0
+38/4,Other staff-related expenses,30729,0
+38/5,Staff entertainment,30866,0
+38/6,Travel and subsistence,31003,0
+38/7,Staff related consultancy,31140,0
+39/1,Amortisation of intangible fixed assets,31277,0
+39/2,Amortisation of goodwill (disallowable),31414,0
+39/3,"Amortisation of patents, trademarks and licenses (disallowable)",31551,0
+39/4,Amortisation of development costs (disallowable),31688,0
+39/5,Amortisation of computer software (disallowable),31825,0
+39/6,Amortisation of goodwill,31962,0
+39/7,"Amortisation of patents, trademarks and licenses",32099,0
+39/8,Amortisation of development costs,32236,0
+39/9,Amortisation of computer software,32373,0
+'39/10,Depreciation of tangible fixed assets,32510,0
+'39/11,Depreciation of freehold property,32647,0
+'39/12,Depreciation of short leasehold,32784,0
+'39/13,Depreciation of long leasehold,32921,0
+'39/14,Depreciation of improvements to property,33058,0
+'39/15,Depreciation of plant and machinery,33195,0
+'39/16,Depreciation of fixtures and fittings,33332,0
+'39/17,Depreciation of motor vehicles,33469,0
+'39/18,Depreciation of computer equipment,33606,0
+'39/19,Amortisation of other intangible fixed assets,33743,0
+'39/20,Depreciation of office equipment,33880,0
+'39/21,Depreciation of other tangible assets,34017,0
+40/1,Packaging,34154,0
+40/2,Freight and haulage,34291,0
+40/3,Courier service,34428,0
+40/4,Vehicle hire,34565,0
+40/5,Diesel and petrol,34702,0
+40/6,Commissions paid,34839,0
+40/7,Advertising and marketing,34976,0
+40/8,Website costs,35113,0
+40/9,Client entertainment,35250,0
+'40/10,Warehouse and storage,35387,0
+'40/11,Cash discounts,35524,0
+41/1,Short-term lease,35661,0
+41/2,Low-value assets,35798,0
+41/3,Variable payments,35935,0
+42/1,Hire of plant and machinery,36072,0
+42/2,Other operating leases,36209,0
+42/3,Hire of land and building,36346,0
+43/1,Profit/loss on sale of intangible fixed assets,0,36483
+43/2,Profit/loss on sale of goodwill (disallowable),0,36620
+43/3,"Profit/loss on sale of patents, trademarks and licenses (disallowable)",0,36757
+43/4,Profit/loss on sale of development costs (disallowable),0,36894
+43/5,Profit/loss on sale of computer software (disallowable),0,37031
+43/6,Profit/loss on sale of goodwill,0,37168
+43/7,"Profit/loss on sale of patents, trademarks and licenses",0,37305
+43/8,Profit/loss on sale of development costs,0,37442
+43/9,Profit/loss on sale of computer software,0,37579
+'43/10,Profit/loss on sale of tangible fixed assets,0,37716
+'43/11,Profit/loss on sale of investments,0,37853
+44/1,Impairment loss on intangible fixed assets,37990,0
+44/2,Impairment loss on goodwill (disallowable),38127,0
+44/3,"Impairment loss on patents, trademarks and licenses (disallowable)",38264,0
+44/4,Impairment loss on development costs (disallowable),38401,0
+44/5,Impairment loss on computer software (disallowable),38538,0
+44/6,Impairment loss on goodwill,38675,0
+44/7,"Impairment loss on patents, trademarks and licenses",38812,0
+44/8,Impairment loss on development costs,38949,0
+44/9,Impairment loss on computer software,39086,0
+'44/10,Impairment loss on tangible fixed assets,39223,0
+45/1,Selling and distribution costs - exceptional item,39360,0
+45/2,Reorganisation and restructuring costs,39497,0
+45/3,Profit/loss on sale or termination of an operation,0,39634
+46/1,Gain/loss on revaluation of assets,39771,0
+46/2,Gain/loss on revaluation of intangible assets,39908,0
+46/3,Gain/loss on revaluation of tangible assets,40045,0
+46/4,Gain/loss on revaluation of investments,40182,0
+46/5,Gain/loss on revaluation of investment properties,40319,0
+47/1,Directors' remuneration,40456,0
+47/2,Directors' salaries,40593,0
+47/3,Directors' fees,40730,0
+47/4,Directors' bonuses,40867,0
+47/5,Directors' commission,41004,0
+47/6,Directors' PAYE and NI contributions,41141,0
+47/7,Directors' pension contributions - defined benefit scheme,41278,0
+47/8,Directors' pension contributions - defined contribution plan,41415,0
+47/9,Directors' pensions contributions,41552,0
+'47/10,Directors' compensation for loss of office,41689,0
+'47/11,Directors' share-based payments,41826,0
+'47/12,Directors' remuneration trust expenses,41963,0
+'47/13,Payment to third parties for director's services,42100,0
+'47/14,Other directors related costs,42237,0
+'47/15,Directors pension current service costs,42374,0
+'47/16,Directors pension past service costs,42511,0
+48/1,Wages and salaries,42648,0
+48/2,PAYE and NI contributions,42785,0
+48/3,Pension contributions,42922,0
+48/4,Bonuses,43059,0
+48/5,Redundancy costs,43196,0
+48/6,Share-based payments,43333,0
+48/7,Remuneration trust expenses,43470,0
+48/8,Other staff costs,43607,0
+48/9,Pension current service cost (DB),43744,0
+'48/10,Pension past service cost (DB),43881,0
+49/1,Staff training,44018,0
+49/2,Staff welfare,44155,0
+49/3,Temporary staff and recruitment,44292,0
+49/4,Other staff-related expenses,44429,0
+49/5,Travel and subsistence,44566,0
+49/6,Staff entertainment,44703,0
+49/7,Staff related consultancy,44840,0
+50/1,Short-term lease,44977,0
+50/2,Low-value assets,45114,0
+50/3,Variable payments,45251,0
+51/1,Hire of plant and machinery,45388,0
+51/2,Other operating leases,45525,0
+51/3,Hire of land and building,45662,0
+52/1,Rates and water,45799,0
+52/2,Rent,45936,0
+52/3,"Light, heat and power",46073,0
+52/4,Property insurance,46210,0
+52/5,Property maintenance,46347,0
+52/6,Property maintenance (disallowable),46484,0
+52/7,Cleaning of premises,46621,0
+52/8,Other premises costs,46758,0
+52/9,Use of home as office,46895,0
+53/1,Amortisation of intangible fixed assets,47032,0
+53/2,Amortisation of goodwill (disallowable),47169,0
+53/3,"Amortisation of patents, trademarks and licenses (disallowable)",47306,0
+53/4,Amortisation of development costs (disallowable),47443,0
+53/5,Amortisation of computer software (disallowable),47580,0
+53/6,Amortisation of goodwill,47717,0
+53/7,"Amortisation of patents, trademarks and licenses",47854,0
+53/8,Amortisation of development costs,47991,0
+53/9,Amortisation of computer software,48128,0
+'53/10,Depreciation of tangible fixed assets,48265,0
+'53/11,Depreciation of freehold property,48402,0
+'53/12,Depreciation of short leasehold,48539,0
+'53/13,Depreciation of long leasehold,48676,0
+'53/14,Depreciation of improvements to property,48813,0
+'53/15,Depreciation of plant and machinery,48950,0
+'53/16,Depreciation of fixtures and fittings,49087,0
+'53/17,Depreciation of motor vehicles,49224,0
+'53/18,Depreciation of computer equipment,49361,0
+'53/19,Amortisation (intangible fixed assets) - government grants,49498,0
+'53/20,Amortisation of other intangible fixed assets,49635,0
+'53/21,Depreciation of office equipment,49772,0
+'53/22,Depreciation of other tangible assets,49909,0
+54/1,Profit/loss on sale of intangible fixed assets,0,1045
+54/2,Profit/loss on sale of goodwill (disallowable),0,1182
+54/3,"Profit/loss on sale of patents, trademarks and licenses (disallowable)",0,1319
+54/4,Profit/loss on sale of development costs (disallowable),0,1456
+54/5,Profit/loss on sale of computer software (disallowable),0,1593
+54/6,Profit/loss on sale of goodwill,0,1730
+54/7,"Profit/loss on sale of patents, trademarks and licenses",0,1867
+54/8,Profit/loss on sale of development costs,0,2004
+54/9,Profit/loss on sale of computer software,0,2141
+'54/10,Profit/loss on sale of tangible fixed assets,0,2278
+'54/11,Profit/loss on sale of investments,0,2415
+55/1,Impairment loss on intangible fixed assets,2552,0
+55/2,Impairment loss on goodwill (disallowable),2689,0
+55/3,"Impairment loss on patents, trademarks and licenses (disallowable)",2826,0
+55/4,Impairment loss on development costs (disallowable),2963,0
+55/5,Impairment loss on computer software (disallowable),3100,0
+55/6,Impairment loss on goodwill,3237,0
+55/7,"Impairment loss on patents, trademarks and licenses",3374,0
+55/8,Impairment loss on development costs,3511,0
+55/9,Impairment loss on computer software,3648,0
+'55/10,Impairment loss on tangible fixed assets,3785,0
+56/1,Administrative expenses - exceptional item,3922,0
+56/2,Reorganisation and restructuring costs,4059,0
+56/3,Profit/loss on sale or termination of an operation,0,4196
+57/1,Gain/loss on revaluation of assets,4333,0
+57/2,Gain/loss on revaluation of intangible assets,4470,0
+57/3,Gain/loss on revaluation of tangible assets,4607,0
+57/4,Gain/loss on revaluation of investments,4744,0
+57/5,Gain/loss on revaluation of investment properties,4881,0
+58/1,Auditor's remuneration,5018,0
+59/1,Auditor's remuneration for non-audit work,5155,0
+59/2,Auditing of accounts of associate entity,5292,0
+59/3,Audit related assurance services,5429,0
+59/4,Taxation compliance services,5566,0
+59/5,Taxation advisory services,5703,0
+59/6,Internal audit services,5840,0
+59/7,Other assurance services,5977,0
+59/8,Corporate finance services,6114,0
+59/9,Other non-audit services,6251,0
+60/1,Accounting and related expenses,6388,0
+60/2,Taxation fee,6525,0
+60/3,Legal and professional fees,6662,0
+60/4,Legal and professional fees (disallowable),6799,0
+60/5,Accountancy fee,6936,0
+60/6,VAT penalties,7073,0
+60/7,Corporation Tax penalties,7210,0
+60/8,PAYE/NI penalties,7347,0
+60/9,Companies House penalties,7484,0
+61/1,Vehicle costs,7621,0
+61/2,Vehicle fuel,7758,0
+61/3,Vehicle license and insurance,7895,0
+61/4,Motor repairs and servicing,8032,0
+61/5,Travel and subsistence,8169,0
+61/6,Overseas travel,8306,0
+61/7,Mileage claim,8443,0
+62/1,Cash discounts given,8580,0
+62/2,Bad debts written off (specific),8717,0
+62/3,Provision for doubtful debts,8854,0
+62/4,Bank charges,8991,0
+62/5,Credit card charges,9128,0
+62/6,Paypal fees,9265,0
+63/1,Charitable donations,9402,0
+63/2,Political donations,9539,0
+64/1,Realised exchange rate losses/gains,9676,0
+65/1,Advertising and marketing,9813,0
+65/2,Client entertainment,9950,0
+65/3,Other entertainment,10087,0
+66/1,Insurance,10224,0
+66/2,Computer expenses,10361,0
+66/3,Repairs and renewals,10498,0
+66/4,Stationery and postage,10635,0
+66/5,Telephone and internet,10772,0
+66/6,Canteen,10909,0
+66/7,Sundry expenses,11046,0
+66/8,Implement repairs,11183,0
+66/9,Cleaning,11320,0
+'66/10,Company formation costs,11457,0
+'66/11,IT cost,11594,0
+'66/12,Food and subsistence,11731,0
+'66/13,Consultancy fee,11868,0
+'66/14,Office expenses,12005,0
+'66/15,Subscriptions,12142,0
+'66/16,Software costs,12279,0
+'66/17,Uniform expense,12416,0
+'66/18,Council tax,12553,0
+'66/19,Accommodation,12690,0
+'66/20,Tools and equipments,12827,0
+'66/21,Freelancer fees,12964,0
+67/1,Joint ventures/associates share of operating profit,0,13101
+67/2,Joint ventures share of profit/(loss),0,13238
+67/3,Associates share of profit/(loss),0,13375
+67/4,Joint ventures/associates goodwill amortisation,0,13512
+67/5,Joint ventures goodwill amortisation,0,13649
+67/6,Associates goodwill amortisation,0,13786
+68/1,Exceptional items,13923,0
+68/2,Profits/loss on the sale of operations,14060,0
+68/3,Reorganisation and restructuring costs,14197,0
+68/4,Profit/loss on sale of intangible fixed assets,0,14334
+68/5,Profit/loss on sale of goodwill (disallowable),0,14471
+68/6,"Profit/loss on sale of patents, trademarks and licenses (disallowable)",0,14608
+68/7,Profit/loss on sale of development costs (disallowable),0,14745
+68/8,Profit/loss on sale of computer software (disallowable),0,14882
+68/9,Profit/loss on sale of goodwill,0,15019
+'68/10,"Profit/loss on sale of patents, trademarks and licenses",0,15156
+'68/11,Profit/loss on sale of development costs,0,15293
+'68/12,Profit/loss on sale of computer software,0,15430
+'68/13,Profit/loss on sale of tangible fixed assets,0,15567
+'68/14,Profit/loss on sale of fixed asset investments,0,15704
+'68/15,Joint ventures/associates exceptional items,15841,0
+'68/16,Joint venture profits/loss on the sale of operations,15978,0
+'68/17,Joint venture reorganisation and restructuring costs,16115,0
+'68/18,Joint venture profit/loss on sale of intangible fixed assets,0,16252
+'68/19,Joint venture profit/loss on sale of tangible fixed assets,0,16389
+'68/20,Joint venture profit/loss on sale of fixed asset investments,0,16526
+'68/21,Associates profits/loss on the sale of operations,16663,0
+'68/22,Associates reorganisation and restructuring costs,16800,0
+'68/23,Associates profit/loss on sale of intangible fixed assets,0,16937
+'68/24,Associates profit/loss on sale of tangible fixed assets,0,17074
+'68/25,Associates profit/loss on sale of fixed asset investments,0,17211
+69/1,Amounts w/o investments,17348,0
+69/2,Joint ventures/associates amounts w/o investments,17485,0
+69/3,Joint ventures amounts w/o investments,17622,0
+69/4,Associates amounts w/o investments,17759,0
+70/1,Bank interest,17896,0
+70/2,Mortgage interest,18033,0
+70/3,Interest on loan,18170,0
+70/4,Interest on non-trading loan,18307,0
+70/5,Hire purchase interest,18444,0
+70/6,Operating lease: rent of buildings,18581,0
+70/7,Operating lease: equipment,18718,0
+70/8,Other operating leases,18855,0
+70/9,Other interest and similar charges,18992,0
+'70/10,Dividends on preference shares,19129,0
+'70/11,Interest payable and similar charges - exceptional items,19266,0
+'70/12,Interest payable to group undertakings,19403,0
+'70/13,Factoring charges,19540,0
+71/1,Joint ventures/associates interest payable and similar charges,19677,0
+71/2,Joint ventures interest payable and similar charges,19814,0
+71/3,Associates interest payable and similar charges,19951,0
+72/1,Interest income on pension scheme assets,20088,0
+72/2,Interest on pension scheme liabilities,20225,0
+72/3,Joint ventures/associates other finance income/costs,20362,0
+72/4,Joint ventures other finance income/costs,20499,0
+72/5,Associates other finance income/costs,20636,0
+73/1,UK corporation tax,20773,0
+74/1,Current year deferred tax,20910,0
+74/2,Adjustment in respect of prior period deferred tax,21047,0
+75/1,Taxation - exceptional items,21184,0
+76/1,Non-controlling interest - equity,0,21321
+76/2,Non-controlling interest - non equity,0,21458
+77/1,Extraordinary items,21595,0
+78/1,Tax on extraordinary items,21732,0
+79/1,Extraordinary items - non controlling interest,21869,0
+80/1,Joint ventures/associates corporation tax,22006,0
+80/2,Joint ventures corporation tax,22143,0
+80/3,Associates corporation tax,22280,0
+81/1,Joint ventures/associates deferred tax,22417,0
+81/2,Joint ventures deferred tax,22554,0
+81/3,Associates deferred tax,22691,0
+84/1,Prior year adjustment,22828,0
+'100/1,"Called up share capital not paid, not expressed as current asset",0,22965
+'101/1,Goodwill - Cost b/fwd,23102,0
+'101/2,Goodwill - Additions cost,23239,0
+'101/3,Goodwill - Disposals cost,23376,0
+'101/4,Goodwill - Grants,23513,0
+'101/5,Goodwill - Revaluations,23650,0
+'101/6,Goodwill - Impairments,23787,0
+'101/7,Goodwill - Reversal of impairments,23924,0
+'101/8,Goodwill - Exchange differences,24061,0
+'101/10,Goodwill - Reclassification/transfers,24198,0
+'101/11,Goodwill - Accumulated Amortisation b/fwd,24335,0
+'101/12,Goodwill - Amortisation charge for the Year,24472,0
+'101/13,Goodwill - amortisation - on disposal,24609,0
+'101/14,Goodwill - amortisation - charge written back,24746,0
+'101/15,Goodwill - amortisation - revaluation adjustments,24883,0
+'101/16,Goodwill - amortisation - impairments,25020,0
+'101/17,Goodwill - amortisation - reversal of impairments,25157,0
+'101/18,Goodwill - amortisation - exchange differences,25294,0
+'101/20,Goodwill - Reclassification/transfers,25431,0
+'102/1,"Patents, trademarks and licenses - Cost b/fwd",25568,0
+'102/2,"Patents, trademarks and licenses - additions cost (external)",25705,0
+'102/3,"Patents, trademarks and licenses - Disposals cost",25842,0
+'102/4,"Patents, trademarks and licenses - Grants",25979,0
+'102/5,"Patents, trademarks and licenses - Revaluations",26116,0
+'102/6,"Patents, trademarks and licenses - Impairments",26253,0
+'102/7,"Patents, trademarks and licenses - Reversal of impairments",26390,0
+'102/8,"Patents, trademarks and licenses - Exchange differences",26527,0
+'102/9,"Patents, trademarks and licenses - Transfer to ownership",26664,0
+'102/10,"Patents, trademarks and licenses - Reclassification/transfers",26801,0
+'102/11,"Patents, trademarks and licenses - Accumulated Amortisation b/fwd",26938,0
+'102/12,"Patents, trademarks and licenses - Amortisation charge for the Year",27075,0
+'102/13,"Patents, trademarks and licenses - amortisation - on disposal",27212,0
+'102/14,"Patents, trademarks and licenses - amortisation - charge written back",27349,0
+'102/15,"Patents, trademarks and licenses - amortisation - revaluation adjustments",27486,0
+'102/16,"Patents, trademarks and licenses - amotisation - impairments",27623,0
+'102/17,"Patents, trademarks and licenses - amortisation - reversal of impairments",27760,0
+'102/18,"Patents, trademarks and licenses - amortisation - exchange differences",27897,0
+'102/19,"Patents, trademarks and licenses - amortisation - transfer to ownership",28034,0
+'102/20,"Patents, trademarks and licenses - Reclassification/transfers",28171,0
+'103/1,Development costs - Cost b/fwd,28308,0
+'103/2,Development costs - additions cost (external),28445,0
+'103/3,Development costs - Disposals cost,28582,0
+'103/4,Development costs - Grants,28719,0
+'103/5,Development costs - Revaluations,28856,0
+'103/6,Development costs - Impairments,28993,0
+'103/7,Development costs - Reversal of impairments,29130,0
+'103/8,Development costs - Exchange differences,29267,0
+'103/9,Development costs - Transfer to ownership,29404,0
+'103/10,Development costs - Reclassification/transfers,29541,0
+'103/11,Development costs - Accumulated Amortisation b/fwd,29678,0
+'103/12,Development costs - Amortisation charge for the Year,29815,0
+'103/13,Development costs - amortisation - on disposal,29952,0
+'103/14,Development costs - amortisation - charge written back,30089,0
+'103/15,Development costs - amortisation - revaluation adjustments,30226,0
+'103/16,Development costs - amortisation - impairments,30363,0
+'103/17,Development costs - amortisation - reversal of impairments,30500,0
+'103/18,Development costs - amortisation - exchange differences,30637,0
+'103/19,Development costs - amortisation - transfer to ownership,30774,0
+'103/20,Development costs - Reclassification/transfers,30911,0
+'104/1,Computer software - Cost b/fwd,31048,0
+'104/2,Computer software - additions cost (external),31185,0
+'104/3,Computer software - Disposals cost,31322,0
+'104/4,Computer software - Grants,31459,0
+'104/5,Computer software - Revaluations,31596,0
+'104/6,Computer software - Impairments,31733,0
+'104/7,Computer software - Reversal of impairments,31870,0
+'104/8,Computer software - Exchange differences,32007,0
+'104/9,Computer software - Transfer to ownership,32144,0
+'104/10,Computer software - Reclassification/transfers,32281,0
+'104/11,Computer software - Accumulated Amortisation b/fwd,32418,0
+'104/12,Computer software - Amortisation charge for the Year,32555,0
+'104/13,Computer software - amortisation - on disposal,32692,0
+'104/14,Computer software - amortisation - charge written back,32829,0
+'104/15,Computer software - amortisation - revaluation adjustments,32966,0
+'104/16,Computer software - amortisation - impairments,33103,0
+'104/17,Computer software - amortisation - reversal of impairments,33240,0
+'104/18,Computer software - amortisation - exchange differences,33377,0
+'104/19,Computer software - amortisation - transfer to ownership,33514,0
+'104/20,Computer software - Reclassification/transfers,33651,0
+'105/1,Other - Cost b/fwd,33788,0
+'105/2,Other - Additions cost,33925,0
+'105/3,Other - Disposals cost,34062,0
+'105/4,Other - Grants,34199,0
+'105/5,Other - Revaluations,34336,0
+'105/6,Other - Impairments,34473,0
+'105/7,Other - Reversal of impairments,34610,0
+'105/8,Other - Exchange differences,34747,0
+'105/9,Other - Transfer to ownership,34884,0
+'105/10,Other - Reclassification/transfers,35021,0
+'105/11,Other - Accumulated Amortisation b/fwd,35158,0
+'105/12,Other - Amortisation charge for the Year,35295,0
+'105/13,Other - amortisation - on disposal,35432,0
+'105/14,Other - amortisation - charge written back,35569,0
+'105/15,Other - amortisation - revaluation adjustments,35706,0
+'105/16,Other - amortisation - impairments,35843,0
+'105/17,Other - amortisation - reversal of impairments,35980,0
+'105/18,Other - amortisation - exchange differences,36117,0
+'105/19,Other - amortisation - transfer to ownership,36254,0
+'105/20,Other - Reclassification/transfers,36391,0
+'106/1,Freehold property - Cost b/fwd,36528,0
+'106/2,Freehold property - Additions cost,36665,0
+'106/3,Freehold property - Disposals cost,36802,0
+'106/4,Freehold property - Grants,36939,0
+'106/5,Freehold property - Revaluations,37076,0
+'106/6,Freehold property - Impairments,37213,0
+'106/7,Freehold property - Reversal of impairments,37350,0
+'106/8,Freehold property - Exchange differences,37487,0
+'106/9,Freehold property - Transfer to ownership,37624,0
+'106/10,Freehold property - Reclassification/transfers,37761,0
+'106/11,Freehold property - Accumulated depreciation b/fwd,37898,0
+'106/12,Freehold property - Depreciation charge for the Year,38035,0
+'106/13,Freehold property - depreciation - on disposal,38172,0
+'106/14,Freehold property - depreciation - charge written back,38309,0
+'106/15,Freehold property - depreciation - revaluation adjustments,38446,0
+'106/16,Freehold property - depreciation - impairments,38583,0
+'106/17,Freehold property - depreciation - reversal of impairments,38720,0
+'106/18,Freehold property - depreciation - exchange differences,38857,0
+'106/19,Freehold property - depreciation - transfer to ownership,38994,0
+'106/20,Freehold property - Reclassification/transfers,39131,0
+'107/1,Short leasehold - Cost b/fwd,39268,0
+'107/2,Short leasehold - Additions cost,39405,0
+'107/3,Short leasehold - Disposals cost,39542,0
+'107/4,Short leasehold - Grants,39679,0
+'107/5,Short leasehold - Revaluations,39816,0
+'107/6,Short leasehold - Impairments,39953,0
+'107/7,Short leasehold - Reversal of impairments,40090,0
+'107/8,Short leasehold - Exchange differences,40227,0
+'107/9,Short leasehold - Transfer to ownership,40364,0
+'107/10,Short leasehold - Reclassification/transfers,40501,0
+'107/11,Short leasehold - Accumulated depreciation b/fwd,40638,0
+'107/12,Short leasehold - Depreciation charge for the Year,40775,0
+'107/13,Short leasehold - depreciation - on disposal,40912,0
+'107/14,Short leasehold - depreciation - charge written back,41049,0
+'107/15,Short leasehold - depreciation - revaluation adjustments,41186,0
+'107/16,Short leasehold - depreciation - impairments,41323,0
+'107/17,Short leasehold - depreciation - reversal of impairments,41460,0
+'107/18,Short leasehold - depreciation - exchange differences,41597,0
+'107/19,Short leasehold - depreciation - transfer to ownership,41734,0
+'107/20,Short leasehold - Reclassification/transfers,41871,0
+'108/1,Long leasehold - Cost b/fwd,42008,0
+'108/2,Long leasehold - Additions cost,42145,0
+'108/3,Long leasehold - Disposals cost,42282,0
+'108/4,Long leasehold - Grants,42419,0
+'108/5,Long leasehold - Revaluations,42556,0
+'108/6,Long leasehold - Impairments,42693,0
+'108/7,Long leasehold - Reversal of impairments,42830,0
+'108/8,Long leasehold - Exchange differences,42967,0
+'108/9,Long leasehold - Transfer to ownership,43104,0
+'108/10,Long leasehold - Reclassification/transfers,43241,0
+'108/11,Long leasehold - Accumulated depreciation b/fwd,43378,0
+'108/12,Long leasehold - Depreciation charge for the Year,43515,0
+'108/13,Long leasehold - Eliminated on disposal,43652,0
+'108/14,Long leasehold - Charge written back,43789,0
+'108/15,Long leasehold - Revaluation adjustments,43926,0
+'108/16,Long leasehold - Impairments,44063,0
+'108/17,Long leasehold - Reversal of impairments,44200,0
+'108/18,Long leasehold - Exchange differences,44337,0
+'108/19,Long leasehold - depreciation - transfer to ownership,44474,0
+'108/20,Long leasehold - Reclassification/transfers,44611,0
+'109/1,Improvements to property - Cost b/fwd,44748,0
+'109/2,Improvements to property - Additions cost,44885,0
+'109/3,Improvements to property - Disposals cost,45022,0
+'109/4,Improvements to property - Grants,45159,0
+'109/5,Improvements to property - Revaluations,45296,0
+'109/6,Improvements to property - Impairments,45433,0
+'109/7,Improvements to property - Reversal of impairments,45570,0
+'109/8,Improvements to property - Exchange differences,45707,0
+'109/9,Improvements to property - Transfer to ownership,45844,0
+'109/10,Improvements to property - Reclassification/transfers,45981,0
+'109/11,Improvements to property - Accumulated depreciation b/fwd,46118,0
+'109/12,Improvements to property - Depreciation charge for the Year,46255,0
+'109/13,Improvements to property - depreciation - on disposal,46392,0
+'109/14,Improvements to property - depreciation - charge written back,46529,0
+'109/15,Improvements to property - depreciation - revaluation adjustments,46666,0
+'109/16,Improvements to property - depreciation - impairments,46803,0
+'109/17,Improvements to property - depreciation - reversal of impairments,46940,0
+'109/18,Improvements to property - depreciation - exchange differences,47077,0
+'109/19,Improvements to property - depreciation - transfer to ownership,47214,0
+'109/20,Improvements to property - Reclassification/transfers,47351,0
+'110/1,Plant and machinery - Cost b/fwd,47488,0
+'110/2,Plant and machinery - Additions cost,47625,0
+'110/3,Plant and machinery - Disposals cost,47762,0
+'110/4,Plant and machinery - Grants,47899,0
+'110/5,Plant and machinery - Revaluations,48036,0
+'110/6,Plant and machinery - Impairments,48173,0
+'110/7,Plant and machinery - Reversal of impairments,48310,0
+'110/8,Plant and machinery - Exchange differences,48447,0
+'110/9,Plant and machinery - Transfer to ownership,48584,0
+'110/10,Plant and machinery - Reclassification/transfers,48721,0
+'110/11,Plant and machinery - Accumulated depreciation b/fwd,48858,0
+'110/12,Plant and machinery - Depreciation charge for the Year,48995,0
+'110/13,Plant and machinery - Eliminated on disposal,49132,0
+'110/14,Plant and machinery - depreciation - charge written back,49269,0
+'110/15,Plant and machinery - depreciation - revaluation adjustments,49406,0
+'110/16,Plant and machinery - depreciation - impairments,49543,0
+'110/17,Plant and machinery - depreciation - reversal of impairments,49680,0
+'110/18,Plant and machinery - depreciation - exchange differences,49817,0
+'110/19,Plant and machinery - depreciation - transfer to ownership,49954,0
+'110/20,Plant and machinery - Reclassification/transfers,1090,0
+'111/1,Fixtures and fittings - Cost b/fwd,1227,0
+'111/2,Fixtures and fittings - Additions cost,1364,0
+'111/3,Fixtures and fittings - Disposals cost,1501,0
+'111/4,Fixtures and fittings - Grants,1638,0
+'111/5,Fixtures and fittings - Revaluations,1775,0
+'111/6,Fixtures and fittings - Impairments,1912,0
+'111/7,Fixtures and fittings - Reversal of impairments,2049,0
+'111/8,Fixtures and fittings - Exchange differences,2186,0
+'111/9,Fixtures and fittings - Transfer to ownership,2323,0
+'111/10,Fixtures and fittings - Reclassification/transfers,2460,0
+'111/11,Fixtures and fittings - Accumulated depreciation b/fwd,2597,0
+'111/12,Fixtures and fittings - Depreciation charge for the Year,2734,0
+'111/13,Fixtures and fittings - depreciation - on disposal,2871,0
+'111/14,Fixtures and fittings - depreciation - charge written back,3008,0
+'111/15,Fixtures and fittings - depreciation - revaluation adjustments,3145,0
+'111/16,Fixtures and fittings - depreciation - impairments,3282,0
+'111/17,Fixtures and fittings - depreciation - reversal of impairments,3419,0
+'111/18,Fixtures and fittings - depreciation - exchange differences,3556,0
+'111/19,Fixtures and fittings - depreciation - transfer to ownership,3693,0
+'111/20,Fixtures and fittings - Reclassification/transfers,3830,0
+'112/1,Motor vehicles - Cost b/fwd,3967,0
+'112/2,Motor vehicles - Additions cost,4104,0
+'112/3,Motor vehicles - Disposals cost,4241,0
+'112/4,Motor vehicles - Grants,4378,0
+'112/5,Motor vehicles - Revaluations,4515,0
+'112/6,Motor vehicles - Impairments,4652,0
+'112/7,Motor vehicles - Reversal of impairments,4789,0
+'112/8,Motor vehicles - Exchange differences,4926,0
+'112/9,Motor vehicles - Transfer to ownership,5063,0
+'112/10,Motor vehicles - Reclassification/transfers,5200,0
+'112/11,Motor vehicles - Accumulated depreciation b/fwd,5337,0
+'112/12,Motor vehicles - Depreciation charge for the Year,5474,0
+'112/13,Motor vehicles - depreciation - on disposal,5611,0
+'112/14,Motor vehicles - depreciation - charge written back,5748,0
+'112/15,Motor vehicles - depreciation - revaluation adjustments,5885,0
+'112/16,Motor vehicles - depreciation - impairments,6022,0
+'112/17,Motor vehicles - depreciation - reversal of impairments,6159,0
+'112/18,Motor vehicles - depreciation - exchange differences,6296,0
+'112/19,Motor vehicles - depreciation - transfer to ownership,6433,0
+'112/20,Motor vehicles - Reclassification/transfers,6570,0
+'113/1,Computer equipment - Cost b/fwd,6707,0
+'113/2,Computer equipment - Additions cost,6844,0
+'113/3,Computer equipment - Disposals cost,6981,0
+'113/4,Computer equipment - Grants,7118,0
+'113/5,Computer equipment - Revaluations,7255,0
+'113/6,Computer equipment - Impairments,7392,0
+'113/7,Computer equipment - Reversal of impairments,7529,0
+'113/8,Computer equipment - Exchange differences,7666,0
+'113/9,Computer equipment - Transfer to ownership,7803,0
+'113/10,Computer equipment - Reclassification/transfers,7940,0
+'113/11,Computer equipment - Accumulated depreciation b/fwd,8077,0
+'113/12,Computer equipment - Depreciation charge for the Year,8214,0
+'113/13,Computer equipment - depreciation - on disposal,8351,0
+'113/14,Computer equipment - depreciation - charge written back,8488,0
+'113/15,Computer equipment - depreciation - revaluation adjustments,8625,0
+'113/16,Computer equipment - depreciation - impairments,8762,0
+'113/17,Computer equipment - depreciation - reversal of impairments,8899,0
+'113/18,Computer equipment - depreciation - exchange differences,9036,0
+'113/19,Computer equipment - depreciation - transfer to ownership,9173,0
+'113/20,Computer equipment - Reclassification/transfers,9310,0
+'114/1,"Patents, trademarks and licenses (leased) - Cost b/fwd",9447,0
+'114/2,"Patents, trademarks and licenses (leased) - additions cost (external)",9584,0
+'114/3,"Patents, trademarks and licenses (leased) - Disposals cost",9721,0
+'114/4,"Patents, trademarks and licenses (leased) - Grants",9858,0
+'114/5,"Patents, trademarks and licenses (leased) - Revaluations",9995,0
+'114/6,"Patents, trademarks and licenses (leased) - Impairments",10132,0
+'114/7,"Patents, trademarks and licenses (leased) - Reversal of impairments",10269,0
+'114/8,"Patents, trademarks and licenses (leased) - Exchange differences",10406,0
+'114/9,"Patents, trademarks and licenses (leased) - Transfer to ownership",10543,0
+'114/10,"Patents, trademarks and licenses (leased) - Reclassification/transfers",10680,0
+'114/11,"Patents, trademarks and licenses (leased) - Accumulated Amortisation b/fwd",10817,0
+'114/12,"Patents, trademarks and licenses (leased) - Amortisation charge for the Year",10954,0
+'114/13,"Patents, trademarks and licenses (leased) - amortisation - on disposal",11091,0
+'114/14,"Patents, trademarks and licenses (leased) - amortisation - charge written back",11228,0
+'114/15,"Patents, trademarks and licenses (leased) - amortisation - revaluation adjustments",11365,0
+'114/16,"Patents, trademarks and licenses (leased) - amortisation - impairments",11502,0
+'114/17,"Patents, trademarks and licenses (leased) - amortisation - reversal of impairments",11639,0
+'114/18,"Patents, trademarks and licenses (leased) - amortisation - exchange differences",11776,0
+'114/19,"Patents, trademarks and licenses (leased) - Transfer to ownership",11913,0
+'114/20,"Patents, trademarks and licenses (leased) - Reclassification/transfers",12050,0
+'115/1,Development costs (leased) - Cost b/fwd,12187,0
+'115/2,Development costs (leased) - additions cost (external),12324,0
+'115/3,Development costs (leased) - Disposals cost,12461,0
+'115/4,Development costs (leased) - Grants,12598,0
+'115/5,Development costs (leased) - Revaluations,12735,0
+'115/6,Development costs (leased) - Impairments,12872,0
+'115/7,Development costs (leased) - Reversal of impairments,13009,0
+'115/8,Development costs (leased) - Exchange differences,13146,0
+'115/9,Development costs (leased) - Transfer to ownership,13283,0
+'115/10,Development costs (leased) - Reclassification/transfers,13420,0
+'115/11,Development costs (leased) - Accumulated Amortisation b/fwd,13557,0
+'115/12,Development costs (leased) - Amortisation charge for the Year,13694,0
+'115/13,Development costs (leased) - amortisation - on disposal,13831,0
+'115/14,Development costs (leased) - amortisation - charge written back,13968,0
+'115/15,Development costs (leased) - amortisation - revaluation adjustments,14105,0
+'115/16,Development costs (leased) - amortisation - impairments,14242,0
+'115/17,Development costs (leased) - amortisation - reversal of impairments,14379,0
+'115/18,Development costs (leased) - amortisation - exchange differences,14516,0
+'115/19,Development costs (leased) - Transfer to ownership,14653,0
+'115/20,Development costs (leased) - Reclassification/transfers,14790,0
+'116/1,Computer software (leased) - Cost b/fwd,14927,0
+'116/2,Computer software (leased) - additions cost (external),15064,0
+'116/3,Computer software (leased) - Disposals cost,15201,0
+'116/4,Computer software (leased) - Grants,15338,0
+'116/5,Computer software (leased) - Revaluations,15475,0
+'116/6,Computer software (leased) - Impairments,15612,0
+'116/7,Computer software (leased) - Reversal of impairments,15749,0
+'116/8,Computer software (leased) - Exchange differences,15886,0
+'116/9,Computer software (leased) - Transfer to ownership,16023,0
+'116/10,Computer software (leased) - Reclassification/transfers,16160,0
+'116/11,Computer software (leased) - Accumulated Amortisation b/fwd,16297,0
+'116/12,Computer software (leased) - Amortisation charge for the Year,16434,0
+'116/13,Computer software (leased) - amortisation - on disposal,16571,0
+'116/14,Computer software (leased) - amortisation - charge written back,16708,0
+'116/15,Computer software (leased) - amortisation - revaluation adjustments,16845,0
+'116/16,Computer software (leased) - amortisation - impairments,16982,0
+'116/17,Computer software (leased) - amortisation - reversal of impairments,17119,0
+'116/18,Computer software (leased) - amortisation - exchange differences,17256,0
+'116/19,Computer software (leased) - Transfer to ownership,17393,0
+'116/20,Computer software (leased) - Reclassification/transfers,17530,0
+'117/1,Freehold property (leased) - Cost b/fwd,17667,0
+'117/2,Freehold property (leased) - Additions cost,17804,0
+'117/3,Freehold property (leased) - Disposals cost,17941,0
+'117/4,Freehold property (leased) - Grants,18078,0
+'117/5,Freehold property (leased) - Revaluations,18215,0
+'117/6,Freehold property (leased) - Impairments,18352,0
+'117/7,Freehold property (leased) - Reversal of impairments,18489,0
+'117/8,Freehold property (leased) - Exchange differences,18626,0
+'117/9,Freehold property (leased) - Transfer to ownership,18763,0
+'117/10,Freehold property (leased) - Reclassification/transfers,18900,0
+'117/11,Freehold property (leased) - Accumulated depreciation b/fwd,19037,0
+'117/12,Freehold property (leased) - Depreciation charge for the Year,19174,0
+'117/13,Freehold property (leased) - depreciation - on disposal,19311,0
+'117/14,Freehold property (leased) - depreciation - charge written back,19448,0
+'117/15,Freehold property (leased) - depreciation - revaluation adjustments,19585,0
+'117/16,Freehold property (leased) - depreciation - impairments,19722,0
+'117/17,Freehold property (leased) - depreciation - reversal of impairments,19859,0
+'117/18,Freehold property (leased) - depreciation - exchange differences,19996,0
+'117/19,Freehold property (leased) - depreciation - transfer to ownership,20133,0
+'117/20,Freehold property (leased) - Reclassification/transfers,20270,0
+'118/1,Short leasehold (leased) - Cost b/fwd,20407,0
+'118/2,Short leasehold (leased) - Additions cost,20544,0
+'118/3,Short leasehold (leased) - Disposals cost,20681,0
+'118/4,Short leasehold (leased) - Grants,20818,0
+'118/5,Short leasehold (leased) - Revaluations,20955,0
+'118/6,Short leasehold (leased) - Impairments,21092,0
+'118/7,Short leasehold (leased) - Reversal of impairments,21229,0
+'118/8,Short leasehold (leased) - Exchange differences,21366,0
+'118/9,Short leasehold (leased) - Transfer to ownership,21503,0
+'118/10,Short leasehold (leased) - Reclassification/transfers,21640,0
+'118/11,Short leasehold (leased) - Accumulated depreciation b/fwd,21777,0
+'118/12,Short leasehold (leased) - Depreciation charge for the Year,21914,0
+'118/13,Short leasehold (leased) - depreciation - on disposal,22051,0
+'118/14,Short leasehold (leased) - depreciation - charge written back,22188,0
+'118/15,Short leasehold (leased) - depreciation - revaluation adjustments,22325,0
+'118/16,Short leasehold (leased) - depreciation - impairments,22462,0
+'118/17,Short leasehold (leased) - depreciation - reversal of impairments,22599,0
+'118/18,Short leasehold (leased) - depreciation - exchange differences,22736,0
+'118/19,Short leasehold (leased) - depreciation - transfer to ownership,22873,0
+'118/20,Short leasehold (leased) - Reclassification/transfers,23010,0
+'119/1,Long leasehold (leased) - Cost b/fwd,23147,0
+'119/2,Long leasehold (leased) - Additions cost,23284,0
+'119/3,Long leasehold (leased) - Disposals cost,23421,0
+'119/4,Long leasehold (leased) - Grants,23558,0
+'119/5,Long leasehold (leased) - Revaluations,23695,0
+'119/6,Long leasehold (leased) - Impairments,23832,0
+'119/7,Long leasehold (leased) - Reversal of impairments,23969,0
+'119/8,Long leasehold (leased) - Exchange differences,24106,0
+'119/9,Long leasehold (leased) - Transfer to ownership,24243,0
+'119/10,Long leasehold (leased) - Reclassification/transfers,24380,0
+'119/11,Long leasehold (leased) - Accumulated depreciation b/fwd,24517,0
+'119/12,Long leasehold (leased) - Depreciation charge for the Year,24654,0
+'119/13,Long leasehold (leased) - depreciation - on disposal,24791,0
+'119/14,Long leasehold (leased) - depreciation - charge written back,24928,0
+'119/15,Long leasehold (leased) - depreciation - revaluation adjustments,25065,0
+'119/16,Long leasehold (leased) - depreciation - impairments,25202,0
+'119/17,Long leasehold (leased) - depreciation - reversal of impairments,25339,0
+'119/18,Long leasehold (leased) - depreciation - exchange differences,25476,0
+'119/19,Long leasehold (leased) - depreciation - transfer to ownership,25613,0
+'119/20,Long leasehold (leased) - Reclassification/transfers,25750,0
+'120/1,Improvements to property (leased) - Cost b/fwd,25887,0
+'120/2,Improvements to property (leased) - Additions cost,26024,0
+'120/3,Improvements to property (leased) - Disposals cost,26161,0
+'120/4,Improvements to property (leased) - Grants,26298,0
+'120/5,Improvements to property (leased) - Revaluations,26435,0
+'120/6,Improvements to property (leased) - Impairments,26572,0
+'120/7,Improvements to property (leased) - Reversal of impairments,26709,0
+'120/8,Improvements to property (leased) - Exchange differences,26846,0
+'120/9,Improvements to property (leased) - Transfer to ownership,26983,0
+'120/10,Improvements to property (leased) - Reclassification/transfers,27120,0
+'120/11,Improvements to property (leased) - Accumulated depreciation b/fwd,27257,0
+'120/12,Improvements to property (leased) - Depreciation charge for the Year,27394,0
+'120/13,Improvements to property (leased) - Eliminated on disposal,27531,0
+'120/14,Improvements to property (leased) - depreciation - charge written back,27668,0
+'120/15,Improvements to property (leased) - depreciation - revaluation adjustments,27805,0
+'120/16,Improvements to property (leased) - depreciation - impairments,27942,0
+'120/17,Improvements to property (leased) - depreciation - reversal of impairments,28079,0
+'120/18,Improvements to property (leased) - depreciation - exchange differences,28216,0
+'120/19,Improvements to property (leased) - depreciation - transfer to ownership,28353,0
+'120/20,Improvements to property (leased) - Reclassification/transfers,28490,0
+'121/1,Plant and machinery (leased) - Cost b/fwd,28627,0
+'121/2,Plant and machinery (leased) - Additions cost,28764,0
+'121/3,Plant and machinery (leased) - Disposals cost,28901,0
+'121/4,Plant and machinery (leased) - Grants,29038,0
+'121/5,Plant and machinery (leased) - Revaluations,29175,0
+'121/6,Plant and machinery (leased) - Impairments,29312,0
+'121/7,Plant and machinery (leased) - Reversal of impairments,29449,0
+'121/8,Plant and machinery (leased) - Exchange differences,29586,0
+'121/9,Plant and machinery (leased) - Transfer to ownership,29723,0
+'121/10,Plant and machinery (leased) - Reclassification/transfers,29860,0
+'121/11,Plant and machinery (leased) - Accumulated depreciation b/fwd,29997,0
+'121/12,Plant and machinery (leased) - Depreciation charge for the Year,30134,0
+'121/13,Plant and machinery (leased) - depreciation - on disposal,30271,0
+'121/14,Plant and machinery (leased) - depreciation - charge written back,30408,0
+'121/15,Plant and machinery (leased) - depreciation - revaluation adjustments,30545,0
+'121/16,Plant and machinery (leased) - depreciation - impairments,30682,0
+'121/17,Plant and machinery (leased) - depreciation - reversal of impairments,30819,0
+'121/18,Plant and machinery (leased) - depreciation - exchange differences,30956,0
+'121/19,Plant and machinery (leased) - depreciation - transfer to ownership,31093,0
+'121/20,Plant and machinery (leased) - Reclassification/transfers,31230,0
+'122/1,Fixtures and fittings (leased) - Cost b/fwd,31367,0
+'122/2,Fixtures and fittings (leased) - Additions cost,31504,0
+'122/3,Fixtures and fittings (leased) - Disposals cost,31641,0
+'122/4,Fixtures and fittings (leased) - Grants,31778,0
+'122/5,Fixtures and fittings (leased) - Revaluations,31915,0
+'122/6,Fixtures and fittings (leased) - Impairments,32052,0
+'122/7,Fixtures and fittings (leased) - Reversal of impairments,32189,0
+'122/8,Fixtures and fittings (leased) - Exchange differences,32326,0
+'122/9,Fixtures and fittings (leased) - transfer to ownership,32463,0
+'122/10,Fixtures and fittings (leased) - Reclassification/transfers,32600,0
+'122/11,Fixtures and fittings (leased) - Accumulated depreciation b/fwd,32737,0
+'122/12,Fixtures and fittings (leased) - Depreciation charge for the Year,32874,0
+'122/13,Fixtures and fittings (leased) - depreciation - on disposal,33011,0
+'122/14,Fixtures and fittings (leased) - depreciation - charge written back,33148,0
+'122/15,Fixtures and fittings (leased) - depreciation - revaluation adjustments,33285,0
+'122/16,Fixtures and fittings (leased) - depreciation - impairments,33422,0
+'122/17,Fixtures and fittings (leased) - depreciation - reversal of impairments,33559,0
+'122/18,Fixtures and fittings (leased) - depreciation - exchange differences,33696,0
+'122/19,Fixtures and fittings (leased) - depreciation - transfer to ownership,33833,0
+'122/20,Fixtures and fittings (leased) - Reclassification/transfers,33970,0
+'123/1,Motor vehicles (leased) - Cost b/fwd,34107,0
+'123/2,Motor vehicles (leased) - Additions cost,34244,0
+'123/3,Motor vehicles (leased) - Disposals cost,34381,0
+'123/4,Motor vehicles (leased) - Grants,34518,0
+'123/5,Motor vehicles (leased) - Revaluations,34655,0
+'123/6,Motor vehicles (leased) - Impairments,34792,0
+'123/7,Motor vehicles (leased) - Reversal of impairments,34929,0
+'123/8,Motor vehicles (leased) - Exchange differences,35066,0
+'123/9,Motor vehicles (leased) - Transfer to ownership,35203,0
+'123/10,Motor vehicles (leased) - Reclassification/transfers,35340,0
+'123/11,Motor vehicles (leased) - Accumulated depreciation b/fwd,35477,0
+'123/12,Motor vehicles (leased) - Depreciation charge for the Year,35614,0
+'123/13,Motor vehicles (leased) - depreciation - on disposal,35751,0
+'123/14,Motor vehicles (leased) - depreciation - charge written back,35888,0
+'123/15,Motor vehicles (leased) - depreciation - revaluation adjustments,36025,0
+'123/16,Motor vehicles (leased) - depreciation - impairments,36162,0
+'123/17,Motor vehicles (leased) - depreciation - reversal of impairments,36299,0
+'123/18,Motor vehicles (leased) - depreciation - exchange differences,36436,0
+'123/19,Motor vehicles (leased) - depreciation - transfer to ownership,36573,0
+'123/20,Motor vehicles (leased) - Reclassification/transfers,36710,0
+'124/1,Computer equipment (leased) - Cost b/fwd,36847,0
+'124/2,Computer equipment (leased) - Additions cost,36984,0
+'124/3,Computer equipment (leased) - Disposals cost,37121,0
+'124/4,Computer equipment (leased) - Grants,37258,0
+'124/5,Computer equipment (leased) - Revaluations,37395,0
+'124/6,Computer equipment (leased) - Impairments,37532,0
+'124/7,Computer equipment (leased) - Reversal of impairments,37669,0
+'124/8,Computer equipment (leased) - Exchange differences,37806,0
+'124/9,Computer equipment (leased) - transfer to ownership,37943,0
+'124/10,Computer equipment (leased) - Reclassification/transfers,38080,0
+'124/11,Computer equipment (leased) - Accumulated depreciation b/fwd,38217,0
+'124/12,Computer equipment (leased) - Depreciation charge for the Year,38354,0
+'124/13,Computer equipment (leased) - depreciation - on disposal,38491,0
+'124/14,Computer equipment (leased) - depreciation - charge written back,38628,0
+'124/15,Computer equipment (leased) - depreciation - revaluation adjustments,38765,0
+'124/16,Computer equipment (leased) - depreciation - impairments,38902,0
+'124/17,Computer equipment (leased) - depreciation - reversal of impairments,39039,0
+'124/18,Computer equipment (leased) - depreciation - exchange differences,39176,0
+'124/19,Computer equipment (leased) - depreciation - transfer to ownership,39313,0
+'124/20,Computer equipment (leased) - Reclassification/transfers,39450,0
+'125/1,Shares in Group - Cost b/fwd,39587,0
+'125/2,Shares in Group - Additions cost,39724,0
+'125/3,Shares in Group - Disposals cost,39861,0
+'125/4,Shares in Group - Grants,39998,0
+'125/5,Shares in Group - Revaluations,40135,0
+'125/6,Shares in Group - Impairments,40272,0
+'125/7,Shares in Group - Reversal of impairments,40409,0
+'125/8,Shares in Group - Exchange differences,40546,0
+'125/9,Shares in Group - Dividends received,40683,0
+'125/10,Shares in Group - Reclassification/transfers,40820,0
+'125/11,Shares in Group - Provision b/fwd,40957,0
+'125/12,Shares in Group - Provision for the Year,41094,0
+'125/13,Shares in group - provision - on disposal,41231,0
+'125/14,Shares in Group - Provision written back,41368,0
+'125/15,Shares in group - provision - revaluation adjustments,41505,0
+'125/16,Shares in group - provision - impairments,41642,0
+'125/17,Shares in group - provision - reversal of impairments,41779,0
+'125/18,Shares in group - provision - exchange differences,41916,0
+'125/19,Shares in Group - Reclassification/transfers,42053,0
+'126/1,Loans to Group - Cost b/fwd,42190,0
+'126/2,Loans to Group - New Loans,42327,0
+'126/3,Loans to Group - Repayments,42464,0
+'126/4,Loans to Group - Revaluations,42601,0
+'126/5,Loans to Group - Aggregate amount W/Off,42738,0
+'127/1,Interest in associates - Cost b/fwd,42875,0
+'127/2,Interest in associates - Additions cost,43012,0
+'127/3,Interest in associates - Disposals cost,43149,0
+'127/4,Interest in associates - Share of profit/loss,0,43286
+'127/5,Interest in associates - Revaluations,43423,0
+'127/6,Interest in associates - Impairments,43560,0
+'127/7,Interest in associates - Reversal of impairments,43697,0
+'127/8,Interest in associates - Exchange differences,43834,0
+'127/9,Interest in associates - Dividends received,43971,0
+'127/10,Interest in associates - Reclassification/transfers,44108,0
+'127/11,Interest in associates - Provision b/fwd,44245,0
+'127/12,Interest in associates - Provision for the Year,44382,0
+'127/13,Interest in associates - provision - on disposal,44519,0
+'127/14,Interest in associates - Provision written back,44656,0
+'127/15,Interest in associates - provision - revaluation adjustments,44793,0
+'127/16,Interest in associates - provision - impairments,44930,0
+'127/17,Interest in associates - provision - reversal of impairments,45067,0
+'127/18,Interest in associates - provision - exchange differences,45204,0
+'127/19,Interest in associates - Reclassification/transfers,45341,0
+'128/1,Interest in associates' goodwill - Cost b/fwd,45478,0
+'128/2,Interest in associates' goodwill - Additions cost,45615,0
+'128/3,Interest in associates' goodwill - Disposals cost,45752,0
+'128/4,Interest in associates' goodwill - Share of profit/loss,0,45889
+'128/5,Interest in associates' goodwill - Revaluations,46026,0
+'128/6,Interest in associates' goodwill - Impairments,46163,0
+'128/7,Interest in associates' goodwill - Reversal of impairments,46300,0
+'128/8,Interest in associates' goodwill - Exchange differences,46437,0
+'128/9,Interest in associates' goodwill - Dividends received,46574,0
+'128/10,Interest in associates' goodwill - Reclassification/transfers,46711,0
+'128/11,Interest in associates' goodwill - Provision b/fwd,46848,0
+'128/12,Interest in associates' goodwill - Provision for the Year,46985,0
+'128/13,Interest in associates' goodwill - Eliminated on disposal,47122,0
+'128/14,Interest in associates' goodwill - Provision written back,47259,0
+'128/15,Interest in associates' goodwill - Revaluation adjustments,47396,0
+'128/16,Interest in associates' goodwill - Impairments,47533,0
+'128/17,Interest in associates' goodwill - Reversal of impairments,47670,0
+'128/18,Interest in associates' goodwill - Exchange differences,47807,0
+'128/19,Interest in associates' goodwill - Reclassification/transfers,47944,0
+'129/1,Interest in joint ventures - Cost b/fwd,48081,0
+'129/2,Interest in joint ventures - Additions cost,48218,0
+'129/3,Interest in joint ventures - Disposals cost,48355,0
+'129/4,Interest in joint ventures - Share of profit/loss,0,48492
+'129/5,Interest in joint ventures - Revaluations,48629,0
+'129/6,Interest in joint ventures - Impairments,48766,0
+'129/7,Interest in joint ventures - Reversal of impairments,48903,0
+'129/8,Interest in joint ventures - Exchange differences,49040,0
+'129/9,Interest in joint ventures - Dividends received,49177,0
+'129/10,Interest in joint ventures - Reclassification/transfers,49314,0
+'129/11,Interest in joint ventures - Provision b/fwd,49451,0
+'129/12,Interest in joint ventures - Provision for the Year,49588,0
+'129/13,Interest in joint ventures - provision - on disposal,49725,0
+'129/14,Interest in joint ventures - Provision written back,49862,0
+'129/15,Interest in joint ventures - provision - revaluation adjustments,49999,0
+'129/16,Interest in joint ventures - provision - impairments,1135,0
+'129/17,Interest in joint ventures - provision - reversal of impairments,1272,0
+'129/18,Interest in joint ventures - provision - exchange differences,1409,0
+'129/19,Interest in joint ventures - Reclassification/transfers,1546,0
+'130/1,Interest in joint ventures' goodwill - Cost b/fwd,1683,0
+'130/2,Interest in joint ventures' goodwill - Additions cost,1820,0
+'130/3,Interest in joint ventures' goodwill - Disposals cost,1957,0
+'130/4,Interest in joint ventures' goodwill - Share of profit/loss,0,2094
+'130/5,Interest in joint ventures' goodwill - Revaluations,2231,0
+'130/6,Interest in joint ventures' goodwill - Impairments,2368,0
+'130/7,Interest in joint ventures' goodwill - Reversal of impairments,2505,0
+'130/8,Interest in joint ventures' goodwill - Exchange differences,2642,0
+'130/9,Interest in joint ventures' goodwill - Dividends received,2779,0
+'130/10,Interest in joint ventures' goodwill - Reclassification/transfers,2916,0
+'130/11,Interest in joint ventures' goodwill - Provision b/fwd,3053,0
+'130/12,Interest in joint ventures' goodwill - Provision for the Year,3190,0
+'130/13,Interest in joint ventures' goodwill - Eliminated on disposal,3327,0
+'130/14,Interest in joint ventures' goodwill - Provision written back,3464,0
+'130/15,Interest in joint ventures' goodwill - Revaluation adjustments,3601,0
+'130/16,Interest in joint ventures' goodwill - Impairments,3738,0
+'130/17,Interest in joint ventures' goodwill - Reversal of impairments,3875,0
+'130/18,Interest in joint ventures' goodwill - Exchange differences,4012,0
+'130/19,Interest in joint ventures' goodwill - Reclassification/transfers,4149,0
+'131/1,Interest in others - Cost b/fwd,4286,0
+'131/2,Interest in others - Additions cost,4423,0
+'131/3,Interest in others - Disposals cost,4560,0
+'131/4,Interest in others - Share of profit/loss,0,4697
+'131/5,Interest in others - Revaluations,4834,0
+'131/6,Interest in others - Impairments,4971,0
+'131/7,Interest in others - Reversal of impairments,5108,0
+'131/8,Interest in others - Exchange differences,5245,0
+'131/9,Interest in others - Dividends received,5382,0
+'131/10,Interest in others - Reclassification/transfers,5519,0
+'131/11,Interest in others - Provision b/fwd,5656,0
+'131/12,Interest in others - Provision for the Year,5793,0
+'131/13,Interest in others - Eliminated on disposal,5930,0
+'131/14,Interest in others - Provision written back,6067,0
+'131/15,Interest in others - Revaluation adjustments,6204,0
+'131/16,Interest in others - Impairments,6341,0
+'131/17,Interest in others - Reversal of impairments,6478,0
+'131/18,Interest in others - Exchange differences,6615,0
+'131/19,Interest in others - Reclassification/transfers,6752,0
+'132/1,Loans to Associates - Cost b/fwd,6889,0
+'132/2,Loans to Associates - New loans,7026,0
+'132/3,Loans to Associates - Repayments,7163,0
+'132/4,Loans to Associates - Revaluations,7300,0
+'132/5,Loans to Associates - Aggregate amount W/Off,7437,0
+'133/1,Loans to Joint ventures - Cost b/fwd,7574,0
+'133/2,Loans to Joint ventures - New loans,7711,0
+'133/3,Loans to Joint ventures - Repayments,7848,0
+'133/4,Loans to Joint ventures - Revaluations,7985,0
+'133/5,Loans to Joint ventures - Aggregate amount W/Off,8122,0
+'134/1,Loans to other participating interests - Cost b/fwd,8259,0
+'134/2,Loans to other participating interests - New loans,8396,0
+'134/3,Loans to other participating interests - Repayments,8533,0
+'134/4,Loans to other participating interests - Revaluations,8670,0
+'134/5,Loans to other participating interests - Aggregate amount W/Off,8807,0
+'135/1,Other investments not loans - Listed - Cost b/fwd,8944,0
+'135/2,Other investments not loans - Listed - Additions cost,9081,0
+'135/3,Other investments not loans - Listed - Disposals cost,9218,0
+'135/4,Other investments not loans - Listed - Share of profit/loss,0,9355
+'135/5,Other investments not loans - Listed - Revaluations,9492,0
+'135/6,Other investments not loans - Listed - Impairments,9629,0
+'135/7,Other investments not loans - Listed - Reversal of impairments,9766,0
+'135/8,Other investments not loans - Listed - Exchange differences,9903,0
+'135/9,Other investments not loans - Listed - Dividends received,10040,0
+'135/10,Other investments not loans - Listed - Reclassification/transfers,10177,0
+'135/11,Other investments not loans - Listed - Provision b/fwd,10314,0
+'135/12,Other investments not loans - Listed - Provision for the Year,10451,0
+'135/13,Other investments not loans - Listed - Eliminated on disposal,10588,0
+'135/14,Other investments not loans - Listed - Provision written back,10725,0
+'135/15,Other investments not loans - listed - provision - revaluation adjustments,10862,0
+'135/16,Other investments not loans - listed - provision - impairments,10999,0
+'135/17,Other investments not loans - listed - provision - reversal of impairments,11136,0
+'135/18,Other investments not loans - listed - provision - exchange differences,11273,0
+'135/19,Other investments not loans - Listed - Reclassification/transfers,11410,0
+'136/1,Other investments not loans - Unlisted - Cost b/fwd,11547,0
+'136/2,Other investments not loans - Unlisted - Additions cost,11684,0
+'136/3,Other investments not loans - Unlisted - Disposals cost,11821,0
+'136/4,Other investments not loans - Unlisted - Share of profit/loss,0,11958
+'136/5,Other investments not loans - Unlisted - Revaluations,12095,0
+'136/6,Other investments not loans - Unlisted - Impairments,12232,0
+'136/7,Other investments not loans - Unlisted - Reversal of impairments,12369,0
+'136/8,Other investments not loans - Unlisted - Exchange differences,12506,0
+'136/9,Other investments not loans - Unlisted - Dividends received,12643,0
+'136/10,Other investments not loans - Unlisted - Reclassification/transfers,12780,0
+'136/11,Other investments not loans - Unlisted - Provision b/fwd,12917,0
+'136/12,Other investments not loans - Unlisted - Provision for the Year,13054,0
+'136/13,Other investments not loans - unlisted - provision - on disposal,13191,0
+'136/14,Other investments not loans - Unlisted - Provision written back,13328,0
+'136/15,Other investments not loans - unlisted - provision - revaluation adjustments,13465,0
+'136/16,Other investments not loans - unlisted - provision - impairments,13602,0
+'136/17,Other investments not loans - unlisted - provision - reversal of impairments,13739,0
+'136/18,Other investments not loans - unlisted - provision - exchange differences,13876,0
+'136/19,Other investments not loans - Unlisted - Reclassification/transfers,14013,0
+'137/1,Other loans - Unlisted - Cost b/fwd,14150,0
+'137/2,Other loans - Unlisted - New loans,14287,0
+'137/3,Other loans - Unlisted - Repayments,14424,0
+'137/4,Other loans - Unlisted - Revaluations,14561,0
+'137/5,Other loans - Unlisted - Aggregate amount W/Off,14698,0
+'138/1,Investment in own shares - Cost b/fwd,14835,0
+'138/2,Investment in own shares - Additions cost,14972,0
+'138/3,Investment in own shares - Disposals cost,15109,0
+'138/4,Investment in own shares - Share of profit/loss,0,15246
+'138/5,Investment in own shares - Revaluations,15383,0
+'138/6,Investment in own shares - Impairments,15520,0
+'138/7,Investment in own shares - Reversal of impairments,15657,0
+'138/8,Investment in own shares - Exchange differences,15794,0
+'138/9,Investment in own shares - Dividends received,15931,0
+'138/10,Investment in own shares - Reclassification/transfers,16068,0
+'138/11,Investment in own shares - Provision b/fwd,16205,0
+'138/12,Investment in own shares - Provision for the Year,16342,0
+'138/13,Investment in own shares - provision - on disposal,16479,0
+'138/14,Investment in own shares - Provision written back,16616,0
+'138/15,Investment in own shares - provision - revaluation adjustments,16753,0
+'138/16,Investment in own shares - provision - impairments,16890,0
+'138/17,Investment in own shares - provision - reversal of impairments,17027,0
+'138/18,Investment in own shares - provision - exchange differences,17164,0
+'138/19,Investment in own shares - Reclassification/transfers,17301,0
+'139/1,Investment property - cost b/fwd,17438,0
+'139/2,Investment property - additions cost,17575,0
+'139/3,Investment property - disposals cost,17712,0
+'139/4,Investment property - grants,17849,0
+'139/5,Investment property - revaluations,17986,0
+'139/6,Investment property - impairments,18123,0
+'139/7,Investment property - reversal of impairments,18260,0
+'139/8,Investment property - exchange differences,18397,0
+'139/9,Investment in Property - Transfer to ownership,18534,0
+'139/10,Investment in Property - Reclassification/transfers,18671,0
+'139/11,Investment property - accumulated depreciation b/fwd,18808,0
+'139/12,Investment property - depreciation charge for the year,18945,0
+'139/13,Investment property - depreciation - on disposal,19082,0
+'139/14,Investment property - depreciation - charge written back,19219,0
+'139/15,Investment property - depreciation - revaluation adjustments,19356,0
+'139/16,Investment property - depreciation - impairments,19493,0
+'139/17,Investment property - depreciation - reversal of impairments,19630,0
+'139/18,Investment property - depreciation - exchange differences,19767,0
+'139/19,Investment in Property - Transfer to ownership,19904,0
+'139/20,Investment in Property - Reclassification/transfers,20041,0
+'140/1,Investment property (leased) - cost b/fwd,20178,0
+'140/2,Investment property (leased) - additions cost,20315,0
+'140/3,Investment property (leased) - disposals cost,20452,0
+'140/4,Investment property (leased) - grants,20589,0
+'140/5,Investment property (leased) - revaluations,20726,0
+'140/6,Investment property (leased) - impairments,20863,0
+'140/7,Investment property (leased) - reversal of impairments,21000,0
+'140/8,Investment property (leased) - exchange differences,21137,0
+'140/9,Investment property (leased) - transfer to ownership,21274,0
+'140/10,Investment in Property - Lease reclassification/transfers,21411,0
+'140/11,Investment property (leased) - accumulated depreciation b/fwd,21548,0
+'140/12,Investment property (leased) - depreciation charge for the year,21685,0
+'140/13,Investment property (leased) - depreciation - on disposal,21822,0
+'140/14,Investment property (leased) - depreciation - charge written back,21959,0
+'140/15,Investment property (leased) - depreciation - revaluation adjustments,22096,0
+'140/16,Investment property (leased) - depreciation - impairments,22233,0
+'140/17,Investment property (leased) - depreciation - reversal of impairments,22370,0
+'140/18,Investment property (leased) - depreciation - exchange differences,22507,0
+'140/19,Investment property (leased) - depreciation - transfer to ownership,22644,0
+'140/20,Investment in Property - Lease reclassification/transfers,22781,0
+'141/1,Valuation,22918,0
+'141/2,Stocks,23055,0
+'141/3,Raw materials,23192,0
+'142/1,Work in progress,23329,0
+'143/1,Finished goods,23466,0
+'144/1,Payments on account,23603,0
+'145/1,Long term contracts - net cost less foreseeable loss,23740,0
+'145/2,Long term contracts - excess payments on account,23877,0
+'146/1,Trade debtors,24014,0
+'146/2,Amounts recoverable on contract,24151,0
+'146/3,Amounts receivable in respect of finance leases,24288,0
+'146/4,Amounts receivable in respect of hire purchase contracts,24425,0
+'146/5,Provision for doubtful debts,24562,0
+'147/1,Other debtors,24699,0
+'147/2,Debts factored without recourse,24836,0
+'147/3,Interest receivable and other income,24973,0
+'147/4,Lottery control account,25110,0
+'147/5,Paypoint control account,25247,0
+'147/6,Wages and Salaries Overpaid,25384,0
+'147/7,S455 tax,25521,0
+'148/1,Called up share capital not paid,0,25658
+'148/2,Premium on called up share capital not paid,0,25795
+'149/1,Prepayments and accrued income,25932,0
+'149/2,Accrued income,26069,0
+'149/3,Prepayments,26206,0
+'149/4,Accrued interest receivable,26343,0
+'149/5,Advance paid,26480,0
+'149/6,Deposits paid,26617,0
+'150/1,Contract assets,26754,0
+'151/1,Trade debtors,26891,0
+'151/2,Amounts recoverable on contract,27028,0
+'151/3,Amounts receivable in respect of finance leases,27165,0
+'151/4,Amounts receivable in respect of hire purchase contracts,27302,0
+'151/5,Provision for doubtful debts,27439,0
+'152/1,Other debtors,27576,0
+'152/2,Debts factored without recourse,27713,0
+'152/3,Non returnable deposits,27850,0
+'153/1,Called up share capital not paid,0,27987
+'153/2,Premium on called up share capital not paid,0,28124
+'154/1,Prepayments,28261,0
+'154/2,Accrued income,28398,0
+'154/3,Accrued interest receivable,28535,0
+'154/4,Deposits paid,28672,0
+'155/2,Contract assets,28809,0
+'156/1,Shares in group - cost b/fwd,28946,0
+'156/2,Investment in own shares - cost b/fwd,29083,0
+'156/3,Other investments - listed - cost b/fwd,29220,0
+'156/4,Other investments - unlisted - cost b/fwd,29357,0
+'156/5,Other,29494,0
+'156/6,Shares in Group - Additions cost,29631,0
+'156/7,Investment in own shares - Additions cost,29768,0
+'156/8,Other investments - Listed - Additions cost,29905,0
+'156/9,Other investments - Unlisted - Addtions cost,30042,0
+'157/1,Cash in hand,30179,0
+'158/1,Deposit account,30316,0
+'159/1,"Prepayments and accrued income, not expressed within current asset",30453,0
+'160/1,Bank account 1,30590,0
+'160/2,Bank account 2,30727,0
+'160/3,Bank account 3,30864,0
+'160/4,Bank account 4,31001,0
+'160/5,Bank account 5,31138,0
+'161/1,Amounts owed by/to group undertakings,31275,0
+'161/2,Amounts owed by/to participating interests,31412,0
+'161/3,Amounts owed by/to joint ventures,31549,0
+'161/4,Amounts owed by/to associates,31686,0
+'162/1,Amounts owed by/to group undertakings,31823,0
+'162/2,Amounts owed by/to participating interests,31960,0
+'162/3,Amounts owed by/to joint ventures,32097,0
+'162/4,Amounts owed by/to associates,32234,0
+'163/1,Amounts owed by/to group undertakings,32371,0
+'163/2,Amounts owed by/to participating interests,32508,0
+'163/3,Amounts owed by/to joint ventures,32645,0
+'163/4,Amounts owed by/to associates,32782,0
+'164/1,Directors' current accounts,0,32919
+'164/2,Directors' current accounts - balance b/fwd,0,33056
+'164/3,Directors' current accounts - additions,0,33193
+'164/4,Directors' current accounts - repayments,0,33330
+'165/1,Directors' loan accounts,0,33467
+'165/2,Directors' loan accounts - balance b/fwd,0,33604
+'165/3,Directors' loan accounts - additions,0,33741
+'165/4,Directors' loan accounts - repayments,0,33878
+'166/1,Corporation tax,0,34015
+'166/2,Social security and other tax,0,34152
+'166/3,CIS control account,0,34289
+'167/1,Corporation tax,0,34426
+'167/2,Social security and other tax,0,34563
+'167/3,CIS control account,0,34700
+'168/1,VAT control account,0,34837
+'169/1,Trade creditors,0,34974
+'169/2,Bills of exchange payable,0,35111
+'170/1,Proposed dividends,0,35248
+'170/2,Proposed dividends share type 1,0,35385
+'170/3,Proposed dividends share type 2,0,35522
+'170/4,Proposed dividends share type 3,0,35659
+'170/5,Proposed dividends share type 4,0,35796
+'170/6,Proposed dividends share type 5,0,35933
+'170/7,Proposed dividends share type 6,0,36070
+'170/8,Proposed dividends share type 7,0,36207
+'170/9,Proposed dividends share type 8,0,36344
+'170/10,Proposed dividends share type 9,0,36481
+'170/11,Proposed dividends share type 10,0,36618
+'170/12,Proposed dividends share type 11,0,36755
+'170/13,Proposed dividends share type 12,0,36892
+'170/14,Proposed dividends share type 13,0,37029
+'170/15,Proposed dividends share type 14,0,37166
+'170/16,Proposed dividends share type 15,0,37303
+'170/17,Proposed dividends share type 16,0,37440
+'170/18,Proposed dividends share type 17,0,37577
+'170/19,Proposed dividends share type 18,0,37714
+'170/20,Proposed dividends share type 19,0,37851
+'170/21,Proposed dividends share type 20,0,37988
+'171/1,Amounts owed to group undertakings,0,38125
+'171/2,Amounts owed to participating interests,0,38262
+'172/1,Accruals and deferred income,0,38399
+'172/2,Accrued expenses,0,38536
+'172/3,Deferred grants and income,0,38673
+'172/4,Advance received,0,38810
+'173/1,Contract liabilities,0,38947
+'174/1,Other creditors,0,39084
+'174/2,Dividends payable - equity,0,39221
+'174/3,Dividends payable - non-equity,0,39358
+'174/4,Obligations under hire purchase/finance leases,0,39495
+'174/5,Payments received on account,0,39632
+'174/6,Wages and salaries control account,0,39769
+'174/7,Interest payable,0,39906
+'174/9,Intragroup interest payable,0,40043
+'174/10,Business credit card,0,40180
+'174/11,Pension Payable,0,40317
+'175/1,Trade creditors,0,40454
+'175/2,Bills of exchange payable,0,40591
+'176/1,Amounts owed to group undertakings,0,40728
+'176/2,Amounts owed to participating interests,0,40865
+'177/1,Accrued expenses,0,41002
+'177/2,Deferred grants and income,0,41139
+'178/1,Contract liabilities,0,41276
+'179/1,Other creditors,0,41413
+'179/2,Dividends payable - equity,0,41550
+'179/3,Dividends payable - non-equity,0,41687
+'179/4,Obligations under hire purchase/finance leases,0,41824
+'179/5,Payments received on account,0,41961
+'179/7,Bounce back loan,0,42098
+'179/8,Mortgage loan,0,42235
+'180/1,Other creditors,0,42372
+'181/1,Debenture loans,0,42509
+'181/2,Debenture loans - convertible,0,42646
+'182/1,Debenture loans,0,42783
+'182/2,Debenture loans - convertible,0,42920
+'183/1,Debenture loans,0,43057
+'184/1,Debenture loans,0,43194
+'185/1,Debenture loans,0,43331
+'186/1,Bank loans and overdrafts,0,43468
+'186/2,Bank loans and overdrafts - secured,0,43605
+'187/1,Bank loans and overdrafts,0,43742
+'187/2,Bank loans and overdrafts - secured,0,43879
+'188/1,Bank loans and overdrafts,0,44016
+'189/1,Bank loans and overdrafts,0,44153
+'190/1,Bank loans and overdrafts,0,44290
+'191/1,Other loans,0,44427
+'192/1,Preference shares,0,44564
+'192/2,Preference shares - share type 1,0,44701
+'192/3,Preference shares - share type 2,0,44838
+'192/4,Preference shares - share type 3,0,44975
+'192/5,Preference shares - share type 4,0,45112
+'192/6,Preference shares - share type 5,0,45249
+'192/7,Preference shares - share type 6,0,45386
+'192/8,Preference shares - share type 7,0,45523
+'192/9,Preference shares - share type 8,0,45660
+'192/10,Preference shares - share type 9,0,45797
+'192/11,Preference shares - share type 10,0,45934
+'192/12,Preference shares - share type 11,0,46071
+'192/13,Preference shares - share type 12,0,46208
+'192/14,Preference shares - share type 13,0,46345
+'192/15,Preference shares - share type 14,0,46482
+'192/16,Preference shares - share type 15,0,46619
+'192/17,Preference shares - share type 16,0,46756
+'192/18,Preference shares - share type 17,0,46893
+'192/19,Preference shares - share type 18,0,47030
+'192/20,Preference shares - share type 19,0,47167
+'192/21,Preference shares - share type 20,0,47304
+'192/22,Issue of new preference share capital at par,0,47441
+'192/23,Other issues,0,47578
+'192/24,Purchase of own shares,0,47715
+'192/25,Prior year adjustment,0,47852
+'192/26,Transfers from neps more than 1 year,0,47989
+'193/1,Other loans,0,48126
+'194/1,Preference shares,0,48263
+'194/2,Preference shares - share type 1,0,48400
+'194/3,Preference shares - share type 2,0,48537
+'194/4,Preference shares - share type 3,0,48674
+'194/5,Preference shares - share type 4,0,48811
+'194/6,Preference shares - share type 5,0,48948
+'194/7,Preference shares - share type 6,0,49085
+'194/8,Preference shares - share type 7,0,49222
+'194/9,Preference shares - share type 8,0,49359
+'194/10,Preference shares - share type 9,0,49496
+'194/11,Preference shares - share type 10,0,49633
+'194/12,Preference shares - share type 11,0,49770
+'194/13,Preference shares - share type 12,0,49907
+'194/14,Preference shares - share type 13,0,1043
+'194/15,Preference shares - share type 14,0,1180
+'194/16,Preference shares - share type 15,0,1317
+'194/17,Preference shares - share type 16,0,1454
+'194/18,Preference shares - share type 17,0,1591
+'194/19,Preference shares - share type 18,0,1728
+'194/20,Preference shares - share type 19,0,1865
+'194/21,Preference shares - share type 20,0,2002
+'194/22,Issue of new preference share capital at par,0,2139
+'194/23,Other issues,0,2276
+'194/24,Purchase of own shares,0,2413
+'194/25,Prior year adjustment,0,2550
+'194/26,Transfers from neps more than 1 year,0,2687
+'195/1,Other loans,0,2824
+'196/1,Preference shares,0,2961
+'196/2,Preference shares - share type 1,0,3098
+'196/3,Preference shares - share type 2,0,3235
+'196/4,Preference shares - share type 3,0,3372
+'196/5,Preference shares - share type 4,0,3509
+'196/6,Preference shares - share type 5,0,3646
+'196/7,Preference shares - share type 6,0,3783
+'196/8,Preference shares - share type 7,0,3920
+'196/9,Preference shares - share type 8,0,4057
+'196/10,Preference shares - share type 9,0,4194
+'196/11,Preference shares - share type 10,0,4331
+'196/12,Preference shares - share type 11,0,4468
+'196/13,Preference shares - share type 12,0,4605
+'196/14,Preference shares - share type 13,0,4742
+'196/15,Preference shares - share type 14,0,4879
+'196/16,Preference shares - share type 15,0,5016
+'196/17,Preference shares - share type 16,0,5153
+'196/18,Preference shares - share type 17,0,5290
+'196/19,Preference shares - share type 18,0,5427
+'196/20,Preference shares - share type 19,0,5564
+'196/21,Preference shares - share type 20,0,5701
+'197/1,Other loans,0,5838
+'198/1,Preference shares,0,5975
+'198/2,Preference shares - share type 1,0,6112
+'198/3,Preference shares - share type 2,0,6249
+'198/4,Preference shares - share type 3,0,6386
+'198/5,Preference shares - share type 4,0,6523
+'198/6,Preference shares - share type 5,0,6660
+'198/7,Preference shares - share type 6,0,6797
+'198/8,Preference shares - share type 7,0,6934
+'198/9,Preference shares - share type 8,0,7071
+'198/10,Preference shares - share type 9,0,7208
+'198/11,Preference shares - share type 10,0,7345
+'198/12,Preference shares - share type 11,0,7482
+'198/13,Preference shares - share type 12,0,7619
+'198/14,Preference shares - share type 13,0,7756
+'198/15,Preference shares - share type 14,0,7893
+'198/16,Preference shares - share type 15,0,8030
+'198/17,Preference shares - share type 16,0,8167
+'198/18,Preference shares - share type 17,0,8304
+'198/19,Preference shares - share type 18,0,8441
+'198/20,Preference shares - share type 19,0,8578
+'198/21,Preference shares - share type 20,0,8715
+'199/1,Other loans,0,8852
+'200/1,Preference shares,0,8989
+'200/2,Preference shares - share type 1,0,9126
+'200/3,Preference shares - share type 2,0,9263
+'200/4,Preference shares - share type 3,0,9400
+'200/5,Preference shares - share type 4,0,9537
+'200/6,Preference shares - share type 5,0,9674
+'200/7,Preference shares - share type 6,0,9811
+'200/8,Preference shares - share type 7,0,9948
+'200/9,Preference shares - share type 8,0,10085
+'200/10,Preference shares - share type 9,0,10222
+'200/11,Preference shares - share type 10,0,10359
+'200/12,Preference shares - share type 11,0,10496
+'200/13,Preference shares - share type 12,0,10633
+'200/14,Preference shares - share type 13,0,10770
+'200/15,Preference shares - share type 14,0,10907
+'200/16,Preference shares - share type 15,0,11044
+'200/17,Preference shares - share type 16,0,11181
+'200/18,Preference shares - share type 17,0,11318
+'200/19,Preference shares - share type 18,0,11455
+'200/20,Preference shares - share type 19,0,11592
+'200/21,Preference shares - share type 20,0,11729
+'201/1,Hire purchase gross less than one year,0,11866
+'201/2,Hire purchase gross - 1 to 5 years,0,12003
+'201/3,Hire purchase gross - 1 to 2 years,0,12140
+'201/4,Hire purchase gross - 2 to 3 years,0,12277
+'201/5,Hire purchase gross - 3 to 4 years,0,12414
+'201/6,Hire purchase gross - 4 to 5 years,0,12551
+'201/7,Hire purchase gross more than 5 years,0,12688
+'202/1,Hire purchase interest less than one year,0,12825
+'202/2,Hire purchase interest - 1 to 5 years,0,12962
+'202/3,Hire purchase interest - 1 to 2 years,0,13099
+'202/4,Hire purchase interest - 2 to 3 years,0,13236
+'202/5,Hire purchase interest - 3 to 4 years,0,13373
+'202/6,Hire purchase interest - 4 to 5 years,0,13510
+'202/7,Hire purchase interest more than 5 years,0,13647
+'203/1,Finance leases gross less than one year,0,13784
+'203/2,Finance leases gross - 1 to 5 years,0,13921
+'203/3,Finance leases gross - 1 to 2 years,0,14058
+'203/4,Finance leases gross - 2 to 3 years,0,14195
+'203/5,Finance leases gross - 3 to 4 years,0,14332
+'203/6,Finance leases gross - 4 to 5 years,0,14469
+'203/7,Finance leases gross more than 5 years,0,14606
+'204/1,Finance leases interest less than one year,0,14743
+'204/2,Finance leases interest - 1 to 5 years,0,14880
+'204/3,Finance leases interest - 1 to 2 years,0,15017
+'204/4,Finance leases interest - 2 to 3 years,0,15154
+'204/5,Finance leases interest - 3 to 4 years,0,15291
+'204/6,Finance leases interest - 4 to 5 years,0,15428
+'204/7,Finance leases interest more than 5 years,0,15565
+'205/1,Other leases gross less than one year,0,15702
+'205/2,Other leases gross - 1 to 5 years,0,15839
+'205/3,Other leases gross - 1 to 2 years,0,15976
+'205/4,Other leases gross - 2 to 3 years,0,16113
+'205/5,Other leases gross - 3 to 4 years,0,16250
+'205/6,Other leases gross - 4 to 5 years,0,16387
+'205/7,Other leases gross more than 5 years,0,16524
+'206/1,Other leases interest less than one year,0,16661
+'206/2,Other leases interest - 1 to 5 years,0,16798
+'206/3,Other leases interest - 1 to 2 years,0,16935
+'206/4,Other leases interest - 2 to 3 years,0,17072
+'206/5,Other leases interest - 3 to 4 years,0,17209
+'206/6,Other leases interest - 4 to 5 years,0,17346
+'206/7,Other leases interest more than 5 years,0,17483
+'207/1,Deferred tax timing difference,0,17620
+'207/2,Accelerated capital allowances,0,17757
+'207/3,Tax losses carried forward,0,17894
+'207/4,Other timing differences,0,18031
+'207/5,Deferred tax,0,18168
+'207/6,Charged to profit and loss,0,18305
+'210/2,Deferred government grants,0,18442
+'210/3,Accrued expenses,0,18579
+'210/4,Deferred grants,0,18716
+'210/5,Accruals and deferred income,0,18853
+'211/1,Defined benefit pension scheme asset/liability b/fwd,18990,0
+'211/2,Pension - non-frsse,19127,0
+'211/3,Obligation brought forward,19264,0
+'211/4,Obligation current service cost,19401,0
+'211/5,Obligation past service cost,19538,0
+'211/6,Obligation contributions by employer,19675,0
+'211/7,Obligation contributions by scheme participants,19812,0
+'211/8,Obligation interest cost,19949,0
+'211/9,Obligation actuarial losses/(gains),20086,0
+'211/10,Obligation benefits paid,20223,0
+'211/11,Obligation exchange differences on foreign plans,20360,0
+'211/12,Obligation business combinations,20497,0
+'211/13,Obligation curtailments,20634,0
+'211/14,Obligation settlements,20771,0
+'211/15,Obligation actuarial (gains)/lossess from changes in demographic assumptions,20908,0
+'211/16,Obligation actuarial (gains)/lossess from changes in financial assumptions,21045,0
+'211/17,Obligation other remeasurement,21182,0
+'211/18,Assets fair value of scheme assets,21319,0
+'211/19,Assets contributions by employer,21456,0
+'211/20,Assets contributions by scheme participants,21593,0
+'211/21,Assets expected return,21730,0
+'211/22,Assets actuarial gains/(losses),21867,0
+'211/23,Assets benefits paid,22004,0
+'211/24,Assets exchange differences on foreign plans,22141,0
+'211/25,Assets business combinations,22278,0
+'211/26,Assets curtailments,22415,0
+'211/27,Assets settlements,22552,0
+'211/28,Assets return on plan assets (excluding interest income),22689,0
+'211/29,Assets other remeasurement,22826,0
+'211/30,Assets previously unrecognised surplus/deficit,22963,0
+'211/31,Pension - frsse,23100,0
+'211/32,Pension brought forward,23237,0
+'211/33,Current service cost,23374,0
+'211/34,Contributions,23511,0
+'211/35,Past service costs,23648,0
+'211/36,Other finance income,23785,0
+'211/37,Actuarial gain,23922,0
+'211/38,Previously unrecognised surplus deducted from past service costs,24059,0
+'211/39,Gains and losses on any settlements or curtailments,24196,0
+'211/40,Previously unrecognised surplus deducted from the settlement/curtailment losses,24333,0
+'211/41,Pension asset/liability deferred tax,24470,0
+'211/42,Dbps : actuarial gain/loss in current accounting period,24607,0
+'212/1,Retirement healthcare benefits,24744,0
+'212/2,Obligation brought forward,24881,0
+'212/3,Obligation current service cost,25018,0
+'212/4,Obligation past service cost,25155,0
+'212/5,Obligation contributions by employer,25292,0
+'212/6,Obligation contributions by scheme participants,25429,0
+'212/7,Obligation interest cost,25566,0
+'212/8,Obligation actuarial losses/(gains),25703,0
+'212/9,Obligation benefits paid,25840,0
+'212/10,Obligation exchange differences on foreign plans,25977,0
+'212/11,Obligation business combinations,26114,0
+'212/12,Obligation curtailments,26251,0
+'212/13,Obligation settlements,26388,0
+'212/14,Obligation actuarial (gains)/lossess from changes in demographic assumptions,26525,0
+'212/15,Obligation actuarial (gains)/lossess from changes in financial assumptions,26662,0
+'212/16,Obligation other remeasurement,26799,0
+'212/17,Assets fair value of scheme assets,26936,0
+'212/18,Assets contributions by employer,27073,0
+'212/19,Assets contributions by scheme participants,27210,0
+'212/20,Assets expected return,27347,0
+'212/21,Assets actuarial losses,27484,0
+'212/22,Assets benefits paid,27621,0
+'212/23,Assets exchange differences on foreign plans,27758,0
+'212/24,Assets business combinations,27895,0
+'212/25,Assets curtailments,28032,0
+'212/26,Assets settlements,28169,0
+'212/27,Assets return on plan assets (excluding interest income),28306,0
+'212/28,Assets other remeasurement,28443,0
+'212/29,Past service costs not recognised,28580,0
+'212/30,Health benefits - deferred tax,28717,0
+'214/1,Equity share capital b/fwd,0,28854
+'214/2,Issue of new equity share capital at par,0,28991
+'214/3,Scrip/rights issues,0,29128
+'214/4,Purchase of own shares,0,29265
+'214/5,Other equity share capital,0,29402
+'214/6,Prior year adjustment - correction of error,0,29539
+'215/1,Called up share capital,0,29676
+'215/2,Share capital 1,0,29813
+'215/3,Share capital 2,0,29950
+'215/4,Share capital 3,0,30087
+'215/5,Share capital 4,0,30224
+'215/6,Share capital 5,0,30361
+'215/7,Share capital 6,0,30498
+'215/8,Share capital 7,0,30635
+'215/9,Share capital 8,0,30772
+'215/10,Share capital 9,0,30909
+'216/1,Movement in share cap - non tb,31046,0
+'216/2,Increase in share capital,0,31183
+'216/3,Reduction in share capital,0,31320
+'217/1,Preference share capital b/fwd,0,31457
+'217/2,Issue of new preference share capital at par,0,31594
+'217/3,Other issues,0,31731
+'217/4,Purchase of own shares,0,31868
+'217/5,Prior year adjustment - correction of error,0,32005
+'218/1,Profit and loss account,0,32142
+'218/2,Profit and loss account b/fwd,0,32279
+'218/3,Bonus share issue,0,32416
+'218/4,Transfer from reserves,0,32553
+'218/5,Purchase of own shares,0,32690
+'218/6,Prior year adjustment - correction of error,0,32827
+'218/7,Cash share issue,0,32964
+'218/8,Increase in share capital,0,33101
+'218/9,Reduction in share capital,0,33238
+'218/10,Equity dividend paid,0,33375
+'218/11,Equity dividends proposed,0,33512
+'219/1,Share premium,0,33649
+'219/2,Share premium brought forward,0,33786
+'219/3,Bonus share issue,0,33923
+'219/4,Purchase of own shares,0,34060
+'219/5,Cash share issue,0,34197
+'219/6,Increase in share capital,0,34334
+'219/7,Reduction in share capital,0,34471
+'220/1,Equity share premium b/fwd,0,34608
+'220/2,Equity share premium - new issue,0,34745
+'220/3,Equity share premium - utilisation,0,34882
+'220/4,Prior year adjustment - correction of error,0,35019
+'221/1,Preference share premium balance b/fwd,0,35156
+'221/2,Preference share premium - new issue,0,35293
+'221/3,Preference share premium - utilisation,0,35430
+'221/4,Prior year adjustment - correction of error,0,35567
+'222/1,Revaluation reserves,0,35704
+'222/2,Revaluation reserve b/fwd,0,35841
+'222/3,Revaluation of fixed assets,0,35978
+'222/4,Transfer to/from profit and loss account,0,36115
+'222/5,Investments w/off / revalued,0,36252
+'222/6,Transfers to/from other reserves,0,36389
+'222/7,Deferred tax provided on revaluation,0,36526
+'222/8,Prior year adjustment - correction of error,0,36663
+'222/9,Deferred tax provided on revaluation of trade investments,0,36800
+'222/10,Bonus share issue,0,36937
+'222/11,Purchase of own shares,0,37074
+'222/12,Cash share issue,0,37211
+'222/13,Increase in share capital,0,37348
+'222/14,Reduction in share capital,0,37485
+'223/1,Capital redemptions reserves,0,37622
+'223/2,Capital redemption reserve b/fwd,0,37759
+'223/3,Bonus share issue,0,37896
+'223/4,Purchase of own shares (equity),0,38033
+'223/5,Transfer to/from profit and loss account,0,38170
+'223/6,Transfers to/from other reserves,0,38307
+'223/7,Prior year adjustment - correction of error,0,38444
+'223/8,Cash share issue,0,38581
+'223/9,Increase in share capital,0,38718
+'223/10,Reduction in share capital,0,38855
+'224/1,Other reserves,0,38992
+'224/2,Other reserves brought forward,0,39129
+'224/3,Bonus share issue,0,39266
+'224/4,Purchase of own shares,0,39403
+'224/5,Cash share issue,0,39540
+'224/6,Increase in share capital,0,39677
+'224/7,Reduction in share capital,0,39814
+'224/8,Discretionary allocation of profits to members,0,39951
+'224/9,Other movements,0,40088
+'224/10,Testing,0,40225
+'225/1,Fair value reserve,0,40362
+'225/2,Fair value reserve brought forward,0,40499
+'225/3,Bonus share issue,0,40636
+'225/4,Purchase of own shares,0,40773
+'225/5,Cash share issue,0,40910
+'225/6,Increase in share capital,0,41047
+'225/7,Reduction in share capital,0,41184
+'226/1,Non - controlling interests,0,41321
+'226/2,Balance brought forward,0,41458
+'226/3,Prior year adjustment - correction of error,0,41595
+'226/4,Transfer to/from OCI,0,41732
+'226/5,Increase in share capital,0,41869
+'226/6,Reduction in share capital,0,42006
+'226/7,Dividends,0,42143
+'226/8,Acquisition of non-controlling interest,0,42280
+'226/9,Non-controlling interest - business combinations,0,42417
+'227/1,Share options reserve b/fwd,0,42554
+'227/2,Equity-settled share-based payments in year,0,42691
+'227/3,Exercise of options during the year,0,42828
+'227/4,Transfer to/from profit and loss account,0,42965
+'227/5,Expiry of share options in the year,0,43102
+'227/6,Forfeiture of share options in the year,0,43239
+'227/7,Prior year adjustment - correction of error,0,43376
+'228/1,Special reserves b/fwd,0,43513
+'228/2,Created during the year,0,43650
+'228/3,Transfers to/from other reserves,0,43787
+'234/1,Suspense account,43924,0
+'235/1,Office equipment - Cost b/fwd,44061,0
+'235/2,Office equipment - Additions cost,44198,0
+'235/3,Office equipment - Disposals cost,44335,0
+'235/4,Office equipment - Grants,44472,0
+'235/5,Office equipment - Revaluations,44609,0
+'235/6,Office equipment - Impairments,44746,0
+'235/7,Office equipment - Reversal of impairments,44883,0
+'235/8,Office equipment - Exchange differences,45020,0
+'235/9,Office equipment - Transfer to ownership,45157,0
+'235/10,Office equipment - Reclassification/transfers,45294,0
+'235/11,Office equipment - Accumulated depreciation b/fwd,45431,0
+'235/12,Office equipment - Depreciation charge for the Year,45568,0
+'235/13,Office equipment - depreciation - on disposal,45705,0
+'235/14,Office equipment - depreciation - charge written back,45842,0
+'235/15,Office equipment - depreciation - revaluation adjustments,45979,0
+'235/16,Office equipment - depreciation - impairments,46116,0
+'235/17,Office equipment - depreciation - reversal of impairments,46253,0
+'235/18,Office equipment - depreciation - exchange differences,46390,0
+'235/19,Office equipment - depreciation - transfer to ownership,46527,0
+'235/20,Office equipment - Reclassification/transfers,46664,0
+'236/1,Other - Cost b/fwd,46801,0
+'236/2,Other - Additions cost,46938,0
+'236/3,Other - Disposals cost,47075,0
+'236/4,Other - Grants,47212,0
+'236/5,Other - Revaluations,47349,0
+'236/6,Other - Impairments,47486,0
+'236/7,Other - Reversal of impairments,47623,0
+'236/8,Other - Exchange differences,47760,0
+'236/9,Other - Transfer to ownership,47897,0
+'236/10,Other - Reclassification/transfers,48034,0
+'236/11,Other - Accumulated depreciation b/fwd,48171,0
+'236/12,Other - Depreciation charge for the Year,48308,0
+'236/13,Other - depreciation - on disposal,48445,0
+'236/14,Other - depreciation - charge written back,48582,0
+'236/15,Other - depreciation - revaluation adjustments,48719,0
+'236/16,Other - depreciation - impairments,48856,0
+'236/17,Other - depreciation - reversal of impairments,48993,0
+'236/18,Other - depreciation - exchange differences,49130,0
+'236/19,Other - depreciation - transfer to ownership,49267,0
+'236/20,Other - Reclassification/transfers,49404,0
+'237/1,asda,49541,0
+'238/1,asd,49678,0
+'239/1,asd,49815,0
+'239/2,sadasd,49952,0
+'252/1,Square Off,1088,0
+'264/2,Actuarial gain/(loss),1225,0
+'264/3,Pension surplus not recognised,1362,0
+'264/4,Foreign currency adjustments (non-reclassifiable),1499,0
+'264/5,Remeasurement of financial liabilities (credit risk),1636,0
+'264/1,Other comprehensive income b/fwd,1773,0
+'264/6,Gain/(loss) on equity Instruments (non- reclassifible),1910,0
+'264/7,Unrealised (deficit)/surplus on impairment of tangible fixed assets,2047,0
+'264/8,Share of OCI from joint ventures/associates,2184,0
+'264/9,Unrealized gain/(loss) (non-reclassifiable),2321,0
+'264/10,Deferred tax movement on OCI (non-reclassifiable),2458,0
+'264/11,Foreign currency adjustments (reclassifiable),2595,0
+'264/12,Gain/(loss) on cash flow hedges,2732,0
+'264/13,Unrealized gain/(loss) (reclassifiable),2869,0
+'264/14,Deferred tax movement on OCI (reclassifiable),3006,0
+28/1,Imported Test Account 0001,3143,0
+28/2,Imported Test Account 0002,3280,0
+28/3,Imported Test Account 0003,0,3417
+28/4,Imported Test Account 0004,0,3554
+28/5,Imported Test Account 0005,3691,0
+28/6,Imported Test Account 0006,0,3828
+28/7,Imported Test Account 0007,3965,0
+28/8,Imported Test Account 0008,0,4102
+28/9,Imported Test Account 0009,0,4239
+28/10,Imported Test Account 0010,4376,0
+28/11,Imported Test Account 0011,4513,0
+28/12,Imported Test Account 0012,0,4650
+28/13,Imported Test Account 0013,0,4787
+28/14,Imported Test Account 0014,4924,0
+28/15,Imported Test Account 0015,0,5061
+28/16,Imported Test Account 0016,5198,0
+28/17,Imported Test Account 0017,0,5335
+28/18,Imported Test Account 0018,0,5472
+28/19,Imported Test Account 0019,5609,0
+28/20,Imported Test Account 0020,5746,0
+28/21,Imported Test Account 0021,0,5883
+28/22,Imported Test Account 0022,0,6020
+28/23,Imported Test Account 0023,6157,0
+28/24,Imported Test Account 0024,0,6294
+28/25,Imported Test Account 0025,6431,0
+28/26,Imported Test Account 0026,0,6568
+28/27,Imported Test Account 0027,0,6705
+28/28,Imported Test Account 0028,6842,0
+28/29,Imported Test Account 0029,6979,0
+28/30,Imported Test Account 0030,0,7116
+28/31,Imported Test Account 0031,0,7253
+28/32,Imported Test Account 0032,7390,0
+28/33,Imported Test Account 0033,0,7527
+28/34,Imported Test Account 0034,7664,0
+28/35,Imported Test Account 0035,0,7801
+28/36,Imported Test Account 0036,0,7938
+28/37,Imported Test Account 0037,8075,0
+28/38,Imported Test Account 0038,8212,0
+28/39,Imported Test Account 0039,0,8349
+28/40,Imported Test Account 0040,0,8486
+28/41,Imported Test Account 0041,8623,0
+28/42,Imported Test Account 0042,0,8760
+28/43,Imported Test Account 0043,8897,0
+28/44,Imported Test Account 0044,0,9034
+28/45,Imported Test Account 0045,0,9171
+28/46,Imported Test Account 0046,9308,0
+28/47,Imported Test Account 0047,9445,0
+28/48,Imported Test Account 0048,0,9582
+28/49,Imported Test Account 0049,0,9719
+28/50,Imported Test Account 0050,9856,0
+28/51,Imported Test Account 0051,0,9993
+28/52,Imported Test Account 0052,10130,0
+28/53,Imported Test Account 0053,0,10267
+28/54,Imported Test Account 0054,0,10404
+28/55,Imported Test Account 0055,10541,0
+28/56,Imported Test Account 0056,10678,0
+28/57,Imported Test Account 0057,0,10815
+28/58,Imported Test Account 0058,0,10952
+28/59,Imported Test Account 0059,11089,0
+28/60,Imported Test Account 0060,0,11226
+28/61,Imported Test Account 0061,11363,0
+28/62,Imported Test Account 0062,0,11500
+28/63,Imported Test Account 0063,0,11637
+28/64,Imported Test Account 0064,11774,0
+28/65,Imported Test Account 0065,11911,0
+28/66,Imported Test Account 0066,0,12048
+28/67,Imported Test Account 0067,0,12185
+28/68,Imported Test Account 0068,12322,0
+28/69,Imported Test Account 0069,0,12459
+28/70,Imported Test Account 0070,12596,0
+28/71,Imported Test Account 0071,0,12733
+28/72,Imported Test Account 0072,0,12870
+28/73,Imported Test Account 0073,13007,0
+28/74,Imported Test Account 0074,13144,0
+28/75,Imported Test Account 0075,0,13281
+28/76,Imported Test Account 0076,0,13418
+28/77,Imported Test Account 0077,13555,0
+28/78,Imported Test Account 0078,0,13692
+28/79,Imported Test Account 0079,13829,0
+28/80,Imported Test Account 0080,0,13966
+28/81,Imported Test Account 0081,0,14103
+28/82,Imported Test Account 0082,14240,0
+28/83,Imported Test Account 0083,14377,0
+28/84,Imported Test Account 0084,0,14514
+28/85,Imported Test Account 0085,0,14651
+28/86,Imported Test Account 0086,14788,0
+28/87,Imported Test Account 0087,0,14925
+28/88,Imported Test Account 0088,15062,0
+28/89,Imported Test Account 0089,0,15199
+28/90,Imported Test Account 0090,0,15336
+28/91,Imported Test Account 0091,15473,0
+28/92,Imported Test Account 0092,15610,0
+28/93,Imported Test Account 0093,0,15747
+28/94,Imported Test Account 0094,0,15884
+28/95,Imported Test Account 0095,16021,0
+28/96,Imported Test Account 0096,0,16158
+29/97,Imported Test Account 0097,16295,0
+29/98,Imported Test Account 0098,0,16432
+29/99,Imported Test Account 0099,0,16569
+29/100,Imported Test Account 0100,16706,0
+29/101,Imported Test Account 0101,16843,0
+29/102,Imported Test Account 0102,0,16980
+29/103,Imported Test Account 0103,0,17117
+29/104,Imported Test Account 0104,17254,0
+29/105,Imported Test Account 0105,0,17391
+29/106,Imported Test Account 0106,17528,0
+29/107,Imported Test Account 0107,0,17665
+29/108,Imported Test Account 0108,0,17802
+29/109,Imported Test Account 0109,17939,0
+29/110,Imported Test Account 0110,18076,0
+29/111,Imported Test Account 0111,0,18213
+29/112,Imported Test Account 0112,0,18350
+29/113,Imported Test Account 0113,18487,0
+29/114,Imported Test Account 0114,0,18624
+29/115,Imported Test Account 0115,18761,0
+29/116,Imported Test Account 0116,0,18898
+29/117,Imported Test Account 0117,0,19035
+29/118,Imported Test Account 0118,19172,0
+29/119,Imported Test Account 0119,19309,0
+29/120,Imported Test Account 0120,0,19446
+29/121,Imported Test Account 0121,0,19583
+29/122,Imported Test Account 0122,19720,0
+29/123,Imported Test Account 0123,0,19857
+29/124,Imported Test Account 0124,19994,0
+29/125,Imported Test Account 0125,0,20131
+29/126,Imported Test Account 0126,0,20268
+29/127,Imported Test Account 0127,20405,0
+29/128,Imported Test Account 0128,20542,0
+29/129,Imported Test Account 0129,0,20679
+29/130,Imported Test Account 0130,0,20816
+29/131,Imported Test Account 0131,20953,0
+29/132,Imported Test Account 0132,0,21090
+29/133,Imported Test Account 0133,21227,0
+29/134,Imported Test Account 0134,0,21364
+29/135,Imported Test Account 0135,0,21501
+29/136,Imported Test Account 0136,21638,0
+29/137,Imported Test Account 0137,21775,0
+29/138,Imported Test Account 0138,0,21912
+29/139,Imported Test Account 0139,0,22049
+29/140,Imported Test Account 0140,22186,0
+29/141,Imported Test Account 0141,0,22323
+29/142,Imported Test Account 0142,22460,0
+29/143,Imported Test Account 0143,0,22597
+29/144,Imported Test Account 0144,0,22734
+29/145,Imported Test Account 0145,22871,0
+29/146,Imported Test Account 0146,23008,0
+29/147,Imported Test Account 0147,0,23145
+29/148,Imported Test Account 0148,0,23282
+29/149,Imported Test Account 0149,23419,0
+29/150,Imported Test Account 0150,0,23556
+29/151,Imported Test Account 0151,23693,0
+29/152,Imported Test Account 0152,0,23830
+29/153,Imported Test Account 0153,0,23967
+29/154,Imported Test Account 0154,24104,0
+29/155,Imported Test Account 0155,24241,0
+29/156,Imported Test Account 0156,0,24378
+29/157,Imported Test Account 0157,0,24515
+29/158,Imported Test Account 0158,24652,0
+29/159,Imported Test Account 0159,0,24789
+29/160,Imported Test Account 0160,24926,0
+29/161,Imported Test Account 0161,0,25063
+29/162,Imported Test Account 0162,0,25200
+29/163,Imported Test Account 0163,25337,0
+29/164,Imported Test Account 0164,25474,0
+29/165,Imported Test Account 0165,0,25611
+29/166,Imported Test Account 0166,0,25748
+29/167,Imported Test Account 0167,25885,0
+29/168,Imported Test Account 0168,0,26022
+29/169,Imported Test Account 0169,26159,0
+29/170,Imported Test Account 0170,0,26296
+29/171,Imported Test Account 0171,0,26433
+29/172,Imported Test Account 0172,26570,0
+29/173,Imported Test Account 0173,26707,0
+29/174,Imported Test Account 0174,0,26844
+29/175,Imported Test Account 0175,0,26981
+29/176,Imported Test Account 0176,27118,0
+29/177,Imported Test Account 0177,0,27255
+29/178,Imported Test Account 0178,27392,0
+29/179,Imported Test Account 0179,0,27529
+29/180,Imported Test Account 0180,0,27666
+29/181,Imported Test Account 0181,27803,0
+29/182,Imported Test Account 0182,27940,0
+29/183,Imported Test Account 0183,0,28077
+29/184,Imported Test Account 0184,0,28214
+29/185,Imported Test Account 0185,28351,0
+29/186,Imported Test Account 0186,0,28488
+29/187,Imported Test Account 0187,28625,0
+29/188,Imported Test Account 0188,0,28762
+29/189,Imported Test Account 0189,0,28899
+29/190,Imported Test Account 0190,29036,0
+29/191,Imported Test Account 0191,29173,0
+29/192,Imported Test Account 0192,0,29310
+29/193,Imported Test Account 0193,0,29447
+29/194,Imported Test Account 0194,29584,0
+29/195,Imported Test Account 0195,0,19076463
+29/196,Imported Test Account 0196,29858,0

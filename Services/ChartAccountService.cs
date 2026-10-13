@@ -31,16 +31,16 @@ public class ChartAccountService
     public async Task<bool> AccountNameExistsAsync(string accountName)
     {
         return await _chartAccounts
-            .Find(x => x.AccountName == accountName)
+            .Find(x => x.AccountName == accountName && !x.IsDeleted)
             .Limit(1)
             .FirstOrDefaultAsync() is not null;
     }
 
-    // GET ALL
+    // GET ALL (Excluding soft-deleted records)
     public async Task<List<ChartAccountResponse>> GetAsync()
     {
         var chartAccounts = await _chartAccounts
-            .Find(_ => true)
+            .Find(x => !x.IsDeleted)
             .ToListAsync();
 
         if (chartAccounts.Count == 0)
@@ -48,8 +48,7 @@ public class ChartAccountService
             return new List<ChartAccountResponse>();
         }
 
-        // Fetch all referenced AccountTypes in one MongoDB query instead of
-        // making one sequential query per ChartAccount.
+        // Fetch all referenced AccountTypes that are not soft-deleted
         var accountTypeIds = chartAccounts
             .Select(x => x.AccountTypeId)
             .Where(id => !string.IsNullOrWhiteSpace(id))
@@ -59,7 +58,10 @@ public class ChartAccountService
         var accountTypes = accountTypeIds.Count == 0
             ? new List<AccountType>()
             : await _accountTypes
-                .Find(Builders<AccountType>.Filter.In(x => x.Id, accountTypeIds))
+                .Find(Builders<AccountType>.Filter.And(
+                    Builders<AccountType>.Filter.In(x => x.Id, accountTypeIds),
+                    Builders<AccountType>.Filter.Where(x => !x.IsDeleted)
+                ))
                 .ToListAsync();
 
         var accountTypesById = accountTypes
@@ -84,11 +86,11 @@ public class ChartAccountService
             .ToList();
     }
 
-    // GET BY ID
+    // GET BY ID (Excluding soft-deleted records)
     public async Task<ChartAccountResponse?> GetAsync(string id)
     {
         var chartAccount = await _chartAccounts
-            .Find(x => x.Id == id)
+            .Find(x => x.Id == id && !x.IsDeleted)
             .FirstOrDefaultAsync();
 
         if (chartAccount == null)
@@ -97,7 +99,7 @@ public class ChartAccountService
         }
 
         var accountType = await _accountTypes
-            .Find(x => x.Id == chartAccount.AccountTypeId)
+            .Find(x => x.Id == chartAccount.AccountTypeId && !x.IsDeleted)
             .FirstOrDefaultAsync();
 
         return new ChartAccountResponse
@@ -115,11 +117,11 @@ public class ChartAccountService
         };
     }
 
-    // GET NEXT CODE
+    // GET NEXT CODE (Excluding soft-deleted accounts from sequence check)
     public async Task<string> GetNextCodeAsync()
     {
         var lastChartAccount = await _chartAccounts
-            .Find(_ => true)
+            .Find(x => !x.IsDeleted)
             .SortByDescending(x => x.Code)
             .FirstOrDefaultAsync();
 
@@ -147,7 +149,7 @@ public class ChartAccountService
         await _chartAccounts.InsertOneAsync(chartAccount);
     }
 
-    // PARTIAL UPDATE
+    // PARTIAL UPDATE (Ensuring we don't update deleted records)
     public async Task<bool> UpdateAsync(
         string id,
         UpdateChartAccountRequest request)
@@ -207,16 +209,26 @@ public class ChartAccountService
             Builders<ChartAccount>.Update.Combine(updates);
 
         var result = await _chartAccounts.UpdateOneAsync(
-            x => x.Id == id,
+            x => x.Id == id && !x.IsDeleted,
             combinedUpdate);
 
         return result.MatchedCount > 0;
     }
 
-    // DELETE
-    public async Task DeleteAsync(string id)
+    // SOFT DELETE
+    public async Task<bool> DeleteAsync(string id)
     {
-        await _chartAccounts.DeleteOneAsync(
-            x => x.Id == id);
+        var filter = Builders<ChartAccount>.Filter.And(
+            Builders<ChartAccount>.Filter.Eq(x => x.Id, id),
+            Builders<ChartAccount>.Filter.Where(x => !x.IsDeleted)
+        );
+
+        var update = Builders<ChartAccount>.Update
+            .Set(x => x.IsDeleted, true)
+            .Set(x => x.DeletedAt, DateTime.UtcNow);
+
+        var result = await _chartAccounts.UpdateOneAsync(filter, update);
+
+        return result.ModifiedCount > 0;
     }
 }

@@ -1,27 +1,22 @@
+C#
 using BackendAcctTask.Models;
-using BackendAcctTask.Services;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace BackendAcctTask.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class AccountTypesController : ControllerBase
+public class AccountTypesController : BaseController
 {
-    private readonly AccountTypeService _accountTypeService;
-
-    public AccountTypesController(
-        AccountTypeService accountTypeService)
+    // BaseController ko IMongoDatabase pass kar rahe hain
+    public AccountTypesController(IMongoDatabase database) : base(database)
     {
-        _accountTypeService = accountTypeService;
     }
-
     // GET: api/AccountTypes
     [HttpGet]
     public async Task<ActionResult<List<AccountType>>> Get()
     {
-        var accountTypes = await _accountTypeService.GetAsync();
+        var accountTypes = await AccountTypeDB.GetAllAsync(_database);
 
         return Ok(accountTypes);
     }
@@ -30,7 +25,7 @@ public class AccountTypesController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<AccountType>> Get(string id)
     {
-        var accountType = await _accountTypeService.GetAsync(id);
+        var accountType = await AccountTypeDB.GetByIdAsync(_database, id);
 
         if (accountType == null)
         {
@@ -47,7 +42,7 @@ public class AccountTypesController : ControllerBase
     {
         accountType.Id = ObjectId.GenerateNewId().ToString();
 
-        await _accountTypeService.CreateAsync(accountType);
+        await AccountTypeDB.CreateAsync(_database, accountType);
 
         return CreatedAtAction(
             nameof(Get),
@@ -62,7 +57,7 @@ public class AccountTypesController : ControllerBase
         AccountType accountType)
     {
         var existingAccountType =
-            await _accountTypeService.GetAsync(id);
+            await AccountTypeDB.GetByIdAsync(_database, id);
 
         if (existingAccountType == null)
         {
@@ -71,9 +66,7 @@ public class AccountTypesController : ControllerBase
 
         accountType.Id = id;
 
-        await _accountTypeService.UpdateAsync(
-            id,
-            accountType);
+        await AccountTypeDB.UpdateAsync(_database, id, accountType);
 
         return NoContent();
     }
@@ -83,14 +76,14 @@ public class AccountTypesController : ControllerBase
     public async Task<IActionResult> Delete(string id)
     {
         var existingAccountType =
-            await _accountTypeService.GetAsync(id);
+            await AccountTypeDB.GetByIdAsync(_database, id);
 
         if (existingAccountType == null)
         {
             return NotFound();
         }
 
-        await _accountTypeService.DeleteAsync(id);
+        await AccountTypeDB.DeleteAsync(_database, id);
 
         return NoContent();
     }

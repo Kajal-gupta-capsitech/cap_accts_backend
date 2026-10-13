@@ -1,7 +1,5 @@
-using MongoDB.Driver;
-using BackendAcctTask.Services;
 using BackendAcctTask.Settings;
-
+using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +34,7 @@ var mongoClient = new MongoClient(mongoConnection);
 
 var database = mongoClient.GetDatabase(mongoDatabase);
 
+// IMongoDatabase is registered so BaseController can inject it directly
 builder.Services.AddSingleton<IMongoDatabase>(database);
 
 
@@ -45,11 +44,9 @@ builder.Services.AddSingleton<IMongoDatabase>(database);
 
 builder.Services.AddControllers();
 
-
-builder.Services.AddSingleton<AccountTypeService>();
-builder.Services.AddSingleton<ChartAccountService>();
-builder.Services.AddSingleton<AccountingPeriodService>();
-
+// NOTE: Service registrations (AccountTypeService, ChartAccountService, etc.) 
+// have been removed because you are now using static DB helper classes 
+// and BaseController with direct IMongoDatabase injection.
 
 
 // ============================================================

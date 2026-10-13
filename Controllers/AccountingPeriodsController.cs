@@ -1,7 +1,9 @@
 using BackendAcctTask.Models;
-using BackendAcctTask.Services;
+using BackendAcctTask.Settings;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace BackendAcctTask.Controllers;
 
@@ -9,12 +11,16 @@ namespace BackendAcctTask.Controllers;
 [Route("api/[controller]")]
 public class AccountingPeriodsController : ControllerBase
 {
-    private readonly AccountingPeriodService _accountingPeriodService;
+    private readonly IMongoDatabase _database;
 
     public AccountingPeriodsController(
-        AccountingPeriodService accountingPeriodService)
+        IOptions<MongoDbSettings> mongoDbSettings)
     {
-        _accountingPeriodService = accountingPeriodService;
+        var mongoClient = new MongoClient(
+            mongoDbSettings.Value.ConnectionString);
+
+        _database = mongoClient.GetDatabase(
+            mongoDbSettings.Value.DatabaseName);
     }
 
     // GET: api/AccountingPeriods
@@ -22,7 +28,7 @@ public class AccountingPeriodsController : ControllerBase
     public async Task<ActionResult<List<AccountingPeriod>>> Get()
     {
         var accountingPeriods =
-            await _accountingPeriodService.GetAsync();
+            await AccountingPeriodDB.GetAllAsync(_database);
 
         return Ok(accountingPeriods);
     }
@@ -32,11 +38,15 @@ public class AccountingPeriodsController : ControllerBase
     public async Task<ActionResult<AccountingPeriod>> Get(string id)
     {
         var accountingPeriod =
-            await _accountingPeriodService.GetAsync(id);
+            await AccountingPeriodDB.GetByIdAsync(_database, id);
 
         if (accountingPeriod == null)
         {
-            return NotFound();
+            return NotFound(new
+            {
+                status = false,
+                message = "Accounting period not found."
+            });
         }
 
         return Ok(accountingPeriod);
@@ -50,7 +60,8 @@ public class AccountingPeriodsController : ControllerBase
         accountingPeriod.Id =
             ObjectId.GenerateNewId().ToString();
 
-        await _accountingPeriodService.CreateAsync(
+        await AccountingPeriodDB.CreateAsync(
+            _database,
             accountingPeriod);
 
         return Ok(new
@@ -69,7 +80,7 @@ public class AccountingPeriodsController : ControllerBase
         UpdateAccountingPeriodRequest request)
     {
         var existingAccountingPeriod =
-            await _accountingPeriodService.GetAsync(id);
+            await AccountingPeriodDB.GetByIdAsync(_database, id);
 
         if (existingAccountingPeriod == null)
         {
@@ -81,7 +92,8 @@ public class AccountingPeriodsController : ControllerBase
         }
 
         var updated =
-            await _accountingPeriodService.UpdateAsync(
+            await AccountingPeriodDB.UpdateAsync(
+                _database,
                 id,
                 request);
 
@@ -106,7 +118,7 @@ public class AccountingPeriodsController : ControllerBase
     public async Task<IActionResult> Delete(string id)
     {
         var existingAccountingPeriod =
-            await _accountingPeriodService.GetAsync(id);
+            await AccountingPeriodDB.GetByIdAsync(_database, id);
 
         if (existingAccountingPeriod == null)
         {
@@ -117,7 +129,7 @@ public class AccountingPeriodsController : ControllerBase
             });
         }
 
-        await _accountingPeriodService.DeleteAsync(id);
+        await AccountingPeriodDB.DeleteAsync(_database, id);
 
         return Ok(new
         {

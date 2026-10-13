@@ -53,6 +53,13 @@ public class Journal
     public string? CreatedBy { get; set; }
 
     public Attachment? Attachment { get; set; } 
+
+    [BsonIgnoreIfDefault]
+    public bool IsDeleted { get; set; } = false;
+
+    // Agar null hai, toh database mein store nahi hoga
+    [BsonIgnoreIfNull]
+    public DateTime? DeletedAt { get; set; }
 }
 
 
@@ -98,6 +105,8 @@ public class JournalItem
     public decimal Debit { get; set; }
 
     public decimal Credit { get; set; }
+
+
 }
 
 public class ImportsReference

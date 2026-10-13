@@ -35,6 +35,13 @@ public class Import
 
     public CsvImportType CsvImportType { get; set; }
         = CsvImportType.Default;
+        
+    [BsonIgnoreIfDefault]
+    public bool IsDeleted { get; set; } = false;
+
+    // Agar null hai, toh database mein store nahi hoga
+    [BsonIgnoreIfNull]
+    public DateTime? DeletedAt { get; set; }
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

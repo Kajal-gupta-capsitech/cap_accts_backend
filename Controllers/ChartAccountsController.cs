@@ -1,23 +1,29 @@
 using BackendAcctTask.Models;
 using BackendAcctTask.Services;
+using BackendAcctTask.Settings;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
+using MongoDB.Driver;
+using Microsoft.Extensions.Options;
 namespace BackendAcctTask.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
 public class ChartAccountsController : ControllerBase
 {
-    private readonly ChartAccountService _chartAccountService;
-    private readonly AccountTypeService _accountTypeService;
+ private readonly IMongoDatabase _database;
+    //  private readonly ChartAccountService ChartAccountDB;
+    // private readonly AccountTypeService _accountTypeService;
 
-    public ChartAccountsController(
-        ChartAccountService chartAccountService,
-        AccountTypeService accountTypeService)
-    {
-        _chartAccountService = chartAccountService;
-        _accountTypeService = accountTypeService;
-    }
+
+
+    // public ChartAccountsController(
+    //     ChartAccountService chartAccountService,
+    //     AccountTypeService accountTypeService)
+    // {
+    //     _chartAccountService = chartAccountService;
+    //     _accountTypeService = accountTypeService;
+    // }
 
     // POST: api/ChartAccounts
     [HttpPost]
@@ -25,7 +31,7 @@ public class ChartAccountsController : ControllerBase
      ChartAccount chartAccount)
     {
         var accountType =
-            await _accountTypeService.GetAsync(
+            await AccountTypeDB.GetByIdAsync(_database, 
                 chartAccount.AccountTypeId);
 
         if (accountType == null)
@@ -33,7 +39,7 @@ public class ChartAccountsController : ControllerBase
             return BadRequest("Invalid AccountTypeId.");
         }
 
-        if (await _chartAccountService.AccountNameExistsAsync(
+        if (await ChartAccountDB.AccountNameExistsAsync(_database,
                 chartAccount.AccountName))
         {
             return Conflict(
@@ -43,7 +49,7 @@ public class ChartAccountsController : ControllerBase
         chartAccount.Id =
             ObjectId.GenerateNewId().ToString();
 
-        await _chartAccountService.CreateAsync(chartAccount);
+        await ChartAccountDB.CreateAsync(_database, chartAccount);
 
         return CreatedAtAction(
             nameof(Get),
@@ -56,7 +62,7 @@ public class ChartAccountsController : ControllerBase
     public async Task<ActionResult<List<ChartAccountResponse>>> Get()
     {
         var chartAccounts =
-            await _chartAccountService.GetAsync();
+            await ChartAccountDB.GetAllAsync(_database);
 
         return Ok(chartAccounts);
     }
@@ -67,7 +73,7 @@ public class ChartAccountsController : ControllerBase
         string id)
     {
         var chartAccount =
-            await _chartAccountService.GetAsync(id);
+            await ChartAccountDB.GetByIdAsync(_database, id);
 
         if (chartAccount == null)
         {
@@ -88,7 +94,7 @@ public class ChartAccountsController : ControllerBase
     {
         // Check ChartAccount exists
         var existingChartAccount =
-            await _chartAccountService.GetAsync(id);
+            await ChartAccountDB.GetByIdAsync(_database, id);
 
         if (existingChartAccount == null)
         {
@@ -99,8 +105,7 @@ public class ChartAccountsController : ControllerBase
         if (request.AccountTypeId != null)
         {
             var accountType =
-                await _accountTypeService.GetAsync(
-                    request.AccountTypeId);
+                await AccountTypeDB.GetByIdAsync(_database, request.AccountTypeId);
 
             if (accountType == null)
             {
@@ -110,7 +115,8 @@ public class ChartAccountsController : ControllerBase
         }
 
         var updated =
-            await _chartAccountService.UpdateAsync(
+            await ChartAccountDB.UpdateAsync(
+                _database,
                 id,
                 request);
 
@@ -129,14 +135,14 @@ public class ChartAccountsController : ControllerBase
         string id)
     {
         var existingChartAccount =
-            await _chartAccountService.GetAsync(id);
+            await ChartAccountDB.GetByIdAsync(_database, id);
 
         if (existingChartAccount == null)
         {
             return NotFound();
         }
 
-        await _chartAccountService.DeleteAsync(id);
+        await ChartAccountDB.DeleteAsync(_database, id);
 
         return NoContent();
     }
