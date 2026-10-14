@@ -1,168 +1,149 @@
-using BackendAcctTask.Models;
-using MongoDB.Bson;
+using Capsitech.Data.MongoDB;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
+using System.ComponentModel.DataAnnotations;
 
-namespace BackendAcctTask.Models;
-
-[BsonIgnoreExtraElements]
-public class ChartAccount
+namespace BackendAcctTask.Models
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string Id { get; set; } = string.Empty;
-
-    public string Code { get; set; } = string.Empty;
-
-    public string AccountName { get; set; } = string.Empty;
-
-    public string AccountTypeId { get; set; } = string.Empty;
-
-    public string AccountGroup { get; set; } = string.Empty;
-
-    public bool ForClients { get; set; }
-
-    public bool Archive { get; set; }
-
-    [BsonIgnoreIfDefault]
-    public bool IsDeleted { get; set; } = false;
-
-    [BsonIgnoreIfNull]
-    public DateTime? DeletedAt { get; set; }
-}
-
-public static class ChartAccountDB
-{
-    private static IMongoCollection<ChartAccount> GetCollection(IMongoDatabase database)
+    [BsonIgnoreExtraElements]
+    public class ChartAccount : RecordBase
     {
-        return database.GetCollection<ChartAccount>("ChartAccounts");
+        public string Code { get; set; } = string.Empty;
+
+        public string AccountName { get; set; } = string.Empty;
+
+        public string AccountTypeId { get; set; } = string.Empty;
+
+        public string AccountGroup { get; set; } = string.Empty;
+
+        public bool ForClients { get; set; }
+
+        public bool Archive { get; set; }
     }
 
-    // CHECK IF ACCOUNT NAME EXISTS (Returns bool)
-    public static async Task<bool> AccountNameExistsAsync(IMongoDatabase database, string accountName)
+    public class ChartAccountRequest
     {
-        var existing = await GetCollection(database)
-            .Find(x => x.AccountName == accountName && !x.IsDeleted)
-            .Limit(1)
-            .FirstOrDefaultAsync();
+        public string? Code { get; set; }
 
-        return existing != null;
+        [Required(ErrorMessage = "Account Name is required")]
+        public string AccountName { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Account Type Id is required")]
+        public string AccountTypeId { get; set; } = string.Empty;
+
+        public string AccountGroup { get; set; } = string.Empty;
+
+        public bool ForClients { get; set; }
+
+        public bool Archive { get; set; }
     }
 
-    // GET ALL (Excluding soft-deleted records)
-    public static async Task<List<ChartAccount>> GetAllAsync(IMongoDatabase database)
+    public class ChartAccountDB : RecordDB<ChartAccount>
     {
-        return await GetCollection(database)
-            .Find(x => !x.IsDeleted)
-            .ToListAsync();
-    }
-
-    // GET BY ID
-    public static async Task<ChartAccount?> GetByIdAsync(IMongoDatabase database, string id)
-    {
-        return await GetCollection(database)
-            .Find(x => x.Id == id && !x.IsDeleted)
-            .FirstOrDefaultAsync();
-    }
-
-    // GET NEXT CODE
-    public static async Task<string> GetNextCodeAsync(IMongoDatabase database)
-    {
-        var lastChartAccount = await GetCollection(database)
-            .Find(x => !x.IsDeleted)
-            .SortByDescending(x => x.Code)
-            .FirstOrDefaultAsync();
-
-        if (lastChartAccount == null)
+        public ChartAccountDB(DBConfiguration dBConfiguration) : base(dBConfiguration)
         {
-            return "1/1";
         }
 
-        var codeParts = lastChartAccount.Code.Split('/');
+        public override string CollectionName => "ChartAccounts";
 
-        if (codeParts.Length != 2 ||
-            !int.TryParse(codeParts[1], out int lastNumber))
+        public async Task<bool> AccountNameExistsAsync(string accountName)
         {
-            return "1/1";
+            return await ExistsAsync(x => x.AccountName.ToLower() == accountName.ToLower() && !x.IsDeleted);
         }
 
-        return $"1/{lastNumber + 1}";
-    }
-
-    // CREATE
-    public static async Task CreateAsync(IMongoDatabase database, ChartAccount chartAccount)
-    {
-        chartAccount.Code = await GetNextCodeAsync(database);
-        await GetCollection(database).InsertOneAsync(chartAccount);
-    }
-
-    // UPDATE
-    public static async Task<bool> UpdateAsync(
-        IMongoDatabase database,
-        string id,
-        UpdateChartAccountRequest request)
-    {
-        var collection = GetCollection(database);
-        var updates = new List<UpdateDefinition<ChartAccount>>();
-
-        if (request.AccountName != null)
+        public async Task<string> GetNextCodeAsync()
         {
-            updates.Add(Builders<ChartAccount>.Update.Set(x => x.AccountName, request.AccountName));
+            try
+            {
+                var lastChartAccount = await GetCollection()
+                    .Find(x => !x.IsDeleted)
+                    .SortByDescending(x => x.Code)
+                    .FirstOrDefaultAsync();
+
+                if (lastChartAccount == null || string.IsNullOrWhiteSpace(lastChartAccount.Code))
+                {
+                    return "1/1";
+                }
+
+                var codeParts = lastChartAccount.Code.Split('/');
+
+                if (codeParts.Length != 2 || !int.TryParse(codeParts[1], out int lastNumber))
+                {
+                    return "1/1";
+                }
+
+                return $"1/{lastNumber + 1}";
+            }
+            catch (Exception ex)
+            {
+                LastError = ex;
+                return "1/1";
+            }
         }
 
-        if (request.AccountTypeId != null)
+        public async Task<List<ChartAccountResponse>> GetAllWithAccountTypeAsync(AccountTypeDB accountTypeDb)
         {
-            updates.Add(Builders<ChartAccount>.Update.Set(x => x.AccountTypeId, request.AccountTypeId));
+            var chartAccounts = await GetAllAsync(x => !x.IsDeleted);
+
+            if (chartAccounts.Count == 0)
+            {
+                return new List<ChartAccountResponse>();
+            }
+
+            var accountTypeIds = chartAccounts
+                .Select(x => x.AccountTypeId)
+                .Where(id => !string.IsNullOrWhiteSpace(id))
+                .Distinct()
+                .ToList();
+
+            var accountTypes = accountTypeIds.Count == 0
+                ? new List<AccountType>()
+                : await accountTypeDb.GetAllAsync(x => accountTypeIds.Contains(x.Id) && !x.IsDeleted);
+
+            var accountTypesById = accountTypes
+                .ToDictionary(x => x.Id, StringComparer.Ordinal);
+
+            return chartAccounts
+                .Select(chartAccount => new ChartAccountResponse
+                {
+                    Id = chartAccount.Id,
+                    Code = chartAccount.Code,
+                    AccountName = chartAccount.AccountName,
+                    AccountTypeId = chartAccount.AccountTypeId,
+                    AccountType = accountTypesById.TryGetValue(chartAccount.AccountTypeId, out var accountType)
+                        ? accountType
+                        : null,
+                    AccountGroup = chartAccount.AccountGroup,
+                    ForClients = chartAccount.ForClients,
+                    Archive = chartAccount.Archive
+                })
+                .ToList();
         }
 
-        if (request.AccountGroup != null)
+        public async Task<ChartAccountResponse?> GetByIdWithAccountTypeAsync(string id, AccountTypeDB accountTypeDb)
         {
-            updates.Add(Builders<ChartAccount>.Update.Set(x => x.AccountGroup, request.AccountGroup));
+            var chartAccount = await GetByIdAsync(id);
+
+            if (chartAccount == null)
+            {
+                return null;
+            }
+
+            var accountType = !string.IsNullOrWhiteSpace(chartAccount.AccountTypeId)
+                ? await accountTypeDb.GetByIdAsync(chartAccount.AccountTypeId)
+                : null;
+
+            return new ChartAccountResponse
+            {
+                Id = chartAccount.Id,
+                Code = chartAccount.Code,
+                AccountName = chartAccount.AccountName,
+                AccountTypeId = chartAccount.AccountTypeId,
+                AccountType = accountType,
+                AccountGroup = chartAccount.AccountGroup,
+                ForClients = chartAccount.ForClients,
+                Archive = chartAccount.Archive
+            };
         }
-
-        if (request.ForClients.HasValue)
-        {
-            updates.Add(Builders<ChartAccount>.Update.Set(x => x.ForClients, request.ForClients.Value));
-        }
-
-        if (request.Archive.HasValue)
-        {
-            updates.Add(Builders<ChartAccount>.Update.Set(x => x.Archive, request.Archive.Value));
-        }
-
-        if (updates.Count == 0)
-        {
-            return false;
-        }
-
-        var combinedUpdate = Builders<ChartAccount>.Update.Combine(updates);
-
-        var filter = Builders<ChartAccount>.Filter.And(
-            Builders<ChartAccount>.Filter.Eq(x => x.Id, id),
-            Builders<ChartAccount>.Filter.Where(x => !x.IsDeleted)
-        );
-
-        var result = await collection.UpdateOneAsync(filter, combinedUpdate);
-
-        return result.MatchedCount > 0;
-    }
-
-    // SOFT DELETE
-    public static async Task<bool> DeleteAsync(IMongoDatabase database, string id)
-    {
-        var collection = GetCollection(database);
-
-        var filter = Builders<ChartAccount>.Filter.And(
-            Builders<ChartAccount>.Filter.Eq(x => x.Id, id),
-            Builders<ChartAccount>.Filter.Where(x => !x.IsDeleted)
-        );
-
-        var update = Builders<ChartAccount>.Update
-            .Set(x => x.IsDeleted, true)
-            .Set(x => x.DeletedAt, DateTime.UtcNow);
-
-        var result = await collection.UpdateOneAsync(filter, update);
-
-        return result.ModifiedCount > 0;
     }
 }

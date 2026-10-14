@@ -1,149 +1,246 @@
 using BackendAcctTask.Models;
-using BackendAcctTask.Services;
-using BackendAcctTask.Settings;
+using Capsitech.Data.MongoDB;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using Microsoft.Extensions.Options;
-namespace BackendAcctTask.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class ChartAccountsController : ControllerBase
+namespace BackendAcctTask.Controllers
 {
- private readonly IMongoDatabase _database;
-    //  private readonly ChartAccountService ChartAccountDB;
-    // private readonly AccountTypeService _accountTypeService;
-
-
-
-    // public ChartAccountsController(
-    //     ChartAccountService chartAccountService,
-    //     AccountTypeService accountTypeService)
-    // {
-    //     _chartAccountService = chartAccountService;
-    //     _accountTypeService = accountTypeService;
-    // }
-
-    // POST: api/ChartAccounts
-    [HttpPost]
-    public async Task<ActionResult<ChartAccount>> Create(
-     ChartAccount chartAccount)
+    [ApiController]
+    [Route("api/[controller]")]
+    [Route("api/ChartAccount")]
+    [Route("api/ChartAccounts")]
+    public class ChartAccountsController : ApiControllerBase
     {
-        var accountType =
-            await AccountTypeDB.GetByIdAsync(_database, 
-                chartAccount.AccountTypeId);
-
-        if (accountType == null)
+        public ChartAccountsController(DBConfiguration dBConfiguration) : base(dBConfiguration)
         {
-            return BadRequest("Invalid AccountTypeId.");
         }
 
-        if (await ChartAccountDB.AccountNameExistsAsync(_database,
-                chartAccount.AccountName))
+        private ChartAccountDB GetDB()
         {
-            return Conflict(
-                $"AccountName '{chartAccount.AccountName}' already exists.");
+            return new ChartAccountDB(_dbConfig);
         }
 
-        chartAccount.Id =
-            ObjectId.GenerateNewId().ToString();
-
-        await ChartAccountDB.CreateAsync(_database, chartAccount);
-
-        return CreatedAtAction(
-            nameof(Get),
-            new { id = chartAccount.Id },
-            chartAccount);
-    }
-
-    // GET: api/ChartAccounts
-    [HttpGet]
-    public async Task<ActionResult<List<ChartAccountResponse>>> Get()
-    {
-        var chartAccounts =
-            await ChartAccountDB.GetAllAsync(_database);
-
-        return Ok(chartAccounts);
-    }
-
-    // GET: api/ChartAccounts/{id}
-    [HttpGet("{id}")]
-    public async Task<ActionResult<ChartAccountResponse>> Get(
-        string id)
-    {
-        var chartAccount =
-            await ChartAccountDB.GetByIdAsync(_database, id);
-
-        if (chartAccount == null)
+        private AccountTypeDB GetAccountTypeDB()
         {
-            return NotFound();
+            return new AccountTypeDB(_dbConfig);
         }
 
-        return Ok(chartAccount);
-    }
-
-
-
-    // PATCH: api/ChartAccounts/{id}
-    [HttpPatch("{id}")]
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Update(
-        string id,
-        UpdateChartAccountRequest request)
-    {
-        // Check ChartAccount exists
-        var existingChartAccount =
-            await ChartAccountDB.GetByIdAsync(_database, id);
-
-        if (existingChartAccount == null)
+        #region chart accounts list get
+        [HttpGet]
+        [HttpGet("list")]
+        public async Task<List<ChartAccountResponse>> GetAll()
         {
-            return NotFound();
+            var db = GetDB();
+            var accountTypeDb = GetAccountTypeDB();
+
+            return await db.GetAllWithAccountTypeAsync(accountTypeDb);
         }
+        #endregion
 
-        // Only validate AccountTypeId if it is being changed
-        if (request.AccountTypeId != null)
+        #region chart account get by id
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ChartAccountResponse>> GetById(string id)
         {
-            var accountType =
-                await AccountTypeDB.GetByIdAsync(_database, request.AccountTypeId);
-
-            if (accountType == null)
+            try
             {
-                return BadRequest(
-                    "Invalid AccountTypeId.");
+                var db = GetDB();
+                var accountTypeDb = GetAccountTypeDB();
+
+                var chartAccount = await db.GetByIdWithAccountTypeAsync(id, accountTypeDb);
+
+                if (chartAccount == null)
+                {
+                    return NotFound(new ApiResponse<ChartAccountResponse>
+                    {
+                        Status = false,
+                        Message = "Chart account not found."
+                    });
+                }
+
+                return Ok(chartAccount);
+            }
+            catch (Exception ex)
+            {
+                var response = new ApiResponse<ChartAccountResponse>();
+                response.AddError(ex.Message);
+                return StatusCode(500, response);
             }
         }
+        #endregion
 
-        var updated =
-            await ChartAccountDB.UpdateAsync(
-                _database,
-                id,
-                request);
-
-        if (!updated)
+        #region chart account add / save
+        [HttpPost]
+        [HttpPost("save")]
+        public async Task<ApiResponse<ChartAccount>> Save([FromBody] ChartAccountRequest request)
         {
-            return BadRequest(
-                "At least one field must be provided.");
+            var response = new ApiResponse<ChartAccount>();
+
+            if (ValidateModel(response))
+                return response;
+
+            try
+            {
+                var db = GetDB();
+                var accountTypeDb = GetAccountTypeDB();
+
+                var accountType = await accountTypeDb.GetByIdAsync(request.AccountTypeId);
+                if (accountType == null)
+                {
+                    response.AddError("Invalid AccountTypeId. Account type not found.");
+                    return response;
+                }
+
+                if (await db.AccountNameExistsAsync(request.AccountName))
+                {
+                    response.AddError($"AccountName '{request.AccountName}' already exists.");
+                    return response;
+                }
+
+                var nextCode = string.IsNullOrWhiteSpace(request.Code)
+                    ? await db.GetNextCodeAsync()
+                    : request.Code.Trim();
+
+                var chartAccount = new ChartAccount
+                {
+                    Code = nextCode,
+                    AccountName = request.AccountName.Trim(),
+                    AccountTypeId = request.AccountTypeId.Trim(),
+                    AccountGroup = request.AccountGroup?.Trim() ?? string.Empty,
+                    ForClients = request.ForClients,
+                    Archive = request.Archive
+                };
+
+                var result = await db.AddAsync(chartAccount);
+                if (result)
+                {
+                    response.Result = chartAccount;
+                    response.Message = "Chart account saved successfully.";
+                }
+                else
+                {
+                    response.Message = "Failed to save chart account.";
+                    if (db.LastError != null)
+                        response.AddError(db.LastError.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.AddError(ex.Message);
+            }
+
+            return response;
         }
+        #endregion
 
-        return NoContent();
-    }
-
-    // DELETE: api/ChartAccounts/{id}
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(
-        string id)
-    {
-        var existingChartAccount =
-            await ChartAccountDB.GetByIdAsync(_database, id);
-
-        if (existingChartAccount == null)
+        #region chart account update
+        [HttpPut("{id}")]
+        [HttpPatch("{id}")]
+        [HttpPost("update/{id}")]
+        public async Task<ApiResponse<ChartAccount>> Update(string id, [FromBody] UpdateChartAccountRequest request)
         {
-            return NotFound();
+            var response = new ApiResponse<ChartAccount>();
+
+            try
+            {
+                var db = GetDB();
+                var accountTypeDb = GetAccountTypeDB();
+
+                var existing = await db.GetByIdAsync(id);
+                if (existing == null)
+                {
+                    response.AddError("Chart account not found.");
+                    return response;
+                }
+
+                if (!string.IsNullOrWhiteSpace(request.AccountTypeId))
+                {
+                    var accountType = await accountTypeDb.GetByIdAsync(request.AccountTypeId);
+                    if (accountType == null)
+                    {
+                        response.AddError("Invalid AccountTypeId. Account type not found.");
+                        return response;
+                    }
+                    existing.AccountTypeId = request.AccountTypeId.Trim();
+                }
+
+                if (!string.IsNullOrWhiteSpace(request.AccountName))
+                {
+                    if (!string.Equals(existing.AccountName, request.AccountName, StringComparison.OrdinalIgnoreCase) &&
+                        await db.AccountNameExistsAsync(request.AccountName))
+                    {
+                        response.AddError($"AccountName '{request.AccountName}' already exists.");
+                        return response;
+                    }
+                    existing.AccountName = request.AccountName.Trim();
+                }
+
+                if (request.AccountGroup != null)
+                    existing.AccountGroup = request.AccountGroup.Trim();
+
+                if (request.ForClients.HasValue)
+                    existing.ForClients = request.ForClients.Value;
+
+                if (request.Archive.HasValue)
+                    existing.Archive = request.Archive.Value;
+
+                var result = await db.UpdateAsync(id, existing);
+                if (result)
+                {
+                    response.Result = existing;
+                    response.Message = "Chart account updated successfully.";
+                }
+                else
+                {
+                    response.Message = "Failed to update chart account.";
+                    if (db.LastError != null)
+                        response.AddError(db.LastError.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.AddError(ex.Message);
+            }
+
+            return response;
         }
+        #endregion
 
-        await ChartAccountDB.DeleteAsync(_database, id);
+        #region chart account delete
+        [HttpDelete("{id}")]
+        [HttpPost("delete/{id}")]
+        public async Task<ApiResponse<bool>> Delete(string id)
+        {
+            var response = new ApiResponse<bool>();
 
-        return NoContent();
+            try
+            {
+                var db = GetDB();
+                var existing = await db.GetByIdAsync(id);
+                if (existing == null)
+                {
+                    response.AddError("Chart account not found.");
+                    return response;
+                }
+
+                var result = await db.DeleteAsync(id);
+                if (result)
+                {
+                    response.Result = true;
+                    response.Message = "Chart account deleted successfully.";
+                }
+                else
+                {
+                    response.Message = "Failed to delete chart account.";
+                    if (db.LastError != null)
+                        response.AddError(db.LastError.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.AddError(ex.Message);
+            }
+
+            return response;
+        }
+        #endregion
     }
 }

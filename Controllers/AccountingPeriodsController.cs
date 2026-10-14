@@ -1,140 +1,219 @@
 using BackendAcctTask.Models;
-using BackendAcctTask.Settings;
+using Capsitech.Data.MongoDB;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using MongoDB.Bson;
-using MongoDB.Driver;
 
-namespace BackendAcctTask.Controllers;
-
-[ApiController]
-[Route("api/[controller]")]
-public class AccountingPeriodsController : ControllerBase
+namespace BackendAcctTask.Controllers
 {
-    private readonly IMongoDatabase _database;
-
-    public AccountingPeriodsController(
-        IOptions<MongoDbSettings> mongoDbSettings)
+    [ApiController]
+    [Route("api/[controller]")]
+    [Route("api/AccountingPeriod")]
+    [Route("api/AccountingPeriods")]
+    public class AccountingPeriodsController : ApiControllerBase
     {
-        var mongoClient = new MongoClient(
-            mongoDbSettings.Value.ConnectionString);
-
-        _database = mongoClient.GetDatabase(
-            mongoDbSettings.Value.DatabaseName);
-    }
-
-    // GET: api/AccountingPeriods
-    [HttpGet]
-    public async Task<ActionResult<List<AccountingPeriod>>> Get()
-    {
-        var accountingPeriods =
-            await AccountingPeriodDB.GetAllAsync(_database);
-
-        return Ok(accountingPeriods);
-    }
-
-    // GET: api/AccountingPeriods/{id}
-    [HttpGet("{id}")]
-    public async Task<ActionResult<AccountingPeriod>> Get(string id)
-    {
-        var accountingPeriod =
-            await AccountingPeriodDB.GetByIdAsync(_database, id);
-
-        if (accountingPeriod == null)
+        public AccountingPeriodsController(DBConfiguration dBConfiguration) : base(dBConfiguration)
         {
-            return NotFound(new
-            {
-                status = false,
-                message = "Accounting period not found."
-            });
         }
 
-        return Ok(accountingPeriod);
-    }
-
-    // POST: api/AccountingPeriods
-    [HttpPost]
-    public async Task<ActionResult<AccountingPeriod>> Create(
-        AccountingPeriod accountingPeriod)
-    {
-        accountingPeriod.Id =
-            ObjectId.GenerateNewId().ToString();
-
-        await AccountingPeriodDB.CreateAsync(
-            _database,
-            accountingPeriod);
-
-        return Ok(new
+        private AccountingPeriodDB GetDB()
         {
-            status = true,
-            message = "Accounting period created successfully.",
-            result = accountingPeriod
-        });
-    }
-
-    // PUT/PATCH: api/AccountingPeriods/{id}
-    [HttpPut("{id}")]
-    [HttpPatch("{id}")]
-    public async Task<IActionResult> Update(
-        string id,
-        UpdateAccountingPeriodRequest request)
-    {
-        var existingAccountingPeriod =
-            await AccountingPeriodDB.GetByIdAsync(_database, id);
-
-        if (existingAccountingPeriod == null)
-        {
-            return NotFound(new
-            {
-                status = false,
-                message = "Accounting period not found."
-            });
+            return new AccountingPeriodDB(_dbConfig);
         }
 
-        var updated =
-            await AccountingPeriodDB.UpdateAsync(
-                _database,
-                id,
-                request);
-
-        if (!updated)
+        #region period list get
+        [HttpGet]
+        [HttpGet("list")]
+        public async Task<List<AccountingPeriod>> GetAll()
         {
-            return BadRequest(new
-            {
-                status = false,
-                message = "At least one field must be provided."
-            });
+            var db = GetDB();
+            return await db.GetAllAsync(x => true);
         }
+        #endregion
 
-        return Ok(new
+        #region period get by id
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AccountingPeriod>> GetById(string id)
         {
-            status = true,
-            message = "Accounting period updated successfully."
-        });
-    }
-
-    // DELETE: api/AccountingPeriods/{id}
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(string id)
-    {
-        var existingAccountingPeriod =
-            await AccountingPeriodDB.GetByIdAsync(_database, id);
-
-        if (existingAccountingPeriod == null)
-        {
-            return NotFound(new
+            try
             {
-                status = false,
-                message = "Accounting period not found."
-            });
+                var db = GetDB();
+                var period = await db.GetByIdAsync(id);
+
+                if (period == null)
+                {
+                    return NotFound(new ApiResponse<AccountingPeriod>
+                    {
+                        Status = false,
+                        Message = "Accounting period not found."
+                    });
+                }
+
+                return Ok(period);
+            }
+            catch (Exception ex)
+            {
+                var errorResponse = new ApiResponse<AccountingPeriod>();
+                errorResponse.AddError(ex.Message);
+                return StatusCode(500, errorResponse);
+            }
         }
+        #endregion
 
-        await AccountingPeriodDB.DeleteAsync(_database, id);
-
-        return Ok(new
+        #region period add / save
+        [HttpPost]
+        [HttpPost("save")]
+        public async Task<ApiResponse<AccountingPeriod>> Save([FromBody] AccountingPeriodRequest request)
         {
-            status = true,
-            message = "Accounting period deleted successfully."
-        });
+            var response = new ApiResponse<AccountingPeriod>();
+
+            if (ValidateModel(response))
+                return response;
+
+            if (request.PeriodFrom >= request.PeriodTo)
+            {
+                response.AddError("Period From must be earlier than Period To.");
+                return response;
+            }
+
+            try
+            {
+                var db = GetDB();
+
+                var existing = await db.GetAllAsync(x => x.PeriodFrom == request.PeriodFrom && x.PeriodTo == request.PeriodTo);
+                if (existing.Any())
+                {
+                    response.AddError("Accounting period with the same dates already exists.");
+                    return response;
+                }
+
+                var period = new AccountingPeriod
+                {
+                    PeriodFrom = request.PeriodFrom,
+                    PeriodTo = request.PeriodTo,
+                    Status = request.Status ?? AccountingPeriodStatus.Unlocked,
+                    IsActive = request.IsActive ?? true,
+                    IsClosed = request.IsClosed ?? false
+                };
+
+                var result = await db.AddAsync(period);
+                if (result)
+                {
+                    response.Result = period;
+                    response.Message = "Accounting period saved successfully.";
+                }
+                else
+                {
+                    response.Message = "Failed to save accounting period";
+                    if (db.LastError != null)
+                        response.AddError(db.LastError.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.AddError(ex.Message);
+            }
+
+            return response;
+        }
+        #endregion
+
+        #region period update
+        [HttpPut("{id}")]
+        [HttpPatch("{id}")]
+        [HttpPost("update/{id}")]
+        public async Task<ApiResponse<AccountingPeriod>> Update(string id, [FromBody] UpdateAccountingPeriodRequest request)
+        {
+            var response = new ApiResponse<AccountingPeriod>();
+
+            try
+            {
+                var db = GetDB();
+                var existing = await db.GetByIdAsync(id);
+                if (existing == null)
+                {
+                    response.AddError("Accounting period not found.");
+                    return response;
+                }
+
+                if (request.PeriodFrom.HasValue)
+                    existing.PeriodFrom = request.PeriodFrom.Value;
+
+                if (request.PeriodTo.HasValue)
+                    existing.PeriodTo = request.PeriodTo.Value;
+
+                if (request.IsActive.HasValue)
+                    existing.IsActive = request.IsActive.Value;
+
+                if (request.IsClosed.HasValue)
+                    existing.IsClosed = request.IsClosed.Value;
+
+                if (request.Status.HasValue)
+                    existing.Status = request.Status.Value;
+
+                if (existing.PeriodFrom >= existing.PeriodTo)
+                {
+                    response.AddError("Period From must be earlier than Period To.");
+                    return response;
+                }
+
+                var result = await db.UpdateAsync(id, existing);
+                if (result)
+                {
+                    response.Result = existing;
+                    response.Message = "Accounting period updated successfully.";
+                }
+                else
+                {
+                    response.Message = "Failed to update accounting period.";
+                    if (db.LastError != null)
+                        response.AddError(db.LastError.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.AddError(ex.Message);
+            }
+
+            return response;
+        }
+        #endregion
+
+        #region period delete
+        [HttpDelete("{id}")]
+        [HttpPost("delete/{id}")]
+        public async Task<ApiResponse<bool>> Delete(string id)
+        {
+            var response = new ApiResponse<bool>();
+
+            try
+            {
+                var db = GetDB();
+                var existing = await db.GetByIdAsync(id);
+                if (existing == null)
+                {
+                    response.AddError("Accounting period not found.");
+                    return response;
+                }
+
+                var result = await db.DeleteAsync(id);
+                if (result)
+                {
+                    response.Result = true;
+                    response.Message = "Accounting period deleted successfully.";
+                }
+                else
+                {
+                    response.Message = "Failed to delete accounting period.";
+                    if (db.LastError != null)
+                        response.AddError(db.LastError.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.AddError(ex.Message);
+            }
+
+            return response;
+        }
+        #endregion
     }
 }

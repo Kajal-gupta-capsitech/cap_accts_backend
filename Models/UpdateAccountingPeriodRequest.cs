@@ -9,4 +9,6 @@ public class UpdateAccountingPeriodRequest
     public bool? IsActive { get; set; }
 
     public bool? IsClosed { get; set; }
+
+    public AccountingPeriodStatus? Status { get; set; }
 }

@@ -1,90 +1,195 @@
-C#
 using BackendAcctTask.Models;
+using Capsitech.Data.MongoDB;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using MongoDB.Driver;
 
-namespace BackendAcctTask.Controllers;
-
-public class AccountTypesController : BaseController
+namespace BackendAcctTask.Controllers
 {
-    // BaseController ko IMongoDatabase pass kar rahe hain
-    public AccountTypesController(IMongoDatabase database) : base(database)
+    [ApiController]
+    [Route("api/[controller]")]
+    [Route("api/AccountType")]
+    [Route("api/AccountTypes")]
+    public class AccountTypesController : ApiControllerBase
     {
-    }
-    // GET: api/AccountTypes
-    [HttpGet]
-    public async Task<ActionResult<List<AccountType>>> Get()
-    {
-        var accountTypes = await AccountTypeDB.GetAllAsync(_database);
-
-        return Ok(accountTypes);
-    }
-
-    // GET: api/AccountTypes/{id}
-    [HttpGet("{id}")]
-    public async Task<ActionResult<AccountType>> Get(string id)
-    {
-        var accountType = await AccountTypeDB.GetByIdAsync(_database, id);
-
-        if (accountType == null)
+        public AccountTypesController(DBConfiguration dBConfiguration) : base(dBConfiguration)
         {
-            return NotFound();
         }
 
-        return Ok(accountType);
-    }
-
-    // POST: api/AccountTypes
-    [HttpPost]
-    public async Task<ActionResult<AccountType>> Create(
-        AccountType accountType)
-    {
-        accountType.Id = ObjectId.GenerateNewId().ToString();
-
-        await AccountTypeDB.CreateAsync(_database, accountType);
-
-        return CreatedAtAction(
-            nameof(Get),
-            new { id = accountType.Id },
-            accountType);
-    }
-
-    // PUT: api/AccountTypes/{id}
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Update(
-        string id,
-        AccountType accountType)
-    {
-        var existingAccountType =
-            await AccountTypeDB.GetByIdAsync(_database, id);
-
-        if (existingAccountType == null)
+        private AccountTypeDB GetDB()
         {
-            return NotFound();
+            return new AccountTypeDB(_dbConfig);
         }
 
-        accountType.Id = id;
-
-        await AccountTypeDB.UpdateAsync(_database, id, accountType);
-
-        return NoContent();
-    }
-
-    // DELETE: api/AccountTypes/{id}
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(string id)
-    {
-        var existingAccountType =
-            await AccountTypeDB.GetByIdAsync(_database, id);
-
-        if (existingAccountType == null)
+        #region account type list get
+        [HttpGet]
+        [HttpGet("list")]
+        public async Task<List<AccountType>> GetAll()
         {
-            return NotFound();
+            var db = GetDB();
+            return await db.GetAllAsync(x => true);
         }
+        #endregion
 
-        await AccountTypeDB.DeleteAsync(_database, id);
+        #region account type get by id
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AccountType>> GetById(string id)
+        {
+            try
+            {
+                var db = GetDB();
+                var accountType = await db.GetByIdAsync(id);
 
-        return NoContent();
+                if (accountType == null)
+                {
+                    return NotFound(new ApiResponse<AccountType>
+                    {
+                        Status = false,
+                        Message = "Account type not found."
+                    });
+                }
+
+                return Ok(accountType);
+            }
+            catch (Exception ex)
+            {
+                var response = new ApiResponse<AccountType>();
+                response.AddError(ex.Message);
+                return StatusCode(500, response);
+            }
+        }
+        #endregion
+
+        #region account type add / save
+        [HttpPost]
+        [HttpPost("save")]
+        public async Task<ApiResponse<AccountType>> Save([FromBody] AccountTypeRequest request)
+        {
+            var response = new ApiResponse<AccountType>();
+
+            if (ValidateModel(response))
+                return response;
+
+            try
+            {
+                var db = GetDB();
+
+                var existing = await db.GetAllAsync(x => x.Name.ToLower() == request.Name.ToLower());
+                if (existing.Any())
+                {
+                    response.AddError($"Account type '{request.Name}' already exists.");
+                    return response;
+                }
+
+                var accountType = new AccountType
+                {
+                    Name = request.Name.Trim(),
+                    Nature = request.Nature
+                };
+
+                var result = await db.AddAsync(accountType);
+                if (result)
+                {
+                    response.Result = accountType;
+                    response.Message = "Account type saved successfully.";
+                }
+                else
+                {
+                    response.Message = "Failed to save account type.";
+                    if (db.LastError != null)
+                        response.AddError(db.LastError.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.AddError(ex.Message);
+            }
+
+            return response;
+        }
+        #endregion
+
+        #region account type update
+        [HttpPut("{id}")]
+        [HttpPatch("{id}")]
+        [HttpPost("update/{id}")]
+        public async Task<ApiResponse<AccountType>> Update(string id, [FromBody] AccountTypeRequest request)
+        {
+            var response = new ApiResponse<AccountType>();
+
+            if (ValidateModel(response))
+                return response;
+
+            try
+            {
+                var db = GetDB();
+                var existing = await db.GetByIdAsync(id);
+                if (existing == null)
+                {
+                    response.AddError("Account type not found.");
+                    return response;
+                }
+
+                existing.Name = request.Name.Trim();
+                existing.Nature = request.Nature;
+
+                var result = await db.UpdateAsync(id, existing);
+                if (result)
+                {
+                    response.Result = existing;
+                    response.Message = "Account type updated successfully.";
+                }
+                else
+                {
+                    response.Message = "Failed to update account type.";
+                    if (db.LastError != null)
+                        response.AddError(db.LastError.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.AddError(ex.Message);
+            }
+
+            return response;
+        }
+        #endregion
+
+        #region account type delete
+        [HttpDelete("{id}")]
+        [HttpPost("delete/{id}")]
+        public async Task<ApiResponse<bool>> Delete(string id)
+        {
+            var response = new ApiResponse<bool>();
+
+            try
+            {
+                var db = GetDB();
+                var existing = await db.GetByIdAsync(id);
+                if (existing == null)
+                {
+                    response.AddError("Account type not found.");
+                    return response;
+                }
+
+                var result = await db.DeleteAsync(id);
+                if (result)
+                {
+                    response.Result = true;
+                    response.Message = "Account type deleted successfully.";
+                }
+                else
+                {
+                    response.Message = "Failed to delete account type.";
+                    if (db.LastError != null)
+                        response.AddError(db.LastError.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.AddError(ex.Message);
+            }
+
+            return response;
+        }
+        #endregion
     }
 }

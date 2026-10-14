@@ -1,124 +1,74 @@
-using MongoDB.Bson;
+using Capsitech.Data.MongoDB;
 using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Driver;
+using System.ComponentModel.DataAnnotations;
 
-namespace BackendAcctTask.Models;
-
-[BsonIgnoreExtraElements]
-public class AccountingPeriod
+namespace BackendAcctTask.Models
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string Id { get; set; } = string.Empty;
-
-    public DateTime PeriodFrom { get; set; }
-
-    public DateTime PeriodTo { get; set; }
-
-    public bool IsActive { get; set; } = true;
-
-    public bool IsClosed { get; set; } = false;
-
-    [BsonIgnoreIfDefault]
-    public bool IsDeleted { get; set; } = false;
-
-    [BsonIgnoreIfNull]
-    public DateTime? DeletedAt { get; set; }
-}
-
-/// <summary>
-/// Saare Database operations ab is class ke andar aa jayenge, 
-/// jisse aapko alag se Services folder ki zaroorat nahi padegi.
-/// </summary>
-public static class AccountingPeriodDB
-{
-    private static IMongoCollection<AccountingPeriod> GetCollection(IMongoDatabase database)
+    public enum AccountingPeriodStatus
     {
-        return database.GetCollection<AccountingPeriod>("AccountingPeriods");
+        Unlocked = 1,
+        Locked = 2
     }
 
-    // GET ALL
-    public static async Task<List<AccountingPeriod>> GetAllAsync(IMongoDatabase database)
+    [BsonIgnoreExtraElements]
+    public class AccountingPeriod : RecordBase
     {
-        return await GetCollection(database)
-            .Find(x => !x.IsDeleted)
-            .ToListAsync();
+        public DateTime PeriodFrom { get; set; }
+
+        public DateTime PeriodTo { get; set; }
+
+        public AccountingPeriodStatus Status { get; set; } = AccountingPeriodStatus.Unlocked;
+
+        public bool IsActive { get; set; } = true;
+
+        public bool IsClosed { get; set; } = false;
     }
 
-    // GET BY ID
-    public static async Task<AccountingPeriod?> GetByIdAsync(IMongoDatabase database, string id)
+    public class AccountingPeriodRequest
     {
-        return await GetCollection(database)
-            .Find(x => x.Id == id && !x.IsDeleted)
-            .FirstOrDefaultAsync();
+        [Required(ErrorMessage = "Period From is required")]
+        public DateTime PeriodFrom { get; set; }
+
+        [Required(ErrorMessage = "Period To is required")]
+        public DateTime PeriodTo { get; set; }
+
+        public AccountingPeriodStatus? Status { get; set; }
+
+        public bool? IsActive { get; set; }
+
+        public bool? IsClosed { get; set; }
     }
 
-    // CREATE
-    public static async Task CreateAsync(IMongoDatabase database, AccountingPeriod accountingPeriod)
+    public class AccountingPeriodResponse
     {
-        await GetCollection(database).InsertOneAsync(accountingPeriod);
+        public string Id { get; set; } = null!;
+
+        public DateTime PeriodFrom { get; set; }
+
+        public DateTime PeriodTo { get; set; }
+
+        public AccountingPeriodStatus Status { get; set; }
+
+        public bool IsActive { get; set; } = true;
+
+        public bool IsClosed { get; set; } = false;
+
+        public List<DirectorResponse> Directors { get; set; } = new();
     }
 
-    // PARTIAL UPDATE
-    public static async Task<bool> UpdateAsync(
-        IMongoDatabase database,
-        string id,
-        UpdateAccountingPeriodRequest request)
+    public class DirectorResponse
     {
-        var collection = GetCollection(database);
-        var updates = new List<UpdateDefinition<AccountingPeriod>>();
+        public string Id { get; set; } = null!;
 
-        if (request.PeriodFrom.HasValue)
-        {
-            updates.Add(Builders<AccountingPeriod>
-            .Update.Set(x => x.PeriodFrom, request.PeriodFrom.Value));
-        }
-
-        if (request.PeriodTo.HasValue)
-        {
-            updates.Add(Builders<AccountingPeriod>.Update.Set(x => x.PeriodTo, request.PeriodTo.Value));
-        }
-
-        if (request.IsActive.HasValue)
-        {
-            updates.Add(Builders<AccountingPeriod>.Update.Set(x => x.IsActive, request.IsActive.Value));
-        }
-
-        if (request.IsClosed.HasValue)
-        {
-            updates.Add(Builders<AccountingPeriod>.Update.Set(x => x.IsClosed, request.IsClosed.Value));
-        }
-
-        if (updates.Count == 0)
-        {
-            return false;
-        }
-
-        var combinedUpdate = Builders<AccountingPeriod>.Update.Combine(updates);
-
-        var result = await collection.UpdateOneAsync(
-            x => x.Id == id && !x.IsDeleted,
-            combinedUpdate);
-
-        return result.MatchedCount > 0;
+        public string Name { get; set; } = null!;
     }
 
-    // SOFT DELETE
-    public static async Task<bool> DeleteAsync(IMongoDatabase database, string id)
+    public class AccountingPeriodDB : RecordDB<AccountingPeriod>
     {
-        var collection = GetCollection(database);
+        public AccountingPeriodDB(DBConfiguration dBConfiguration) : base(dBConfiguration)
+        {
+        }
 
-        var filter = Builders<AccountingPeriod>.Filter.And(
-            Builders<AccountingPeriod>.Filter.Eq(x => x.Id, id),
-            Builders<AccountingPeriod>.Filter.Where(x => !x.IsDeleted)
-        );
-
-        var update = Builders<AccountingPeriod>.Update
-            .Set(x => x.IsDeleted, true)
-            .Set(x => x.DeletedAt, DateTime.UtcNow);
-
-        var result = await collection.UpdateOneAsync(filter, update);
-
-        return result.ModifiedCount > 0;
+        public override string CollectionName => "AccountingPeriods";
     }
 }

@@ -1,4 +1,5 @@
 using BackendAcctTask.Settings;
+using Capsitech.Data.MongoDB;
 using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,7 +35,9 @@ var mongoClient = new MongoClient(mongoConnection);
 
 var database = mongoClient.GetDatabase(mongoDatabase);
 
-// IMongoDatabase is registered so BaseController can inject it directly
+// DBConfiguration & IMongoDatabase are registered
+var dbConfiguration = new DBConfiguration(database, mongoConnection, mongoDatabase);
+builder.Services.AddSingleton(dbConfiguration);
 builder.Services.AddSingleton<IMongoDatabase>(database);
 
 
