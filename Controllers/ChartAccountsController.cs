@@ -1,12 +1,10 @@
 using BackendAcctTask.Models;
-using Capsitech.Data.MongoDB;
+using BackendAcctTask.Data.MongoDB;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackendAcctTask.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    [Route("api/ChartAccount")]
     [Route("api/ChartAccounts")]
     public class ChartAccountsController : ApiControllerBase
     {
@@ -26,7 +24,6 @@ namespace BackendAcctTask.Controllers
 
         #region chart accounts list get
         [HttpGet]
-        [HttpGet("list")]
         public async Task<List<ChartAccountResponse>> GetAll()
         {
             var db = GetDB();
@@ -67,9 +64,8 @@ namespace BackendAcctTask.Controllers
         }
         #endregion
 
-        #region chart account add / save
+        #region chart account add
         [HttpPost]
-        [HttpPost("save")]
         public async Task<ApiResponse<ChartAccount>> Save([FromBody] ChartAccountRequest request)
         {
             var response = new ApiResponse<ChartAccount>();

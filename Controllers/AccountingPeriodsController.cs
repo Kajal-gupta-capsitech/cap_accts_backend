@@ -1,12 +1,10 @@
 using BackendAcctTask.Models;
-using Capsitech.Data.MongoDB;
+using BackendAcctTask.Data.MongoDB;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackendAcctTask.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    [Route("api/AccountingPeriod")]
     [Route("api/AccountingPeriods")]
     public class AccountingPeriodsController : ApiControllerBase
     {
@@ -21,7 +19,7 @@ namespace BackendAcctTask.Controllers
 
         #region period list get
         [HttpGet]
-        [HttpGet("list")]
+                // [HttpGet("list")]
         public async Task<List<AccountingPeriod>> GetAll()
         {
             var db = GetDB();

@@ -1,4 +1,4 @@
-namespace Capsitech.Data.MongoDB
+namespace BackendAcctTask.Data.MongoDB
 {
     public class ApiResponse<T>
     {

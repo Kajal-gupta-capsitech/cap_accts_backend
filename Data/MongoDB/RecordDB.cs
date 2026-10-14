@@ -2,7 +2,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Linq.Expressions;
 
-namespace Capsitech.Data.MongoDB
+namespace BackendAcctTask.Data.MongoDB
 {
     public abstract class RecordDB<T> where T : RecordBase
     {

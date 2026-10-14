@@ -1,4 +1,4 @@
-using Capsitech.Data.MongoDB;
+using BackendAcctTask.Data.MongoDB;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using System.ComponentModel.DataAnnotations;
@@ -15,7 +15,6 @@ namespace BackendAcctTask.Models
         public string AccountTypeId { get; set; } = string.Empty;
 
         public string AccountGroup { get; set; } = string.Empty;
-
         public bool ForClients { get; set; }
 
         public bool Archive { get; set; }

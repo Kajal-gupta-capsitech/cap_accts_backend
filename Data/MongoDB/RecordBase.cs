@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Capsitech.Data.MongoDB
+namespace BackendAcctTask.Data.MongoDB
 {
     [BsonIgnoreExtraElements]
     public abstract class RecordBase

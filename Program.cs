@@ -1,16 +1,10 @@
-using BackendAcctTask.Settings;
-using Capsitech.Data.MongoDB;
-using MongoDB.Driver;
+using BackendAcctTask.Data.MongoDB;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // ============================================================
-// MONGODB SETTINGS
+// MONGODB CONFIGURATION (Single Source of Truth)
 // ============================================================
-builder.Services.Configure<MongoDbSettings>(
-    builder.Configuration.GetSection("MongoDbSettings")
-);
-
 var mongoConnection =
     builder.Configuration["MongoDbSettings:ConnectionString"];
 
@@ -31,14 +25,8 @@ if (string.IsNullOrWhiteSpace(mongoDatabase))
     );
 }
 
-var mongoClient = new MongoClient(mongoConnection);
-
-var database = mongoClient.GetDatabase(mongoDatabase);
-
-// DBConfiguration & IMongoDatabase are registered
-var dbConfiguration = new DBConfiguration(database, mongoConnection, mongoDatabase);
+var dbConfiguration = new DBConfiguration(mongoConnection, mongoDatabase);
 builder.Services.AddSingleton(dbConfiguration);
-builder.Services.AddSingleton<IMongoDatabase>(database);
 
 
 // ============================================================
@@ -46,11 +34,6 @@ builder.Services.AddSingleton<IMongoDatabase>(database);
 // ============================================================
 
 builder.Services.AddControllers();
-
-// NOTE: Service registrations (AccountTypeService, ChartAccountService, etc.) 
-// have been removed because you are now using static DB helper classes 
-// and BaseController with direct IMongoDatabase injection.
-
 
 // ============================================================
 // CORS

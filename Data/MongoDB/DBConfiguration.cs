@@ -1,6 +1,6 @@
 using MongoDB.Driver;
 
-namespace Capsitech.Data.MongoDB
+namespace BackendAcctTask.Data.MongoDB
 {
     public class DBConfiguration
     {

@@ -1,4 +1,5 @@
 using BackendAcctTask.Models;
+using BackendAcctTask.Data.MongoDB;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -25,10 +26,12 @@ public class TrialBalancesController : ControllerBase
     private readonly IMongoCollection<AccountType> _accountTypes;
 
     public TrialBalancesController(
-        IMongoDatabase database,
+        DBConfiguration dbConfig,
         IWebHostEnvironment environment)
     {
         _environment = environment;
+
+        var database = dbConfig.Database;
 
         _trialBalances =
             database.GetCollection<TrialBalance>("TrialBalances");

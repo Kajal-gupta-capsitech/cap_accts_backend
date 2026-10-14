@@ -1,12 +1,10 @@
 using BackendAcctTask.Models;
-using Capsitech.Data.MongoDB;
+using BackendAcctTask.Data.MongoDB;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackendAcctTask.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    [Route("api/AccountType")]
     [Route("api/AccountTypes")]
     public class AccountTypesController : ApiControllerBase
     {
@@ -21,7 +19,6 @@ namespace BackendAcctTask.Controllers
 
         #region account type list get
         [HttpGet]
-        [HttpGet("list")]
         public async Task<List<AccountType>> GetAll()
         {
             var db = GetDB();

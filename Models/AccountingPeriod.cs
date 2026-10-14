@@ -1,4 +1,4 @@
-using Capsitech.Data.MongoDB;
+using BackendAcctTask.Data.MongoDB;
 using MongoDB.Bson.Serialization.Attributes;
 using System.ComponentModel.DataAnnotations;
 
@@ -53,15 +53,15 @@ namespace BackendAcctTask.Models
 
         public bool IsClosed { get; set; } = false;
 
-        public List<DirectorResponse> Directors { get; set; } = new();
+        // public List<DirectorResponse> Directors { get; set; } = new();
     }
 
-    public class DirectorResponse
-    {
-        public string Id { get; set; } = null!;
+    // public class DirectorResponse
+    // {
+    //     public string Id { get; set; } = null!;
 
-        public string Name { get; set; } = null!;
-    }
+    //     public string Name { get; set; } = null!;
+    // }
 
     public class AccountingPeriodDB : RecordDB<AccountingPeriod>
     {

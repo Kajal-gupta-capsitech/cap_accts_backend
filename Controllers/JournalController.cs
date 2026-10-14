@@ -1,4 +1,5 @@
 using BackendAcctTask.Models;
+using BackendAcctTask.Data.MongoDB;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -14,8 +15,10 @@ public class JournalsController : ControllerBase
     private readonly IMongoCollection<ChartAccount> _chartAccounts;
     private readonly IMongoCollection<AccountType> _accountTypes;
 
-    public JournalsController(IMongoDatabase database)
+    public JournalsController(DBConfiguration dbConfig)
     {
+        var database = dbConfig.Database;
+
         _journals =
             database.GetCollection<Journal>("Journals");
 

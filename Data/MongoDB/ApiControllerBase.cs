@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Capsitech.Data.MongoDB
+namespace BackendAcctTask.Data.MongoDB
 {
     [ApiController]
     public abstract class ApiControllerBase : ControllerBase
