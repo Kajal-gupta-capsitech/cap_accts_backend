@@ -47,7 +47,7 @@ namespace BackendAcctTask.Models
 
         public async Task<bool> AccountNameExistsAsync(string accountName)
         {
-            return await ExistsAsync(x => x.AccountName.ToLower() == accountName.ToLower() && !x.IsDeleted);
+            return await ExistsAsync(x => x.AccountName == accountName && !x.IsDeleted);
         }
 
         public async Task<string> GetNextCodeAsync()
@@ -144,5 +144,58 @@ namespace BackendAcctTask.Models
                 Archive = chartAccount.Archive
             };
         }
+
+
+        public async Task<bool> UpdateOneAsync(string id, UpdateChartAccountRequest request)
+        {
+            try
+            {
+                LastError = null;
+                var filter = Builders<ChartAccount>.Filter.And(
+                    Builders<ChartAccount>.Filter.Eq(x => x.Id, id),
+                    Builders<ChartAccount>.Filter.Where(x => !x.IsDeleted)
+                );
+
+                var updateBuilder = Builders<ChartAccount>.Update
+                    .Set(x => x.UpdatedAt, DateTime.UtcNow);
+
+                // Sirf wahi fields update hongi jo request mein bheji gayi hain
+                if (!string.IsNullOrWhiteSpace(request.AccountTypeId))
+                {
+                    updateBuilder = updateBuilder.Set(x => x.AccountTypeId, request.AccountTypeId.Trim());
+                }
+
+                if (!string.IsNullOrWhiteSpace(request.AccountName))
+                {
+                    updateBuilder = updateBuilder.Set(x => x.AccountName, request.AccountName.Trim());
+                }
+
+                if (request.AccountGroup != null)
+                {
+                    updateBuilder = updateBuilder.Set(x => x.AccountGroup, request.AccountGroup.Trim());
+                }
+
+                if (request.ForClients.HasValue)
+                {
+                    updateBuilder = updateBuilder.Set(x => x.ForClients, request.ForClients.Value);
+                }
+
+                if (request.Archive.HasValue)
+                {
+                    updateBuilder = updateBuilder.Set(x => x.Archive, request.Archive.Value);
+                }
+
+                var result = await GetCollection().UpdateOneAsync(filter, updateBuilder);
+                return result.ModifiedCount > 0 || result.MatchedCount > 0;
+            }
+            catch (Exception ex)
+            {
+                LastError = ex;
+                return false;
+            }
+        }
+
     }
+
+
 }

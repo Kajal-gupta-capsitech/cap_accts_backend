@@ -128,9 +128,81 @@ namespace BackendAcctTask.Controllers
         #endregion
 
         #region chart account update
+        // [HttpPut("{id}")]
+        // [HttpPatch("{id}")]
+        // // [HttpPost("update/{id}")]
+        // public async Task<ApiResponse<ChartAccount>> Update(string id, [FromBody] UpdateChartAccountRequest request)
+        // {
+        //     var response = new ApiResponse<ChartAccount>();
+
+        //     try
+        //     {
+        //         var db = GetDB();
+        //         var accountTypeDb = GetAccountTypeDB();
+
+        //         var existing = await db.GetByIdAsync(id);
+        //         if (existing == null)
+        //         {
+        //             response.AddError("Chart account not found.");
+        //             return response;
+        //         }
+
+        //         if (!string.IsNullOrWhiteSpace(request.AccountTypeId))
+        //         {
+        //             var accountType = await accountTypeDb.GetByIdAsync(request.AccountTypeId);
+        //             if (accountType == null)
+        //             {
+        //                 response.AddError("Invalid AccountTypeId. Account type not found.");
+        //                 return response;
+        //             }
+        //             existing.AccountTypeId = request.AccountTypeId.Trim();
+        //         }
+
+        //         if (!string.IsNullOrWhiteSpace(request.AccountName))
+        //         {
+        //             if (!string.Equals(existing.AccountName, request.AccountName, StringComparison.OrdinalIgnoreCase) &&
+        //                 await db.AccountNameExistsAsync(request.AccountName))
+        //             {
+        //                 response.AddError($"AccountName '{request.AccountName}' already exists.");
+        //                 return response;
+        //             }
+        //             existing.AccountName = request.AccountName.Trim();
+        //         }
+
+        //         if (request.AccountGroup != null)
+        //             existing.AccountGroup = request.AccountGroup.Trim();
+
+        //         if (request.ForClients.HasValue)
+        //             existing.ForClients = request.ForClients.Value;
+
+        //         if (request.Archive.HasValue)
+        //             existing.Archive = request.Archive.Value;
+
+        //         var result = await db.UpdateAsync(id, existing);
+        //         if (result)
+        //         {
+        //             response.Result = existing;
+        //             response.Message = "Chart account updated successfully.";
+        //         }
+        //         else
+        //         {
+        //             response.Message = "Failed to update chart account.";
+        //             if (db.LastError != null)
+        //                 response.AddError(db.LastError.Message);
+        //         }
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         response.AddError(ex.Message);
+        //     }
+
+        //     return response;
+        // }
+
+
         [HttpPut("{id}")]
         [HttpPatch("{id}")]
-        [HttpPost("update/{id}")]
+        // [HttpPost("update/{id}")]
         public async Task<ApiResponse<ChartAccount>> Update(string id, [FromBody] UpdateChartAccountRequest request)
         {
             var response = new ApiResponse<ChartAccount>();
@@ -140,6 +212,7 @@ namespace BackendAcctTask.Controllers
                 var db = GetDB();
                 var accountTypeDb = GetAccountTypeDB();
 
+                // 1. Check if record exists
                 var existing = await db.GetByIdAsync(id);
                 if (existing == null)
                 {
@@ -147,6 +220,7 @@ namespace BackendAcctTask.Controllers
                     return response;
                 }
 
+                // 2. Account Type validation (agar bheja gaya hai)
                 if (!string.IsNullOrWhiteSpace(request.AccountTypeId))
                 {
                     var accountType = await accountTypeDb.GetByIdAsync(request.AccountTypeId);
@@ -155,9 +229,9 @@ namespace BackendAcctTask.Controllers
                         response.AddError("Invalid AccountTypeId. Account type not found.");
                         return response;
                     }
-                    existing.AccountTypeId = request.AccountTypeId.Trim();
                 }
 
+                // 3. Account Name duplication check (agar name change ho raha hai)
                 if (!string.IsNullOrWhiteSpace(request.AccountName))
                 {
                     if (!string.Equals(existing.AccountName, request.AccountName, StringComparison.OrdinalIgnoreCase) &&
@@ -166,22 +240,14 @@ namespace BackendAcctTask.Controllers
                         response.AddError($"AccountName '{request.AccountName}' already exists.");
                         return response;
                     }
-                    existing.AccountName = request.AccountName.Trim();
                 }
 
-                if (request.AccountGroup != null)
-                    existing.AccountGroup = request.AccountGroup.Trim();
-
-                if (request.ForClients.HasValue)
-                    existing.ForClients = request.ForClients.Value;
-
-                if (request.Archive.HasValue)
-                    existing.Archive = request.Archive.Value;
-
-                var result = await db.UpdateAsync(id, existing);
-                if (result)
+                // 4. Direct partial update call to DB model
+                var success = await db.UpdateOneAsync(id, request);
+                if (success)
                 {
-                    response.Result = existing;
+                    // Updated object wapas fetch karke response mein bhej sakte hain
+                    response.Result = await db.GetByIdAsync(id);
                     response.Message = "Chart account updated successfully.";
                 }
                 else
@@ -202,7 +268,6 @@ namespace BackendAcctTask.Controllers
 
         #region chart account delete
         [HttpDelete("{id}")]
-        [HttpPost("delete/{id}")]
         public async Task<ApiResponse<bool>> Delete(string id)
         {
             var response = new ApiResponse<bool>();

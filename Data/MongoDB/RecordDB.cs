@@ -180,5 +180,31 @@ namespace BackendAcctTask.Data.MongoDB
                 return 0;
             }
         }
+public virtual async Task<bool> UpdateFieldsAsync(string id, UpdateDefinition<T> updateDefinition)
+{
+    try
+    {
+        LastError = null;
+        var filter = Builders<T>.Filter.And(
+            Builders<T>.Filter.Eq(x => x.Id, id),
+            Builders<T>.Filter.Where(x => !x.IsDeleted)
+        );
+
+        // Automatically UpdatedAt set karne ke liye agar definition mein nahi hai
+        // (Optional: aap ise controller ya yahan handle kar sakte hain)
+        
+        var result = await GetCollection().UpdateOneAsync(filter, updateDefinition);
+        return result.ModifiedCount > 0 || result.MatchedCount > 0;
+    }
+    catch (Exception ex)
+    {
+        LastError = ex;
+        return false;
     }
 }
+
+
+    }
+}
+
+
