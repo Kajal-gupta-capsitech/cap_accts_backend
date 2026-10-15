@@ -50,6 +50,8 @@ namespace BackendAcctTask.Models
             return await ExistsAsync(x => x.AccountName == accountName && !x.IsDeleted);
         }
 
+
+
         public async Task<string> GetNextCodeAsync()
         {
             try
@@ -117,6 +119,48 @@ namespace BackendAcctTask.Models
                     Archive = chartAccount.Archive
                 })
                 .ToList();
+        }
+
+   public async Task<ChartAccount> GetAllbyCode( string code)
+        {
+            return await GetCollection().Find(x =>
+                    x.Code == code &&
+                    !x.IsDeleted)
+                .FirstOrDefaultAsync();
+
+            // if (chartAccounts.Count == 0)
+            // {
+            //     return new List<ChartAccountResponse>();
+            // }
+
+            // var accountTypeIds = chartAccounts
+            //     .Select(x => x.AccountTypeId)
+            //     .Where(id => !string.IsNullOrWhiteSpace(id))
+            //     .Distinct()
+            //     .ToList();
+
+            // var accountTypes = accountTypeIds.Count == 0
+            //     ? new List<AccountType>()
+            //     : await accountTypeDb.GetAllAsync(x => accountTypeIds.Contains(x.Id) && !x.IsDeleted);
+
+            // var accountTypesById = accountTypes
+            //     .ToDictionary(x => x.Id, StringComparer.Ordinal);
+
+            // return chartAccounts
+            //     .Select(chartAccount => new ChartAccountResponse
+            //     {
+            //         Id = chartAccount.Id,
+            //         Code = chartAccount.Code,
+            //         AccountName = chartAccount.AccountName,
+            //         AccountTypeId = chartAccount.AccountTypeId,
+            //         AccountType = accountTypesById.TryGetValue(chartAccount.AccountTypeId, out var accountType)
+            //             ? accountType
+            //             : null,
+            //         AccountGroup = chartAccount.AccountGroup,
+            //         ForClients = chartAccount.ForClients,
+            //         Archive = chartAccount.Archive
+            //     })
+            //     .ToList();
         }
 
         public async Task<ChartAccountResponse?> GetByIdWithAccountTypeAsync(string id, AccountTypeDB accountTypeDb)

@@ -58,7 +58,7 @@ namespace BackendAcctTask.Controllers
 
         #region period add / save
         [HttpPost]
-        [HttpPost("save")]
+        // [HttpPost("save")]
         public async Task<ApiResponse<AccountingPeriod>> Save([FromBody] AccountingPeriodRequest request)
         {
             var response = new ApiResponse<AccountingPeriod>();
@@ -117,7 +117,7 @@ namespace BackendAcctTask.Controllers
         #region period update
         [HttpPut("{id}")]
         [HttpPatch("{id}")]
-        [HttpPost("update/{id}")]
+        // [HttpPost("update/{id}")]
         public async Task<ApiResponse<AccountingPeriod>> Update(string id, [FromBody] UpdateAccountingPeriodRequest request)
         {
             var response = new ApiResponse<AccountingPeriod>();

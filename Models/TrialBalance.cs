@@ -11,6 +11,7 @@ public class TrialBalance : RecordBase
     // TB-01, TB-02, TB-03...
     public string RefNo { get; set; } = string.Empty;
 
+    [BsonRepresentation(BsonType.ObjectId)]
     public string? PeriodId { get; set; }
 
     public DateTime PeriodStart { get; set; }
@@ -56,10 +57,10 @@ public class TrialBalance : RecordBase
 
     // public string? JournalId { get; set; }
 
-    // [BsonRepresentation(BsonType.ObjectId)]
+    [BsonRepresentation(BsonType.ObjectId)]
     public List<string> JournalIds { get; set; } = new();
 
-    // [BsonRepresentation(BsonType.ObjectId)]
+    [BsonRepresentation(BsonType.ObjectId)]
     public List<string> ImportIds { get; set; } = new();
 
 }
@@ -233,26 +234,9 @@ public class TrialBalanceDB : RecordDB<TrialBalance>
         return _database.GetCollection<Journal>("Journals");
     }
 
-    public async Task<bool> AddImportAsync(Import import)
-    {
-        try
-        {
-            LastError = null;
-            if (string.IsNullOrWhiteSpace(import.Id))
-            {
-                import.Id = ObjectId.GenerateNewId().ToString();
-            }
-            import.CreatedAt = DateTime.UtcNow;
-            import.IsDeleted = false;
-            await GetImportCollection().InsertOneAsync(import);
-            return true;
-        }
-        catch (Exception ex)
-        {
-            LastError = ex;
-            return false;
-        }
-    }
+
+
+
 
     public async Task<bool> AddImportIdAsync(string trialBalanceId, string importId)
     {
@@ -270,6 +254,44 @@ public class TrialBalanceDB : RecordDB<TrialBalance>
     }
 
     // Helper function to generate entity numbers for TrialBalance, Import, Journal, etc.
+
+
+    public async Task<List<TrialBalance>> GetLatestTB()
+    {
+        try
+        {
+            LastError = null;
+            var trialBalances = await GetCollection()
+                .Find(x => !x.IsDeleted)
+                .SortByDescending(x => x.RefNo)
+                .ToListAsync();
+
+            var collection = GetCollection();
+
+            var totalCount = await collection.CountDocumentsAsync(
+                Builders<TrialBalance>.Filter.Empty
+            );
+
+            var activeCount = await collection.CountDocumentsAsync(
+                Builders<TrialBalance>.Filter.Where(x => !x.IsDeleted)
+            );
+
+            Console.WriteLine($"Collection: {CollectionName}");
+            Console.WriteLine($"Total documents: {totalCount}");
+            Console.WriteLine($"Non-deleted documents: {activeCount}");
+
+            return trialBalances;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("exception", ex.ToString(), ex.Message);
+            throw new InvalidOperationException(
+            $"Failed to retrieve trial balances from '{CollectionName}'.",
+            ex
+        );
+        }
+    }
+
     public async Task<string> GenerateEntityNumberAsync<TEntity>(
         IMongoCollection<TEntity> collection,
         string? trialBalanceId,
@@ -335,6 +357,52 @@ public class TrialBalanceDB : RecordDB<TrialBalance>
             return $"{trialBalanceNumber}{separator}01";
         }
     }
+public async Task<bool> UpdateJournalSummaryAsync(
+    string trialBalanceId,
+    string journalId,
+    decimal totalDebit,
+    decimal totalCredit)
+{
+    try
+    {
+        LastError = null;
+
+        var update = Builders<TrialBalance>.Update.Combine(
+            Builders<TrialBalance>.Update.AddToSet(
+                x => x.JournalIds,
+                journalId),
+
+            Builders<TrialBalance>.Update.Set(
+                x => x.TotalDebit,
+                totalDebit),
+
+            Builders<TrialBalance>.Update.Set(
+                x => x.TotalCredit,
+                totalCredit),
+
+            Builders<TrialBalance>.Update.Set(
+                x => x.Status,
+                totalDebit == totalCredit
+                    ? TrialBalanceStatus.Balanced
+                    : TrialBalanceStatus.Unbalanced),
+
+            Builders<TrialBalance>.Update.Set(
+                x => x.UpdatedAt,
+                DateTime.UtcNow)
+        );
+
+        var result = await GetCollection().UpdateOneAsync(
+            x => x.Id == trialBalanceId && !x.IsDeleted,
+            update);
+
+        return result.MatchedCount > 0;
+    }
+    catch (Exception ex)
+    {
+        LastError = ex;
+        return false;
+    }
+}
 
     public async Task<string?> SaveFile(
         IFormFile? file,
@@ -408,44 +476,8 @@ public class TrialBalanceDB : RecordDB<TrialBalance>
         }
     }
 
-    public async Task<Import?> GetImportByIdAsync(string importId)
-    {
-        try
-        {
-            LastError = null;
-            if (string.IsNullOrWhiteSpace(importId))
-                return null;
 
-            return await GetImportCollection()
-                .Find(x => x.Id == importId && !x.IsDeleted)
-                .FirstOrDefaultAsync();
-        }
-        catch (Exception ex)
-        {
-            LastError = ex;
-            return null;
-        }
-    }
 
-    public async Task<List<Import>> GetImportsByTrialBalanceIdAsync(string trialBalanceId)
-    {
-        try
-        {
-            LastError = null;
-            if (string.IsNullOrWhiteSpace(trialBalanceId))
-                return new List<Import>();
-
-            return await GetImportCollection()
-                .Find(x => x.TrialBalance.Id == trialBalanceId && !x.IsDeleted)
-                .SortBy(x => x.CreatedAt)
-                .ToListAsync();
-        }
-        catch (Exception ex)
-        {
-            LastError = ex;
-            return new List<Import>();
-        }
-    }
 
     public async Task<List<Journal>> GetJournalsByIdsAsync(IEnumerable<string>? journalIds)
     {
@@ -498,6 +530,8 @@ public class TrialBalanceDB : RecordDB<TrialBalance>
             return new List<Journal>();
         }
     }
+
+
 
     public async Task<Journal?> GetJournalByIdAsync(string journalId, string? trialBalanceId = null)
     {
