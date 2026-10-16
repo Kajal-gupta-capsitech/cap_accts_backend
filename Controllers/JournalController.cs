@@ -28,7 +28,7 @@ public class JournalsController : ApiControllerBase
    
     #region jounal delete
     [HttpDelete("{id}")]
-    public async Task<ApiResponse<bool>> Delete(string id)
+    public async Task<ActionResult<ApiResponse<bool>>> Delete(string id)
     {
         var response = new ApiResponse<bool>();
 
@@ -39,7 +39,7 @@ public class JournalsController : ApiControllerBase
             if (existing == null)
             {
                 response.AddError("Journals  not found.");
-                return response;
+                return BadRequest(response);
             }
 
             var result = await db.DeleteAsync(id, softDelete: true);
@@ -58,6 +58,7 @@ public class JournalsController : ApiControllerBase
         catch (Exception ex)
         {
             response.AddError(ex.Message);
+            return StatusCode(500,response);
         }
 
         return response;

@@ -58,7 +58,7 @@ namespace BackendAcctTask.Controllers
         #region account type add / save
         [HttpPost]
         [HttpPost("save")]
-        public async Task<ApiResponse<AccountType>> Save([FromBody] AccountTypeRequest request)
+        public async Task<ActionResult<ApiResponse<AccountType>>> Save([FromBody] AccountTypeRequest request)
         {
             var response = new ApiResponse<AccountType>();
 
@@ -73,7 +73,8 @@ namespace BackendAcctTask.Controllers
                 if (existing.Any())
                 {
                     response.AddError($"Account type '{request.Name}' already exists.");
-                    return response;
+                    // return response;
+                    return BadRequest(response);
                 }
 
                 var accountType = new AccountType
@@ -98,6 +99,7 @@ namespace BackendAcctTask.Controllers
             catch (Exception ex)
             {
                 response.AddError(ex.Message);
+                return StatusCode(500,response);
             }
 
             return response;
@@ -108,7 +110,7 @@ namespace BackendAcctTask.Controllers
         [HttpPut("{id}")]
         [HttpPatch("{id}")]
         [HttpPost("update/{id}")]
-        public async Task<ApiResponse<AccountType>> Update(string id, [FromBody] AccountTypeRequest request)
+        public async Task<ActionResult<ApiResponse<AccountType>>> Update(string id, [FromBody] AccountTypeRequest request)
         {
             var response = new ApiResponse<AccountType>();
 
@@ -122,7 +124,7 @@ namespace BackendAcctTask.Controllers
                 if (existing == null)
                 {
                     response.AddError("Account type not found.");
-                    return response;
+                    return BadRequest(response);
                 }
 
                 existing.Name = request.Name.Trim();
@@ -144,6 +146,7 @@ namespace BackendAcctTask.Controllers
             catch (Exception ex)
             {
                 response.AddError(ex.Message);
+                return BadRequest(response);
             }
 
             return response;
@@ -153,7 +156,7 @@ namespace BackendAcctTask.Controllers
         #region account type delete
         [HttpDelete("{id}")]
         [HttpPost("delete/{id}")]
-        public async Task<ApiResponse<bool>> Delete(string id)
+        public async Task<ActionResult<ApiResponse<bool>>> Delete(string id)
         {
             var response = new ApiResponse<bool>();
 
@@ -164,7 +167,7 @@ namespace BackendAcctTask.Controllers
                 if (existing == null)
                 {
                     response.AddError("Account type not found.");
-                    return response;
+                    return BadRequest(response);
                 }
 
                 var result = await db.DeleteAsync(id);
@@ -183,6 +186,7 @@ namespace BackendAcctTask.Controllers
             catch (Exception ex)
             {
                 response.AddError(ex.Message);
+                return BadRequest(response);
             }
 
             return response;

@@ -43,6 +43,8 @@ namespace BackendAcctTask.Data.MongoDB
             catch (Exception ex)
             {
                 LastError = ex;
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.ToString());
                 return new List<T>();
             }
         }

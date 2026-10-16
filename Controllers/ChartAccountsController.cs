@@ -64,31 +64,104 @@ namespace BackendAcctTask.Controllers
         }
         #endregion
 
-        #region chart account add
+        // #region chart account add
+        // [HttpPost]
+        // public async Task<ApiResponse<ChartAccount>> Save([FromBody] ChartAccountRequest request)
+        // {
+        //     var response = new ApiResponse<ChartAccount>();
+
+        //     if (ValidateModel(response))
+        //         return response;
+
+        //     try
+        //     {
+        //         var db = GetDB();
+        //         var accountTypeDb = GetAccountTypeDB();
+
+        //         var accountType = await accountTypeDb.GetByIdAsync(request.AccountTypeId);
+        //         if (accountType == null)
+        //         {
+        //             response.AddError("Invalid AccountTypeId. Account type not found.");
+        //             return BadRequest(response);
+        //         }
+
+        //         if (await db.AccountNameExistsAsync(request.AccountName))
+        //         {
+        //             response.AddError($"AccountName '{request.AccountName}' already exists.");
+        //             return response;
+        //         }
+
+        //         var nextCode = string.IsNullOrWhiteSpace(request.Code)
+        //             ? await db.GetNextCodeAsync()
+        //             : request.Code.Trim();
+
+        //         var chartAccount = new ChartAccount
+        //         {
+        //             Code = nextCode,
+        //             AccountName = request.AccountName.Trim(),
+        //             AccountTypeId = request.AccountTypeId.Trim(),
+        //             AccountGroup = request.AccountGroup?.Trim() ?? string.Empty,
+        //             ForClients = request.ForClients,
+        //             Archive = request.Archive
+        //         };
+
+        //         var result = await db.AddAsync(chartAccount);
+        //         if (result)
+        //         {
+        //             response.Result = chartAccount;
+        //             response.Message = "Chart account saved successfully.";
+        //         }
+        //         else
+        //         {
+        //             response.Message = "Failed to save chart account.";
+        //             if (db.LastError != null)
+        //                 response.AddError(db.LastError.Message);
+        //         }
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         response.AddError(ex.Message);
+        //     }
+
+        //     return response;
+        // }
+        // #endregion
+
+
+#region chart account add
         [HttpPost]
-        public async Task<ApiResponse<ChartAccount>> Save([FromBody] ChartAccountRequest request)
+        public async Task<ActionResult<ApiResponse<ChartAccount>>> Save(
+            [FromBody] ChartAccountRequest request)
         {
             var response = new ApiResponse<ChartAccount>();
 
             if (ValidateModel(response))
-                return response;
+                return BadRequest(response);
 
             try
             {
                 var db = GetDB();
                 var accountTypeDb = GetAccountTypeDB();
 
-                var accountType = await accountTypeDb.GetByIdAsync(request.AccountTypeId);
+                var accountType = await accountTypeDb
+                    .GetByIdAsync(request.AccountTypeId);
+
                 if (accountType == null)
                 {
-                    response.AddError("Invalid AccountTypeId. Account type not found.");
-                    return response;
+                    response.AddError(
+                        "Invalid AccountTypeId. Account type not found."
+                    );
+
+                    return BadRequest(response);
                 }
 
                 if (await db.AccountNameExistsAsync(request.AccountName))
                 {
-                    response.AddError($"AccountName '{request.AccountName}' already exists.");
-                    return response;
+                    response.AddError(
+                        $"AccountName '{request.AccountName}' already exists."
+                    );
+
+                    return Conflict(response);
                 }
 
                 var nextCode = string.IsNullOrWhiteSpace(request.Code)
@@ -106,27 +179,33 @@ namespace BackendAcctTask.Controllers
                 };
 
                 var result = await db.AddAsync(chartAccount);
+
                 if (result)
                 {
                     response.Result = chartAccount;
                     response.Message = "Chart account saved successfully.";
+
+                    return Ok(response);
                 }
-                else
-                {
-                    response.Message = "Failed to save chart account.";
-                    if (db.LastError != null)
-                        response.AddError(db.LastError.Message);
-                }
+
+                response.AddError(
+                    db.LastError?.Message ?? "Failed to save chart account."
+                );
+
+                return StatusCode(500, response);
             }
             catch (Exception ex)
             {
-                response.AddError(ex.Message);
+                // Log the actual exception server-side.
+                response.AddError("An unexpected error occurred.");
+
+                return StatusCode(500, response);
             }
-
-            return response;
         }
-        #endregion
 
+        #endregion
+      
+      
         #region chart account update
         // [HttpPut("{id}")]
         // [HttpPatch("{id}")]
@@ -203,7 +282,7 @@ namespace BackendAcctTask.Controllers
         [HttpPut("{id}")]
         [HttpPatch("{id}")]
         // [HttpPost("update/{id}")]
-        public async Task<ApiResponse<ChartAccount>> Update(string id, [FromBody] UpdateChartAccountRequest request)
+        public async Task<ActionResult<ApiResponse<ChartAccount>>> Update(string id, [FromBody] UpdateChartAccountRequest request)
         {
             var response = new ApiResponse<ChartAccount>();
 
@@ -217,7 +296,7 @@ namespace BackendAcctTask.Controllers
                 if (existing == null)
                 {
                     response.AddError("Chart account not found.");
-                    return response;
+                    return BadRequest(response);
                 }
 
                 // 2. Account Type validation (agar bheja gaya hai)
@@ -227,7 +306,7 @@ namespace BackendAcctTask.Controllers
                     if (accountType == null)
                     {
                         response.AddError("Invalid AccountTypeId. Account type not found.");
-                        return response;
+                        return BadRequest(response);
                     }
                 }
 
@@ -238,7 +317,8 @@ namespace BackendAcctTask.Controllers
                         await db.AccountNameExistsAsync(request.AccountName))
                     {
                         response.AddError($"AccountName '{request.AccountName}' already exists.");
-                        return response;
+                        // return response;
+                        return BadRequest(response);
                     }
                 }
 
@@ -260,6 +340,7 @@ namespace BackendAcctTask.Controllers
             catch (Exception ex)
             {
                 response.AddError(ex.Message);
+                return StatusCode(500,response);
             }
 
             return response;
@@ -268,7 +349,7 @@ namespace BackendAcctTask.Controllers
 
         #region chart account delete
         [HttpDelete("{id}")]
-        public async Task<ApiResponse<bool>> Delete(string id)
+        public async Task<ActionResult<ApiResponse<bool>>> Delete(string id)
         {
             var response = new ApiResponse<bool>();
 
@@ -298,6 +379,7 @@ namespace BackendAcctTask.Controllers
             catch (Exception ex)
             {
                 response.AddError(ex.Message);
+                return BadRequest(response);
             }
 
             return response;
